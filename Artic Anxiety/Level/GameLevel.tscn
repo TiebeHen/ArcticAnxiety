@@ -1,23 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhtvq5b7yvktt"]
+[gd_scene load_steps=2 format=3 uid="uid://bhtvq5b7yvktt"]
 
-[ext_resource type="PackedScene" uid="uid://gp3bl6c4tuit" path="res://Level/player.tscn" id="1_0q47q"]
 [ext_resource type="Script" path="res://TileMap/TileMapGenerator.cs" id="1_5m14l"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_gdry1"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cwkci"]
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_5m14l")
-
-[node name="Player" parent="." instance=ExtResource("1_0q47q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.846542, 0, 1.23899)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.000733093, 1, 0, -1, 0.000733093, 12.9344, 19.3659, 9.99962)
 light_energy = 0.496
 
-[node name="MeshInstance3D(1,1)" type="MeshInstance3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 0.5, 0, 0, 0, 2, 1, -0.25, -1)
-mesh = SubResource("BoxMesh_gdry1")
-surface_material_override/0 = SubResource("StandardMaterial3D_cwkci")
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 54.7562, 127.544)
