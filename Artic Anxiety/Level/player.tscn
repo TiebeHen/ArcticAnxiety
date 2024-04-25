@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://br34y4q84s1ag"]
+[gd_scene load_steps=4 format=3 uid="uid://gp3bl6c4tuit"]
 
-[ext_resource type="Script" path="res://Level/Player.gd" id="1_saq67"]
-[ext_resource type="ArrayMesh" uid="uid://br4sjiatam2u1" path="res://Art/files/pinguin juigen/penguin juigen animatie.obj" id="2_eebvk"]
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_saq67"]
+[ext_resource type="ArrayMesh" uid="uid://br4sjiatam2u1" path="res://Assets/files/pinguin juigen/penguin juigen animatie.obj" id="2_ggm7d"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0odie"]
 
@@ -24,5 +24,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Twistpivot"]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 7.45058e-09, 0, -7.45058e-09, 0.6, 0, -1, 1.49012e-08)
-mesh = ExtResource("2_eebvk")
+mesh = ExtResource("2_ggm7d")
 skeleton = NodePath("../..")

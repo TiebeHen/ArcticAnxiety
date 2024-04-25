@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://tbovghor3tp5"]
 
-[ext_resource type="Texture2D" uid="uid://bx8p74ggs3o34" path="res://Art/325516194-4774f598-f405-45f5-a08d-369d133203d5.png" id="1_obg7n"]
-[ext_resource type="Texture2D" uid="uid://b04jh88kfrs64" path="res://Art/325516011-b0134444-9fcd-4d52-ae42-6f48b63fd751.png" id="2_jltqd"]
+[ext_resource type="Texture2D" uid="uid://bx8p74ggs3o34" path="res://Assets/325516194-4774f598-f405-45f5-a08d-369d133203d5.png" id="1_obg7n"]
+[ext_resource type="Texture2D" uid="uid://b04jh88kfrs64" path="res://Assets/325516011-b0134444-9fcd-4d52-ae42-6f48b63fd751.png" id="2_jltqd"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
