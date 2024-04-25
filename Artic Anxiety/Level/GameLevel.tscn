@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://TileMap/TileMapGenerator.cs" id="1_5m14l"]
 
-[node name="Node3D" type="Node3D"]
+[node name="Node3D2" type="Node3D"]
 script = ExtResource("1_5m14l")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
