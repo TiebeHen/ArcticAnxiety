@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c8jugvp7tj5k0"
-path="res://.godot/imported/Button_Cancel_OLD.png-a7b669d9940ba9f9aca24e16c08a2263.ctex"
+path="res://.godot/imported/Button_Cancel_OLD.png-dca7a99db35ad0e5f661795496778327.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Buttons/Button_Cancel_OLD.png"
-dest_files=["res://.godot/imported/Button_Cancel_OLD.png-a7b669d9940ba9f9aca24e16c08a2263.ctex"]
+source_file="res://Assets/Buttons/Button_Cancel_OLD.png"
+dest_files=["res://.godot/imported/Button_Cancel_OLD.png-dca7a99db35ad0e5f661795496778327.ctex"]
 
 [params]
 

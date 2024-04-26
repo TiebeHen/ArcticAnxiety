@@ -78,10 +78,6 @@ public partial class Level : Node3D
 		
 		
 		
-		
-		//testen voor recoleren van tiles
-		ChangeTileColorIfTileExists(5, 0);
-		
 }
 
 	// Method to add child node deferred
@@ -96,31 +92,4 @@ public partial class Level : Node3D
 	}
 	
 	
-	//testen voor recoleren van tiles
-		private void ChangeTileColorIfTileExists(int x, int y)
-	{
-		// Check if the tile exists at the specified position.
-		if (CellExists(GetCellItem(x, y)))
-		{
-			// Get the tile's position in the world.
-			Vector2 tilePosition = MapToWorld(new Vector2(x, y));
-
-			// Change the color of the tile at the specified position to red.
-			SetCell(x, y, TileId, true);
-			SetCellv(new Vector2(x, y), TileId);
-			UpdateBitmaskRegion(new Vector2(x, y));
-
-			// You can also modify other properties of the tile, such as its texture or material.
-			// For example:
-			// SetCellTileOrigin(x, y, new Vector2(0, 0));
-			// SetCellTileRegion(x, y, new Rect2(32, 0, 32, 32));
-
-			// Print a message to the console.
-			GD.Print("Tile at position (" + x + ", " + y + ") changed to red.");
 		}
-		else
-		{
-			// Print a message to the console if there's no tile at the specified position.
-			GD.Print("No tile found at position (" + x + ", " + y + ").");
-		}
-}}

@@ -2,26 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-<<<<<<<< HEAD:Artic Anxiety/Assets/Buttons/Button_Back.png.import
-uid="uid://0cph4il4h3jk"
-path="res://.godot/imported/Button_Back.png-1a995db59ea7ecd298de8673d312d167.ctex"
-========
-uid="uid://bx8p74ggs3o34"
-path="res://.godot/imported/Background_Empty.png-ccf0cd29907a2a7739c6ce783ac5ba3c.ctex"
->>>>>>>> 02fd00218f999e96422a9aa2d9c7197ce82c13a1:Artic Anxiety/Assets/Background_Empty.png.import
+uid="uid://cmrl4swcq61ia"
+path="res://.godot/imported/Background_Empty.png-b33491fd1861e34fed9b68e81a2f79aa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-<<<<<<<< HEAD:Artic Anxiety/Assets/Buttons/Button_Back.png.import
-source_file="res://Assets/Buttons/Button_Back.png"
-dest_files=["res://.godot/imported/Button_Back.png-1a995db59ea7ecd298de8673d312d167.ctex"]
-========
-source_file="res://Art/Background_Empty.png"
-dest_files=["res://.godot/imported/Background_Empty.png-ccf0cd29907a2a7739c6ce783ac5ba3c.ctex"]
->>>>>>>> 02fd00218f999e96422a9aa2d9c7197ce82c13a1:Artic Anxiety/Assets/Background_Empty.png.import
+source_file="res://Assets/Background_Empty.png"
+dest_files=["res://.godot/imported/Background_Empty.png-b33491fd1861e34fed9b68e81a2f79aa.ctex"]
 
 [params]
 
