@@ -1,0 +1,67 @@
+[gd_scene load_steps=7 format=3 uid="uid://ckcw6th2r6ymp"]
+
+[ext_resource type="Script" path="res://UI/CreateMenu.cs" id="1_qhud4"]
+[ext_resource type="Texture2D" uid="uid://cr3yhkwhmtvik" path="res://Art/Buttons/Button_Create_Lobby¨.png" id="2_fwmjd"]
+[ext_resource type="Texture2D" uid="uid://bkas5vl2nfui6" path="res://Art/Background_Lobby.png" id="2_q0wyt"]
+[ext_resource type="Texture2D" uid="uid://fy6y5ux2i337" path="res://Art/Buttons/Button_Cancel.png" id="3_7mk65"]
+[ext_resource type="Texture2D" uid="uid://konyvbbnlf6" path="res://Art/Buttons/Button_Cancel_Pressed.png" id="5_sk4uq"]
+[ext_resource type="Texture2D" uid="uid://cr4rq8hlrpqa7" path="res://Art/Buttons/Button_Create_Lobby_Pressed¨.png" id="6_vau0h"]
+
+[node name="CreateMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qhud4")
+
+[node name="BackgroundLobby" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(0.642857, 0.632813)
+texture = ExtResource("2_q0wyt")
+
+[node name="ButtonCreateLobby¨" type="Sprite2D" parent="."]
+position = Vector2(781, 439)
+scale = Vector2(0.184721, 0.184721)
+texture = ExtResource("2_fwmjd")
+
+[node name="ButtonCancel" type="Sprite2D" parent="."]
+position = Vector2(332, 446)
+scale = Vector2(0.137174, 0.137174)
+texture = ExtResource("3_7mk65")
+
+[node name="ButtonCancelPressed" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(332, 446)
+scale = Vector2(0.146657, 0.146657)
+texture = ExtResource("5_sk4uq")
+
+[node name="ButtonCreateLobbyPressed" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(782, 440)
+scale = Vector2(0.200953, 0.200953)
+texture = ExtResource("6_vau0h")
+
+[node name="Cancel" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 224.0
+offset_top = 407.0
+offset_right = 443.0
+offset_bottom = 486.0
+
+[node name="Create" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 632.0
+offset_top = 382.0
+offset_right = 931.0
+offset_bottom = 497.0
+
+[connection signal="mouse_entered" from="Cancel" to="." method="_on_cancel_mouse_entered"]
+[connection signal="mouse_exited" from="Cancel" to="." method="_on_cancel_mouse_exited"]
+[connection signal="pressed" from="Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="mouse_entered" from="Create" to="." method="_on_create_mouse_entered"]
+[connection signal="mouse_exited" from="Create" to="." method="_on_create_mouse_exited"]
+[connection signal="pressed" from="Create" to="." method="_on_create_pressed"]

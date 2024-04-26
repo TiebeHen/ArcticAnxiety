@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://doff0y2mv50di"]
+
+[ext_resource type="Texture2D" uid="uid://bkas5vl2nfui6" path="res://Art/Background_Lobby.png" id="1_4qm1c"]
+[ext_resource type="Script" path="res://UI/LobbyMenu.cs" id="1_xj4y5"]
+[ext_resource type="Texture2D" uid="uid://dlrw1rgvxduka" path="res://Art/Buttons/Button_Exit.png" id="3_u07ah"]
+[ext_resource type="Texture2D" uid="uid://dl37g6pfy8tnu" path="res://Art/Buttons/Button_Exit_Pressed.png" id="4_ggdtg"]
+
+[node name="LobbyMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xj4y5")
+
+[node name="BackgroundLobby" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(0.642857, 0.632813)
+texture = ExtResource("1_4qm1c")
+
+[node name="ButtonExit" type="Sprite2D" parent="."]
+position = Vector2(330, 449)
+scale = Vector2(0.14046, 0.14046)
+texture = ExtResource("3_u07ah")
+
+[node name="Join Lobby" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 221.0
+offset_top = 408.0
+offset_right = 438.0
+offset_bottom = 490.0
+text = "
+"
+
+[node name="ButtonExitPressed" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(330, 449)
+scale = Vector2(0.14326, 0.14326)
+texture = ExtResource("4_ggdtg")
+
+[connection signal="mouse_entered" from="Join Lobby" to="." method="_on_join_lobby_mouse_entered"]
+[connection signal="mouse_exited" from="Join Lobby" to="." method="_on_join_lobby_mouse_exited"]
+[connection signal="pressed" from="Join Lobby" to="." method="_on_join_lobby_pressed"]
