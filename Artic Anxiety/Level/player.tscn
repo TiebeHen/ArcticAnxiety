@@ -3,15 +3,12 @@
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_saq67"]
 [ext_resource type="ArrayMesh" uid="uid://br4sjiatam2u1" path="res://Assets/files/pinguin juigen/penguin juigen animatie.obj" id="2_ggm7d"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0odie"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_f2eas"]
+size = Vector3(1.5, 2, 1)
 
 [node name="Player" type="RigidBody3D"]
 lock_rotation = true
 script = ExtResource("1_saq67")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(2, 0, 0, 0, 1, 0, 0, 0, 1.5, 0, 0.938625, 0)
-shape = SubResource("CapsuleShape3D_0odie")
 
 [node name="Twistpivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -19,10 +16,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 [node name="PitchPivot" type="Node3D" parent="Twistpivot"]
 transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0, 0)
 
-[node name="Camera3D" type="Camera3D" parent="Twistpivot/PitchPivot"]
+[node name="Camera3DBehind char" type="Camera3D" parent="Twistpivot/PitchPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Twistpivot"]
 transform = Transform3D(0.6, 0, 0, 0, 0.6, 7.45058e-09, 0, -7.45058e-09, 0.6, 0, -1, 1.49012e-08)
 mesh = ExtResource("2_ggm7d")
 skeleton = NodePath("../..")
+
+[node name="Camera3DForVictory" type="Camera3D" parent="."]
+transform = Transform3D(-1, 1.51808e-08, -8.60946e-08, 0, 0.984808, 0.173648, 8.74228e-08, 0.173648, -0.984808, 0, 2, -3)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00368, 0)
+shape = SubResource("BoxShape3D_f2eas")

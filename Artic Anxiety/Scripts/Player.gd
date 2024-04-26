@@ -21,7 +21,7 @@ func _process(delta: float) -> void:
 	input.z = Input.get_axis("move_forward","move_backward")
 	input.y = Input.get_axis("move_down", "move_up")
 	
-	apply_central_force(twist_pivot.basis * input * 1200.0 * delta)
+	apply_central_force(input * 1200.0 * delta)
 	 
 	if Input.is_action_just_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
