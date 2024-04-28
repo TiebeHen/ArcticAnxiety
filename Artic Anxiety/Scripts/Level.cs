@@ -1,10 +1,12 @@
 using Godot;
 using System;
 using System.IO;
+using System.Collections.Generic;
 
 public partial class Level : Node3D
 {	
 	
+	List<ClassTile> instances = new List<ClassTile>();
 	
 	
 	//tiles
@@ -33,7 +35,13 @@ public partial class Level : Node3D
  						instance.Position = new Vector3(x, 0, y);
  						// Verzetten van de blokken x, Hoogte, y
 						AddChildDeferred(instance);
+						instances.Add(new ClassTile(id,instance));
+					
 					}	
+					else
+					{
+						instances.Add(new ClassTile(id,null));
+					}
 						y-=2;
 				}
 				y= 0;
@@ -74,21 +82,35 @@ public partial class Level : Node3D
 				y= 0;
  				x += 2; // Increment x by 2
 		}
+		//foreach(Node3D d in instances)
+		//{
+		//	RemoveChildDeferred(d);
+		//}
+		 
+		//foreach(ClassTile t in instances)
+		//{
+		//	GD.Print(t.Print());
+		//}
 		
-		
-		
-		
-}
+	}
 
 	// Method to add child node deferred
 	private void AddChildDeferred(Node node)
 	{
 		CallDeferred("add_child", node);
 	}
+	private void RemoveChildDeferred(Node node)
+	{
+		CallDeferred("remove_child", node);
+	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+	}
+	private void VriesWaterBlok()
+	{
+		
 	}
 	
 	
