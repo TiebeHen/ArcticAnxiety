@@ -36,6 +36,7 @@ func _process(delta: float) -> void:
 	#$Twistpivot/PitchPivot.rotation.x = clamp($Twistpivot/PitchPivot.rotation.x,-0.5,0.5) #max pitchen
 	
 	pitch_pivot.rotate_x(pitch_input)
+	
 	pitch_pivot.rotation.x = clamp(pitch_pivot.rotation.x,-0.5,0.5) 
 	
 	twist_input = 0.0
