@@ -8,13 +8,13 @@ public partial class Level : Node3D
 	
 	
 	//tiles
-	PackedScene TileScene = ResourceLoader.Load<PackedScene>("res://Level/Tile.tscn");
-	PackedScene BlueTileScene = ResourceLoader.Load<PackedScene>("res://Level/BlueTile.tscn");
-	PackedScene SeaBottomTileScene = ResourceLoader.Load<PackedScene>("res://Level/SeaBottomTile.tscn");
+	PackedScene TileScene = ResourceLoader.Load<PackedScene>("res://Scenes/Game/Tile.tscn");
+	PackedScene BlueTileScene = ResourceLoader.Load<PackedScene>("res://Scenes/Game/BlueTile.tscn");
+	PackedScene SeaBottomTileScene = ResourceLoader.Load<PackedScene>("res://Scenes/Game/SeaBottomTile.tscn");
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		string filePath = "TileMap/tilemap.txt";
+		string filePath = "Assets/Map/tilemap.txt";
 		
 		string[] lines = File.ReadAllLines(filePath);
 		

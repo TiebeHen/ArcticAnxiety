@@ -1,0 +1,143 @@
+[gd_scene load_steps=11 format=3 uid="uid://doff0y2mv50di"]
+
+[ext_resource type="Texture2D" uid="uid://bkas5vl2nfui6" path="res://Assets/Menus/Background_Lobby.png" id="1_4qm1c"]
+[ext_resource type="Script" path="res://Scripts/MenuNavigation.cs" id="1_eyner"]
+[ext_resource type="Texture2D" uid="uid://oriidxdo1fa3" path="res://Assets/Buttons/Button.png" id="3_rfcaa"]
+[ext_resource type="FontFile" uid="uid://dhjj1ii1frsqf" path="res://Assets/Fonts/TherenRegular-vmrnE.ttf" id="4_ygtmm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8srqu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_at1b6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bkc70"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_snvl6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gqe1f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ff84v"]
+
+[node name="LobbyMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eyner")
+
+[node name="LobbyBackground" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(0.642857, 0.632813)
+texture = ExtResource("1_4qm1c")
+
+[node name="Leave" type="Node" parent="."]
+
+[node name="TextureLeave" type="Sprite2D" parent="Leave"]
+position = Vector2(135.156, 592)
+scale = Vector2(0.145483, 0.145483)
+texture = ExtResource("3_rfcaa")
+
+[node name="LineEditLeave" type="LineEdit" parent="Leave"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 30.1563
+offset_top = 558.0
+offset_right = 240.156
+offset_bottom = 624.0
+theme_override_fonts/font = ExtResource("4_ygtmm")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8srqu")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_at1b6")
+text = "Leave"
+alignment = 1
+
+[node name="TextureLeaveHover" type="Sprite2D" parent="Leave"]
+visible = false
+position = Vector2(135.156, 592)
+scale = Vector2(0.154622, 0.154622)
+texture = ExtResource("3_rfcaa")
+
+[node name="LineEditLeaveHover" type="LineEdit" parent="Leave"]
+visible = false
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 30.1563
+offset_top = 558.0
+offset_right = 240.156
+offset_bottom = 624.0
+theme_override_fonts/font = ExtResource("4_ygtmm")
+theme_override_font_sizes/font_size = 45
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8srqu")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_at1b6")
+text = "Leave"
+alignment = 1
+
+[node name="ButtonLeave" type="Button" parent="Leave"]
+offset_left = 24.1563
+offset_top = 552.0
+offset_right = 246.156
+offset_bottom = 632.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bkc70")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_snvl6")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_gqe1f")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ff84v")
+
+[node name="Start" type="Node" parent="."]
+
+[node name="TextureStart" type="Sprite2D" parent="Start"]
+position = Vector2(823.156, 463)
+scale = Vector2(0.145483, 0.145483)
+texture = ExtResource("3_rfcaa")
+
+[node name="LineEditStart" type="LineEdit" parent="Start"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 718.156
+offset_top = 429.0
+offset_right = 928.156
+offset_bottom = 495.0
+theme_override_fonts/font = ExtResource("4_ygtmm")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8srqu")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_at1b6")
+text = "Start"
+alignment = 1
+
+[node name="TextureStartHover" type="Sprite2D" parent="Start"]
+visible = false
+position = Vector2(823.156, 463)
+scale = Vector2(0.154622, 0.154622)
+texture = ExtResource("3_rfcaa")
+
+[node name="LineEditStartHover" type="LineEdit" parent="Start"]
+visible = false
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 718.156
+offset_top = 429.0
+offset_right = 928.156
+offset_bottom = 495.0
+theme_override_fonts/font = ExtResource("4_ygtmm")
+theme_override_font_sizes/font_size = 45
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8srqu")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_at1b6")
+text = "Start"
+alignment = 1
+
+[node name="ButtonStart" type="Button" parent="Start"]
+offset_left = 712.156
+offset_top = 423.0
+offset_right = 934.156
+offset_bottom = 503.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_bkc70")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_snvl6")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_gqe1f")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ff84v")
+
+[connection signal="mouse_entered" from="Leave/ButtonLeave" to="." method="_on_button_leave_mouse_entered"]
+[connection signal="mouse_exited" from="Leave/ButtonLeave" to="." method="_on_button_leave_mouse_exited"]
+[connection signal="pressed" from="Leave/ButtonLeave" to="." method="_on_button_leave_pressed"]
+[connection signal="mouse_entered" from="Start/ButtonStart" to="." method="_on_button_start_mouse_entered"]
+[connection signal="mouse_exited" from="Start/ButtonStart" to="." method="_on_button_start_mouse_exited"]
+[connection signal="pressed" from="Start/ButtonStart" to="." method="_on_button_start_pressed"]
