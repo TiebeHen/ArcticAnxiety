@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://86y40xp7pvxt"]
+
+[ext_resource type="PackedScene" uid="uid://dpost1nppajsm" path="res://Assets/Models/Water/Water.tscn" id="1_jjk25"]
+[ext_resource type="PackedScene" uid="uid://b7voyo4jrocs3" path="res://Assets/Models/Rocks/Rock.glb" id="2_jps53"]
+[ext_resource type="PackedScene" uid="uid://gp3bl6c4tuit" path="res://Scenes/Game/player.tscn" id="2_mdyoq"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_34tes"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q17gv"]
+albedo_color = Color(0.1458, 0.306199, 0.999999, 0.705882)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2r84x"]
+
+[node name="Map" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 250, 30, 250)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.707107, -0.241845, -0.664463, 0, -0.939693, 0.34202, -0.707107, -0.241845, -0.664463, 0, 50, 0)
+
+[node name="Ground" type="Node" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+transform = Transform3D(500, 0, 0, 0, 1, 0, 0, 0, 500, 250, -30, 250)
+mesh = SubResource("BoxMesh_34tes")
+surface_material_override/0 = SubResource("StandardMaterial3D_q17gv")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground/MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_2r84x")
+
+[node name="Water" type="Node" parent="."]
+
+[node name="MeshInstance3D" parent="Water" instance=ExtResource("1_jjk25")]
+transform = Transform3D(500, 0, 0, 0, 1, 0, 0, 0, 500, 250, -20, 250)
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="Rock1" parent="Environment" instance=ExtResource("2_jps53")]
+transform = Transform3D(5, 0, 0, 0, 3.78533, 0, 0, 0, 4.1667, 319.175, -50, 252.013)
+
+[node name="Rock2" parent="Environment" instance=ExtResource("2_jps53")]
+transform = Transform3D(2.18089, 0, 5.28582, 0, 3.86455, 0, -4.7355, 0, 2.43433, 305.493, -50, 220.536)
+
+[node name="Rock3" parent="Environment" instance=ExtResource("2_jps53")]
+transform = Transform3D(-0.279257, 0, 8.11628, 0, 3.42404, 0, -6.65455, 0, -0.340599, 258.912, -50, 208.418)
+
+[node name="Level" type="Node" parent="."]
+
+[node name="Player" type="Node" parent="."]
+
+[node name="Player" parent="Player" instance=ExtResource("2_mdyoq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 225, 0, 250)
