@@ -42,7 +42,7 @@ public partial class Level : Node3D
 					{
 						instances.Add(new ClassTile(id,null));
 					}
-						y-=2;
+						y+=2;
 				}
 				y= 0;
  				x += 2; // Increment x by 2
@@ -60,7 +60,7 @@ public partial class Level : Node3D
  						instance.Position = new Vector3(x, (float)-0.5, y);
  						// Verzetten van de blokken x, Hoogte, y
 						AddChildDeferred(instance);
-						y-=2;
+						y+=2;
 				}
 				y= 0;
  				x += 2; // Increment x by 2
@@ -77,7 +77,7 @@ public partial class Level : Node3D
  						instance.Position = new Vector3(x, -5, y);
  						// Verzetten van de blokken x, Hoogte, y
 						AddChildDeferred(instance);
-						y-=2;
+						y+=2;
 				}
 				y= 0;
  				x += 2; // Increment x by 2

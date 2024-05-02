@@ -6,7 +6,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_f2eas"]
 size = Vector3(1.5, 2, 1)
 
-[node name="Player" type="RigidBody3D"]
+[node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_n8wut")
 
 [node name="Twistpivot" type="Node3D" parent="."]
