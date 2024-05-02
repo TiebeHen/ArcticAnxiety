@@ -32,7 +32,10 @@ public partial class Player : CharacterBody3D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		camera_pivot = GetNode<Spatial>("CameraPivot")
+		if(Input.IsActionJustPressed("ui_cancel"))
+		{
+		Input.SetMouseMode(Input.MouseMode.Captured);
+		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
