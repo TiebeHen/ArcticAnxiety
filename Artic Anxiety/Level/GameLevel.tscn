@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bhtvq5b7yvktt"]
 
 [ext_resource type="Script" path="res://Scripts/Level.cs" id="1_w7c8l"]
-[ext_resource type="PackedScene" uid="uid://gp3bl6c4tuit" path="res://Level/player.tscn" id="2_fs35n"]
+[ext_resource type="PackedScene" uid="uid://b7ufj21cg3s2r" path="res://Level/NewAnimationTest.tscn" id="2_c8gw4"]
 
 [node name="Node3D2" type="Node3D"]
 script = ExtResource("1_w7c8l")
@@ -13,5 +13,5 @@ light_energy = 0.496
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, 1, -1, 4.37114e-08, -4.37114e-08, 30, 45, -50)
 
-[node name="Player" parent="." instance=ExtResource("2_fs35n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.76745, 1.79144, -0.313946)
+[node name="penguin model" parent="." instance=ExtResource("2_c8gw4")]
+transform = Transform3D(1.00076, 0, 0, 0, 1.00076, 0, 0, 0, 1.00076, 1, 1, -1)
