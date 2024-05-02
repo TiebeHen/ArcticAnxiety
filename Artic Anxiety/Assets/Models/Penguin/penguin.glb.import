@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bjj2n774b8htj"
-path="res://.godot/imported/penguin.glb-e55a8859e3b4d999a35e2afc7857f47f.scn"
+path="res://.godot/imported/penguin.glb-011deafa9ea3001a0a6b88104e8bf189.scn"
 
 [deps]
 
-source_file="res://Assets/Models/Pinguin/penguin.glb"
-dest_files=["res://.godot/imported/penguin.glb-e55a8859e3b4d999a35e2afc7857f47f.scn"]
+source_file="res://Assets/Models/Penguin/penguin.glb"
+dest_files=["res://.godot/imported/penguin.glb-011deafa9ea3001a0a6b88104e8bf189.scn"]
 
 [params]
 
