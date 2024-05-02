@@ -1,4 +1,4 @@
-extends RigidBody3D
+extends Node3D
 
 var mouse_sensitivity := 0.001
 var twist_input := 0.0
@@ -46,3 +46,4 @@ func _unhandled_input(event: InputEvent) -> void:
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			twist_input = - event.relative.x * mouse_sensitivity
 			pitch_input = - event.relative.y * mouse_sensitivity
+			

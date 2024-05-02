@@ -11,16 +11,16 @@ lock_rotation = true
 script = ExtResource("1_saq67")
 
 [node name="Twistpivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(0.999953, 0, 0.00972132, 0, 1, 0, -0.00972132, 0, 0.999953, 0, 1, 0)
 
 [node name="PitchPivot" type="Node3D" parent="Twistpivot"]
-transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0, 0)
+transform = Transform3D(0.99996, 0.00155474, -0.00881734, -3.50175e-09, 0.984808, 0.173648, 0.00895343, -0.173641, 0.984769, 0, 0, 0)
 
 [node name="Camera3DBehind char" type="Camera3D" parent="Twistpivot/PitchPivot"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Twistpivot"]
-transform = Transform3D(0.6, 0, 0, 0, 0.6, 7.45058e-09, 0, -7.45058e-09, 0.6, 0, -1, 1.49012e-08)
+transform = Transform3D(0.593833, 1.0655e-09, -0.0858054, -1.45584e-23, 0.6, 7.45058e-09, 0.0858054, -7.374e-09, 0.593833, 0, -0.874693, 1.49012e-08)
 mesh = ExtResource("2_ggm7d")
 skeleton = NodePath("../..")
 
