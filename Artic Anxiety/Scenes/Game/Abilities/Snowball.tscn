@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://yoc4lspn54ox"]
 
 [ext_resource type="ArrayMesh" uid="uid://d16cwwpdnv3kh" path="res://Assets/Models/Snowball/snowball.obj" id="1_kryfc"]
-[ext_resource type="Script" path="res://Scenes/Game/Abilities/Snowball.cs" id="1_po8xa"]
+[ext_resource type="Script" path="res://Scripts/Snowball.cs" id="1_po8xa"]
 
 [node name="Snowball" type="Node3D"]
 script = ExtResource("1_po8xa")
 
 [node name="Snowball" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 mesh = ExtResource("1_kryfc")

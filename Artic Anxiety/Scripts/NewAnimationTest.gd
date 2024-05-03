@@ -8,6 +8,8 @@ const LERP_VAL = .15
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var SnowballScene = preload("res://Scenes/Game/Abilities/Snowball.tscn")
+
 
 var mouse_sensitivity := 0.001
 var twist_input := 0.0
@@ -55,17 +57,24 @@ func _physics_process(delta):
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 			
+			
+			
+			
 	if Input.is_action_pressed("click_throw"):
 		print("gooi sneeuwbal")
+		var snowball_instance = SnowballScene.instantiate()
+		snowball_instance.position = Vector3(position.x, 1.5, position.z)
+		add_child_deferred(snowball_instance)
+		
 			
 			
 			
 	var camerarecords = cameraToPlayer(get_viewport().get_mouse_position())
 			
 			
-	print("Viewport cords: ", camerarecords)
+	#print("Viewport cords: ", camerarecords)
 	var player_position = position
-	print("Player position: ", player_position)
+	#print("Player position: ", player_position)
 	look_at(Vector3(camerarecords.x, 0, camerarecords.y), Vector3(0, 1, 0)) 
 	
 	
@@ -94,3 +103,11 @@ func cameraToPlayer(camera_position: Vector2) -> Vector2:
 		player_position.x = player_position.y
 		player_position.y = pX
 		return player_position
+
+
+
+func add_child_deferred(node):
+	call_deferred("add_child", node)
+
+func remove_child_deferred(node):
+	call_deferred("remove_child", node)
