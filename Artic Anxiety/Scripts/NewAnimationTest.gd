@@ -72,14 +72,13 @@ func _unhandled_input(event: InputEvent) -> void:
 			
 func cameraToPlayer(camera_position: Vector2) -> Vector2:
 		# Define the size of the camera viewport
-		var camera_size = Vector2(1150, 560)
+		var camera_size = Vector2(960, 585)
 		# Define the size of the player map
 		var player_map_size = Vector2(100, 60)
 		# Calculate the scale factor for the translation
 		var scale_factor = player_map_size / camera_size
 		# Translate camera coordinates to player coordinates
 		var player_position = camera_position * scale_factor
-		
 		
 		player_position.x -= 9
 		player_position.y -= 4
