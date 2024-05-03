@@ -10,13 +10,13 @@ public partial class Level : Node3D
 	
 	
 	//tiles
-	PackedScene TileScene = ResourceLoader.Load<PackedScene>("res://Scenes/Game/Tile.tscn");
-	PackedScene BlueTileScene = ResourceLoader.Load<PackedScene>("res://Scenes/Game/BlueTile.tscn");
-	PackedScene SeaBottomTileScene = ResourceLoader.Load<PackedScene>("res://Scenes/Game/SeaBottomTile.tscn");
+	PackedScene FullIceTile = ResourceLoader.Load<PackedScene>("res://Scenes/Game/Tiles/Level/FullIceTile.tscn");
+	PackedScene WaterTile = ResourceLoader.Load<PackedScene>("res://Scenes/Game/Tiles/Water/WaterTile.tscn");
+	PackedScene SeaBottomTile = ResourceLoader.Load<PackedScene>("res://Scenes/Game/Tiles/Ground/SeaBottomTile.tscn");
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		string filePath = "Assets/Map/tilemap.txt";
+		string filePath = "Assets/Map/Level.txt";
 		
 		string[] lines = File.ReadAllLines(filePath);
 		
@@ -24,14 +24,14 @@ public partial class Level : Node3D
 		int y = 0;
 		for (int i = 0; i < lines.Length; i++)
 		{
-			 string[] values = lines[i].Split(' ');
+			 string[] values = lines[i].Split(',');
   				
 				for (int z = 0; z < values.Length; z++)
 				{
 					String id = values[z];
-					if(id == "1")
+					if(id == "49")
 					{
-						Node3D instance = (Node3D)TileScene.Instantiate();
+						Node3D instance = (Node3D)FullIceTile.Instantiate();
  						instance.Position = new Vector3(x, 0, y);
  						// Verzetten van de blokken x, Hoogte, y
 						AddChildDeferred(instance);
@@ -56,7 +56,7 @@ public partial class Level : Node3D
 		{
 				for (int z = 0; z < 50; z++)
 				{
-						Node3D instance = (Node3D)BlueTileScene.Instantiate();
+						Node3D instance = (Node3D)WaterTile.Instantiate();
  						instance.Position = new Vector3(x, (float)-0.5, y);
  						// Verzetten van de blokken x, Hoogte, y
 						AddChildDeferred(instance);
@@ -73,7 +73,7 @@ public partial class Level : Node3D
 		{
 				for (int z =0; z < 50; z++)
 				{
-						Node3D instance = (Node3D)SeaBottomTileScene.Instantiate();
+						Node3D instance = (Node3D)SeaBottomTile.Instantiate();
  						instance.Position = new Vector3(x, -5, y);
  						// Verzetten van de blokken x, Hoogte, y
 						AddChildDeferred(instance);

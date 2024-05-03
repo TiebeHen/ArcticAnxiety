@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://d11e5s2i8frlq"]
+
+[ext_resource type="ArrayMesh" uid="uid://c4wxgbksncvrs" path="res://Assets/Models/Tiles/FulIceTile.obj" id="1_xjovt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qv02r"]
+size = Vector3(2, 1, 2)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="FulIceTile2" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_xjovt")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FulIceTile2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FulIceTile2/StaticBody3D"]
+shape = SubResource("BoxShape3D_qv02r")
