@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
-@onready var anim_tree = $Twistpivot/AnimationTree
+@onready var anim_tree = $AnimationTree
+@onready var anim_player = $AnimationPlayer
 
 const SPEED = 8.0
 const JUMP_VELOCITY = 6.0
@@ -25,7 +26,7 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
@@ -38,10 +39,14 @@ func _physics_process(delta):
 	else:
 		velocity.x = lerp(velocity.x, 0.0, LERP_VAL)
 		velocity.z = lerp(velocity.z, 0.0, LERP_VAL)
-
-	anim_tree.set("parameters/BlendSpace1D/blend_position", velocity.length() / SPEED)
-
+		
 	move_and_slide()
+	
+	anim_tree.set("parameters/conditions/idle", input_dir == Vector2.ZERO && is_on_floor())
+	anim_tree.set("parameters/conditions/beginnen", input_dir.y == 1 || input_dir.y == -1 && is_on_floor())
+	anim_tree.set("parameters/conditions/glijden", input_dir.y == 1 || input_dir.y == -1 && is_on_floor())
+	anim_tree.set("parameters/conditions/stoppen", input_dir.y == 1 || input_dir.y == -1 && is_on_floor())
+	anim_tree.set("parameters/conditions/idlejump", input_dir == Vector2.ZERO && !is_on_floor())
 	
 	twist_pivot.rotate_y(twist_input)
 	pitch_pivot.rotate_x(pitch_input)
