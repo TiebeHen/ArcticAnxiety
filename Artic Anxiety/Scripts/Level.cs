@@ -8,6 +8,8 @@ public partial class Level : Node3D
 	
 	List<ClassTile> instances = new List<ClassTile>();
 	
+	string ID_WATER_TILE = "105";
+	string ID_FULL_ICE_TILE = "49";
 	
 	//tiles
 	PackedScene FullIceTile = ResourceLoader.Load<PackedScene>("res://Scenes/Game/Tiles/Level/FullIceTile.tscn");
@@ -22,27 +24,26 @@ public partial class Level : Node3D
 		
 		int x = 0;
 		int y = 0;
-		for (int i = 0; i < lines.Length; i++)
+		for (int i = 0; i < lines.Length-1; i++)
 		{
 			 string[] values = lines[i].Split(',');
   				
-				for (int z = 0; z < values.Length; z++)
+				for (int z = 0; z < values.Length-1; z++)
 				{
 					String id = values[z];
-					if(id == "49")
+					if(id == ID_FULL_ICE_TILE)
 					{
 						Node3D instance = (Node3D)FullIceTile.Instantiate();
  						instance.Position = new Vector3(x, 0, y);
  						// Verzetten van de blokken x, Hoogte, y
 						AddChildDeferred(instance);
 						instances.Add(new ClassTile(id,instance));
-					
 					}	
 					else
 					{
-						instances.Add(new ClassTile(id,null));
+						instances.Add(new ClassTile(ID_WATER_TILE, new Vector3(x, 0, y)));
 					}
-						y+=2;
+					y+=2;
 				}
 				y=0;
  				x += 2; // Increment x by 2
@@ -105,13 +106,39 @@ public partial class Level : Node3D
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+public override void _Process(double delta)
+{		
+	List<ClassTile> newInstances = new List<ClassTile>(); // Create a new list to hold instances to be added
+	
+	foreach(ClassTile t in instances) // Iterate over a copy of instances to avoid modification during enumeration
 	{
+		if(t.GetID() == ID_WATER_TILE)
+		{
+			if(GD.Randi() % 10000 < 3) // number between 0 and 49, 10% to change to ice
+			{
+				Node3D instance = (Node3D)FullIceTile.Instantiate();
+				instance.Position = t.GetPosition();
+				
+				newInstances.Add(new ClassTile(ID_FULL_ICE_TILE, instance)); // Add new instance to the temporary list
+				
+				AddChildDeferred(instance);
+			}
+		}
 	}
+	
+	// Add new instances to the main collection after the loop
+	foreach (var newInstance in newInstances)
+	{
+		instances.Add(newInstance);
+	}
+}
+	
+	
+	
 	private void VriesWaterBlok()
 	{
 		
 	}
 	
 	
-		}
+}
