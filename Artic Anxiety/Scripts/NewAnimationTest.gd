@@ -30,16 +30,42 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("move_up") or Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
+
+#OLd Movemont
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir = Input.get_vector("move_forward", "move_backward", "move_left", "move_right")
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = lerp(velocity.x, direction.x * SPEED, LERP_VAL)
-		velocity.z = lerp(velocity.z, direction.z * SPEED, LERP_VAL)
-	else:
-		velocity.x = lerp(velocity.x, 0.0, LERP_VAL)
-		velocity.z = lerp(velocity.z, 0.0, LERP_VAL)
+	#var input_dir = Input.get_vector("move_forward", "move_backward", "move_left", "move_right")
+	#var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	#if direction:
+	#	velocity.x = lerp(velocity.x, direction.x * SPEED, LERP_VAL)
+	#	velocity.z = lerp(velocity.z, direction.z * SPEED, LERP_VAL)
+	#else:
+	#	velocity.x = lerp(velocity.x, 0.0, LERP_VAL)
+	#	velocity.z = lerp(velocity.z, 0.0, LERP_VAL)
+	var direction = Vector3.ZERO
+	var target_velocity = Vector3.ZERO
+	var speed = 14
+	if Input.is_action_pressed("move_forward"):
+		direction.x -= 1
+	if Input.is_action_pressed("move_backward"):
+		direction.x += 1
+	if Input.is_action_pressed("move_right"):
+		direction.z += 1
+	if Input.is_action_pressed("move_left"):
+		direction.z -= 1
+		
+		
+	if direction != Vector3.ZERO:
+		direction = direction.normalized()
+
+	# Ground Velocity
+	target_velocity.x = direction.x * speed
+	target_velocity.z = direction.z * speed
+	target_velocity.y = velocity.y
+	
+	velocity = target_velocity
+	
+	
 
 	anim_tree.set("parameters/BlendSpace1D/blend_position", velocity.length() / SPEED)
 
@@ -60,11 +86,11 @@ func _physics_process(delta):
 			
 			
 			
-	if Input.is_action_pressed("click_throw"):
+	if Input.is_action_just_pressed("click_throw"):
 		print("gooi sneeuwbal")
-		var snowball_instance = SnowballScene.instantiate()
-		snowball_instance.position = Vector3(position.x, 1.5, position.z)
-		add_child_deferred(snowball_instance)
+		#var snowball_instance = SnowballScene.instantiate()
+		#snowball_instance.position = Vector3(position.x, 1.5, position.z)
+		#add_child_deferred(snowball_instance)
 		
 			
 			
