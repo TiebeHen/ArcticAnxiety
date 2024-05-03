@@ -3,7 +3,7 @@ extends CharacterBody3D
 @onready var anim_tree = $Twistpivot/AnimationTree
 
 const SPEED = 8.0
-const JUMP_VELOCITY = 4.5
+const JUMP_VELOCITY = 6.0
 const LERP_VAL = .15
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.

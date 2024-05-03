@@ -1,10 +1,6 @@
-[gd_scene load_steps=37 format=3 uid="uid://i7334pqmd0da"]
+[gd_scene load_steps=36 format=3 uid="uid://i7334pqmd0da"]
 
-[ext_resource type="ArrayMesh" uid="uid://br4sjiatam2u1" path="res://Assets/files/pinguin juigen/penguin juigen animatie.obj" id="2_gnfwg"]
 [ext_resource type="Script" path="res://Scripts/NewAnimationTest.gd" id="2_vw3vo"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_80f1n"]
-size = Vector3(1, 1, 0.805542)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pfbqn"]
 resource_name = "Material.011"
@@ -1362,28 +1358,21 @@ blend_point_2/pos = 1.0
 min_space = 0.0
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_smwai"]
-graph_offset = Vector2(-438.733, 62.8243)
 nodes/BlendSpace1D/node = SubResource("AnimationNodeBlendSpace1D_jri1i")
 nodes/BlendSpace1D/position = Vector2(60, 140)
 node_connections = [&"output", 0, &"BlendSpace1D"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_80f1n"]
+size = Vector3(1, 1, 0.805542)
+
 [node name="Penguin" type="CharacterBody3D"]
 script = ExtResource("2_vw3vo")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.629, 0, 0, 0, 2, 0, 0, 0, 1.653, -0.003, 0.935439, -0.1)
-shape = SubResource("BoxShape3D_80f1n")
 
 [node name="Twistpivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="PitchPivot" type="Node3D" parent="Twistpivot"]
 transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Twistpivot"]
-transform = Transform3D(0.6, 0, 0, 0, 0.6, 7.45058e-09, 0, -7.45058e-09, 0.6, 0, -1, -2.74846)
-mesh = ExtResource("2_gnfwg")
-skeleton = NodePath("../..")
 
 [node name="Armature_001" type="Node3D" parent="Twistpivot"]
 transform = Transform3D(0.6, 0, 0, 0, 0.599923, 0.00964014, 0, -0.00964014, 0.599923, 0, -0.279048, 0)
@@ -1393,8 +1382,8 @@ bones/0/name = "buik"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.44751e-08, 0)
 bones/0/enabled = true
-bones/0/position = Vector3(0, -0.666944, 0)
-bones/0/rotation = Quaternion(0, 0, 0, 1)
+bones/0/position = Vector3(6.49457e-09, -0.61548, 0)
+bones/0/rotation = Quaternion(0, 0, -0.0720456, 0.997401)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "RechterSchouder"
 bones/1/parent = 0
@@ -1408,7 +1397,7 @@ bones/2/parent = 1
 bones/2/rest = Transform3D(0.151258, 0.988127, -0.0269587, -0.842989, 0.143188, 0.518523, 0.516226, -0.0557049, 0.854639, -6.49597e-08, 1.16111, 3.72529e-09)
 bones/2/enabled = true
 bones/2/position = Vector3(-6.49597e-08, 1.16111, 3.72529e-09)
-bones/2/rotation = Quaternion(-0.172615, -0.115646, -0.652428, 0.728812)
+bones/2/rotation = Quaternion(-0.166545, -0.119246, -0.628546, 0.750316)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "RechterArm_2"
 bones/3/parent = 2
@@ -1450,7 +1439,7 @@ bones/8/parent = 7
 bones/8/rest = Transform3D(0.255068, -0.952512, 0.166315, 0.934712, 0.19887, -0.294557, 0.247494, 0.230589, 0.94105, -2.10712e-08, 1.06288, -1.30385e-08)
 bones/8/enabled = true
 bones/8/position = Vector3(-2.10712e-08, 1.06288, -1.30385e-08)
-bones/8/rotation = Quaternion(0.101344, -0.0697822, 0.646853, 0.752623)
+bones/8/rotation = Quaternion(0.0989817, -0.0692645, 0.640705, 0.758223)
 bones/8/scale = Vector3(0.998526, 0.999899, 0.956609)
 bones/9/name = "LinkerArm_2"
 bones/9/parent = 8
@@ -1470,8 +1459,8 @@ bones/11/name = "RechterHeup"
 bones/11/parent = -1
 bones/11/rest = Transform3D(0.0115836, 0.996659, -0.0808465, 0.374843, 0.0706278, 0.924394, 0.927016, -0.0410126, -0.372773, 0, 5.44751e-08, 0)
 bones/11/enabled = true
-bones/11/position = Vector3(4.65661e-09, -0.666944, 2.79397e-08)
-bones/11/rotation = Quaternion(0.57309, 0.598293, 0.369126, -0.421141)
+bones/11/position = Vector3(4.86719e-09, -0.61548, 1.19069e-08)
+bones/11/rotation = Quaternion(0.614705, 0.55545, 0.398508, -0.393453)
 bones/11/scale = Vector3(1, 1, 1)
 bones/12/name = "RechterBeen"
 bones/12/parent = 11
@@ -1485,14 +1474,14 @@ bones/13/parent = 12
 bones/13/rest = Transform3D(-0.482487, -0.777683, -0.403008, 0.873464, -0.461507, -0.155155, -0.0653294, -0.426873, 0.901949, -1.49012e-08, 0.544136, 1.49012e-08)
 bones/13/enabled = true
 bones/13/position = Vector3(-1.49012e-08, 0.544136, 1.49012e-08)
-bones/13/rotation = Quaternion(-0.138808, -0.172504, 0.843496, 0.489376)
+bones/13/rotation = Quaternion(-0.138808, -0.172505, 0.843496, 0.489376)
 bones/13/scale = Vector3(1, 1, 1)
 bones/14/name = "LinkerHeup"
 bones/14/parent = -1
 bones/14/rest = Transform3D(0.00659573, -0.999924, 0.0104362, -0.178372, 0.00909263, 0.983921, -0.983941, -0.00835115, -0.178299, 0, 5.44751e-08, 0)
 bones/14/enabled = true
-bones/14/position = Vector3(2.91038e-10, -0.666944, -1.34569e-08)
-bones/14/rotation = Quaternion(-0.542172, 0.543322, 0.448891, 0.457545)
+bones/14/position = Vector3(-1.32426e-09, -0.61548, 3.95977e-09)
+bones/14/rotation = Quaternion(-0.501619, 0.580971, 0.414761, 0.488697)
 bones/14/scale = Vector3(1, 1, 1)
 bones/15/name = "LinkerBeen"
 bones/15/parent = 14
@@ -1506,7 +1495,7 @@ bones/16/parent = 15
 bones/16/rest = Transform3D(-0.480504, 0.852356, 0.206409, -0.852136, -0.509407, 0.119868, 0.207316, -0.118291, 0.971096, -7.45058e-09, 0.522611, -2.44472e-09)
 bones/16/enabled = true
 bones/16/position = Vector3(-7.45058e-09, 0.522611, -2.44472e-09)
-bones/16/rotation = Quaternion(0.120216, 0.000457966, 0.860379, -0.495274)
+bones/16/rotation = Quaternion(0.145188, -0.0300993, 0.799791, -0.581678)
 bones/16/scale = Vector3(1, 1, 1)
 
 [node name="Sphere_001" type="MeshInstance3D" parent="Twistpivot/Armature_001/Skeleton3D"]
@@ -1546,14 +1535,16 @@ mesh = SubResource("ArrayMesh_o41ql")
 skin = SubResource("Skin_m03cg")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Twistpivot"]
-root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_mjv00")
 }
 autoplay = "IdleAnimation"
 
 [node name="AnimationTree" type="AnimationTree" parent="Twistpivot"]
-root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeBlendTree_smwai")
 anim_player = NodePath("../AnimationPlayer")
 parameters/BlendSpace1D/blend_position = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.6, 0, 0, 0, 1.964, 0, 0, 0, 1.6, -0.003, 0.935439, -0.1)
+shape = SubResource("BoxShape3D_80f1n")
