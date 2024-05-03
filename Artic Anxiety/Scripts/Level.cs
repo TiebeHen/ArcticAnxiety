@@ -106,26 +106,32 @@ public partial class Level : Node3D
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{		
-		foreach(ClassTile t in instances)
+public override void _Process(double delta)
+{		
+	List<ClassTile> newInstances = new List<ClassTile>(); // Create a new list to hold instances to be added
+	
+	foreach(ClassTile t in instances) // Iterate over a copy of instances to avoid modification during enumeration
+	{
+		if(t.GetID() == ID_WATER_TILE)
 		{
-			if(t.GetID() == ID_WATER_TILE)
+			if(GD.Randi() % 10000 < 3) // number between 0 and 49, 10% to change to ice
 			{
-				if(GD.Randi() % 10000 < 3) // number between 0 and 49, 10% to change to ice
-				{
-					Node3D instance = (Node3D)FullIceTile.Instantiate();
-	 				instance.Position = t.GetPosition();
-					
-					instances.Add(new ClassTile(ID_FULL_ICE_TILE,instance));
-					//RemoveChildDeferred(t.GetInstance());
-					//instances.Remove(t);
-					
-					AddChildDeferred(instance);
-				}
+				Node3D instance = (Node3D)FullIceTile.Instantiate();
+				instance.Position = t.GetPosition();
+				
+				newInstances.Add(new ClassTile(ID_FULL_ICE_TILE, instance)); // Add new instance to the temporary list
+				
+				AddChildDeferred(instance);
 			}
-		}		
+		}
 	}
+	
+	// Add new instances to the main collection after the loop
+	foreach (var newInstance in newInstances)
+	{
+		instances.Add(newInstance);
+	}
+}
 	
 	
 	
