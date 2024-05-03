@@ -50,11 +50,11 @@ public partial class Level : Node3D
 		
 		
 		//for the light blue tiles
-		x= 0;
-		y = 0;
-		for (int i = 0; i < 30; i++)
+		x= -20;
+		y = -20;
+		for (int i = 0; i < 70; i++)
 		{
-				for (int z = 0; z < 50; z++)
+				for (int z = 0; z < 90; z++)
 				{
 						Node3D instance = (Node3D)WaterTile.Instantiate();
  						instance.Position = new Vector3(x, (float)-0.5, y);
@@ -62,16 +62,16 @@ public partial class Level : Node3D
 						AddChildDeferred(instance);
 						y+=2;
 				}
-				y= 0;
+				y= -20;
  				x += 2; // Increment x by 2
 		}
 		
 		//for the Sea Bottom tiles
-		x= 0;
-		y = 0;
-		for (int i = 0; i < 30; i++)
+		x= -20;
+		y = -20;
+		for (int i = 0; i < 70; i++)
 		{
-				for (int z =0; z < 50; z++)
+				for (int z = 0; z < 90; z++)
 				{
 						Node3D instance = (Node3D)SeaBottomTile.Instantiate();
  						instance.Position = new Vector3(x, -5, y);
@@ -79,7 +79,7 @@ public partial class Level : Node3D
 						AddChildDeferred(instance);
 						y+=2;
 				}
-				y= 0;
+				y= -20;
  				x += 2; // Increment x by 2
 		}
 		//foreach(Node3D d in instances)
