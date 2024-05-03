@@ -29,16 +29,16 @@ func _physics_process(delta):
 	if Input.is_action_pressed("move_left"):
 		direction.z += 1
 	if Input.is_action_pressed("move_up"):
-		direction.y += 1
+		if is_on_floor():
+			direction.y += 1
 
 	if direction != Vector3.ZERO:
-		if is_on_floor():
-			direction = direction.normalized()
+		direction = direction.normalized()
 
 	# Ground Velocity
 	target_velocity.x = direction.x * speed
 	target_velocity.z = direction.z * speed
-	target_velocity.y = direction.y * 10 
+	target_velocity.y = direction.y * 15 
 
 	# Vertical Velocity
 	if not is_on_floor(): # If in the air, fall towards the floor. Literally gravity
@@ -47,14 +47,7 @@ func _physics_process(delta):
 	# Moving the Character
 	velocity = target_velocity
 	move_and_slide()
-
-
-	if Input.is_action_just_pressed("ui_cancel"):
-		if Input.get_mouse_mode() == Input.MOUSE_MODE_CONFINED:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		else:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
-
+	
 	twist_pivot.rotate_y(twist_input)
 	pitch_pivot.rotate_x(pitch_input)
 
@@ -62,6 +55,15 @@ func _physics_process(delta):
 	twist_input = 0.0
 	pitch_input = 0.0
 	
+	if Input.is_action_just_pressed("ui_cancel"):
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_CONFINED:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+
+	
+	
+
 	
 	
 	
