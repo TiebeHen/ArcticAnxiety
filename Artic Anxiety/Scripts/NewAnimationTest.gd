@@ -60,10 +60,14 @@ func _physics_process(delta):
 			
 			
 			
-	if Input.is_action_pressed("click_throw"):
+	if Input.is_action_just_pressed("click_throw"):
 		print("gooi sneeuwbal")
 		var snowball_instance = SnowballScene.instantiate()
-		snowball_instance.position = Vector3(position.x, 1.5, position.z)
+		
+		var snowballPos = Vector3(0, 1.5, 0)
+		#snowball_instance.position  = snowballPos
+		snowball_instance.rotation  = rotation;
+		#print(snowballPos)
 		add_child_deferred(snowball_instance)
 		
 			
