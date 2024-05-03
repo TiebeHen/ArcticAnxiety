@@ -44,7 +44,7 @@ public partial class Level : Node3D
 					}
 						y+=2;
 				}
-				y= 0;
+				y=0;
  				x += 2; // Increment x by 2
 		}
 		
@@ -92,7 +92,7 @@ public partial class Level : Node3D
 		//	GD.Print(t.Print());
 		//}
 		
-	}
+	}	 
 
 	// Method to add child node deferred
 	private void AddChildDeferred(Node node)

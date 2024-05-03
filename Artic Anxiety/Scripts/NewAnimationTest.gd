@@ -30,7 +30,7 @@ func _physics_process(delta):
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir = Input.get_vector("move_forward", "move_backward", "move_right", "move_left")
+	var input_dir = Input.get_vector("move_forward", "move_backward", "move_left", "move_right")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		velocity.x = lerp(velocity.x, direction.x * SPEED, LERP_VAL)
@@ -54,9 +54,37 @@ func _physics_process(delta):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			
+			
+	var cameracords = cameraToPlayer(get_viewport().get_mouse_position())
+			
+			
+	print("Viewport cords: ", cameracords)
+	var player_position = position
+	print("Player position: ", player_position)
+	
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			twist_input = -event.relative.x * mouse_sensitivity
 			pitch_input = -event.relative.y * mouse_sensitivity
+			
+func cameraToPlayer(camera_position: Vector2) -> Vector2:
+		# Define the size of the camera viewport
+		var camera_size = Vector2(1150, 560)
+		# Define the size of the player map
+		var player_map_size = Vector2(100, 60)
+		# Calculate the scale factor for the translation
+		var scale_factor = player_map_size / camera_size
+		# Translate camera coordinates to player coordinates
+		var player_position = camera_position * scale_factor
+		
+		
+		player_position.x -= 9
+		player_position.y -= 4
+		
+		var pX = player_position.x
+		player_position.x = player_position.y
+		player_position.y = pX
+		return player_position
