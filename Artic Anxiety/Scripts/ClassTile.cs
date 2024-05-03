@@ -5,12 +5,18 @@ public partial class ClassTile : Node3D
 {
 	private Node3D _instance;
 	private String _id;
+	private Vector3 _position;
 	
 	public ClassTile(String id, Node3D instance)
 	{
 		_instance = instance;
 		_id = id;
 	} 
+	public ClassTile(String id, Vector3 position)
+	{
+		_id = id;
+		_position = position;
+	}
 	public Node3D GetInstance()
 	{
 		return _instance;
@@ -18,6 +24,9 @@ public partial class ClassTile : Node3D
 	public String GetID()
 	{
 		return _id;
+	}
+	public Vector3 GetPosition(){
+		return _position;
 	}
 	public String Print()
 	{
