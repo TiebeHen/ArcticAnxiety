@@ -96,7 +96,7 @@ func _physics_process(delta):
 			
 			
 	var camerarecords = cameraToPlayer(get_viewport().get_mouse_position())
-			
+	print(get_viewport().size)
 			
 	#print("Viewport cords: ", camerarecords)
 	var player_position = position
@@ -114,7 +114,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			
 func cameraToPlayer(camera_position: Vector2) -> Vector2:
 		# Define the size of the camera viewport
-		var camera_size = Vector2(960, 585)
+		#var camera_size = Vector2(960, 585)
+		var camera_size = Vector2(get_viewport().size.x - 192,get_viewport().size.y - 63 )
 		# Define the size of the player map
 		var player_map_size = Vector2(100, 60)
 		# Calculate the scale factor for the translation
