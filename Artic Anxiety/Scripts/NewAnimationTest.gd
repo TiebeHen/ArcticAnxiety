@@ -6,6 +6,11 @@ const SPEED = 8.0
 const JUMP_VELOCITY = 6.0
 const LERP_VAL = .15
 
+#voor de timer
+var maxTime = 5
+var timeLeft = maxTime
+
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var SnowballScene = preload("res://Scenes/Game/Abilities/Snowball.tscn")
@@ -45,14 +50,19 @@ func _physics_process(delta):
 	var direction = Vector3.ZERO
 	var target_velocity = Vector3.ZERO
 	var speed = 14
+	var movement
 	if Input.is_action_pressed("move_forward"):
 		direction.x -= 1
+		movement = 1
 	if Input.is_action_pressed("move_backward"):
 		direction.x += 1
+		movement = 1
 	if Input.is_action_pressed("move_right"):
 		direction.z += 1
+		movement = 1
 	if Input.is_action_pressed("move_left"):
 		direction.z -= 1
+		movement = 1
 		
 		
 	if direction != Vector3.ZERO:
@@ -67,7 +77,12 @@ func _physics_process(delta):
 	
 	
 
-	anim_tree.set("parameters/BlendSpace1D/blend_position", velocity.length() / SPEED)
+
+	anim_tree.set("parameters/conditions/idle", movement == 0 && is_on_floor())
+	anim_tree.set("parameters/conditions/BeginnenGlijden", movement == 1 && is_on_floor())
+	anim_tree.set("parameters/conditions/Stoppen_Glijden", movement == 1 && is_on_floor())
+	anim_tree.set("parameters/conditions/idle_jump", target_velocity.y == 0 && !is_on_floor())
+	anim_tree.set("parameters/conditions/glijden_jump", target_velocity.y != 0 && !is_on_floor())
 
 	move_and_slide()
 	
@@ -96,16 +111,33 @@ func _physics_process(delta):
 			
 			
 	var camerarecords = cameraToPlayer(get_viewport().get_mouse_position())
-	print(get_viewport().size)
+	#print(get_viewport().size)
 			
 	#print("Viewport cords: ", camerarecords)
 	var player_position = position
 	#print("Player position: ", player_position)
 	look_at(Vector3(camerarecords.x, 0, camerarecords.y), Vector3(0, 1, 0)) 
 	
-	
-	
-
+	#timer 
+	if timeLeft > 0:
+		timeLeft -= delta
+		#print(timeLeft)
+	else:
+		timeLeft = 0
+		print("Game Over")
+		timeLeft = maxTime
+		
+		var LevelScript = load("res://Scripts/Level.cs")
+		var LevelNode = LevelScript.new()
+		LevelNode.DeleteTileNearPlayer(player_position)
+		
+		
+		#var test = LevelNode.PrintTest() # werkt ook
+		#print(test)
+		#print(LevelNode.PrintTest()) # werkt
+		
+		
+		
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
