@@ -114,7 +114,7 @@ public partial class Level : Node3D
 		
 		foreach (ClassTile t in instances) // Iterate over a copy of instances to avoid modification during enumeration
 		{
-			if (t.GetID() == ID_WATER_TILE)
+			if (t.GetID() == ID_WATER_TILE)//ID_FULL_ICE_TILE ID_WATER_TILE
 			{
 				if (GD.Randi() % 100000 < 3) // number between 0 and 49, 10% to change to ice
 				{
@@ -153,7 +153,8 @@ public partial class Level : Node3D
 			if (Math.Abs(_pos.X - playerX) <= 1 && Math.Abs(_pos.Z - playerZ) <= 1)
 			{
 				//GD.Print(i.GetPosition());
-				RemoveChildDeferred(i);
+				//GD.Print(i.GetInstance());
+				// i.QueueFree();
 				i.SetID(ID_WATER_TILE);
 			}
 		}

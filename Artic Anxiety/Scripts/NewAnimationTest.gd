@@ -10,17 +10,13 @@ var LevelScript = load("res://Scripts/Level.cs")
 var LevelNode = LevelScript.new()
 
 
-var OldPlayerpos
-var NewPlayerpos
-
-
 #voor de timer
 var maxTime = 5
 var timeLeft = maxTime
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") 
 var SnowballScene = preload("res://Scenes/Game/Abilities/Snowball.tscn")
 
 
@@ -90,7 +86,7 @@ func _physics_process(delta):
 	anim_tree.set("parameters/conditions/BeginnenGlijden", input_dir != Vector2.ZERO && is_on_floor())
 	anim_tree.set("parameters/conditions/Stoppen_Glijden", input_dir != Vector2.ZERO && is_on_floor())
 	anim_tree.set("parameters/conditions/idle_jump", input_dir == Vector2.ZERO && !is_on_floor())
-	anim_tree.set("parameters/conditions/glijden_jump", input_dir != Vector2.ZERO && !is_on_floor())
+	anim_tree.set("parameters/conditions/Glijden_Jump", input_dir != Vector2.ZERO && !is_on_floor())
 
 	move_and_slide()
 	
