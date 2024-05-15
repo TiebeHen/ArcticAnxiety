@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public partial class Level : Node3D
 {
 
-	List<ClassTile> instances = new List<ClassTile>();
+	static List<ClassTile> instances = new List<ClassTile>();
 
 	string ID_WATER_TILE = "105";
 	string ID_FULL_ICE_TILE = "49";
@@ -111,7 +111,7 @@ public partial class Level : Node3D
 	public override void _Process(double delta)
 	{
 		List<ClassTile> newInstances = new List<ClassTile>(); // Create a new list to hold instances to be added
-
+		
 		foreach (ClassTile t in instances) // Iterate over a copy of instances to avoid modification during enumeration
 		{
 			if (t.GetID() == ID_WATER_TILE)
@@ -121,8 +121,8 @@ public partial class Level : Node3D
 					Node3D instance = (Node3D)FullIceTile.Instantiate();
 					instance.Position = t.GetPosition();
 
-					newInstances.Add(new ClassTile(ID_FULL_ICE_TILE, instance)); // Add new instance to the temporary list
-
+					t.SetID( ID_FULL_ICE_TILE); // Add new instance to the temporary list
+					
 					AddChildDeferred(instance);
 				}
 			}
@@ -147,10 +147,10 @@ public partial class Level : Node3D
 			GD.Print("instances list is empty. No tiles to delete.");
 			return; // Exit the method if there are no instances
 		}
-
+		GD.Print(instances.Count);
 		for (int i = 0; i < instances.Count; i++)
 		{
-			GD.Print("test in loop");
+			
 		}
 	}
 

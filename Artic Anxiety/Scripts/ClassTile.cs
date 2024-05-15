@@ -25,6 +25,10 @@ public partial class ClassTile : Node3D
 	{
 		return _id;
 	}
+	public void SetID(String s)
+	{
+		_id = s;
+	}
 	public Vector3 GetPosition(){
 		return _position;
 	}

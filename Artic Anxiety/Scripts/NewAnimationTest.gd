@@ -32,7 +32,7 @@ func _physics_process(delta):
 		velocity.y -= gravity * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("move_up") or Input.is_action_just_pressed("jump") and is_on_floor():
+	if (Input.is_action_just_pressed("move_up") or Input.is_action_just_pressed("jump")) and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
 
@@ -78,9 +78,9 @@ func _physics_process(delta):
 	
 
 
-	anim_tree.set("parameters/conditions/idle", movement == 0 && is_on_floor())
-	anim_tree.set("parameters/conditions/BeginnenGlijden", movement == 1 && is_on_floor())
-	anim_tree.set("parameters/conditions/Stoppen_Glijden", movement == 1 && is_on_floor())
+	anim_tree.set("parameters/conditions/idle", direction == Vector3.ZERO && is_on_floor())
+	anim_tree.set("parameters/conditions/BeginnenGlijden", direction != Vector3.ZERO && is_on_floor())
+	anim_tree.set("parameters/conditions/Stoppen_Glijden", direction != Vector3.ZERO && is_on_floor())
 	anim_tree.set("parameters/conditions/idle_jump", target_velocity.y == 0 && !is_on_floor())
 	anim_tree.set("parameters/conditions/glijden_jump", target_velocity.y != 0 && !is_on_floor())
 
