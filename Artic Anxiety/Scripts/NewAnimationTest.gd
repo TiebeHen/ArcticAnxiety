@@ -41,12 +41,13 @@ func _physics_process(delta):
 		velocity.z = lerp(velocity.z, 0.0, LERP_VAL)
 		
 	move_and_slide()
-	
+
+
 	anim_tree.set("parameters/conditions/idle", input_dir == Vector2.ZERO && is_on_floor())
-	anim_tree.set("parameters/conditions/beginnen", input_dir.y == 1 || input_dir.y == -1 && is_on_floor())
-	anim_tree.set("parameters/conditions/glijden", input_dir.y == 1 || input_dir.y == -1 && is_on_floor())
-	anim_tree.set("parameters/conditions/stoppen", input_dir.y == 1 || input_dir.y == -1 && is_on_floor())
-	anim_tree.set("parameters/conditions/idlejump", input_dir == Vector2.ZERO && !is_on_floor())
+	anim_tree.set("parameters/conditions/BeginnenGlijden", input_dir != Vector2.ZERO && is_on_floor())
+	anim_tree.set("parameters/conditions/Stoppen_Glijden", input_dir != Vector2.ZERO && is_on_floor())
+	anim_tree.set("parameters/conditions/idle_jump", input_dir == Vector2.ZERO && !is_on_floor())
+	anim_tree.set("parameters/conditions/glijden_jump", input_dir != Vector2.ZERO && !is_on_floor())
 	
 	twist_pivot.rotate_y(twist_input)
 	pitch_pivot.rotate_x(pitch_input)
