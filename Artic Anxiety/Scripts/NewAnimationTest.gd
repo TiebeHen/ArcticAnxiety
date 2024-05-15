@@ -6,6 +6,14 @@ const SPEED = 8.0
 const JUMP_VELOCITY = 6.0
 const LERP_VAL = .15
 
+var LevelScript = load("res://Scripts/Level.cs")
+var LevelNode = LevelScript.new()
+
+
+var OldPlayerpos
+var NewPlayerpos
+
+
 #voor de timer
 var maxTime = 5
 var timeLeft = maxTime
@@ -98,7 +106,7 @@ func _physics_process(delta):
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 			
-			
+	
 			
 			
 	if Input.is_action_just_pressed("click_throw"):
@@ -118,6 +126,12 @@ func _physics_process(delta):
 	#print("Player position: ", player_position)
 	look_at(Vector3(camerarecords.x, 0, camerarecords.y), Vector3(0, 1, 0)) 
 	
+	#stilstaan = aan dood gaan
+	if direction != Vector3.ZERO:
+		timeLeft = maxTime
+		print(timeLeft)
+	
+	
 	#timer 
 	if timeLeft > 0:
 		timeLeft -= delta
@@ -127,8 +141,7 @@ func _physics_process(delta):
 		print("Game Over")
 		timeLeft = maxTime
 		
-		var LevelScript = load("res://Scripts/Level.cs")
-		var LevelNode = LevelScript.new()
+		
 		LevelNode.DeleteTileNearPlayer(player_position)
 		
 		
