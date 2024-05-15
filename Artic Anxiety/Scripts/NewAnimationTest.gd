@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@onready var anim_tree = $Twistpivot/AnimationTree
+@onready var anim_tree = $AnimationTree
 
 const SPEED = 8.0
 const JUMP_VELOCITY = 6.0
@@ -58,19 +58,19 @@ func _physics_process(delta):
 	var direction = Vector3.ZERO
 	var target_velocity = Vector3.ZERO
 	var speed = 14
-	var movement
+	var _movement
 	if Input.is_action_pressed("move_forward"):
 		direction.x -= 1
-		movement = 1
+		_movement = 1
 	if Input.is_action_pressed("move_backward"):
 		direction.x += 1
-		movement = 1
+		_movement = 1
 	if Input.is_action_pressed("move_right"):
 		direction.z += 1
-		movement = 1
+		_movement = 1
 	if Input.is_action_pressed("move_left"):
 		direction.z -= 1
-		movement = 1
+		_movement = 1
 		
 		
 	if direction != Vector3.ZERO:
@@ -83,14 +83,12 @@ func _physics_process(delta):
 	
 	velocity = target_velocity
 	
-	
-
-
 	anim_tree.set("parameters/conditions/idle", direction == Vector3.ZERO && is_on_floor())
-	anim_tree.set("parameters/conditions/BeginnenGlijden", direction != Vector3.ZERO && is_on_floor())
-	anim_tree.set("parameters/conditions/Stoppen_Glijden", direction != Vector3.ZERO && is_on_floor())
-	anim_tree.set("parameters/conditions/idle_jump", target_velocity.y == 0 && !is_on_floor())
-	anim_tree.set("parameters/conditions/glijden_jump", target_velocity.y != 0 && !is_on_floor())
+	anim_tree.set("parameters/conditions/BeginnenGlijden", direction == 1 || direction == -1 && is_on_floor())
+	anim_tree.set("parameters/conditions/Stoppen_Glijden", direction == 1 || direction == -1 && is_on_floor())
+	anim_tree.set("parameters/conditions/idle_jump", direction == Vector3.ZERO && !is_on_floor())
+	anim_tree.set("parameters/conditions/glijden_jump", direction != Vector3.ZERO && !is_on_floor())
+
 
 	move_and_slide()
 	
