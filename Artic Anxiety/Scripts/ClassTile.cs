@@ -12,6 +12,12 @@ public partial class ClassTile : Node3D
 		_instance = instance;
 		_id = id;
 	} 
+	public ClassTile(String id, Node3D instance, Vector3 position)
+	{
+		_instance = instance;
+		_id = id;
+		_position = position;
+	} 
 	public ClassTile(String id, Vector3 position)
 	{
 		_id = id;

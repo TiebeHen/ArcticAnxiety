@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@onready var anim_tree = $Twistpivot/AnimationTree
+@onready var anim_tree = $AnimationTree
 
 const SPEED = 8.0
 const JUMP_VELOCITY = 6.0
@@ -47,7 +47,7 @@ func _physics_process(delta):
 #OLd Movemont
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	#var input_dir = Input.get_vector("move_forward", "move_backward", "move_left", "move_right")
+	
 	#var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	#if direction:
 	#	velocity.x = lerp(velocity.x, direction.x * SPEED, LERP_VAL)
@@ -84,13 +84,13 @@ func _physics_process(delta):
 	velocity = target_velocity
 	
 	
+	var input_dir = Input.get_vector("move_forward", "move_backward", "move_left", "move_right")
 
-
-	anim_tree.set("parameters/conditions/idle", direction == Vector3.ZERO && is_on_floor())
-	anim_tree.set("parameters/conditions/BeginnenGlijden", direction != Vector3.ZERO && is_on_floor())
-	anim_tree.set("parameters/conditions/Stoppen_Glijden", direction != Vector3.ZERO && is_on_floor())
-	anim_tree.set("parameters/conditions/idle_jump", target_velocity.y == 0 && !is_on_floor())
-	anim_tree.set("parameters/conditions/glijden_jump", target_velocity.y != 0 && !is_on_floor())
+	anim_tree.set("parameters/conditions/idle", input_dir == Vector2.ZERO && is_on_floor())
+	anim_tree.set("parameters/conditions/BeginnenGlijden", input_dir != Vector2.ZERO && is_on_floor())
+	anim_tree.set("parameters/conditions/Stoppen_Glijden", input_dir != Vector2.ZERO && is_on_floor())
+	anim_tree.set("parameters/conditions/idle_jump", input_dir == Vector2.ZERO && !is_on_floor())
+	anim_tree.set("parameters/conditions/glijden_jump", input_dir != Vector2.ZERO && !is_on_floor())
 
 	move_and_slide()
 	
@@ -128,9 +128,7 @@ func _physics_process(delta):
 	
 	#stilstaan = aan dood gaan
 	if direction != Vector3.ZERO:
-		timeLeft = maxTime
-		print(timeLeft)
-	
+		timeLeft = maxTime	
 	
 	#timer 
 	if timeLeft > 0:
@@ -138,9 +136,7 @@ func _physics_process(delta):
 		#print(timeLeft)
 	else:
 		timeLeft = 0
-		print("Game Over")
 		timeLeft = maxTime
-		
 		
 		LevelNode.DeleteTileNearPlayer(player_position)
 		

@@ -38,7 +38,7 @@ public partial class Level : Node3D
 					instance.Position = new Vector3(x, 0, y);
 					// Verzetten van de blokken x, Hoogte, y
 					AddChildDeferred(instance);
-					instances.Add(new ClassTile(id, instance));
+					instances.Add(new ClassTile(id, instance, instance.Position));
 				}
 				else
 				{
@@ -116,7 +116,7 @@ public partial class Level : Node3D
 		{
 			if (t.GetID() == ID_WATER_TILE)
 			{
-				if (GD.Randi() % 10000 < 3) // number between 0 and 49, 10% to change to ice
+				if (GD.Randi() % 100000 < 3) // number between 0 and 49, 10% to change to ice
 				{
 					Node3D instance = (Node3D)FullIceTile.Instantiate();
 					instance.Position = t.GetPosition();
@@ -139,18 +139,23 @@ public partial class Level : Node3D
 		
 		float playerX = playerPosition[0];
 		float playerZ = playerPosition[2];
-		GD.Print("test in method");
 		//List<ClassTile> instances = new List<ClassTile>();
 
-		if (instances.Count == 0)
+		//if (instances.Count == 0)
+		//{
+		//	GD.Print("instances list is empty. No tiles to delete.");
+		//	return; // Exit the method if there are no instances
+		//}
+		
+		foreach (ClassTile i in instances)
 		{
-			GD.Print("instances list is empty. No tiles to delete.");
-			return; // Exit the method if there are no instances
-		}
-		GD.Print(instances.Count);
-		for (int i = 0; i < instances.Count; i++)
-		{
-			
+			var _pos = i.GetPosition();
+			if (Math.Abs(_pos.X - playerX) <= 1 && Math.Abs(_pos.Z - playerZ) <= 1)
+			{
+				//GD.Print(i.GetPosition());
+				RemoveChildDeferred(i);
+				i.SetID(ID_WATER_TILE);
+			}
 		}
 	}
 
