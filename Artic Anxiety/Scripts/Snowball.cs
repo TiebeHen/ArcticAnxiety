@@ -17,7 +17,6 @@ public partial class Snowball : Node3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		GD.Print("Hi in process");
 		//Vector3 velocity = new Vector3(speed, 0, speed); // Set velocity towards bottom right
 		//velocity = velocity.Normalized() * speed * (float)delta; // Scale velocity by delta time
 	

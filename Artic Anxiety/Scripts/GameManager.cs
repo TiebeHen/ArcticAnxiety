@@ -1,18 +1,20 @@
 using Godot;
 using System;
+using System.IO;
+using System.Collections.Generic;
 
 public partial class GameManager : Node3D
 {
-	PackedScene snowBallScene;
+	PackedScene snowBallScene = ResourceLoader.Load<PackedScene>("res://Scenes/Game/Abilities/Snowball.tscn");
 	//PackedScene snowBallScene = ResourceLoader.Load<PackedScene>("res://Scenes/Game/Abilities/Snowball.tscn");
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		GD.Print("Startup");
-		snowBallScene = ResourceLoader.Load<PackedScene>("res://Scenes/Game/Abilities/Snowball.tscn");
-		GD.Print(snowBallScene);
-		snowBallScene.Instantiate();
-		GD.Print(snowBallScene);
+		Node3D instance = (Node3D)snowBallScene.Instantiate();
+		instance.Position = new Vector3(0, 2, 0);
+		AddChild(instance);
+		
+		GD.Print( ResourceLoader.Exists("res://Scenes/Game/Abilities/Snowball.tscn")); 
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -22,19 +24,7 @@ public partial class GameManager : Node3D
 	
 	public void ThrowSnowball(Vector3 position, Vector3 velocity)
 	{
-		GD.Print(snowBallScene);
-		Node3D snowball = (Node3D)snowBallScene.Instantiate();
-		GD.Print(snowball);
-		snowball.Position = new Vector3(0, 2, 0);
-		//GD.Print("ThrownBeforeAddChild");
-		//Node3D abilities = (Node3D)GetNode("Abilities");
-		//GD.Print("node abilities found");
-		//if(abilities == null)
-		//{
-		//	GD.Print("abilities is null");
-		//}
-		AddChildDeferred(snowball);
-		GD.Print(snowball.Position);
+		
 	}	
 	
 	private void AddChildDeferred(Node node)
