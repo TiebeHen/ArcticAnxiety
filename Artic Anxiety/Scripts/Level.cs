@@ -140,7 +140,7 @@ public partial class Level : Node3D
 		float playerX = playerPosition[0];
 		float playerZ = playerPosition[2];
 		GD.Print("test in method");
-		var instances = [];
+		//List<ClassTile> instances = new List<ClassTile>();
 
 		if (instances.Count == 0)
 		{
