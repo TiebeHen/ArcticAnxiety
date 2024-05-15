@@ -9,6 +9,9 @@ const LERP_VAL = .15
 var LevelScript = load("res://Scripts/Level.cs")
 var LevelNode = LevelScript.new()
 
+var GameManagerScript = load("res://Scripts/GameManager.cs")
+var GameNode = GameManagerScript.new()
+
 
 var OldPlayerpos
 var NewPlayerpos
@@ -111,6 +114,7 @@ func _physics_process(delta):
 			
 	if Input.is_action_just_pressed("click_throw"):
 		print("gooi sneeuwbal")
+		GameNode.ThrowSnowball(Vector3(0,1.5,0), Vector3(5,0,5))
 		#var snowball_instance = SnowballScene.instantiate()
 		#snowball_instance.position = Vector3(position.x, 1.5, position.z)
 		#add_child_deferred(snowball_instance)
