@@ -89,7 +89,7 @@ func _physics_process(delta):
 	anim_tree.set("parameters/conditions/BeginnenGlijden", input_dir != Vector2.ZERO && is_on_floor())
 	anim_tree.set("parameters/conditions/Stoppen_Glijden", input_dir != Vector2.ZERO && is_on_floor())
 	anim_tree.set("parameters/conditions/idle_jump", input_dir == Vector2.ZERO && !is_on_floor())
-	anim_tree.set("parameters/conditions/glijden_jump", input_dir != Vector2.ZERO && !is_on_floor())
+	anim_tree.set("parameters/conditions/Glijden_Jump", input_dir != Vector2.ZERO && !is_on_floor())
 
 	move_and_slide()
 	
@@ -137,7 +137,7 @@ func _physics_process(delta):
 		timeLeft = 0
 		timeLeft = maxTime
 		
-		LevelNode.DeleteTileNearPlayer(player_position)
+		#LevelNode.DeleteTileNearPlayer(player_position)
 		
 		
 		#var test = LevelNode.PrintTest() # werkt ook
