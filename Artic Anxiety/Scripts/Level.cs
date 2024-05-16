@@ -120,7 +120,7 @@ public partial class Level : Node3D
 				{
 					Node3D instance = (Node3D)FullIceTile.Instantiate();
 					instance.Position = t.GetPosition();
-
+					t.SetInstance(instance);
 					t.SetID( ID_FULL_ICE_TILE); // Add new instance to the temporary list
 					
 					AddChildDeferred(instance);
@@ -150,12 +150,27 @@ public partial class Level : Node3D
 		foreach (ClassTile i in instances)
 		{
 			var _pos = i.GetPosition();
-			if (Math.Abs(_pos.X - playerX) <= 1 && Math.Abs(_pos.Z - playerZ) <= 1)
+			if (Math.Abs(_pos.X - playerX) <= 2 && Math.Abs(_pos.Z - playerZ) <= 2)
 			{
-				//GD.Print(i.GetPosition());
-				//GD.Print(i.GetInstance());
-				// i.QueueFree();
-				i.SetID(ID_WATER_TILE);
+				//GD.Print(i.GetPosition());// werkt
+				//GD.Print(i.GetInstance());// werkt
+				//GD.Print(i.GetInstance().GetParent()); // werkt
+				//GD.Print(this);
+				
+				if (i.GetID() == ID_FULL_ICE_TILE)//ID_FULL_ICE_TILE ID_WATER_TILE
+				{
+					Node parent = i.GetInstance().GetParent();
+					Godot.Collections.Array<Node> children = i.GetInstance().GetChildren();
+					foreach (Node child in children)
+					{
+							i.GetInstance().RemoveChild(child);
+					}
+					
+					
+					parent.RemoveChild(i.GetInstance());
+					
+					i.SetID(ID_WATER_TILE);
+				}
 			}
 		}
 	}

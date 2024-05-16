@@ -90,7 +90,7 @@ func _physics_process(delta):
 
 	move_and_slide()
 	
-	twist_pivot.rotate_y(twist_input)
+	#twist_pivot.rotate_y(twist_input)
 	pitch_pivot.rotate_x(pitch_input)
 	pitch_pivot.rotation.x = clamp(pitch_pivot.rotation.x, -0.5, 0.5) 
 	twist_input = 0.0
@@ -143,11 +143,11 @@ func _physics_process(delta):
 		
 		
 		
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
-		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-			twist_input = -event.relative.x * mouse_sensitivity
-			pitch_input = -event.relative.y * mouse_sensitivity
+#func _unhandled_input(event: InputEvent) -> void:
+#	if event is InputEventMouseMotion:
+#		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+#			twist_input = -event.relative.x * mouse_sensitivity
+#			pitch_input = -event.relative.y * mouse_sensitivity
 			
 func cameraToPlayer(camera_position: Vector2) -> Vector2:
 		# Define the size of the camera viewport

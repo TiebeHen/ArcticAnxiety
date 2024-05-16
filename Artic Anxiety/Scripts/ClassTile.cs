@@ -27,6 +27,10 @@ public partial class ClassTile : Node3D
 	{
 		return _instance;
 	}
+	public void SetInstance(Node3D i)
+	{
+		_instance = i;
+	}
 	public String GetID()
 	{
 		return _id;
