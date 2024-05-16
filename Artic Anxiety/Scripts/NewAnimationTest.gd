@@ -13,8 +13,6 @@ static var victory = false
 var LevelScript = load("res://Scripts/Level.cs")
 var LevelNode = LevelScript.new()
 
-var DoodePenguinScript = load("res://Scripts/DoodePenguin.gd")
-var DoodePenguinNode = DoodePenguinScript.new()
 
 #voor de timer
 var maxTime = 5
@@ -61,15 +59,19 @@ func _physics_process(delta):
 	var direction = Vector3.ZERO
 	var target_velocity = Vector3.ZERO
 	var speed = 14
-	
+	var movement
 	if Input.is_action_pressed("move_forward"):
 		direction.x -= 1
+		movement = 1
 	if Input.is_action_pressed("move_backward"):
 		direction.x += 1
+		movement = 1
 	if Input.is_action_pressed("move_right"):
 		direction.z += 1
+		movement = 1
 	if Input.is_action_pressed("move_left"):
 		direction.z -= 1
+		movement = 1
 		
 		
 	if direction != Vector3.ZERO:
@@ -90,7 +92,8 @@ func _physics_process(delta):
 	anim_tree.set("parameters/conditions/Stoppen_Glijden", input_dir != Vector2.ZERO && is_on_floor())
 	anim_tree.set("parameters/conditions/idle_jump", input_dir == Vector2.ZERO && !is_on_floor())
 	anim_tree.set("parameters/conditions/Glijden_Jump", input_dir != Vector2.ZERO && !is_on_floor())
-
+	anim_tree.set("parameters/conditions/Gooien", Input.is_action_just_pressed("click_throw"))
+	
 	move_and_slide()
 	
 	#twist_pivot.rotate_y(twist_input)
@@ -106,14 +109,12 @@ func _physics_process(delta):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 			
 	var camerarecords = cameraToPlayer(get_viewport().get_mouse_position())
-			
-			
+	
 	if Input.is_action_just_pressed("click_throw"):
-		#print("Destroy Tile")
-		if (victory == false):
-			GameNode.ThrowSnowball(get_parent().get_node("Abilities"), position, Vector3(camerarecords.x - position.x, 0, camerarecords.y - position.z))
+		print("Destroy Tile")
+		GameNode.ThrowSnowball(get_parent().get_node("Abilities"), position, Vector3(camerarecords.x - position.x, 0, camerarecords.y - position.z))
 		#LevelNode.DeleteTileWRadius(Vector3(camerarecords.x, 0, camerarecords.y),5)
-	if Input.is_action_just_pressed("victory"):
+	if (Input.is_action_just_pressed("victory")):
 		on_player_wins()
 			
 			
@@ -137,13 +138,10 @@ func _physics_process(delta):
 	else:
 		timeLeft = 0
 		timeLeft = maxTime
-		if (victory == false):
+		if (victory):
 			LevelNode.DeleteTile(player_position)
 		
-	#if player_position.y < 0:
-		#DoodePenguinNode.set_deathcam()
-		
-			
+	
 func cameraToPlayer(camera_position: Vector2) -> Vector2:
 		# Define the size of the camera viewport
 		#var camera_size = Vector2(960, 585)
@@ -177,10 +175,9 @@ func remove_child_deferred(node):
 	call_deferred("remove_child", node)
 	
 func on_player_wins():
-		victory = true
 		$VictoryPOV.current = true
-		anim_tree.set("parameters/conditions/Victory", is_on_floor)
+		anim_tree.set("parameters/conditions/Victory", true)
 		if (true):
-			get_tree().create_timer(3)
-			get_tree().change_scene_to_file("res://Scenes/Menus/VictoryMenu.tscn")
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			await(get_tree().create_timer(3))
+			await get_tree().change_scene_to_file("res://Scenes/Menus/VictoryMenu.tscn")
+			
