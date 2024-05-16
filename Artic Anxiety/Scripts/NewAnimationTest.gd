@@ -59,19 +59,15 @@ func _physics_process(delta):
 	var direction = Vector3.ZERO
 	var target_velocity = Vector3.ZERO
 	var speed = 14
-	var movement
+	
 	if Input.is_action_pressed("move_forward"):
 		direction.x -= 1
-		movement = 1
 	if Input.is_action_pressed("move_backward"):
 		direction.x += 1
-		movement = 1
 	if Input.is_action_pressed("move_right"):
 		direction.z += 1
-		movement = 1
 	if Input.is_action_pressed("move_left"):
 		direction.z -= 1
-		movement = 1
 		
 		
 	if direction != Vector3.ZERO:
@@ -114,7 +110,7 @@ func _physics_process(delta):
 		#print("Destroy Tile")
 		GameNode.ThrowSnowball(get_parent().get_node("Abilities"), position, Vector3(camerarecords.x - position.x, 0, camerarecords.y - position.z))
 		#LevelNode.DeleteTileWRadius(Vector3(camerarecords.x, 0, camerarecords.y),5)
-	if (Input.is_action_just_pressed("victory")):
+	if Input.is_action_just_pressed("victory"):
 		on_player_wins()
 			
 			
