@@ -398,12 +398,12 @@ mesh = SubResource("ArrayMesh_5yvkh")
 skin = SubResource("Skin_m03cg")
 
 [node name="Sphere_004" type="MeshInstance3D" parent="Armature_001/Skeleton3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59673, 0.0256578)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.918793, 0.014764)
 mesh = SubResource("ArrayMesh_xagfu")
 skin = SubResource("Skin_m03cg")
 
 [node name="Sphere_006" type="MeshInstance3D" parent="Armature_001/Skeleton3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59673, 0.0256578)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.918793, 0.014764)
 mesh = SubResource("ArrayMesh_vt8u6")
 skin = SubResource("Skin_m03cg")
 
