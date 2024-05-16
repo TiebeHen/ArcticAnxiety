@@ -164,18 +164,19 @@ func cameraToPlayer(camera_position: Vector2) -> Vector2:
 		player_position.y = pX
 		return player_position
 
-func on_player_wins():
-	$VictoryPOV.current = true
-	victory = true
-	anim_tree.set("parameters/conditions/Victory", is_on_floor)
-	get_tree().change_scene_to_file("res://Scenes/Menus/VictoryMenu.tscn")
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+#func on_player_wins():
+	#$VictoryPOV.current = true
+	#victory = true
+	#anim_tree.set("parameters/conditions/Victory", is_on_floor)
+	#get_tree().change_scene_to_file("res://Scenes/Menus/VictoryMenu.tscn")
+	#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func add_child_deferred(node):
 	call_deferred("add_child", node)
 
 func remove_child_deferred(node):
 	call_deferred("remove_child", node)
+	
 func on_player_wins():
 		$VictoryPOV.current = true
 		anim_tree.set("parameters/conditions/Victory", is_on_floor)
