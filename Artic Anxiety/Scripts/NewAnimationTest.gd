@@ -5,6 +5,8 @@ extends CharacterBody3D
 const SPEED = 8.0
 const JUMP_VELOCITY = 6.0
 const LERP_VAL = .15
+var GameManagerScript = load("res://Scripts/GameManager.cs")
+var GameNode = GameManagerScript.new()
 
 var LevelScript = load("res://Scripts/Level.cs")
 var LevelNode = LevelScript.new()
@@ -107,7 +109,8 @@ func _physics_process(delta):
 			
 	if Input.is_action_just_pressed("click_throw"):
 		print("Destroy Tile")
-		LevelNode.DeleteTileWRadius(Vector3(camerarecords.x, 0, camerarecords.y),5)
+		GameNode.ThrowSnowball(get_parent().get_node("Abilities"), position, Vector3(camerarecords.x - position.x, 0, camerarecords.y - position.z))
+		#LevelNode.DeleteTileWRadius(Vector3(camerarecords.x, 0, camerarecords.y),5)
 		
 			
 			
