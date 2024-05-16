@@ -1,12 +1,14 @@
 extends CharacterBody3D
 
 @onready var anim_tree = $AnimationTree
+@export var victory_camera : Camera3D
 
 const SPEED = 8.0
 const JUMP_VELOCITY = 6.0
 const LERP_VAL = .15
 var GameManagerScript = load("res://Scripts/GameManager.cs")
 var GameNode = GameManagerScript.new()
+static var victory = false
 
 var LevelScript = load("res://Scripts/Level.cs")
 var LevelNode = LevelScript.new()
@@ -41,7 +43,9 @@ func _physics_process(delta):
 	if (Input.is_action_just_pressed("move_up") or Input.is_action_just_pressed("jump")) and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
-
+	# Victory
+	if (Input.is_action_just_pressed("victory")):
+		on_player_wins()
 #OLd Movemont
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -134,8 +138,9 @@ func _physics_process(delta):
 	else:
 		timeLeft = 0
 		timeLeft = maxTime
+		if (victory):
+			LevelNode.DeleteTile(player_position)
 		
-		LevelNode.DeleteTile(player_position)
 		
 	
 		
@@ -159,7 +164,12 @@ func cameraToPlayer(camera_position: Vector2) -> Vector2:
 		player_position.y = pX
 		return player_position
 
-
+func on_player_wins():
+	$VictoryPOV.current = true
+	victory = true
+	anim_tree.set("parameters/conditions/Victory", is_on_floor)
+	get_tree().change_scene_to_file("res://Scenes/Menus/VictoryMenu.tscn")
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func add_child_deferred(node):
 	call_deferred("add_child", node)
