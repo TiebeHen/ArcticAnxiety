@@ -40,4 +40,4 @@ surface_material_override/0 = SubResource("StandardMaterial3D_q02di")
 [node name="LevelScript" type="Node3D" parent="."]
 script = ExtResource("1_w7c8l")
 
-[node name="Abilities" type="Node3D" parent="."]
+[node name="Abilities" type="Node" parent="."]

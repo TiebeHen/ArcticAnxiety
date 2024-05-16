@@ -10,11 +10,7 @@ public partial class GameManager : Node3D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		Node3D instance = (Node3D)snowBallScene.Instantiate();
-		instance.Position = new Vector3(0, 2, 0);
-		AddChild(instance);
 		
-		GD.Print( ResourceLoader.Exists("res://Scenes/Game/Abilities/Snowball.tscn")); 
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -22,14 +18,11 @@ public partial class GameManager : Node3D
 	{
 	}
 	
-	public void ThrowSnowball(Vector3 position, Vector3 velocity)
-	{
-		
-	}	
-	
-	private void AddChildDeferred(Node node)
-	{
-		CallDeferred("add_child", node);
-	}
-	
+	public void ThrowSnowball(Node nodi, Vector3 position, Vector3 velocity)
+	{		
+		Snowball instance = (Snowball)snowBallScene.Instantiate();
+		instance.Position = position;
+		instance.SetVelocity(velocity);
+		nodi.AddChild(instance);
+	}		
 }
