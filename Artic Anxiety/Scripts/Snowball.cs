@@ -10,7 +10,7 @@ public partial class Snowball : Node3D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		GD.Print("Hi");
+		//GD.Print("Hi");
 		//direction = new Vector3(0,1,0);
 		//Position = direction;
 	}

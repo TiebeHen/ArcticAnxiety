@@ -108,7 +108,7 @@ func _physics_process(delta):
 			
 			
 	if Input.is_action_just_pressed("click_throw"):
-		print("Destroy Tile")
+		#print("Destroy Tile")
 		GameNode.ThrowSnowball(get_parent().get_node("Abilities"), position, Vector3(camerarecords.x - position.x, 0, camerarecords.y - position.z))
 		#LevelNode.DeleteTileWRadius(Vector3(camerarecords.x, 0, camerarecords.y),5)
 	if (Input.is_action_just_pressed("victory")):
@@ -171,6 +171,6 @@ func on_player_wins():
 		$VictoryPOV.current = true
 		anim_tree.set("parameters/conditions/Victory", is_on_floor)
 		if (true):
-			await(get_tree().create_timer(3))
-			await get_tree().change_scene_to_file("res://Scenes/Menus/VictoryMenu.tscn")
+			get_tree().create_timer(3)
+			get_tree().change_scene_to_file("res://Scenes/Menus/VictoryMenu.tscn")
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

@@ -62,10 +62,10 @@ public partial class Level : Node3D
 				instance.Position = new Vector3(x, (float)-0.5, y);
 				// Verzetten van de blokken x, Hoogte, y
 				AddChildDeferred(instance);
-				y += 2;
+				y += 150;
 			}
 			y = -20;
-			x += 2; // Increment x by 2
+			x += 150; // Increment x by 2
 		}
 
 		//for the Sea Bottom tiles
