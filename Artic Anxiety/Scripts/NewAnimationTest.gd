@@ -102,19 +102,17 @@ func _physics_process(delta):
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 			
-	
+	var camerarecords = cameraToPlayer(get_viewport().get_mouse_position())
 			
 			
 	if Input.is_action_just_pressed("click_throw"):
-		print("gooi sneeuwbal")
-		#var snowball_instance = SnowballScene.instantiate()
-		#snowball_instance.position = Vector3(position.x, 1.5, position.z)
-		#add_child_deferred(snowball_instance)
+		print("Destroy Tile")
+		LevelNode.DeleteTileWRadius(Vector3(camerarecords.x, 0, camerarecords.y),5)
 		
 			
 			
 			
-	var camerarecords = cameraToPlayer(get_viewport().get_mouse_position())
+	
 	#print(get_viewport().size)
 			
 	#print("Viewport cords: ", camerarecords)
@@ -134,20 +132,10 @@ func _physics_process(delta):
 		timeLeft = 0
 		timeLeft = maxTime
 		
-		LevelNode.DeleteTileNearPlayer(player_position)
+		LevelNode.DeleteTile(player_position)
 		
+	
 		
-		#var test = LevelNode.PrintTest() # werkt ook
-		#print(test)
-		#print(LevelNode.PrintTest()) # werkt
-		
-		
-		
-#func _unhandled_input(event: InputEvent) -> void:
-#	if event is InputEventMouseMotion:
-#		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-#			twist_input = -event.relative.x * mouse_sensitivity
-#			pitch_input = -event.relative.y * mouse_sensitivity
 			
 func cameraToPlayer(camera_position: Vector2) -> Vector2:
 		# Define the size of the camera viewport
