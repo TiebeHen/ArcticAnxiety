@@ -3,9 +3,9 @@
 [ext_resource type="Script" path="res://Scripts/Level.cs" id="1_w7c8l"]
 [ext_resource type="Script" path="res://Scripts/GameManager.cs" id="1_xitt1"]
 [ext_resource type="PackedScene" uid="uid://i7334pqmd0da" path="res://Scenes/Game/AnimatedPlayer.tscn" id="3_pvd75"]
-[ext_resource type="PackedScene" uid="uid://dmhlnoq71xl4t" path="res://Scenes/Game/Tiles/Water/WaterTileDeath.tscn" id="5_0jqrj"]
+[ext_resource type="PackedScene" path="res://Scenes/Game/Tiles/Water/WaterTileDeath.tscn" id="5_0jqrj"]
 [ext_resource type="Script" path="res://Scripts/DoodePenguin.gd" id="5_n2uy8"]
-[ext_resource type="PackedScene" uid="uid://iy2ifoxf1awi" path="res://Scenes/Game/deadPlayer.tscn" id="5_oemv2"]
+[ext_resource type="PackedScene" uid="uid://jrbq74tciilg" path="res://Scenes/Game/deadPlayer.tscn" id="5_oemv2"]
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_w3gmo"]
 albedo_color = Color(1, 0.270588, 0.294118, 1)
