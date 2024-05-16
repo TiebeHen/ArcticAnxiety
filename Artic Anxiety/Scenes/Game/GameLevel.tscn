@@ -99,6 +99,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.7402, -17.8269, 26.1314)
 
 [node name="Penguin" parent="." instance=ExtResource("3_pvd75")]
 
-[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.014, -16.3043, 30.5944)
-sky_mode = 1
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.8637, -16.3469, 27.9938)
+light_energy = 0.5
