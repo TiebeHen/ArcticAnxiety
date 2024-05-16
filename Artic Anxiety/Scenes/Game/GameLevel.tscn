@@ -79,7 +79,7 @@ mesh = SubResource("BoxMesh_ov8lx")
 skeleton = NodePath("../..")
 
 [node name="CameraDeath" type="Camera3D" parent="DoodePenguin"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.7297, -16.5095, 27.6221)
+transform = Transform3D(1, 0, 0, 0, 0.967339, 0.253488, 0, -0.253488, 0.967339, 22.7297, -15.8592, 27.6221)
 
 [node name="MeshInstance3D10" type="MeshInstance3D" parent="DoodePenguin"]
 transform = Transform3D(0.0894854, 0, 0.995988, 0, 1, 0, -0.995988, 0, 0.0894854, 19.8615, -16.4353, 25.7929)
@@ -98,4 +98,7 @@ transform = Transform3D(1, 0, 0, 0, 0.000366525, -1, 0, 1, 0.000366525, 22.9044,
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.7402, -17.8269, 26.1314)
 
 [node name="Penguin" parent="." instance=ExtResource("3_pvd75")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.014, -16.3043, 30.5944)
+sky_mode = 1
