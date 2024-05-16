@@ -5,13 +5,11 @@ extends CharacterBody3D
 const SPEED = 8.0
 const JUMP_VELOCITY = 6.0
 const LERP_VAL = .15
+var GameManagerScript = load("res://Scripts/GameManager.cs")
+var GameNode = GameManagerScript.new()
 
 var LevelScript = load("res://Scripts/Level.cs")
 var LevelNode = LevelScript.new()
-
-
-var OldPlayerpos
-var NewPlayerpos
 
 
 #voor de timer
@@ -20,7 +18,8 @@ var timeLeft = maxTime
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") 
+var SnowballScene = preload("res://Scenes/Game/Abilities/Snowball.tscn")
 
 
 var mouse_sensitivity := 0.001
@@ -93,7 +92,7 @@ func _physics_process(delta):
 
 	move_and_slide()
 	
-	twist_pivot.rotate_y(twist_input)
+	#twist_pivot.rotate_y(twist_input)
 	pitch_pivot.rotate_x(pitch_input)
 	pitch_pivot.rotation.x = clamp(pitch_pivot.rotation.x, -0.5, 0.5) 
 	twist_input = 0.0
@@ -105,19 +104,18 @@ func _physics_process(delta):
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 			
-	
+	var camerarecords = cameraToPlayer(get_viewport().get_mouse_position())
 			
 			
 	if Input.is_action_just_pressed("click_throw"):
-		print("gooi sneeuwbal")
-		#var snowball_instance = SnowballScene.instantiate()
-		#snowball_instance.position = Vector3(position.x, 1.5, position.z)
-		#add_child_deferred(snowball_instance)
+		print("Destroy Tile")
+		GameNode.ThrowSnowball(get_parent().get_node("Abilities"), position, Vector3(camerarecords.x - position.x, 0, camerarecords.y - position.z))
+		#LevelNode.DeleteTileWRadius(Vector3(camerarecords.x, 0, camerarecords.y),5)
 		
 			
 			
 			
-	var camerarecords = cameraToPlayer(get_viewport().get_mouse_position())
+	
 	#print(get_viewport().size)
 			
 	#print("Viewport cords: ", camerarecords)
@@ -137,20 +135,10 @@ func _physics_process(delta):
 		timeLeft = 0
 		timeLeft = maxTime
 		
-		#LevelNode.DeleteTileNearPlayer(player_position)
+		LevelNode.DeleteTile(player_position)
 		
+	
 		
-		#var test = LevelNode.PrintTest() # werkt ook
-		#print(test)
-		#print(LevelNode.PrintTest()) # werkt
-		
-		
-		
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
-		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-			twist_input = -event.relative.x * mouse_sensitivity
-			pitch_input = -event.relative.y * mouse_sensitivity
 			
 func cameraToPlayer(camera_position: Vector2) -> Vector2:
 		# Define the size of the camera viewport

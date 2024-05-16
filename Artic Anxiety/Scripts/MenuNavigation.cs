@@ -21,8 +21,9 @@ public partial class MenuNavigation : Node
 	public void _on_button_join_lobby_pressed()
 	{
 		Node newMenu = ResourceLoader.Load<PackedScene>("res://Scenes/Menus/JoinMenu.tscn").Instantiate();
-		GetTree().Root.AddChild(newMenu);
-		GetTree().Root.RemoveChild(this);
+		
+		GetParent().AddChild(newMenu);
+		QueueFree();
 	}
 
 	public void _on_button_create_lobby_mouse_entered()
@@ -40,8 +41,9 @@ public partial class MenuNavigation : Node
 	public void _on_button_create_lobby_pressed()
 	{
 		Node newMenu = ResourceLoader.Load<PackedScene>("res://Scenes/Menus/CreateMenu.tscn").Instantiate();
-		GetTree().Root.AddChild(newMenu);
-		GetTree().Root.RemoveChild(this);
+		
+		GetParent().AddChild(newMenu);
+		QueueFree();
 	}
 
 	public void _on_button_settings_mouse_entered()
@@ -98,8 +100,9 @@ public partial class MenuNavigation : Node
 	public void _on_button_back_pressed()
 	{
 		Node newMenu = ResourceLoader.Load<PackedScene>("res://Scenes/Menus/StartMenu.tscn").Instantiate();
-		GetTree().Root.AddChild(newMenu);
-		GetTree().Root.RemoveChild(this);
+		
+		GetParent().AddChild(newMenu);
+		QueueFree();
 	}
 	
 	//
@@ -120,8 +123,9 @@ public partial class MenuNavigation : Node
 	private void _on_button_create_pressed()
 	{
 		Node newMenu = ResourceLoader.Load<PackedScene>("res://Scenes/Menus/LobbyMenu.tscn").Instantiate();
-		GetTree().Root.AddChild(newMenu);
-		GetTree().Root.RemoveChild(this);
+		
+		GetParent().AddChild(newMenu);
+		QueueFree();
 	}
 	
 	//
@@ -142,8 +146,9 @@ public partial class MenuNavigation : Node
 	private void _on_button_leave_pressed()
 	{
 		Node newMenu = ResourceLoader.Load<PackedScene>("res://Scenes/Menus/StartMenu.tscn").Instantiate();
-		GetTree().Root.AddChild(newMenu);
-		GetTree().Root.RemoveChild(this);
+		
+		GetParent().AddChild(newMenu);
+		QueueFree();
 	}
 
 	private void _on_button_start_mouse_entered()
@@ -161,8 +166,10 @@ public partial class MenuNavigation : Node
 	private void _on_button_start_pressed()
 	{
 		Node newMenu = ResourceLoader.Load<PackedScene>("res://Scenes/Game/GameLevel.tscn").Instantiate();
-		GetTree().Root.AddChild(newMenu);
-		GetTree().Root.RemoveChild(this);
+		//GetTree().Root.AddChild(newMenu);
+		//GetTree().Root.RemoveChild(this);
+		GetParent().AddChild(newMenu);
+		QueueFree();
 	}
 
 	//

@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://d16cwwpdnv3kh"
+path="res://.godot/imported/snowball.obj-83e89bd47c69b23c85d8c01a90d6e33f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/snowball.obj-83e89bd47c69b23c85d8c01a90d6e33f.mesh"]
+
+source_file="res://Assets/Models/Snowball/snowball.obj"
+dest_files=["res://.godot/imported/snowball.obj-83e89bd47c69b23c85d8c01a90d6e33f.mesh", "res://.godot/imported/snowball.obj-83e89bd47c69b23c85d8c01a90d6e33f.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
