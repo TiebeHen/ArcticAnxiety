@@ -3,23 +3,11 @@ using System;
 
 public partial class MenuNavigation : Node
 {	
-	public void _on_button_home_mouse_entered()
-	{
-		GetNode<Sprite2D>("Home/TextureHomeHover").Show();
-		GetNode<LineEdit>("Home/LineEditHomeHover").Show();
-	}
 
 	public void _on_button_home_mouse_exited()
 	{
 		GetNode<Sprite2D>("Home/TextureHomeHover").Hide();
 		GetNode<LineEdit>("Home/LineEditHomeHover").Hide();
-	}
-
-	public void _on_button_home_pressed()
-	{
-		Node newMenu = ResourceLoader.Load<PackedScene>("res://Scenes/Menus/StartMenu.tscn").Instantiate();
-		GetTree().Root.AddChild(newMenu);
-		GetTree().Root.RemoveChild(this);
 	}
 
 	public void _on_button_victory_exit_mouse_entered()
@@ -38,4 +26,21 @@ public partial class MenuNavigation : Node
 	{
 		GetTree().Quit();
 	}
+	
+	public void _on_button_home_pressed()
+	{
+		Node newMenu = ResourceLoader.Load<PackedScene>("res://Scenes/Menus/StartMenu.tscn").Instantiate();
+		
+		GetParent().AddChild(newMenu);
+		QueueFree();		
+	}
+	
+	public void _on_button_home_mouse_entered()
+	{
+		GD.Print("ff");
+	}
 }
+
+
+
+

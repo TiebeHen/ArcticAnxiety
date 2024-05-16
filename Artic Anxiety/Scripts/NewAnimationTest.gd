@@ -183,4 +183,5 @@ func on_player_wins():
 		if (true):
 			await(get_tree().create_timer(3))
 			await get_tree().change_scene_to_file("res://Scenes/Menus/VictoryMenu.tscn")
+			
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
