@@ -108,7 +108,8 @@ func _physics_process(delta):
 			
 	if Input.is_action_just_pressed("click_throw"):
 		#print("Destroy Tile")
-		GameNode.ThrowSnowball(get_parent().get_node("Abilities"), position, Vector3(camerarecords.x - position.x, 0, camerarecords.y - position.z))
+		if (victory == false):
+			GameNode.ThrowSnowball(get_parent().get_node("Abilities"), position, Vector3(camerarecords.x - position.x, 0, camerarecords.y - position.z))
 		#LevelNode.DeleteTileWRadius(Vector3(camerarecords.x, 0, camerarecords.y),5)
 	if Input.is_action_just_pressed("victory"):
 		on_player_wins()
@@ -134,7 +135,7 @@ func _physics_process(delta):
 	else:
 		timeLeft = 0
 		timeLeft = maxTime
-		if (victory):
+		if (victory == false):
 			LevelNode.DeleteTile(player_position)
 		
 		
@@ -174,6 +175,7 @@ func remove_child_deferred(node):
 	call_deferred("remove_child", node)
 	
 func on_player_wins():
+		victory = true
 		$VictoryPOV.current = true
 		anim_tree.set("parameters/conditions/Victory", is_on_floor)
 		if (true):
