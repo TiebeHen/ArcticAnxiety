@@ -13,6 +13,8 @@ static var victory = false
 var LevelScript = load("res://Scripts/Level.cs")
 var LevelNode = LevelScript.new()
 
+var DoodePenguinScript = load("res://Scripts/DoodePenguin.gd")
+var DoodePenguinNode = DoodePenguinScript.new()
 
 #voor de timer
 var maxTime = 5
@@ -138,8 +140,8 @@ func _physics_process(delta):
 		if (victory == false):
 			LevelNode.DeleteTile(player_position)
 		
-		
-	
+	#if player_position.y < 0:
+		#DoodePenguinNode.set_deathcam()
 		
 			
 func cameraToPlayer(camera_position: Vector2) -> Vector2:
