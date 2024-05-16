@@ -5,13 +5,11 @@ extends CharacterBody3D
 const SPEED = 8.0
 const JUMP_VELOCITY = 6.0
 const LERP_VAL = .15
+var GameManagerScript = load("res://Scripts/GameManager.cs")
+var GameNode = GameManagerScript.new()
 
 var LevelScript = load("res://Scripts/Level.cs")
 var LevelNode = LevelScript.new()
-
-
-var OldPlayerpos
-var NewPlayerpos
 
 
 #voor de timer
@@ -20,7 +18,7 @@ var timeLeft = maxTime
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") 
 var SnowballScene = preload("res://Scenes/Game/Abilities/Snowball.tscn")
 
 
@@ -47,7 +45,7 @@ func _physics_process(delta):
 #OLd Movemont
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	#var input_dir = Input.get_vector("move_forward", "move_backward", "move_left", "move_right")
+	
 	#var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	#if direction:
 	#	velocity.x = lerp(velocity.x, direction.x * SPEED, LERP_VAL)
@@ -58,19 +56,19 @@ func _physics_process(delta):
 	var direction = Vector3.ZERO
 	var target_velocity = Vector3.ZERO
 	var speed = 14
-	var _movement
+	var movement
 	if Input.is_action_pressed("move_forward"):
 		direction.x -= 1
-		_movement = 1
+		movement = 1
 	if Input.is_action_pressed("move_backward"):
 		direction.x += 1
-		_movement = 1
+		movement = 1
 	if Input.is_action_pressed("move_right"):
 		direction.z += 1
-		_movement = 1
+		movement = 1
 	if Input.is_action_pressed("move_left"):
 		direction.z -= 1
-		_movement = 1
+		movement = 1
 		
 		
 	if direction != Vector3.ZERO:
@@ -83,16 +81,18 @@ func _physics_process(delta):
 	
 	velocity = target_velocity
 	
-	anim_tree.set("parameters/conditions/idle", direction == Vector3.ZERO && is_on_floor())
-	anim_tree.set("parameters/conditions/BeginnenGlijden", direction == 1 || direction == -1 && is_on_floor())
-	anim_tree.set("parameters/conditions/Stoppen_Glijden", direction == 1 || direction == -1 && is_on_floor())
-	anim_tree.set("parameters/conditions/idle_jump", direction == Vector3.ZERO && !is_on_floor())
-	anim_tree.set("parameters/conditions/glijden_jump", direction != Vector3.ZERO && !is_on_floor())
+	
+	var input_dir = Input.get_vector("move_forward", "move_backward", "move_left", "move_right")
 
+	anim_tree.set("parameters/conditions/idle", input_dir == Vector2.ZERO && is_on_floor())
+	anim_tree.set("parameters/conditions/BeginnenGlijden", input_dir != Vector2.ZERO && is_on_floor())
+	anim_tree.set("parameters/conditions/Stoppen_Glijden", input_dir != Vector2.ZERO && is_on_floor())
+	anim_tree.set("parameters/conditions/idle_jump", input_dir == Vector2.ZERO && !is_on_floor())
+	anim_tree.set("parameters/conditions/Glijden_Jump", input_dir != Vector2.ZERO && !is_on_floor())
 
 	move_and_slide()
 	
-	twist_pivot.rotate_y(twist_input)
+	#twist_pivot.rotate_y(twist_input)
 	pitch_pivot.rotate_x(pitch_input)
 	pitch_pivot.rotation.x = clamp(pitch_pivot.rotation.x, -0.5, 0.5) 
 	twist_input = 0.0
@@ -104,19 +104,18 @@ func _physics_process(delta):
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 			
-	
+	var camerarecords = cameraToPlayer(get_viewport().get_mouse_position())
 			
 			
 	if Input.is_action_just_pressed("click_throw"):
-		print("gooi sneeuwbal")
-		#var snowball_instance = SnowballScene.instantiate()
-		#snowball_instance.position = Vector3(position.x, 1.5, position.z)
-		#add_child_deferred(snowball_instance)
+		print("Destroy Tile")
+		GameNode.ThrowSnowball(get_parent().get_node("Abilities"), position, Vector3(camerarecords.x - position.x, 0, camerarecords.y - position.z))
+		#LevelNode.DeleteTileWRadius(Vector3(camerarecords.x, 0, camerarecords.y),5)
 		
 			
 			
 			
-	var camerarecords = cameraToPlayer(get_viewport().get_mouse_position())
+	
 	#print(get_viewport().size)
 			
 	#print("Viewport cords: ", camerarecords)
@@ -126,9 +125,7 @@ func _physics_process(delta):
 	
 	#stilstaan = aan dood gaan
 	if direction != Vector3.ZERO:
-		timeLeft = maxTime
-		print(timeLeft)
-	
+		timeLeft = maxTime	
 	
 	#timer 
 	if timeLeft > 0:
@@ -136,24 +133,12 @@ func _physics_process(delta):
 		#print(timeLeft)
 	else:
 		timeLeft = 0
-		print("Game Over")
 		timeLeft = maxTime
 		
+		LevelNode.DeleteTile(player_position)
 		
-		LevelNode.DeleteTileNearPlayer(player_position)
+	
 		
-		
-		#var test = LevelNode.PrintTest() # werkt ook
-		#print(test)
-		#print(LevelNode.PrintTest()) # werkt
-		
-		
-		
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion:
-		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-			twist_input = -event.relative.x * mouse_sensitivity
-			pitch_input = -event.relative.y * mouse_sensitivity
 			
 func cameraToPlayer(camera_position: Vector2) -> Vector2:
 		# Define the size of the camera viewport

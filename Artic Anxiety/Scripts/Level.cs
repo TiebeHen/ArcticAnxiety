@@ -38,7 +38,7 @@ public partial class Level : Node3D
 					instance.Position = new Vector3(x, 0, y);
 					// Verzetten van de blokken x, Hoogte, y
 					AddChildDeferred(instance);
-					instances.Add(new ClassTile(id, instance));
+					instances.Add(new ClassTile(id, instance, instance.Position));
 				}
 				else
 				{
@@ -114,13 +114,13 @@ public partial class Level : Node3D
 		
 		foreach (ClassTile t in instances) // Iterate over a copy of instances to avoid modification during enumeration
 		{
-			if (t.GetID() == ID_WATER_TILE)
+			if (t.GetID() == ID_WATER_TILE)//ID_FULL_ICE_TILE ID_WATER_TILE
 			{
-				if (GD.Randi() % 10000 < 3) // number between 0 and 49, 10% to change to ice
+				if (GD.Randi() % 100000 < 3) // number between 0 and 49, 10% to change to ice
 				{
 					Node3D instance = (Node3D)FullIceTile.Instantiate();
 					instance.Position = t.GetPosition();
-
+					t.SetInstance(instance);
 					t.SetID( ID_FULL_ICE_TILE); // Add new instance to the temporary list
 					
 					AddChildDeferred(instance);
@@ -134,26 +134,54 @@ public partial class Level : Node3D
 			instances.Add(newInstance);
 		}
 	}
-	public void DeleteTileNearPlayer(Vector3 playerPosition)
+	public void DeleteTile(Vector3 Position)
 	{
+		float playerX = Position[0];
+		float playerZ = Position[2];
 		
-		float playerX = playerPosition[0];
-		float playerZ = playerPosition[2];
-		GD.Print("test in method");
-		//List<ClassTile> instances = new List<ClassTile>();
-
-		if (instances.Count == 0)
+		foreach (ClassTile i in instances)
 		{
-			GD.Print("instances list is empty. No tiles to delete.");
-			return; // Exit the method if there are no instances
-		}
-		GD.Print(instances.Count);
-		for (int i = 0; i < instances.Count; i++)
-		{
-			
+			var _pos = i.GetPosition();
+			if (Math.Abs(_pos.X - playerX) <= 2 && Math.Abs(_pos.Z - playerZ) <= 2)
+			{
+				if (i.GetID() == ID_FULL_ICE_TILE)//ID_FULL_ICE_TILE ID_WATER_TILE
+				{
+					Node parent = i.GetInstance().GetParent();
+					Godot.Collections.Array<Node> children = i.GetInstance().GetChildren();
+					foreach (Node child in children)
+					{
+							i.GetInstance().RemoveChild(child);
+					}
+					parent.RemoveChild(i.GetInstance());
+					i.SetID(ID_WATER_TILE);
+				}
+			}
 		}
 	}
-
+public void DeleteTileWRadius(Vector3 Position, int radius)
+	{
+		float playerX = Position[0];
+		float playerZ = Position[2];
+		
+		foreach (ClassTile i in instances)
+		{
+			var _pos = i.GetPosition();
+			if (Math.Sqrt(Math.Pow(_pos.X - playerX, 2) + Math.Pow(_pos.Z - playerZ, 2)) <= radius)
+			{
+				if (i.GetID() == ID_FULL_ICE_TILE)//ID_FULL_ICE_TILE ID_WATER_TILE
+				{
+					Node parent = i.GetInstance().GetParent();
+					Godot.Collections.Array<Node> children = i.GetInstance().GetChildren();
+					foreach (Node child in children)
+					{
+							i.GetInstance().RemoveChild(child);
+					}
+					parent.RemoveChild(i.GetInstance());
+					i.SetID(ID_WATER_TILE);
+				}
+			}
+		}
+	}
 	//public List<ClassTile> GetInstances()
 	//{
 	//return instances;
