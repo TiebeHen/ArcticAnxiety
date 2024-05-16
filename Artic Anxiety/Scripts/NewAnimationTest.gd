@@ -92,7 +92,8 @@ func _physics_process(delta):
 	anim_tree.set("parameters/conditions/Stoppen_Glijden", input_dir != Vector2.ZERO && is_on_floor())
 	anim_tree.set("parameters/conditions/idle_jump", input_dir == Vector2.ZERO && !is_on_floor())
 	anim_tree.set("parameters/conditions/Glijden_Jump", input_dir != Vector2.ZERO && !is_on_floor())
-
+	anim_tree.set("parameters/conditions/Gooien", Input.is_action_just_pressed("click_throw"))
+	
 	move_and_slide()
 	
 	#twist_pivot.rotate_y(twist_input)
@@ -108,8 +109,7 @@ func _physics_process(delta):
 			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 			
 	var camerarecords = cameraToPlayer(get_viewport().get_mouse_position())
-			
-			
+	
 	if Input.is_action_just_pressed("click_throw"):
 		print("Destroy Tile")
 		GameNode.ThrowSnowball(get_parent().get_node("Abilities"), position, Vector3(camerarecords.x - position.x, 0, camerarecords.y - position.z))
@@ -141,10 +141,7 @@ func _physics_process(delta):
 		if (victory):
 			LevelNode.DeleteTile(player_position)
 		
-		
 	
-		
-			
 func cameraToPlayer(camera_position: Vector2) -> Vector2:
 		# Define the size of the camera viewport
 		#var camera_size = Vector2(960, 585)
@@ -179,9 +176,8 @@ func remove_child_deferred(node):
 	
 func on_player_wins():
 		$VictoryPOV.current = true
-		anim_tree.set("parameters/conditions/Victory", is_on_floor)
+		anim_tree.set("parameters/conditions/Victory", true)
 		if (true):
 			await(get_tree().create_timer(3))
 			await get_tree().change_scene_to_file("res://Scenes/Menus/VictoryMenu.tscn")
 			
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
