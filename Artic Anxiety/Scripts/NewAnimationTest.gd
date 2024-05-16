@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 @onready var anim_tree = $AnimationTree
+@export var victory_camera : Camera3D
 
 const SPEED = 8.0
 const JUMP_VELOCITY = 6.0
@@ -15,7 +16,6 @@ var LevelNode = LevelScript.new()
 #voor de timer
 var maxTime = 5
 var timeLeft = maxTime
-
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") 
@@ -111,7 +111,8 @@ func _physics_process(delta):
 		print("Destroy Tile")
 		GameNode.ThrowSnowball(get_parent().get_node("Abilities"), position, Vector3(camerarecords.x - position.x, 0, camerarecords.y - position.z))
 		#LevelNode.DeleteTileWRadius(Vector3(camerarecords.x, 0, camerarecords.y),5)
-		
+	if (Input.is_action_just_pressed("victory")):
+		on_player_wins()
 			
 			
 			
@@ -166,3 +167,10 @@ func add_child_deferred(node):
 
 func remove_child_deferred(node):
 	call_deferred("remove_child", node)
+func on_player_wins():
+		$VictoryPOV.current = true
+		anim_tree.set("parameters/conditions/Victory", is_on_floor)
+		if (true):
+			await(get_tree().create_timer(3))
+			await get_tree().change_scene_to_file("res://Scenes/Menus/VictoryMenu.tscn")
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
