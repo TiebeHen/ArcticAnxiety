@@ -140,8 +140,8 @@ func _physics_process(delta):
 		if (victory == false):
 			LevelNode.DeleteTile(player_position)
 		
-	#if player_position.y < 0:
-		#DoodePenguinNode.set_deathcam()
+	if player_position.y <= -1:
+		DoodePenguinNode._KillPlayer()
 		
 			
 func cameraToPlayer(camera_position: Vector2) -> Vector2:
