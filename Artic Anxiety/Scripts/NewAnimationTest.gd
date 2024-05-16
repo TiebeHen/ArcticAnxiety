@@ -13,6 +13,8 @@ static var victory = false
 var LevelScript = load("res://Scripts/Level.cs")
 var LevelNode = LevelScript.new()
 
+var DoodePenguinScript = load("res://Scripts/DoodePenguin.gd")
+var DoodePenguinNode = DoodePenguinScript.new()
 
 #voor de timer
 var maxTime = 5
@@ -21,6 +23,7 @@ var timeLeft = maxTime
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") 
 var SnowballScene = preload("res://Scenes/Game/Abilities/Snowball.tscn")
+
 
 
 var mouse_sensitivity := 0.001
@@ -59,19 +62,14 @@ func _physics_process(delta):
 	var direction = Vector3.ZERO
 	var target_velocity = Vector3.ZERO
 	var speed = 14
-	var movement
 	if Input.is_action_pressed("move_forward"):
 		direction.x -= 1
-		movement = 1
 	if Input.is_action_pressed("move_backward"):
 		direction.x += 1
-		movement = 1
 	if Input.is_action_pressed("move_right"):
 		direction.z += 1
-		movement = 1
 	if Input.is_action_pressed("move_left"):
 		direction.z -= 1
-		movement = 1
 		
 		
 	if direction != Vector3.ZERO:
@@ -140,7 +138,10 @@ func _physics_process(delta):
 		timeLeft = maxTime
 		if (victory):
 			LevelNode.DeleteTile(player_position)
-		
+			
+	#player die dood gaat voor de cam
+	if player_position.y <= -1:
+		DoodePenguinNode._KillPlayer()
 	
 func cameraToPlayer(camera_position: Vector2) -> Vector2:
 		# Define the size of the camera viewport
@@ -178,6 +179,6 @@ func on_player_wins():
 		$VictoryPOV.current = true
 		anim_tree.set("parameters/conditions/Victory", true)
 		if (true):
-			await(get_tree().create_timer(3))
-			await get_tree().change_scene_to_file("res://Scenes/Menus/VictoryMenu.tscn")
+			get_tree().create_timer(3)
+			get_tree().change_scene_to_file("res://Scenes/Menus/VictoryMenu.tscn")
 			
