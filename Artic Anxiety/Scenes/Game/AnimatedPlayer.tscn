@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://i7334pqmd0da"]
+[gd_scene load_steps=60 format=3 uid="uid://i7334pqmd0da"]
 
 [ext_resource type="Script" path="res://Scripts/NewAnimationTest.gd" id="2_vw3vo"]
 
@@ -1200,7 +1200,6 @@ tracks/17/keys = PackedFloat32Array(0, 1, -0.0745115, -0.0215748, -0.0191931, 0.
 
 [sub_resource type="Animation" id="Animation_qag48"]
 resource_name = "VictoryDance"
-loop_mode = 1
 tracks/0/type = "position_3d"
 tracks/0/imported = true
 tracks/0/enabled = true
@@ -1343,23 +1342,28 @@ _data = {
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rag8c"]
 animation = &"BeginGlijden"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_b8q3l"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j1fu1"]
 animation = &"Glijden"
 
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_qxms0"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_rag8c")
 blend_point_0/pos = 0.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_b8q3l")
+blend_point_1/node = SubResource("AnimationNodeAnimation_j1fu1")
 blend_point_1/pos = 1.0
 min_space = 0.0
-blend_mode = 1
-sync = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_xu6ny"]
-graph_offset = Vector2(-321, 42)
 nodes/BlendSpace1D/node = SubResource("AnimationNodeBlendSpace1D_qxms0")
 nodes/BlendSpace1D/position = Vector2(60, 120)
 node_connections = [&"output", 0, &"BlendSpace1D"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xwf8u"]
+animation = &"Glijden"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_qsmnk"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_xwf8u")
+blend_point_0/pos = 0.0
+min_space = 0.0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nxfmi"]
 animation = &"GlijdenJump"
@@ -1370,21 +1374,18 @@ animation = &"IdleAnimation"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0h6hv"]
 animation = &"IdleJump"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hudjf"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jvbd7"]
 animation = &"Glijden"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wv2ct"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tfb1m"]
 animation = &"StoppenGlijden"
 
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_3u4yx"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_hudjf")
+blend_point_0/node = SubResource("AnimationNodeAnimation_jvbd7")
 blend_point_0/pos = 0.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_wv2ct")
+blend_point_1/node = SubResource("AnimationNodeAnimation_tfb1m")
 blend_point_1/pos = 1.0
 min_space = 0.0
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bejiu"]
-animation = &"VictoryDance"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_apbig"]
 advance_mode = 2
@@ -1448,29 +1449,29 @@ xfade_time = 0.2
 advance_mode = 2
 advance_condition = &"BeginnenGlijden"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3l5yf"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nitp1"]
 advance_mode = 2
-advance_condition = &"Victory"
+advance_condition = &"glijden"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_isf2a"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mqt4u"]
 advance_mode = 2
-advance_condition = &"BeginnenGlijden"
+advance_condition = &"Stoppen_Glijden"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_3eqtp"]
 states/BeginGlijden/node = SubResource("AnimationNodeBlendTree_xu6ny")
 states/BeginGlijden/position = Vector2(-63, -68)
+states/Glijden/node = SubResource("AnimationNodeBlendSpace1D_qsmnk")
+states/Glijden/position = Vector2(135, -260)
 states/GlijdenJump/node = SubResource("AnimationNodeAnimation_nxfmi")
-states/GlijdenJump/position = Vector2(661, -241)
+states/GlijdenJump/position = Vector2(670, -325)
 states/IdleAnimation/node = SubResource("AnimationNodeAnimation_5k6hm")
 states/IdleAnimation/position = Vector2(387, 100)
 states/IdleJump/node = SubResource("AnimationNodeAnimation_0h6hv")
-states/IdleJump/position = Vector2(661, 100)
+states/IdleJump/position = Vector2(661, 106)
 states/StoppenGlijden/node = SubResource("AnimationNodeBlendSpace1D_3u4yx")
-states/StoppenGlijden/position = Vector2(387, -68)
-states/VictoryDance/node = SubResource("AnimationNodeAnimation_bejiu")
-states/VictoryDance/position = Vector2(815, -78)
-transitions = ["Start", "IdleAnimation", SubResource("AnimationNodeStateMachineTransition_apbig"), "StoppenGlijden", "IdleAnimation", SubResource("AnimationNodeStateMachineTransition_5lxhy"), "IdleAnimation", "IdleJump", SubResource("AnimationNodeStateMachineTransition_4qvi3"), "IdleJump", "IdleAnimation", SubResource("AnimationNodeStateMachineTransition_80ho8"), "IdleAnimation", "GlijdenJump", SubResource("AnimationNodeStateMachineTransition_60ujf"), "GlijdenJump", "IdleAnimation", SubResource("AnimationNodeStateMachineTransition_smwhl"), "GlijdenJump", "IdleJump", SubResource("AnimationNodeStateMachineTransition_3258c"), "IdleJump", "GlijdenJump", SubResource("AnimationNodeStateMachineTransition_5r0ta"), "IdleAnimation", "BeginGlijden", SubResource("AnimationNodeStateMachineTransition_ept8q"), "BeginGlijden", "IdleAnimation", SubResource("AnimationNodeStateMachineTransition_73in2"), "BeginGlijden", "StoppenGlijden", SubResource("AnimationNodeStateMachineTransition_w5xsy"), "BeginGlijden", "GlijdenJump", SubResource("AnimationNodeStateMachineTransition_raij6"), "StoppenGlijden", "GlijdenJump", SubResource("AnimationNodeStateMachineTransition_7tw5k"), "GlijdenJump", "BeginGlijden", SubResource("AnimationNodeStateMachineTransition_lmxbu"), "IdleAnimation", "VictoryDance", SubResource("AnimationNodeStateMachineTransition_3l5yf"), "IdleJump", "BeginGlijden", SubResource("AnimationNodeStateMachineTransition_isf2a")]
-graph_offset = Vector2(-360, -286)
+states/StoppenGlijden/position = Vector2(387, -73)
+transitions = ["Start", "IdleAnimation", SubResource("AnimationNodeStateMachineTransition_apbig"), "StoppenGlijden", "IdleAnimation", SubResource("AnimationNodeStateMachineTransition_5lxhy"), "IdleAnimation", "IdleJump", SubResource("AnimationNodeStateMachineTransition_4qvi3"), "IdleJump", "IdleAnimation", SubResource("AnimationNodeStateMachineTransition_80ho8"), "IdleAnimation", "GlijdenJump", SubResource("AnimationNodeStateMachineTransition_60ujf"), "GlijdenJump", "IdleAnimation", SubResource("AnimationNodeStateMachineTransition_smwhl"), "GlijdenJump", "IdleJump", SubResource("AnimationNodeStateMachineTransition_3258c"), "IdleJump", "GlijdenJump", SubResource("AnimationNodeStateMachineTransition_5r0ta"), "IdleAnimation", "BeginGlijden", SubResource("AnimationNodeStateMachineTransition_ept8q"), "BeginGlijden", "IdleAnimation", SubResource("AnimationNodeStateMachineTransition_73in2"), "BeginGlijden", "StoppenGlijden", SubResource("AnimationNodeStateMachineTransition_w5xsy"), "BeginGlijden", "GlijdenJump", SubResource("AnimationNodeStateMachineTransition_raij6"), "StoppenGlijden", "GlijdenJump", SubResource("AnimationNodeStateMachineTransition_7tw5k"), "GlijdenJump", "BeginGlijden", SubResource("AnimationNodeStateMachineTransition_lmxbu"), "BeginGlijden", "Glijden", SubResource("AnimationNodeStateMachineTransition_nitp1"), "Glijden", "StoppenGlijden", SubResource("AnimationNodeStateMachineTransition_mqt4u")]
+graph_offset = Vector2(-251, -95.6803)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_80f1n"]
 size = Vector3(1, 1, 0.805542)
@@ -1492,13 +1493,8 @@ bones/0/name = "buik"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.44751e-08, 0)
 bones/0/enabled = true
-<<<<<<< Updated upstream
-bones/0/position = Vector3(4.55858e-10, -0.709519, 0)
-bones/0/rotation = Quaternion(0, 0, 0.0420162, 0.999117)
-=======
-bones/0/position = Vector3(0, -0.528548, 0)
-bones/0/rotation = Quaternion(0, 0, -0.0499763, 0.99875)
->>>>>>> Stashed changes
+bones/0/position = Vector3(4.31673e-10, -0.562266, 0)
+bones/0/rotation = Quaternion(0, 0, 0.0830701, 0.996544)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "RechterSchouder"
 bones/1/parent = 0
@@ -1512,11 +1508,7 @@ bones/2/parent = 1
 bones/2/rest = Transform3D(0.151258, 0.988127, -0.0269587, -0.842989, 0.143188, 0.518523, 0.516226, -0.0557049, 0.854639, -6.49597e-08, 1.16111, 3.72529e-09)
 bones/2/enabled = true
 bones/2/position = Vector3(-6.49597e-08, 1.16111, 3.72529e-09)
-<<<<<<< Updated upstream
-bones/2/rotation = Quaternion(-0.170531, -0.116909, -0.644228, 0.736357)
-=======
-bones/2/rotation = Quaternion(-0.159887, -0.122936, -0.602377, 0.772312)
->>>>>>> Stashed changes
+bones/2/rotation = Quaternion(-0.146626, -0.129563, -0.550349, 0.811684)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "RechterArm_2"
 bones/3/parent = 2
@@ -1558,11 +1550,7 @@ bones/8/parent = 7
 bones/8/rest = Transform3D(0.255068, -0.952512, 0.166315, 0.934712, 0.19887, -0.294557, 0.247494, 0.230589, 0.94105, -2.10712e-08, 1.06288, -1.30385e-08)
 bones/8/enabled = true
 bones/8/position = Vector3(-2.10712e-08, 1.06288, -1.30385e-08)
-<<<<<<< Updated upstream
-bones/8/rotation = Quaternion(0.0999525, -0.0694777, 0.643236, 0.755929)
-=======
-bones/8/rotation = Quaternion(0.0902895, -0.0673289, 0.617836, 0.778199)
->>>>>>> Stashed changes
+bones/8/rotation = Quaternion(0.0660542, -0.0616903, 0.552124, 0.828848)
 bones/8/scale = Vector3(0.998526, 0.999899, 0.956609)
 bones/9/name = "LinkerArm_2"
 bones/9/parent = 8
@@ -1582,13 +1570,8 @@ bones/11/name = "RechterHeup"
 bones/11/parent = -1
 bones/11/rest = Transform3D(0.0115836, 0.996659, -0.0808465, 0.374843, 0.0706278, 0.924394, 0.927016, -0.0410126, -0.372773, 0, 5.44751e-08, 0)
 bones/11/enabled = true
-<<<<<<< Updated upstream
-bones/11/position = Vector3(1.87677e-09, -0.709519, 1.119e-08)
-bones/11/rotation = Quaternion(0.547446, 0.621844, 0.351105, -0.436278)
-=======
-bones/11/position = Vector3(8.53353e-09, -0.528548, 5.94544e-09)
-bones/11/rotation = Quaternion(0.602274, 0.568905, 0.389712, -0.402167)
->>>>>>> Stashed changes
+bones/11/position = Vector3(-4.23615e-09, -0.562266, -1.58334e-08)
+bones/11/rotation = Quaternion(0.521409, 0.643832, 0.332866, -0.450349)
 bones/11/scale = Vector3(1, 1, 1)
 bones/12/name = "RechterBeen"
 bones/12/parent = 11
@@ -1602,23 +1585,14 @@ bones/13/parent = 12
 bones/13/rest = Transform3D(-0.482487, -0.777683, -0.403008, 0.873464, -0.461507, -0.155155, -0.0653294, -0.426873, 0.901949, -1.49012e-08, 0.544136, 1.49012e-08)
 bones/13/enabled = true
 bones/13/position = Vector3(-1.49012e-08, 0.544136, 1.49012e-08)
-<<<<<<< Updated upstream
-bones/13/rotation = Quaternion(-0.137671, -0.189997, 0.81597, 0.528338)
-=======
-bones/13/rotation = Quaternion(-0.138808, -0.172504, 0.843496, 0.489376)
->>>>>>> Stashed changes
+bones/13/rotation = Quaternion(-0.132719, -0.235455, 0.729604, 0.628191)
 bones/13/scale = Vector3(1, 1, 1)
 bones/14/name = "LinkerHeup"
 bones/14/parent = -1
 bones/14/rest = Transform3D(0.00659573, -0.999924, 0.0104362, -0.178372, 0.00909263, 0.983921, -0.983941, -0.00835115, -0.178299, 0, 5.44751e-08, 0)
 bones/14/enabled = true
-<<<<<<< Updated upstream
-bones/14/position = Vector3(-1.31435e-09, -0.709519, 2.07155e-09)
-bones/14/rotation = Quaternion(-0.564521, 0.520062, 0.467719, 0.43828)
-=======
-bones/14/position = Vector3(-2.96113e-10, -0.528548, -4.54666e-10)
-bones/14/rotation = Quaternion(-0.514341, 0.569739, 0.425464, 0.479407)
->>>>>>> Stashed changes
+bones/14/position = Vector3(-4.69315e-09, -0.562266, -3.47636e-09)
+bones/14/rotation = Quaternion(-0.585432, 0.496406, 0.485348, 0.418674)
 bones/14/scale = Vector3(1, 1, 1)
 bones/15/name = "LinkerBeen"
 bones/15/parent = 14
@@ -1632,11 +1606,7 @@ bones/16/parent = 15
 bones/16/rest = Transform3D(-0.480504, 0.852356, 0.206409, -0.852136, -0.509407, 0.119868, 0.207316, -0.118291, 0.971096, -7.45058e-09, 0.522611, -2.44472e-09)
 bones/16/enabled = true
 bones/16/position = Vector3(-7.45058e-09, 0.522611, -2.44472e-09)
-<<<<<<< Updated upstream
-bones/16/rotation = Quaternion(0.123662, -0.00365074, 0.852867, -0.507259)
-=======
-bones/16/rotation = Quaternion(0.149886, -0.0360682, 0.786672, -0.597813)
->>>>>>> Stashed changes
+bones/16/rotation = Quaternion(0.1221, -0.00178352, 0.856305, -0.501826)
 bones/16/scale = Vector3(1, 1, 1)
 
 [node name="Sphere_001" type="MeshInstance3D" parent="Twistpivot/Armature_001/Skeleton3D"]
@@ -1688,11 +1658,12 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/BeginnenGlijden = false
 parameters/conditions/Glijden_Jump = false
 parameters/conditions/Stoppen_Glijden = false
-parameters/conditions/Victory = false
+parameters/conditions/glijden = false
 parameters/conditions/glijden_jump = false
 parameters/conditions/idle = false
 parameters/conditions/idle_jump = false
 parameters/BeginGlijden/BlendSpace1D/blend_position = 0
+parameters/Glijden/blend_position = 0
 parameters/StoppenGlijden/blend_position = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
