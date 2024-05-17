@@ -62,14 +62,15 @@ func _physics_process(delta):
 	var direction = Vector3.ZERO
 	var target_velocity = Vector3.ZERO
 	var speed = 14
-	if Input.is_action_pressed("move_forward"):
-		direction.x -= 1
-	if Input.is_action_pressed("move_backward"):
-		direction.x += 1
-	if Input.is_action_pressed("move_right"):
-		direction.z += 1
-	if Input.is_action_pressed("move_left"):
-		direction.z -= 1
+	if (victory == false):
+		if Input.is_action_pressed("move_forward"):
+			direction.x -= 1
+		if Input.is_action_pressed("move_backward"):
+			direction.x += 1
+		if Input.is_action_pressed("move_right"):
+			direction.z += 1
+		if Input.is_action_pressed("move_left"):
+			direction.z -= 1
 		
 		
 	if direction != Vector3.ZERO:
@@ -109,8 +110,8 @@ func _physics_process(delta):
 	var camerarecords = cameraToPlayer(get_viewport().get_mouse_position())
 	
 	if Input.is_action_just_pressed("click_throw"):
-		print("Destroy Tile")
-		GameNode.ThrowSnowball(get_parent().get_node("Abilities"), position, Vector3(camerarecords.x - position.x, 0, camerarecords.y - position.z))
+		if (victory == false):
+			GameNode.ThrowSnowball(get_parent().get_node("Abilities"), position, Vector3(camerarecords.x - position.x, 0, camerarecords.y - position.z))
 		#LevelNode.DeleteTileWRadius(Vector3(camerarecords.x, 0, camerarecords.y),5)
 	if (Input.is_action_just_pressed("victory")):
 		on_player_wins()
@@ -136,12 +137,13 @@ func _physics_process(delta):
 	else:
 		timeLeft = 0
 		timeLeft = maxTime
-		if (victory):
+		if (victory == false):
 			LevelNode.DeleteTile(player_position)
 			
 	#player die dood gaat voor de cam
 	if player_position.y <= -1:
-		DoodePenguinNode._KillPlayer()
+		if (victory == false):
+			DoodePenguinNode._KillPlayer()
 	
 func cameraToPlayer(camera_position: Vector2) -> Vector2:
 		# Define the size of the camera viewport
@@ -176,6 +178,7 @@ func remove_child_deferred(node):
 	call_deferred("remove_child", node)
 	
 func on_player_wins():
+		victory = true
 		$VictoryPOV.current = true
 		anim_tree.set("parameters/conditions/Victory", true)
 		if (true):
