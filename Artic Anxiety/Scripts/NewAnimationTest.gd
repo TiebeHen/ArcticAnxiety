@@ -6,6 +6,9 @@ extends CharacterBody3D
 const SPEED = 8.0
 const JUMP_VELOCITY = 6.0
 const LERP_VAL = .15
+static var player_position
+
+
 var GameManagerScript = load("res://Scripts/GameManager.cs")
 var GameNode = GameManagerScript.new()
 static var victory = false
@@ -122,7 +125,7 @@ func _physics_process(delta):
 	#print(get_viewport().size)
 			
 	#print("Viewport cords: ", camerarecords)
-	var player_position = position
+	player_position = position
 	#print("Player position: ", player_position)
 	look_at(Vector3(camerarecords.x, 0, camerarecords.y), Vector3(0, 1, 0)) 
 	
@@ -185,3 +188,5 @@ func on_player_wins():
 			get_tree().create_timer(3)
 			get_tree().change_scene_to_file("res://Scenes/Menus/VictoryMenu.tscn")
 			
+func GetPlayerPos():
+	return player_position

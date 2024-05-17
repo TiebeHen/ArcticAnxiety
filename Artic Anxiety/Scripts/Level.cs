@@ -156,6 +156,8 @@ public partial class Level : Node3D
 			var _pos = i.GetPosition();
 			if (Math.Abs(_pos.X - playerX) <= 2 && Math.Abs(_pos.Z - playerZ) <= 2)
 			{
+				if (i.GetID() != ID_WATER_TILE)//ID_FULL_ICE_TILE ID_WATER_TILE
+				{
 					Node parent = i.GetInstance().GetParent();
 					Godot.Collections.Array<Node> children = i.GetInstance().GetChildren();
 					foreach (Node child in children)
@@ -164,6 +166,7 @@ public partial class Level : Node3D
 					}
 					parent.RemoveChild(i.GetInstance());
 					i.SetID(ID_WATER_TILE);
+				}
 			}
 		}
 	}
@@ -177,6 +180,8 @@ public void DeleteTileWRadius(Vector3 Position, int radius)
 			var _pos = i.GetPosition();
 			if (Math.Sqrt(Math.Pow(_pos.X - playerX, 2) + Math.Pow(_pos.Z - playerZ, 2)) <= radius)
 			{
+				if (i.GetID() != ID_WATER_TILE)//ID_FULL_ICE_TILE ID_WATER_TILE
+				{
 					Node parent = i.GetInstance().GetParent();
 					Godot.Collections.Array<Node> children = i.GetInstance().GetChildren();
 					foreach (Node child in children)
@@ -185,6 +190,7 @@ public void DeleteTileWRadius(Vector3 Position, int radius)
 					}
 					parent.RemoveChild(i.GetInstance());
 					i.SetID(ID_WATER_TILE);
+				}
 			}
 		}
 	}

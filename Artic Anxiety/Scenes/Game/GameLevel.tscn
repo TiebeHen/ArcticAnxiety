@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bhtvq5b7yvktt"]
+[gd_scene load_steps=10 format=3 uid="uid://bhtvq5b7yvktt"]
 
 [ext_resource type="Script" path="res://Scripts/Level.cs" id="1_w7c8l"]
 [ext_resource type="Script" path="res://Scripts/GameManager.cs" id="1_xitt1"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dmhlnoq71xl4t" path="res://Scenes/Game/Tiles/Water/WaterTileDeath.tscn" id="5_0jqrj"]
 [ext_resource type="Script" path="res://Scripts/DoodePenguin.gd" id="5_n2uy8"]
 [ext_resource type="PackedScene" uid="uid://jrbq74tciilg" path="res://Scenes/Game/deadPlayer.tscn" id="5_oemv2"]
+[ext_resource type="PackedScene" uid="uid://poxah1udrh5i" path="res://Scenes/Game/orca.tscn" id="7_f4lxw"]
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_w3gmo"]
 albedo_color = Color(1, 0.270588, 0.294118, 1)
@@ -102,3 +103,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.7402, -17.8269, 26.1314)
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.8637, -16.3469, 27.9938)
 light_energy = 0.5
+
+[node name="orca" parent="." instance=ExtResource("7_f4lxw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.13924, 0, 7.71112)
