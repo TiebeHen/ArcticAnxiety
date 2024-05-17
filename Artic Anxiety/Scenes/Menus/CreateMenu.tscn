@@ -147,6 +147,23 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_471ih")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_y1wg7")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_mut1w")
 
+[node name="LobbyLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 232.0
+offset_top = 222.0
+offset_right = 371.0
+offset_bottom = 254.0
+theme_override_font_sizes/font_size = 19
+text = "Lobby name:"
+
+[node name="LobbyName" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 373.0
+offset_top = 217.0
+offset_right = 784.0
+offset_bottom = 259.0
+theme_override_font_sizes/font_size = 19
+
 [connection signal="mouse_entered" from="Back/ButtonBack" to="." method="_on_button_back_mouse_entered"]
 [connection signal="mouse_exited" from="Back/ButtonBack" to="." method="_on_button_back_mouse_exited"]
 [connection signal="pressed" from="Back/ButtonBack" to="." method="_on_button_back_pressed"]
