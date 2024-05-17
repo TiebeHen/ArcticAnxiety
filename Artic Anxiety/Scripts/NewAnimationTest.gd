@@ -190,3 +190,6 @@ func on_player_wins():
 			
 func GetPlayerPos():
 	return player_position
+
+func SetUpPlayer(name: String):
+	print("setup player")
