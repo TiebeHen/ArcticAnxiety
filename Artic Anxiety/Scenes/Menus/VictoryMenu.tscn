@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://djhsmphx01en8"]
 
-[ext_resource type="Script" path="res://Scripts/VictoryMenuNavigation.cs" id="1_3n5ky"]
+[ext_resource type="Script" path="res://Scenes/Menus/VictoryMenuNavigation.gd" id="1_5dwys"]
 [ext_resource type="Texture2D" uid="uid://oriidxdo1fa3" path="res://Assets/Buttons/Button.png" id="1_870k7"]
 [ext_resource type="FontFile" uid="uid://dhjj1ii1frsqf" path="res://Assets/Fonts/TherenRegular-vmrnE.ttf" id="2_3lodc"]
 [ext_resource type="Texture2D" uid="uid://n8ykrii5n7mb" path="res://Assets/Menus/new-fortnite-victory-royale-ow1.png" id="4_84ag8"]
@@ -20,7 +20,7 @@
 [node name="VictoryMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_3n5ky")
+script = ExtResource("1_5dwys")
 
 [node name="Home" type="Node" parent="."]
 
@@ -44,11 +44,13 @@ text = "Home"
 alignment = 1
 
 [node name="TextureHomeHover" type="Sprite2D" parent="Home"]
+visible = false
 position = Vector2(310.659, 523.562)
 scale = Vector2(0.260714, 0.260714)
 texture = ExtResource("1_870k7")
 
 [node name="LineEditHomeHover" type="LineEdit" parent="Home"]
+visible = false
 modulate = Color(0, 0, 0, 1)
 self_modulate = Color(0, 0, 0, 1)
 offset_left = 193.488
