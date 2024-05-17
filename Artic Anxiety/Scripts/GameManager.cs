@@ -25,6 +25,7 @@ public partial class GameManager : Node3D
 	public override void _Process(double delta)
 	{
 		OrcaMovementNode.Call("SetPlayerPos", PlayerNode.Call("GetPlayerPos"));
+		
 	}
 	
 	public void ThrowSnowball(Node nodi, Vector3 position, Vector3 velocity)

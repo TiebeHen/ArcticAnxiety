@@ -157,15 +157,15 @@ func cameraToPlayer(camera_position: Vector2) -> Vector2:
 		# Calculate the scale factor for the translation
 		var scale_factor = player_map_size / camera_size
 		# Translate camera coordinates to player coordinates
-		var player_position = camera_position * scale_factor
+		var player_position2 = camera_position * scale_factor
 		
-		player_position.x -= 9
-		player_position.y -= 4
+		player_position2.x -= 9
+		player_position2.y -= 4
 		
-		var pX = player_position.x
-		player_position.x = player_position.y
-		player_position.y = pX
-		return player_position
+		var pX = player_position2.x
+		player_position2.x = player_position2.y
+		player_position2.y = pX
+		return player_position2
 
 #func on_player_wins():
 	#$VictoryPOV.current = true
