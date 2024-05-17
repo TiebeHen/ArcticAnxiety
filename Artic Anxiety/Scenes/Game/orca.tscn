@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://poxah1udrh5i"]
+
+[ext_resource type="PackedScene" uid="uid://ciu1r2p6legyp" path="res://Assets/Models/killerWhale/orca.glb" id="1_7lude"]
+
+[node name="orca" instance=ExtResource("1_7lude")]
