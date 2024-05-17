@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bjj2n774b8htj"
-path="res://.godot/imported/penguin.glb-de26161b1bada71e6c9ed8c3e3dba92a.scn"
+uid="uid://cuwpxkbddcbvo"
+path="res://.godot/imported/rpg.glb-61555a7019184cc77c54bc59d5b667dc.scn"
 
 [deps]
 
-source_file="res://Assets/Models/penguin/penguin.glb"
-dest_files=["res://.godot/imported/penguin.glb-de26161b1bada71e6c9ed8c3e3dba92a.scn"]
+source_file="res://Assets/Models/RPG/rpg.glb"
+dest_files=["res://.godot/imported/rpg.glb-61555a7019184cc77c54bc59d5b667dc.scn"]
 
 [params]
 

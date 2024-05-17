@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bjj2n774b8htj"
-path="res://.godot/imported/penguin.glb-de26161b1bada71e6c9ed8c3e3dba92a.scn"
+uid="uid://ciu1r2p6legyp"
+path="res://.godot/imported/orca.glb-e8470d2035c791db1e7f56db25d83297.scn"
 
 [deps]
 
-source_file="res://Assets/Models/penguin/penguin.glb"
-dest_files=["res://.godot/imported/penguin.glb-de26161b1bada71e6c9ed8c3e3dba92a.scn"]
+source_file="res://Assets/Models/killerWhale/orca.glb"
+dest_files=["res://.godot/imported/orca.glb-e8470d2035c791db1e7f56db25d83297.scn"]
 
 [params]
 

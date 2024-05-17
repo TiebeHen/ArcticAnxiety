@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqn778n3stsd6"
-path.s3tc="res://.godot/imported/penguin_Material_2.png-d5d40dfdc58dcf0594bacbdae1d1591f.s3tc.ctex"
+uid="uid://db5j2rox6b6ce"
+path.s3tc="res://.godot/imported/brokenIceTile.png-d0b9b12945e17ec859ba16a981962ac1.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "5c05bb584fd93ad0afada573b62c3ff6"
-}
 
 [deps]
 
-source_file="res://Assets/Models/penguin/penguin_Material_2.png"
-dest_files=["res://.godot/imported/penguin_Material_2.png-d5d40dfdc58dcf0594bacbdae1d1591f.s3tc.ctex"]
+source_file="res://Assets/Map/brokenIceTile.png"
+dest_files=["res://.godot/imported/brokenIceTile.png-d0b9b12945e17ec859ba16a981962ac1.s3tc.ctex"]
 
 [params]
 

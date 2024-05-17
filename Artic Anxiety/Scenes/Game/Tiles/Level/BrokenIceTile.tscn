@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://b1qxcal2cy0jj"]
+
+[ext_resource type="ArrayMesh" uid="uid://c4wxgbksncvrs" path="res://Assets/Models/Tiles/FulIceTile.obj" id="1_imq0i"]
+[ext_resource type="Texture2D" uid="uid://db5j2rox6b6ce" path="res://Assets/Map/brokenIceTile.png" id="1_o6qbo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l1pqt"]
+albedo_texture = ExtResource("1_o6qbo")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qa1r0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qv02r"]
+size = Vector3(2, 1, 2)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="FulIceTile2" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_l1pqt")
+mesh = ExtResource("1_imq0i")
+surface_material_override/0 = SubResource("StandardMaterial3D_qa1r0")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FulIceTile2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FulIceTile2/StaticBody3D"]
+shape = SubResource("BoxShape3D_qv02r")
