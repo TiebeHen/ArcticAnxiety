@@ -44,19 +44,17 @@ text = "Home"
 alignment = 1
 
 [node name="TextureHomeHover" type="Sprite2D" parent="Home"]
-visible = false
-position = Vector2(574.171, 96.4375)
+position = Vector2(310.659, 523.562)
 scale = Vector2(0.260714, 0.260714)
 texture = ExtResource("1_870k7")
 
 [node name="LineEditHomeHover" type="LineEdit" parent="Home"]
-visible = false
 modulate = Color(0, 0, 0, 1)
 self_modulate = Color(0, 0, 0, 1)
-offset_left = 392.0
-offset_top = 38.0
-offset_right = 755.0
-offset_bottom = 152.0
+offset_left = 193.488
+offset_top = 487.125
+offset_right = 417.488
+offset_bottom = 554.125
 theme_override_fonts/font = ExtResource("2_3lodc")
 theme_override_font_sizes/font_size = 55
 theme_override_styles/normal = SubResource("StyleBoxEmpty_d25yo")
@@ -97,7 +95,7 @@ alignment = 1
 
 [node name="TextureExitHover" type="Sprite2D" parent="Exit"]
 visible = false
-position = Vector2(574.171, 96.4375)
+position = Vector2(877.659, 520.562)
 scale = Vector2(0.260714, 0.260714)
 texture = ExtResource("1_870k7")
 
@@ -105,10 +103,10 @@ texture = ExtResource("1_870k7")
 visible = false
 modulate = Color(0, 0, 0, 1)
 self_modulate = Color(0, 0, 0, 1)
-offset_left = 392.0
-offset_top = 38.0
-offset_right = 755.0
-offset_bottom = 152.0
+offset_left = 695.488
+offset_top = 462.125
+offset_right = 1058.49
+offset_bottom = 576.125
 theme_override_fonts/font = ExtResource("2_3lodc")
 theme_override_font_sizes/font_size = 55
 theme_override_styles/normal = SubResource("StyleBoxEmpty_d25yo")
@@ -127,9 +125,13 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_lsv57")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ljh6h")
 
 [node name="VictoryImage" type="Sprite2D" parent="."]
-position = Vector2(600, 154)
+position = Vector2(596, 174)
 scale = Vector2(2.48101, 2.48101)
 texture = ExtResource("4_84ag8")
 
 [connection signal="mouse_entered" from="Home/ButtonHome" to="." method="_on_button_home_mouse_entered"]
+[connection signal="mouse_exited" from="Home/ButtonHome" to="." method="_on_button_home_mouse_exited"]
 [connection signal="pressed" from="Home/ButtonHome" to="." method="_on_button_home_pressed"]
+[connection signal="mouse_entered" from="Exit/ButtonExit" to="." method="_on_button_exit_mouse_entered"]
+[connection signal="mouse_exited" from="Exit/ButtonExit" to="." method="_on_button_exit_mouse_exited"]
+[connection signal="pressed" from="Exit/ButtonExit" to="." method="_on_button_exit_pressed"]
