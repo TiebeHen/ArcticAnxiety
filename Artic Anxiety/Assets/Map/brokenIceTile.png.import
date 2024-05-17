@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6p8ywk78363s"
-path.s3tc="res://.godot/imported/orca_Tex_Orca.png-9552828525838e0811cf6c532e90a0b5.s3tc.ctex"
+uid="uid://db5j2rox6b6ce"
+path.s3tc="res://.godot/imported/brokenIceTile.png-d0b9b12945e17ec859ba16a981962ac1.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "142b9e72e4f49246ae27f019187411c7"
-}
 
 [deps]
 
-source_file="res://Assets/Models/killerWhale/orca_Tex_Orca.png"
-dest_files=["res://.godot/imported/orca_Tex_Orca.png-9552828525838e0811cf6c532e90a0b5.s3tc.ctex"]
+source_file="res://Assets/Map/brokenIceTile.png"
+dest_files=["res://.godot/imported/brokenIceTile.png-d0b9b12945e17ec859ba16a981962ac1.s3tc.ctex"]
 
 [params]
 

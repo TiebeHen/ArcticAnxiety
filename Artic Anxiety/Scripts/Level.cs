@@ -10,11 +10,18 @@ public partial class Level : Node3D
 
 	string ID_WATER_TILE = "105";
 	string ID_FULL_ICE_TILE = "49";
+	string ID_BROKEN_ICE_TILE = "48";
+	
+	
+	//for the timer of breaking tiles
+	double maxTimeTileBreaking = 4;
+	double timeLeftTileBreaking = 4;
 
 	//tiles
 	PackedScene FullIceTile = ResourceLoader.Load<PackedScene>("res://Scenes/Game/Tiles/Level/FullIceTile.tscn");
 	PackedScene WaterTile = ResourceLoader.Load<PackedScene>("res://Scenes/Game/Tiles/Water/WaterTile.tscn");
 	PackedScene SeaBottomTile = ResourceLoader.Load<PackedScene>("res://Scenes/Game/Tiles/Ground/SeaBottomTile.tscn");
+	PackedScene BrokenIceTile = ResourceLoader.Load<PackedScene>("res://Scenes/Game/Tiles/Level/BrokenIceTile.tscn");
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -94,6 +101,8 @@ public partial class Level : Node3D
 		//	GD.Print(t.Print());
 		//}
 
+
+		
 	}
 
 
@@ -133,6 +142,9 @@ public partial class Level : Node3D
 		{
 			instances.Add(newInstance);
 		}
+		
+		
+		BreakTiles(delta);
 	}
 	public void DeleteTile(Vector3 Position)
 	{
@@ -144,7 +156,7 @@ public partial class Level : Node3D
 			var _pos = i.GetPosition();
 			if (Math.Abs(_pos.X - playerX) <= 2 && Math.Abs(_pos.Z - playerZ) <= 2)
 			{
-				if (i.GetID() == ID_FULL_ICE_TILE)//ID_FULL_ICE_TILE ID_WATER_TILE
+				if (i.GetID() != ID_WATER_TILE)//ID_FULL_ICE_TILE ID_WATER_TILE
 				{
 					Node parent = i.GetInstance().GetParent();
 					Godot.Collections.Array<Node> children = i.GetInstance().GetChildren();
@@ -168,7 +180,7 @@ public void DeleteTileWRadius(Vector3 Position, int radius)
 			var _pos = i.GetPosition();
 			if (Math.Sqrt(Math.Pow(_pos.X - playerX, 2) + Math.Pow(_pos.Z - playerZ, 2)) <= radius)
 			{
-				if (i.GetID() == ID_FULL_ICE_TILE)//ID_FULL_ICE_TILE ID_WATER_TILE
+				if (i.GetID() != ID_WATER_TILE)//ID_FULL_ICE_TILE ID_WATER_TILE
 				{
 					Node parent = i.GetInstance().GetParent();
 					Godot.Collections.Array<Node> children = i.GetInstance().GetChildren();
@@ -182,6 +194,42 @@ public void DeleteTileWRadius(Vector3 Position, int radius)
 			}
 		}
 	}
+	public void BreakTiles(double delta)
+	{
+		
+		foreach (ClassTile t in instances) // Iterate over a copy of instances to avoid modification during enumeration
+		{
+					if (t.GetID() == ID_FULL_ICE_TILE)//ID_FULL_ICE_TILE ID_WATER_TILE
+					{
+						if (GD.Randi() % 300000 < 3) 
+						{
+							DeleteTileWRadius(t.GetPosition(),1);
+					
+							Node3D instance = (Node3D)BrokenIceTile.Instantiate();
+							instance.Position = t.GetPosition();
+							t.SetInstance(instance);
+							t.SetID(ID_BROKEN_ICE_TILE); 
+					
+							AddChildDeferred(instance);
+						}
+					}
+				if(timeLeftTileBreaking < 0)
+				{
+					if (t.GetID() == ID_BROKEN_ICE_TILE)//ID_FULL_ICE_TILE ID_WATER_TILE
+					{
+						
+						DeleteTileWRadius(t.GetPosition(),1);
+					}
+					timeLeftTileBreaking = maxTimeTileBreaking;
+				}
+				timeLeftTileBreaking -= delta;
+				
+			
+			
+		}
+	}
+	
+	
 	//public List<ClassTile> GetInstances()
 	//{
 	//return instances;

@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6p8ywk78363s"
-path.s3tc="res://.godot/imported/orca_Tex_Orca.png-9552828525838e0811cf6c532e90a0b5.s3tc.ctex"
+uid="uid://daei7ld0rx2tb"
+path.s3tc="res://.godot/imported/rpg_default2 Base Color.png-2d0d4968363412386c4b7a7ce769e9d4.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "142b9e72e4f49246ae27f019187411c7"
+"md5": "0e93b431060588af9d77c99a553f68b7"
 }
 
 [deps]
 
-source_file="res://Assets/Models/killerWhale/orca_Tex_Orca.png"
-dest_files=["res://.godot/imported/orca_Tex_Orca.png-9552828525838e0811cf6c532e90a0b5.s3tc.ctex"]
+source_file="res://Assets/Models/RPG/rpg_default2 Base Color.png"
+dest_files=["res://.godot/imported/rpg_default2 Base Color.png-2d0d4968363412386c4b7a7ce769e9d4.s3tc.ctex"]
 
 [params]
 
