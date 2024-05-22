@@ -144,7 +144,7 @@ func _physics_process(delta):
 					print("ability ", abilityNr)
 				if timeLeftAbility <= 0:
 					if abilityNr == 2: #Jesus ability
-						position.y + 5
+						position.y += 0.5
 						gravity = 0
 						timeLeftAbility = maxTimeAbility
 						timeLeftJesus = maxTimeJesus
