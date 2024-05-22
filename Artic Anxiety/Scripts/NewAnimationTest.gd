@@ -28,9 +28,12 @@ var timeLeft = maxTime
 #voor de timer voor de ability
 var maxTimeAbility = 5
 var timeLeftAbility = 0
+#voor de timer voor de Jesus
+var  maxTimeJesus = 3
+var timeLeftJesus = 0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") 
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") *5
 var SnowballScene = preload("res://Scenes/Game/Abilities/Snowball.tscn")
 
 
@@ -57,7 +60,7 @@ func _physics_process(delta):
 	# Victory
 	if (Input.is_action_just_pressed("victory")):
 		on_player_wins()
-#OLd Movemont
+	#OLd Movemont
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	
@@ -124,13 +127,10 @@ func _physics_process(delta):
 		abilityNr = 1
 	if Input.is_action_just_pressed("Ability2"):
 		abilityNr = 2
-		
 	if Input.is_action_just_pressed("Ability3"):
 		abilityNr = 3
 	
-	
-	
-	
+	timeLeftJesus -= delta
 	timeLeftAbility -= delta
 	#timeLeftAbility  maxTimeAbility
 	if Input.is_action_just_pressed("click_throw"):
@@ -141,8 +141,9 @@ func _physics_process(delta):
 					timeLeftAbility = maxTimeAbility
 					print("ability ", abilityNr)
 				if abilityNr == 2: #Jesus ability
-					
+					gravity = 0
 					timeLeftAbility = maxTimeAbility
+					timeLeftJesus = maxTimeJesus
 					print("ability ", abilityNr)
 				if abilityNr == 3: #Rocket ability
 					
@@ -150,7 +151,8 @@ func _physics_process(delta):
 					print("ability ", abilityNr)
 				#LevelNode.DeleteTileWRadius(Vector3(camerarecords.x, 0, camerarecords.y),5)
 		
-		
+	if timeLeftJesus < 0:
+		gravity = ProjectSettings.get_setting("physics/3d/default_gravity") *5
 		
 		
 		
