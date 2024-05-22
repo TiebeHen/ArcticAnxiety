@@ -6,8 +6,19 @@ using System.Collections.Generic;
 public partial class GameManager : Node3D
 {
 	PackedScene snowBallScene = ResourceLoader.Load<PackedScene>("res://Scenes/Game/Abilities/Snowball.tscn");
-	//PackedScene snowBallScene = ResourceLoader.Load<PackedScene>("res://Scenes/Game/Abilities/Snowball.tscn");
-	// Called when the node enters the scene tree for the first time.
+	
+	
+	public void RPG(Node nodi, Vector3 position, Vector3 velocity)
+	{
+		//rocket launcher rocket
+		//Snowball instance = (Snowball)RPGScene.Instantiate();
+		//instance.Position = position;
+		//instance.SetVelocity(velocity);
+		//nodi.AddChild(instance);
+		
+		//rocket launcher
+	}
+	
 	GDScript OrcaMovementScript =  GD.Load<GDScript>("res://Scripts/OrcaMovement.gd");
 	GodotObject OrcaMovementNode;
 	GDScript PlayerScript =  GD.Load<GDScript>("res://Scripts/NewAnimationTest.gd");
@@ -17,8 +28,6 @@ public partial class GameManager : Node3D
 	{
 		OrcaMovementNode = (GodotObject)OrcaMovementScript.New(); 
 		PlayerNode = (GodotObject)PlayerScript.New(); 
-		//OrcaMovementNode.SetPlayerPos(new Vector3(0, 0, 0));
-		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -34,6 +43,7 @@ public partial class GameManager : Node3D
 		instance.Position = position;
 		instance.SetVelocity(velocity);
 		nodi.AddChild(instance);
-	}		
+	}
+	
 	
 }
