@@ -35,6 +35,7 @@ scale = Vector2(0.642857, 0.632813)
 texture = ExtResource("1_oijgy")
 
 [node name="HSlider3" type="HSlider" parent="."]
+layout_mode = 0
 offset_left = 188.0
 offset_top = 368.0
 offset_right = 577.0
@@ -67,6 +68,7 @@ script = ExtResource("1_v5vjx")
 bus_name = "bck_music"
 
 [node name="HSlider2" type="HSlider" parent="."]
+layout_mode = 0
 offset_left = 188.0
 offset_top = 200.0
 offset_right = 577.0

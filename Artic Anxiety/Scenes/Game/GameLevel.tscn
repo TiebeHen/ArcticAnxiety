@@ -1,13 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://bhtvq5b7yvktt"]
+[gd_scene load_steps=12 format=3 uid="uid://bhtvq5b7yvktt"]
 
 [ext_resource type="Script" path="res://Scripts/Level.cs" id="1_w7c8l"]
 [ext_resource type="Script" path="res://Scripts/GameManager.cs" id="1_xitt1"]
 [ext_resource type="PackedScene" uid="uid://i7334pqmd0da" path="res://Scenes/Game/AnimatedPlayer.tscn" id="3_pvd75"]
-[ext_resource type="PackedScene" uid="uid://dmhlnoq71xl4t" path="res://Scenes/Game/Tiles/Water/WaterTileDeath.tscn" id="5_0jqrj"]
+[ext_resource type="PackedScene" path="res://Scenes/Game/Tiles/Water/WaterTileDeath.tscn" id="5_0jqrj"]
 [ext_resource type="Script" path="res://Scripts/DoodePenguin.gd" id="5_n2uy8"]
-[ext_resource type="PackedScene" uid="uid://jrbq74tciilg" path="res://Scenes/Game/deadPlayer.tscn" id="5_oemv2"]
-[ext_resource type="PackedScene" uid="uid://poxah1udrh5i" path="res://Scenes/Game/orca.tscn" id="7_f4lxw"]
-[ext_resource type="PackedScene" uid="uid://dt7u40r22qrgg" path="res://Scenes/Game/Glacier.tscn" id="8_ivxd6"]
+[ext_resource type="PackedScene" uid="uid://bo180lhrqbnci" path="res://Scenes/Game/deadPlayer.tscn" id="5_oemv2"]
+[ext_resource type="PackedScene" path="res://Scenes/Game/orca.tscn" id="7_f4lxw"]
+[ext_resource type="AudioStream" uid="uid://b6f4nk1ioyd57" path="res://Audio/Background music.mp3" id="7_k18sg"]
+[ext_resource type="PackedScene" path="res://Scenes/Game/Glacier.tscn" id="8_ivxd6"]
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_w3gmo"]
 albedo_color = Color(1, 0.270588, 0.294118, 1)
@@ -145,4 +146,8 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.748
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 42.5615, -9.6561, 103.717)
 
 [node name="Penguin" parent="." instance=ExtResource("3_pvd75")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.68063, 0.646441, 3.95078)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.68063, 0.646441, 1.9009)
+
+[node name="Backgroundmusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_k18sg")
+autoplay = true
