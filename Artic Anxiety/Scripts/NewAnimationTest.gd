@@ -8,6 +8,8 @@ const JUMP_VELOCITY = 6.0
 const LERP_VAL = .15
 static var player_position
 
+var abilityNr = 1
+
 
 var GameManagerScript = load("res://Scripts/GameManager.cs")
 var GameNode = GameManagerScript.new()
@@ -19,12 +21,19 @@ var LevelNode = LevelScript.new()
 var DoodePenguinScript = load("res://Scripts/DoodePenguin.gd")
 var DoodePenguinNode = DoodePenguinScript.new()
 
-#voor de timer
-var maxTime = 5
+#voor de timer om door de tile te vallen
+var maxTime = 2
 var timeLeft = maxTime
 
+#voor de timer voor de ability
+var maxTimeAbility = 5
+var timeLeftAbility = 0
+#voor de timer voor de Jesus
+var  maxTimeJesus = 3
+var timeLeftJesus = 0
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") 
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") *5
 var SnowballScene = preload("res://Scenes/Game/Abilities/Snowball.tscn")
 
 
@@ -51,7 +60,7 @@ func _physics_process(delta):
 	# Victory
 	if (Input.is_action_just_pressed("victory")):
 		on_player_wins()
-#OLd Movemont
+	#OLd Movemont
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	
@@ -112,10 +121,41 @@ func _physics_process(delta):
 			
 	var camerarecords = cameraToPlayer(get_viewport().get_mouse_position())
 	
+	
+	
+	if Input.is_action_just_pressed("Ability1"):
+		abilityNr = 1
+	if Input.is_action_just_pressed("Ability2"):
+		abilityNr = 2
+	if Input.is_action_just_pressed("Ability3"):
+		abilityNr = 3
+	
+	timeLeftJesus -= delta
+	timeLeftAbility -= delta
+	#timeLeftAbility  maxTimeAbility
 	if Input.is_action_just_pressed("click_throw"):
 		if (victory == false):
-			GameNode.ThrowSnowball(get_parent().get_node("Abilities"), position, Vector3(camerarecords.x - position.x, 0, camerarecords.y - position.z))
-		#LevelNode.DeleteTileWRadius(Vector3(camerarecords.x, 0, camerarecords.y),5)
+			if timeLeftAbility <= 0:
+				if abilityNr == 1: #Sneeuwbal ability
+					GameNode.ThrowSnowball(get_parent().get_node("Abilities"), position, Vector3(camerarecords.x - position.x, 0, camerarecords.y - position.z))
+					timeLeftAbility = maxTimeAbility
+					print("ability ", abilityNr)
+				if abilityNr == 2: #Jesus ability
+					gravity = 0
+					timeLeftAbility = maxTimeAbility
+					timeLeftJesus = maxTimeJesus
+					print("ability ", abilityNr)
+				if abilityNr == 3: #Rocket ability
+					
+					timeLeftAbility = maxTimeAbility
+					print("ability ", abilityNr)
+				#LevelNode.DeleteTileWRadius(Vector3(camerarecords.x, 0, camerarecords.y),5)
+		
+	if timeLeftJesus < 0:
+		gravity = ProjectSettings.get_setting("physics/3d/default_gravity") *5
+		
+		
+		
 	if (Input.is_action_just_pressed("victory")):
 		on_player_wins()
 			
