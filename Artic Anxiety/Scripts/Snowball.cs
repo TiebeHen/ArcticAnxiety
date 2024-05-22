@@ -4,7 +4,7 @@ using System;
 public partial class Snowball : Node3D
 {
 	public const float speed = 25.0f;	
-	private Vector3 direction = new Vector3();
+	//private Vector3 direction = new Vector3();
 	private	Vector3 _velocity = new Vector3(speed, 0, speed); // Set velocity towards bottom right
 	
 	// Called when the node enters the scene tree for the first time.

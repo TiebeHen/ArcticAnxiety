@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 @onready var anim_tree = $AnimationTree
 @export var victory_camera : Camera3D
+@onready var jump = $jump_sfx
 
 const SPEED = 8.0
 const JUMP_VELOCITY = 6.0
@@ -22,18 +23,18 @@ var DoodePenguinScript = load("res://Scripts/DoodePenguin.gd")
 var DoodePenguinNode = DoodePenguinScript.new()
 
 #voor de timer om door de tile te vallen
-var maxTime = 2
+var maxTime = 5
 var timeLeft = maxTime
 
 #voor de timer voor de ability
-var maxTimeAbility = 5
+var maxTimeAbility = 6
 var timeLeftAbility = 0
 #voor de timer voor de Jesus
 var  maxTimeJesus = 3
 var timeLeftJesus = 0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") *5
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") *4
 var SnowballScene = preload("res://Scenes/Game/Abilities/Snowball.tscn")
 
 
@@ -83,7 +84,8 @@ func _physics_process(delta):
 			direction.z += 1
 		if Input.is_action_pressed("move_left"):
 			direction.z -= 1
-		
+		if Input.is_action_just_pressed("jump"):
+			jump.play()
 		
 	if direction != Vector3.ZERO:
 		direction = direction.normalized()
@@ -135,30 +137,31 @@ func _physics_process(delta):
 	#timeLeftAbility  maxTimeAbility
 	if Input.is_action_just_pressed("click_throw"):
 		if (victory == false):
-			if timeLeftAbility <= 0:
+			if timeLeftAbility <= 3:
 				if abilityNr == 1: #Sneeuwbal ability
 					GameNode.ThrowSnowball(get_parent().get_node("Abilities"), position, Vector3(camerarecords.x - position.x, 0, camerarecords.y - position.z))
 					timeLeftAbility = maxTimeAbility
 					print("ability ", abilityNr)
-				if abilityNr == 2: #Jesus ability
-					gravity = 0
-					timeLeftAbility = maxTimeAbility
-					timeLeftJesus = maxTimeJesus
+				if timeLeftAbility <= 0:
+					if abilityNr == 2: #Jesus ability
+						position.y + 5
+						gravity = 0
+						timeLeftAbility = maxTimeAbility
+						timeLeftJesus = maxTimeJesus
 					print("ability ", abilityNr)
 				if abilityNr == 3: #Rocket ability
-					
+
 					timeLeftAbility = maxTimeAbility
 					print("ability ", abilityNr)
 				#LevelNode.DeleteTileWRadius(Vector3(camerarecords.x, 0, camerarecords.y),5)
 		
 	if timeLeftJesus < 0:
-		gravity = ProjectSettings.get_setting("physics/3d/default_gravity") *5
+		gravity = ProjectSettings.get_setting("physics/3d/default_gravity") * 4
 		
 		
 		
 	if (Input.is_action_just_pressed("victory")):
 		on_player_wins()
-			
 			
 			
 	
@@ -230,3 +233,4 @@ func on_player_wins():
 			
 func GetPlayerPos():
 	return player_position
+
