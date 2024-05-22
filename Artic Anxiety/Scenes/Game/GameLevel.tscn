@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bhtvq5b7yvktt"]
+[gd_scene load_steps=11 format=3 uid="uid://bhtvq5b7yvktt"]
 
 [ext_resource type="Script" path="res://Scripts/Level.cs" id="1_w7c8l"]
 [ext_resource type="Script" path="res://Scripts/GameManager.cs" id="1_xitt1"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/DoodePenguin.gd" id="5_n2uy8"]
 [ext_resource type="PackedScene" uid="uid://jrbq74tciilg" path="res://Scenes/Game/deadPlayer.tscn" id="5_oemv2"]
 [ext_resource type="PackedScene" uid="uid://poxah1udrh5i" path="res://Scenes/Game/orca.tscn" id="7_f4lxw"]
+[ext_resource type="PackedScene" uid="uid://dt7u40r22qrgg" path="res://Scenes/Game/Glacier.tscn" id="8_ivxd6"]
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_w3gmo"]
 albedo_color = Color(1, 0.270588, 0.294118, 1)
@@ -20,7 +21,7 @@ script = ExtResource("1_xitt1")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.000733093, 1, 0, -1, 0.000733093, 30, 50, 50)
-light_energy = 0.496
+light_energy = 0.6
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, 1, 4.37114e-08, 1.91069e-15, 30, 45, 50)
@@ -98,11 +99,50 @@ transform = Transform3D(1, 0, 0, 0, 0.000366525, -1, 0, 1, 0.000366525, 22.9044,
 [node name="WaterTileDeath" parent="DoodePenguin" instance=ExtResource("5_0jqrj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.7402, -17.8269, 26.1314)
 
-[node name="Penguin" parent="." instance=ExtResource("3_pvd75")]
-
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="OmniLight3D" type="OmniLight3D" parent="DoodePenguin"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.8637, -16.3469, 27.9938)
 light_energy = 0.5
 
 [node name="orca" parent="." instance=ExtResource("7_f4lxw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.13924, 0, 7.71112)
+
+[node name="Map Edges" type="Node" parent="."]
+
+[node name="Glacier L" parent="Map Edges" instance=ExtResource("8_ivxd6")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.8784, -9.6561, -5.55179)
+
+[node name="Glacier L 2" parent="Map Edges" instance=ExtResource("8_ivxd6")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 42.6918, -9.6561, -5.55179)
+
+[node name="Glacier T" parent="Map Edges" instance=ExtResource("8_ivxd6")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -5.93401, -9.6561, 34.3188)
+
+[node name="Glacier T 2" parent="Map Edges" instance=ExtResource("8_ivxd6")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -5.9197, -9.6561, 4.52593)
+
+[node name="Glacier T 4" parent="Map Edges" instance=ExtResource("8_ivxd6")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -6.23426, -9.6561, 91.6358)
+
+[node name="Glacier T 3" parent="Map Edges" instance=ExtResource("8_ivxd6")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -6.1938, -9.6561, 61.843)
+
+[node name="Glacier B" parent="Map Edges" instance=ExtResource("8_ivxd6")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 61.7799, -9.6561, 34.3188)
+
+[node name="Glacier B 2" parent="Map Edges" instance=ExtResource("8_ivxd6")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 61.7942, -9.6561, 4.52593)
+
+[node name="Glacier  B 3" parent="Map Edges" instance=ExtResource("8_ivxd6")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 61.4796, -9.6561, 91.6358)
+
+[node name="Glacier B 4" parent="Map Edges" instance=ExtResource("8_ivxd6")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 61.5201, -9.6561, 61.843)
+
+[node name="Glacier R" parent="Map Edges" instance=ExtResource("8_ivxd6")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.748, -9.6561, 103.717)
+
+[node name="Glacier R 2" parent="Map Edges" instance=ExtResource("8_ivxd6")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 42.5615, -9.6561, 103.717)
+
+[node name="Penguin" parent="." instance=ExtResource("3_pvd75")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.68063, 0.646441, 3.95078)
