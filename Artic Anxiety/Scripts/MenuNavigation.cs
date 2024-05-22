@@ -40,7 +40,7 @@ public partial class MenuNavigation : Node
 	private void ConnectedToServer()
 	{
 		GD.Print("Connected To Server");
-		RpcId(1, "sendPlayerInformation", GetNode<LineEdit>("LobbyName").Text, Multiplayer.GetUniqueId());
+		RpcId(1, "sendPlayerInformation", "hi", Multiplayer.GetUniqueId());
 	}
 
 	/// <summary>
@@ -51,15 +51,15 @@ public partial class MenuNavigation : Node
 	private void PeerDisconnected(long id)
 	{
 		GD.Print("Player Disconnected: " + id.ToString());
-		//GameManager.Players.Remove(GameManager.Players.Where(i => i.Id == id).First<PlayerInfo>());
-		//var players = GetTree().GetNodesInGroup("Player");
-		//
-		//foreach (var item in players)
-		//{
-			//if(item.Name == id.ToString()){
-				//item.QueueFree();
-			//}
-		//}
+		GameManager.Players.Remove(GameManager.Players.Where(i => i.Id == id).First<PlayerInfo>());
+		var players = GetTree().GetNodesInGroup("Player");
+		
+		foreach (var item in players)
+		{
+			if(item.Name == id.ToString()){
+				item.QueueFree();
+			}
+		}
 	}
 
 	/// <summary>
@@ -129,13 +129,6 @@ public partial class MenuNavigation : Node
 		
 		GetParent().AddChild(newMenu);
 		QueueFree();
-		
-		peer = new ENetMultiplayerPeer();
-		peer.CreateClient(address, port);
-
-		peer.Host.Compress(ENetConnection.CompressionMode.RangeCoder);
-		Multiplayer.MultiplayerPeer = peer;
-		GD.Print("Joining Game!");
 	}
 
 	public void _on_button_create_lobby_mouse_entered()
@@ -156,10 +149,6 @@ public partial class MenuNavigation : Node
 		
 		GetTree().Root.AddChild(newMenu);
 		QueueFree();
-		
-		hostGame();
-		sendPlayerInformation(GetNode<LineEdit>("LineEdit").Text, 1);
-		GD.Print("hostGame is called");
 	}
 
 	public void _on_button_settings_mouse_entered()
@@ -241,7 +230,11 @@ public partial class MenuNavigation : Node
 		Node newMenu = ResourceLoader.Load<PackedScene>("res://Scenes/Menus/LobbyMenu.tscn").Instantiate();
 		
 		GetTree().Root.AddChild(newMenu);
-		QueueFree();
+		//QueueFree();
+		
+		hostGame();
+		sendPlayerInformation(GetNode<LineEdit>("LobbyName").Text, 1);
+		GD.Print("hostGame is called");
 	}
 	
 	//
@@ -296,9 +289,24 @@ public partial class MenuNavigation : Node
 	}
 
 	//
-	// SettingsMenu
+	// SmallJoin to enter lobby
 	//
-	
+	public void _on_button_small_join_pressed()
+	{
+		// Replace with function body.
+		peer = new ENetMultiplayerPeer();
+		peer.CreateClient(address, port);
+
+		peer.Host.Compress(ENetConnection.CompressionMode.RangeCoder);
+		Multiplayer.MultiplayerPeer = peer;
+		GD.Print("Joining Game!");
+		
+		//GetNode<Sprite2D>("TextureSmallJoin").Hide();
+		//GetNode<LineEdit>("LineEditSmallJoin").Hide();
+		//GetNode<Button>("ButtonSmallJoin").Hide();
+		
+	}
+
 	
 }
 
