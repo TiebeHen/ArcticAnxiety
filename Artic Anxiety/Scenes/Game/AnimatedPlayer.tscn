@@ -1451,10 +1451,6 @@ xfade_time = 0.2
 advance_mode = 2
 advance_condition = &"BeginnenGlijden"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3l5yf"]
-advance_mode = 2
-advance_condition = &"Victory"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_isf2a"]
 advance_mode = 2
 advance_condition = &"BeginnenGlijden"
@@ -1477,6 +1473,10 @@ advance_condition = &"Gooien"
 advance_mode = 2
 advance_condition = &"BeginnenGlijden"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cy78a"]
+advance_mode = 2
+advance_condition = &"victory"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_3eqtp"]
 states/BeginGlijden/node = SubResource("AnimationNodeBlendTree_xu6ny")
 states/BeginGlijden/position = Vector2(-63, -68)
@@ -1492,8 +1492,8 @@ states/StoppenGlijden/node = SubResource("AnimationNodeBlendSpace1D_3u4yx")
 states/StoppenGlijden/position = Vector2(387, -68)
 states/VictoryDance/node = SubResource("AnimationNodeAnimation_bejiu")
 states/VictoryDance/position = Vector2(815, -78)
-transitions = ["Start", "IdleAnimation", SubResource("AnimationNodeStateMachineTransition_apbig"), "StoppenGlijden", "IdleAnimation", SubResource("AnimationNodeStateMachineTransition_5lxhy"), "IdleAnimation", "IdleJump", SubResource("AnimationNodeStateMachineTransition_4qvi3"), "IdleJump", "IdleAnimation", SubResource("AnimationNodeStateMachineTransition_80ho8"), "IdleAnimation", "GlijdenJump", SubResource("AnimationNodeStateMachineTransition_60ujf"), "GlijdenJump", "IdleAnimation", SubResource("AnimationNodeStateMachineTransition_smwhl"), "GlijdenJump", "IdleJump", SubResource("AnimationNodeStateMachineTransition_3258c"), "IdleJump", "GlijdenJump", SubResource("AnimationNodeStateMachineTransition_5r0ta"), "IdleAnimation", "BeginGlijden", SubResource("AnimationNodeStateMachineTransition_ept8q"), "BeginGlijden", "IdleAnimation", SubResource("AnimationNodeStateMachineTransition_73in2"), "BeginGlijden", "StoppenGlijden", SubResource("AnimationNodeStateMachineTransition_w5xsy"), "BeginGlijden", "GlijdenJump", SubResource("AnimationNodeStateMachineTransition_raij6"), "StoppenGlijden", "GlijdenJump", SubResource("AnimationNodeStateMachineTransition_7tw5k"), "GlijdenJump", "BeginGlijden", SubResource("AnimationNodeStateMachineTransition_lmxbu"), "IdleAnimation", "VictoryDance", SubResource("AnimationNodeStateMachineTransition_3l5yf"), "IdleJump", "BeginGlijden", SubResource("AnimationNodeStateMachineTransition_isf2a"), "IdleAnimation", "SneeuwbalGooien", SubResource("AnimationNodeStateMachineTransition_e0cr8"), "SneeuwbalGooien", "IdleAnimation", SubResource("AnimationNodeStateMachineTransition_0stp6"), "StoppenGlijden", "SneeuwbalGooien", SubResource("AnimationNodeStateMachineTransition_h4r2h"), "SneeuwbalGooien", "BeginGlijden", SubResource("AnimationNodeStateMachineTransition_445xe")]
-graph_offset = Vector2(-288, -231)
+transitions = ["Start", "IdleAnimation", SubResource("AnimationNodeStateMachineTransition_apbig"), "StoppenGlijden", "IdleAnimation", SubResource("AnimationNodeStateMachineTransition_5lxhy"), "IdleAnimation", "IdleJump", SubResource("AnimationNodeStateMachineTransition_4qvi3"), "IdleJump", "IdleAnimation", SubResource("AnimationNodeStateMachineTransition_80ho8"), "IdleAnimation", "GlijdenJump", SubResource("AnimationNodeStateMachineTransition_60ujf"), "GlijdenJump", "IdleAnimation", SubResource("AnimationNodeStateMachineTransition_smwhl"), "GlijdenJump", "IdleJump", SubResource("AnimationNodeStateMachineTransition_3258c"), "IdleJump", "GlijdenJump", SubResource("AnimationNodeStateMachineTransition_5r0ta"), "IdleAnimation", "BeginGlijden", SubResource("AnimationNodeStateMachineTransition_ept8q"), "BeginGlijden", "IdleAnimation", SubResource("AnimationNodeStateMachineTransition_73in2"), "BeginGlijden", "StoppenGlijden", SubResource("AnimationNodeStateMachineTransition_w5xsy"), "BeginGlijden", "GlijdenJump", SubResource("AnimationNodeStateMachineTransition_raij6"), "StoppenGlijden", "GlijdenJump", SubResource("AnimationNodeStateMachineTransition_7tw5k"), "GlijdenJump", "BeginGlijden", SubResource("AnimationNodeStateMachineTransition_lmxbu"), "IdleJump", "BeginGlijden", SubResource("AnimationNodeStateMachineTransition_isf2a"), "IdleAnimation", "SneeuwbalGooien", SubResource("AnimationNodeStateMachineTransition_e0cr8"), "SneeuwbalGooien", "IdleAnimation", SubResource("AnimationNodeStateMachineTransition_0stp6"), "StoppenGlijden", "SneeuwbalGooien", SubResource("AnimationNodeStateMachineTransition_h4r2h"), "SneeuwbalGooien", "BeginGlijden", SubResource("AnimationNodeStateMachineTransition_445xe"), "Start", "VictoryDance", SubResource("AnimationNodeStateMachineTransition_cy78a")]
+graph_offset = Vector2(-25, -124)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_80f1n"]
 size = Vector3(1, 1, 0.805542)
@@ -1513,8 +1513,9 @@ _data = {
 "victory_camera_zoom_in": SubResource("Animation_wslai")
 }
 
-[node name="Penguin" type="CharacterBody3D"]
+[node name="Penguin" type="CharacterBody3D" node_paths=PackedStringArray("victory_camera") groups=["penguin"]]
 script = ExtResource("2_vw3vo")
+victory_camera = NodePath("VictoryPOV")
 
 [node name="Twistpivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -1530,8 +1531,8 @@ bones/0/name = "buik"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.44751e-08, 0)
 bones/0/enabled = true
-bones/0/position = Vector3(4.55858e-10, -0.557009, 0)
-bones/0/rotation = Quaternion(0, 0, 0.121232, 0.992624)
+bones/0/position = Vector3(3.99946e-11, -0.666563, 0)
+bones/0/rotation = Quaternion(0, 0, 0.000301281, 1)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "RechterSchouder"
 bones/1/parent = 0
@@ -1545,7 +1546,7 @@ bones/2/parent = 1
 bones/2/rest = Transform3D(0.151258, 0.988127, -0.0269587, -0.842989, 0.143188, 0.518523, 0.516226, -0.0557049, 0.854639, -6.49597e-08, 1.16111, 3.72529e-09)
 bones/2/enabled = true
 bones/2/position = Vector3(-6.49597e-08, 1.16111, 3.72529e-09)
-bones/2/rotation = Quaternion(-0.140295, -0.132421, -0.525547, 0.828602)
+bones/2/rotation = Quaternion(-0.172527, -0.1157, -0.652081, 0.729135)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "RechterArm_2"
 bones/3/parent = 2
@@ -1587,7 +1588,7 @@ bones/8/parent = 7
 bones/8/rest = Transform3D(0.255068, -0.952512, 0.166315, 0.934712, 0.19887, -0.294557, 0.247494, 0.230589, 0.94105, -2.10712e-08, 1.06288, -1.30385e-08)
 bones/8/enabled = true
 bones/8/position = Vector3(-2.10712e-08, 1.06288, -1.30385e-08)
-bones/8/rotation = Quaternion(0.0583961, -0.0598375, 0.530788, 0.84337)
+bones/8/rotation = Quaternion(0.101219, -0.0697549, 0.646529, 0.75292)
 bones/8/scale = Vector3(0.998526, 0.999899, 0.956609)
 bones/9/name = "LinkerArm_2"
 bones/9/parent = 8
@@ -1607,8 +1608,8 @@ bones/11/name = "RechterHeup"
 bones/11/parent = -1
 bones/11/rest = Transform3D(0.0115836, 0.996659, -0.0808465, 0.374843, 0.0706278, 0.924394, 0.927016, -0.0410126, -0.372773, 0, 5.44751e-08, 0)
 bones/11/enabled = true
-bones/11/position = Vector3(-1.10382e-08, -0.557009, -6.36091e-09)
-bones/11/rotation = Quaternion(0.496331, 0.663357, 0.315347, -0.462784)
+bones/11/position = Vector3(5.03052e-09, -0.666563, 2.47003e-08)
+bones/11/rotation = Quaternion(0.57291, 0.598466, 0.368999, -0.421252)
 bones/11/scale = Vector3(1, 1, 1)
 bones/12/name = "RechterBeen"
 bones/12/parent = 11
@@ -1622,14 +1623,14 @@ bones/13/parent = 12
 bones/13/rest = Transform3D(-0.482487, -0.777683, -0.403008, 0.873464, -0.461507, -0.155155, -0.0653294, -0.426873, 0.901949, -1.49012e-08, 0.544136, 1.49012e-08)
 bones/13/enabled = true
 bones/13/position = Vector3(-1.49012e-08, 0.544136, 1.49012e-08)
-bones/13/rotation = Quaternion(-0.129994, -0.252465, 0.690805, 0.664944)
+bones/13/rotation = Quaternion(-0.138795, -0.172741, 0.843142, 0.489906)
 bones/13/scale = Vector3(1, 1, 1)
 bones/14/name = "LinkerHeup"
 bones/14/parent = -1
 bones/14/rest = Transform3D(0.00659573, -0.999924, 0.0104362, -0.178372, 0.00909263, 0.983921, -0.983941, -0.00835115, -0.178299, 0, 5.44751e-08, 0)
 bones/14/enabled = true
-bones/14/position = Vector3(-6.46354e-09, -0.557009, 4.34543e-09)
-bones/14/rotation = Quaternion(-0.604041, 0.473586, 0.501049, 0.39975)
+bones/14/position = Vector3(1.56215e-10, -0.666563, -1.268e-08)
+bones/14/rotation = Quaternion(-0.542336, 0.543159, 0.449029, 0.45741)
 bones/14/scale = Vector3(1, 1, 1)
 bones/15/name = "LinkerBeen"
 bones/15/parent = 14
@@ -1643,7 +1644,7 @@ bones/16/parent = 15
 bones/16/rest = Transform3D(-0.480504, 0.852356, 0.206409, -0.852136, -0.509407, 0.119868, 0.207316, -0.118291, 0.971096, -7.45058e-09, 0.522611, -2.44472e-09)
 bones/16/enabled = true
 bones/16/position = Vector3(-7.45058e-09, 0.522611, -2.44472e-09)
-bones/16/rotation = Quaternion(0.123574, -0.0035445, 0.853064, -0.50695)
+bones/16/rotation = Quaternion(0.120228, 0.000443442, 0.860353, -0.495316)
 bones/16/scale = Vector3(1, 1, 1)
 
 [node name="Sphere_001" type="MeshInstance3D" parent="Twistpivot/Armature_001/Skeleton3D"]
@@ -1697,10 +1698,10 @@ parameters/conditions/BeginnenGlijden = false
 parameters/conditions/Glijden_Jump = false
 parameters/conditions/Gooien = false
 parameters/conditions/Stoppen_Glijden = false
-parameters/conditions/Victory = false
 parameters/conditions/glijden_jump = false
 parameters/conditions/idle = true
 parameters/conditions/idle_jump = false
+parameters/conditions/victory = false
 parameters/BeginGlijden/BlendSpace1D/blend_position = 0
 parameters/StoppenGlijden/blend_position = 0
 
@@ -1709,7 +1710,7 @@ transform = Transform3D(1.6, 0, 0, 0, 1.964, 0, 0, 0, 1.6, -0.003, 0.935439, -0.
 shape = SubResource("BoxShape3D_80f1n")
 
 [node name="VictoryPOV" type="Camera3D" parent="."]
-transform = Transform3D(-1, 1.88072e-15, -8.74228e-08, -1.7507e-08, 0.979743, 0.200257, 8.56519e-08, 0.200257, -0.979743, 0, 3.28733, -9.40657)
+transform = Transform3D(-1, 1.88072e-15, -8.74228e-08, -1.7507e-08, 0.979743, 0.200257, 8.56519e-08, 0.200257, -0.979743, 0, 1.81161, -4.00433)
 
 [node name="AnimatableBody3D" type="AnimatableBody3D" parent="VictoryPOV"]
 
