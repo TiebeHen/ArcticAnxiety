@@ -60,9 +60,9 @@ public partial class MenuNavigation : Node
 
 	public void _on_button_settings_pressed()
 	{
-		//Node newMenu = ResourceLoader.Load<PackedScene>("res://Scenes/Menus/SettingsMenu.tscn").Instantiate();
-		//GetTree().Root.AddChild(newMenu);
-		//GetTree().Root.RemoveChild(this);
+		Node newMenu = ResourceLoader.Load<PackedScene>("res://Scenes/Menus/SettingsMenu.tscn").Instantiate();
+		GetTree().Root.AddChild(newMenu);
+		GetTree().Root.RemoveChild(this);
 	}
 
 	public void _on_button_exit_mouse_entered()
@@ -176,6 +176,15 @@ public partial class MenuNavigation : Node
 	// SettingsMenu
 	//
 	
+
+	//private void _on_button_back_pressed()
+	//{
+		//// Replace with function body.
+		//Node newMenu = ResourceLoader.Load<PackedScene>("res://Scenes/Menus/StartMenu.tscn").Instantiate();
+		//GetParent().AddChild(newMenu);
+		//QueueFree();
+	//}
+
 	
 }
 

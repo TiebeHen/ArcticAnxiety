@@ -1,9 +1,133 @@
-[gd_scene format=3 uid="uid://ca61w8mcn047s"]
+[gd_scene load_steps=12 format=3 uid="uid://ca61w8mcn047s"]
+
+[ext_resource type="Script" path="res://Scripts/MenuNavigation.cs" id="1_bcj1m"]
+[ext_resource type="Texture2D" uid="uid://bkas5vl2nfui6" path="res://Assets/Menus/Background_Lobby.png" id="1_oijgy"]
+[ext_resource type="Script" path="res://Scenes/Menus/HSlider.gd" id="1_v5vjx"]
+[ext_resource type="Texture2D" uid="uid://7mlfwfjm7lyu" path="res://Assets/Buttons/Button.png" id="3_5csr7"]
+[ext_resource type="FontFile" uid="uid://dhjj1ii1frsqf" path="res://Assets/Fonts/TherenRegular-vmrnE.ttf" id="4_k7yn8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_36r30"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b4ccf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y04vb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5pm3k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i1nvm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8cbyl"]
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 4.0
+offset_right = 4.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_bcj1m")
+
+[node name="LobbyBackground" type="Sprite2D" parent="."]
+position = Vector2(526, 366)
+scale = Vector2(0.642857, 0.632813)
+texture = ExtResource("1_oijgy")
+
+[node name="HSlider3" type="HSlider" parent="."]
+offset_left = 188.0
+offset_top = 368.0
+offset_right = 577.0
+offset_bottom = 384.0
+max_value = 1.0
+step = 0.001
+script = ExtResource("1_v5vjx")
+bus_name = "SFX"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 196.0
+offset_top = 152.0
+offset_right = 291.0
+offset_bottom = 191.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 28
+text = "Master
+"
+
+[node name="HSlider" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 188.0
+offset_top = 272.0
+offset_right = 577.0
+offset_bottom = 288.0
+max_value = 1.0
+step = 0.001
+script = ExtResource("1_v5vjx")
+bus_name = "bck_music"
+
+[node name="HSlider2" type="HSlider" parent="."]
+offset_left = 188.0
+offset_top = 200.0
+offset_right = 577.0
+offset_bottom = 216.0
+max_value = 1.0
+step = 0.001
+script = ExtResource("1_v5vjx")
+bus_name = "Mster"
+
+[node name="Back" type="Node" parent="."]
+
+[node name="TextureBack" type="Sprite2D" parent="Back"]
+position = Vector2(135.156, 592)
+scale = Vector2(0.145483, 0.145483)
+texture = ExtResource("3_5csr7")
+
+[node name="LineEditBack" type="LineEdit" parent="Back"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 30.1563
+offset_top = 558.0
+offset_right = 240.156
+offset_bottom = 624.0
+theme_override_fonts/font = ExtResource("4_k7yn8")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_36r30")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_b4ccf")
+text = "Back"
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureBackHover" type="Sprite2D" parent="Back"]
+visible = false
+position = Vector2(135.156, 592)
+scale = Vector2(0.154622, 0.154622)
+texture = ExtResource("3_5csr7")
+
+[node name="LineEditBackHover" type="LineEdit" parent="Back"]
+visible = false
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 30.1563
+offset_top = 558.0
+offset_right = 240.156
+offset_bottom = 624.0
+theme_override_fonts/font = ExtResource("4_k7yn8")
+theme_override_font_sizes/font_size = 45
+theme_override_styles/normal = SubResource("StyleBoxEmpty_36r30")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_b4ccf")
+text = "Back"
+alignment = 1
+
+[node name="ButtonBack" type="Button" parent="Back"]
+offset_left = 24.1563
+offset_top = 552.0
+offset_right = 246.156
+offset_bottom = 632.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_y04vb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_5pm3k")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_i1nvm")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8cbyl")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="Back/ButtonBack" to="." method="_on_button_back_pressed"]
