@@ -25,6 +25,7 @@ func _process(delta):
 	if (next_nav_point != null):
 		velocity = (next_nav_point - global_transform.origin).normalized() * speed
 	
+	
 	look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z ),Vector3.UP)
 
 	move_and_slide()
