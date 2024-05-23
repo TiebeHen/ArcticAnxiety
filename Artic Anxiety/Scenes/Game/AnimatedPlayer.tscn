@@ -1,6 +1,6 @@
 [gd_scene load_steps=68 format=3 uid="uid://i7334pqmd0da"]
 
-[ext_resource type="PackedScene" uid="uid://envw6v6diuqd" path="res://Assets/Models/RPG/rpgBaseglb.glb" id="2_h4006"]
+[ext_resource type="PackedScene" path="res://Assets/Models/RPG/rpgBaseglb.glb" id="2_h4006"]
 [ext_resource type="AudioStream" uid="uid://c2glpxvpew2nk" path="res://Audio/jump.mp3" id="2_ukqxk"]
 [ext_resource type="Script" path="res://Scripts/NewAnimationTest.gd" id="2_vw3vo"]
 
@@ -1520,7 +1520,6 @@ script = ExtResource("2_vw3vo")
 
 [node name="jump_sfx" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_ukqxk")
-bus = &"SFX"
 
 [node name="Twistpivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
