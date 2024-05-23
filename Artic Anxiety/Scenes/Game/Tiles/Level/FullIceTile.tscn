@@ -8,6 +8,7 @@ size = Vector3(2, 1, 2)
 [node name="Node3D" type="Node3D"]
 
 [node name="FulIceTile2" type="MeshInstance3D" parent="."]
+visible = false
 mesh = ExtResource("1_xjovt")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="FulIceTile2"]
