@@ -126,7 +126,7 @@ public partial class MenuNavigation : Node
 	public void _on_button_join_lobby_pressed()
 	{
 		Node newMenu = ResourceLoader.Load<PackedScene>("res://Scenes/Menus/JoinMenu.tscn").Instantiate();
-		
+
 		GetParent().AddChild(newMenu);
 		QueueFree();
 	}
