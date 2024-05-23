@@ -45,9 +45,11 @@ var pitch_input := 0.0
 
 @onready var twist_pivot := $Twistpivot
 @onready var pitch_pivot := $Twistpivot/PitchPivot
+@onready var RPG = $rpgBaseglb
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+	RPG.visible = false
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -56,7 +58,8 @@ func _physics_process(delta):
 
 	# Handle jump.
 	if (Input.is_action_just_pressed("move_up") or Input.is_action_just_pressed("jump")) and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+		if RPG.visible == false:
+			velocity.y = JUMP_VELOCITY
 
 	# Victory
 	if (Input.is_action_just_pressed("victory")):
@@ -76,16 +79,17 @@ func _physics_process(delta):
 	var target_velocity = Vector3.ZERO
 	var speed = 14
 	if (victory == false):
-		if Input.is_action_pressed("move_forward"):
-			direction.x -= 1
-		if Input.is_action_pressed("move_backward"):
-			direction.x += 1
-		if Input.is_action_pressed("move_right"):
-			direction.z += 1
-		if Input.is_action_pressed("move_left"):
-			direction.z -= 1
-		if Input.is_action_just_pressed("jump"):
-			jump.play()
+		if RPG.visible == false:
+			if Input.is_action_pressed("move_forward"):
+				direction.x -= 1
+			if Input.is_action_pressed("move_backward"):
+				direction.x += 1
+			if Input.is_action_pressed("move_right"):
+				direction.z += 1
+			if Input.is_action_pressed("move_left"):
+				direction.z -= 1
+			if Input.is_action_just_pressed("jump"):
+				jump.play()
 		
 	if direction != Vector3.ZERO:
 		direction = direction.normalized()
@@ -127,10 +131,13 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("Ability1"):
 		abilityNr = 1
+		RPG.visible = false #making rpg invisible
 	if Input.is_action_just_pressed("Ability2"):
 		abilityNr = 2
+		RPG.visible = false #making rpg invisible
 	if Input.is_action_just_pressed("Ability3"):
 		abilityNr = 3
+		RPG.visible = true #making rpg visible
 	
 	timeLeftJesus -= delta
 	timeLeftAbility -= delta
@@ -141,18 +148,18 @@ func _physics_process(delta):
 				if abilityNr == 1: #Sneeuwbal ability
 					GameNode.ThrowSnowball(get_parent().get_node("Abilities"), position, Vector3(camerarecords.x - position.x, 0, camerarecords.y - position.z))
 					timeLeftAbility = maxTimeAbility
-					print("ability ", abilityNr)
+					
 				if timeLeftAbility <= 0:
 					if abilityNr == 2: #Jesus ability
 						position.y += 0.5
 						gravity = 0
 						timeLeftAbility = maxTimeAbility
 						timeLeftJesus = maxTimeJesus
-					print("ability ", abilityNr)
+						
 				if abilityNr == 3: #Rocket ability
-
+					GameNode.RPG(get_parent().get_node("Abilities"), position, Vector3(camerarecords.x - position.x, 0, camerarecords.y - position.z),Vector3(camerarecords.x, 0, camerarecords.y))
+					RPG.visible = true
 					timeLeftAbility = maxTimeAbility
-					print("ability ", abilityNr)
 				#LevelNode.DeleteTileWRadius(Vector3(camerarecords.x, 0, camerarecords.y),5)
 		
 	if timeLeftJesus < 0:
