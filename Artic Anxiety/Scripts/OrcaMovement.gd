@@ -50,7 +50,7 @@ func _process(delta):
 
 	if next_nav_point != null:
 		var new_direction = (next_nav_point - global_transform.origin).normalized()
-		check_turn_angle(last_direction, new_direction)
+		#check_turn_angle(last_direction, new_direction)
 		velocity = new_direction * speed
 		look_at(next_nav_point, Vector3.UP)
 		last_direction = new_direction
@@ -58,22 +58,22 @@ func _process(delta):
 		
 func set_random_target():
 	var confined_area_min = Vector3(0, 0, 0) # Minimum corner of the confined space
-	var confined_area_max = Vector3(200, 0, 200)   # Maximum corner of the confined space
+	var confined_area_max = Vector3(150, 0, 150)   # Maximum corner of the confined space
 	random_target = Vector3(
 		confined_area_min.x + randi() % int(confined_area_max.x - confined_area_min.x),
 		0, # Assuming movement is confined to the XZ plane
 		confined_area_min.z + randi() % int(confined_area_max.z - confined_area_min.z))
 		
-func check_turn_angle(old_direction: Vector3, new_direction: Vector3):
-	var dot_product = old_direction.dot(new_direction)
-	var angle = acos(dot_product)
+#func check_turn_angle(old_direction: Vector3, new_direction: Vector3):
+	#var dot_product = old_direction.dot(new_direction)
+	#var angle = acos(dot_product)
 
-	if angle > PI / 2:
-		var cross_product = old_direction.cross(new_direction)
-		if cross_product.y > 0:
-			anim_tree.set("parameters/conditions/right", true)
-		else:
-			anim_tree.set("parameters/conditions/left", true)
+	#if angle > PI / 2:
+		#var cross_product = old_direction.cross(new_direction)
+		#if cross_product.y > 0:
+			#anim_tree.set("parameters/conditions/right", true)
+		#else:
+			#anim_tree.set("parameters/conditions/left", true)
 
 func SetPlayerPos(pos: Vector3):
 	player = pos
