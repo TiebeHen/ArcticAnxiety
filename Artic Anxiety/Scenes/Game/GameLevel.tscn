@@ -98,20 +98,26 @@ transform = Transform3D(1, 0, 0, 0, 0.000366525, -1, 0, 1, 0.000366525, 22.9044,
 [node name="WaterTileDeath" parent="DoodePenguin" instance=ExtResource("5_0jqrj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.7402, -17.8269, 26.1314)
 
-[node name="Penguin" parent="." node_paths=PackedStringArray("victory_camera") instance=ExtResource("3_pvd75")]
-victory_camera = NodePath("VictoryPOV")
+[node name="Penguin" parent="." instance=ExtResource("3_pvd75")]
 
 [node name="Skeleton3D" parent="Penguin/Twistpivot/Armature_001" index="0"]
-bones/0/position = Vector3(6.49457e-09, -0.578791, 0)
-bones/0/rotation = Quaternion(0, 0, -0.079575, 0.996829)
-bones/2/rotation = Quaternion(-0.163352, -0.121048, -0.615991, 0.761064)
-bones/8/rotation = Quaternion(0.0958026, -0.0685621, 0.632385, 0.765644)
-bones/11/position = Vector3(5.38695e-09, -0.578791, 5.01172e-09)
-bones/11/rotation = Quaternion(0.618882, 0.550792, 0.401468, -0.390432)
-bones/13/rotation = Quaternion(-0.138808, -0.172505, 0.843496, 0.489376)
-bones/14/position = Vector3(-1.21238e-09, -0.578791, 9.72446e-09)
-bones/14/rotation = Quaternion(-0.497218, 0.584743, 0.411058, 0.491814)
-bones/16/rotation = Quaternion(0.150866, -0.0373227, 0.78386, -0.601173)
+bones/0/position = Vector3(4.55858e-10, -0.680051, 0)
+bones/0/rotation = Quaternion(0, 0, 0.0613087, 0.998119)
+bones/1/rotation = Quaternion(-0.0293924, -0.035414, -0.644525, 0.763197)
+bones/2/rotation = Quaternion(-0.165009, -0.12012, -0.622507, 0.755532)
+bones/3/rotation = Quaternion(-0.0680808, -0.0142432, 0.0330378, 0.997031)
+bones/4/rotation = Quaternion(-0.0745115, -0.0215748, -0.0191931, 0.996802)
+bones/5/rotation = Quaternion(0.00453741, -0.00657364, 0.00870718, 0.99993)
+bones/6/rotation = Quaternion(-0.0288535, 0.0104849, -0.0279902, 0.999137)
+bones/8/rotation = Quaternion(0.0921008, -0.0677361, 0.622633, 0.774117)
+bones/9/rotation = Quaternion(-0.0455463, 9.80028e-05, 0.0513444, 0.997642)
+bones/10/rotation = Quaternion(0.0155069, 0.0502216, -0.00564218, 0.998602)
+bones/11/position = Vector3(-3.81595e-10, -0.680051, -4.08757e-09)
+bones/11/rotation = Quaternion(0.535331, 0.632303, 0.342612, -0.442979)
+bones/13/rotation = Quaternion(-0.136601, -0.202621, 0.794252, 0.556281)
+bones/14/position = Vector3(-2.2507e-09, -0.680051, -6.35582e-09)
+bones/14/rotation = Quaternion(-0.574462, 0.50906, 0.476098, 0.429164)
+bones/16/rotation = Quaternion(0.123643, -0.00362714, 0.852911, -0.50719)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.8637, -16.3469, 27.9938)
