@@ -5,7 +5,7 @@ extends CharacterBody3D
 @onready var jump = $jump_sfx
 
 const SPEED = 8.0
-const JUMP_VELOCITY = 6.0
+const JUMP_VELOCITY = 12.0
 const LERP_VAL = .15
 static var player_position
 
