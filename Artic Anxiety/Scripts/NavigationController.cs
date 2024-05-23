@@ -1,9 +1,19 @@
 using Godot;
 using System;
+using System.Xml.Schema;
+using System.Linq;
 
 public partial class NavigationController : Control
 {
 	private bool _HasLobby = false;
+	
+	[Export]
+	private int port = 8910;
+
+	[Export]
+	private string address = "127.0.0.1";
+
+	private ENetMultiplayerPeer peer;
 	
 	// TEMP BUTTON FOR QUICK DEBUGGING - NO MULTIPLAYER
 	public void _on_button_test_play_pressed()
@@ -15,12 +25,92 @@ public partial class NavigationController : Control
 
 	public override void _Ready()
 	{
+		Multiplayer.PeerConnected += PeerConnected;
+		Multiplayer.PeerDisconnected += PeerDisconnected;
+		Multiplayer.ConnectedToServer += ConnectedToServer;
+		Multiplayer.ConnectionFailed += ConnectionFailed;
+		if(OS.GetCmdlineArgs().Contains("--server")){
+			hostGame();
+		}
+	}
+	
+	private void ConnectionFailed()
+	{
+		GD.Print("CONNECTION FAILED");
+	}
 		
+	private void ConnectedToServer()
+	{
+		GD.Print("Connected To Server");
+		RpcId(1, "sendPlayerInformation", GetNode<LineEdit>("MultiplayerMenuOverlay/LobbyNameInput").Text, Multiplayer.GetUniqueId());
+	}
+	
+	private void PeerDisconnected(long id)
+	{
+		GD.Print("Player Disconnected: " + id.ToString());
+		GameManager.Players.Remove(GameManager.Players.Where(i => i.Id == id).First<PlayerInfo>());
+		var players = GetTree().GetNodesInGroup("Player");
+		
+		foreach (var item in players)
+		{
+			if(item.Name == id.ToString()){
+				item.QueueFree();
+			}
+		}
+		GetNode<Node2D>("MultiplayerMenuOverlay/StartGame").Hide();
+	}
+	
+	private void PeerConnected(long id)
+	{
+		GD.Print("Player Connected! " + id.ToString());
+		GetNode<Node2D>("MultiplayerMenuOverlay/StartGame").Show();
 	}
 
 	public override void _Process(double delta)
 	{
 		
+	}
+	
+	private void hostGame(){
+		peer = new ENetMultiplayerPeer();
+		var error = peer.CreateServer(port, 2);
+		if(error != Error.Ok){
+			GD.Print("error cannot host! :" + error.ToString());
+			return;
+		}
+		peer.Host.Compress(ENetConnection.CompressionMode.RangeCoder);
+
+		Multiplayer.MultiplayerPeer = peer;
+		GD.Print("Waiting For Players!");
+	}
+	
+	[Rpc(MultiplayerApi.RpcMode.AnyPeer)]
+	private void sendPlayerInformation(string name, int id){
+		PlayerInfo playerInfo = new PlayerInfo(){
+			Name = name,
+			Id = id
+		};
+		
+		if(!GameManager.Players.Contains(playerInfo)){
+			
+			GameManager.Players.Add(playerInfo);
+			
+		}
+
+		if(Multiplayer.IsServer()){
+			foreach (var item in GameManager.Players)
+			{
+				Rpc("sendPlayerInformation", item.Name, item.Id);
+			}
+		}
+	}
+	
+	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
+	private void startGame()
+	{
+		Node newMenu = ResourceLoader.Load<PackedScene>("res://Scenes/Game/GameLevel.tscn").Instantiate();
+		GetTree().Root.AddChild(newMenu);
+		QueueFree();
 	}
 
 	//region Pressed buttons
@@ -61,8 +151,20 @@ public partial class NavigationController : Control
 		{
 			GetNode<LineEdit>("MultiplayerMenuOverlay/LobbyNameInput").Hide();
 			GetNode<Node2D>("MultiplayerMenuOverlay/Create").Hide();
-			_HasLobby = true;
+			
+			if(_HasLobby == false)
+			{
+				hostGame();
+				_HasLobby = true;
+			}
 		}
+		
+
+		public void _on_button_start_game_pressed()
+		{			
+			Rpc("startGame");
+		}
+
 
 		//endregion
 	//endregion
@@ -76,6 +178,9 @@ public partial class NavigationController : Control
 			
 			// Hide this Button
 			GetNode<Node2D>("Back").Hide();
+			
+			// Reset the play button
+			GetNode<Node2D>("MultiplayerMenuOverlay/StartGame").Hide();
 			
 			// Cancel lobby
 			_HasLobby = false;
@@ -131,6 +236,18 @@ public partial class NavigationController : Control
 			GetNode<Sprite2D>("MultiplayerMenuOverlay/Create/TextureCreateLobbyHover").Hide();
 			GetNode<LineEdit>("MultiplayerMenuOverlay/Create/LineEditCreateLobbyHover").Hide();
 		}
+		
+		public void _on_button_start_game_mouse_entered()
+		{
+			GetNode<Sprite2D>("MultiplayerMenuOverlay/StartGame/TextureStartGameHover").Show();
+			GetNode<LineEdit>("MultiplayerMenuOverlay/StartGame/LineEditStartGameHover").Show();
+		}
+
+		public void _on_button_start_game_mouse_exited()
+		{
+			GetNode<Sprite2D>("MultiplayerMenuOverlay/StartGame/TextureStartGameHover").Hide();
+			GetNode<LineEdit>("MultiplayerMenuOverlay/StartGame/LineEditStartGameHover").Hide();
+		}
 		//endregion
 		
 		// Back Button always goes to StartMenuOverlay
@@ -148,4 +265,3 @@ public partial class NavigationController : Control
 	//endregion
 
 }
-
