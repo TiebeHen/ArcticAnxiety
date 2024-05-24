@@ -25,7 +25,7 @@ public partial class NavigationController : Control
 	
 	// TEST BUTTON FOR QUICK JOINING
 	public void _on_button_test_join_pressed()
-	{
+	{			
 		peer = new ENetMultiplayerPeer();
 		peer.CreateClient(address, port);
 
@@ -76,7 +76,16 @@ public partial class NavigationController : Control
 	private void PeerConnected(long id)
 	{
 		GD.Print("Player Connected! " + id.ToString());
-		GetNode<Node2D>("MultiplayerMenuOverlay/StartGame").Show();
+		
+		if(_HasLobby == true)
+		{
+			GetNode<Node2D>("MultiplayerMenuOverlay/StartGame").Show();
+		}
+		else
+		{
+			GetNode<LineEdit>("MultiplayerMenuOverlay/LobbyNameInput").Hide();
+			GetNode<Node2D>("MultiplayerMenuOverlay/Create").Hide();
+		}
 	}
 
 	public override void _Process(double delta)
@@ -123,6 +132,8 @@ public partial class NavigationController : Control
 	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
 	private void startGame()
 	{
+		GetNode<Node2D>("LoadingMenuOverlay").Show();
+		GetNode<Node2D>("MultiplayerMenuOverlay").Hide();
 		//GetNode<ServerBrowser>("ServerBrowser").CleanUp();
 		Node newMenu = ResourceLoader.Load<PackedScene>("res://Scenes/Game/GameLevel.tscn").Instantiate();
 		GetTree().Root.AddChild(newMenu);
@@ -138,7 +149,10 @@ public partial class NavigationController : Control
 			
 			// Show this Button
 			GetNode<Node2D>("Back").Show();
-			GetNode<Node2D>("TestJoin").Show();
+			
+			if(_HasLobby == false) {
+				GetNode<Node2D>("TestJoin").Show();
+			}
 			
 			// Show buttons to create lobby again if there is no lobby
 			if(_HasLobby == false)
@@ -174,15 +188,14 @@ public partial class NavigationController : Control
 				hostGame();
 				sendPlayerInformation(GetNode<LineEdit>("MultiplayerMenuOverlay/LobbyNameInput").Text, 1);
 				_HasLobby = true;
+				GetNode<Node2D>("TestJoin").Hide();
 			}
 		}
-		
 
 		public void _on_button_start_game_pressed()
 		{			
 			Rpc("startGame");
 		}
-
 
 		//endregion
 	//endregion

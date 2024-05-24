@@ -128,7 +128,7 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("ui_cancel"):
 			if Input.get_mouse_mode() == Input.MOUSE_MODE_CONFINED:
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-				get_tree().quit()
+				#get_tree().quit()
 			else:
 				Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 				
@@ -230,8 +230,8 @@ func cameraToPlayer(camera_position: Vector2) -> Vector2:
 
 @rpc("any_peer","call_local")
 func fire():
-	#GameNode.ThrowSnowball(get_parent().get_node("Abilities"), position, Vector3(camerarecords.x - position.x, 0, camerarecords.y - position.z))
-	pass
+	GameNode.ThrowSnowball(get_parent().get_node("Abilities"), position, Vector3(camerarecords.x - position.x, 0, camerarecords.y - position.z))
+	#pass
 
 #func on_player_wins():
 	#$VictoryPOV.current = true
