@@ -1,10 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://to5vx4oxb344"]
+[gd_scene load_steps=4 format=3 uid="uid://to5vx4oxb344"]
 
 [ext_resource type="PackedScene" uid="uid://crtsl6lynxjcv" path="res://Assets/Models/RPG/rpgRocket.glb" id="1_tax5r"]
 [ext_resource type="Script" path="res://Scripts/Rocket.cs" id="1_ty3vq"]
+[ext_resource type="PackedScene" uid="uid://civnever2yf4x" path="res://Scenes/Game/Abilities/explosion.tscn" id="3_pvxmm"]
 
-[node name="Node3D" type="Node3D"]
+[node name="rocket" type="Node3D"]
 script = ExtResource("1_ty3vq")
 
 [node name="rpgRocket" parent="." instance=ExtResource("1_tax5r")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1.34576, 0.163475)
+
+[node name="explosion" type="Node" parent="."]
+
+[node name="Explosion" parent="explosion" instance=ExtResource("3_pvxmm")]
