@@ -46,6 +46,7 @@ public partial class Rocket : Node3D
 			targetPosition[1] = 0;
 			level.DeleteTileWRadius(targetPosition,5);
 			HitTarget = true;
+			_velocity = Vector3.Zero;
 			
 			if(timeLeftRocket < 0)
 			{

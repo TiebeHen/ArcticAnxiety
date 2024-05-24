@@ -1,6 +1,7 @@
 using Godot;
 using System;
 
+
 public partial class Snowball : Node3D
 {
 	public const float speed = 25.0f;
@@ -21,6 +22,12 @@ public partial class Snowball : Node3D
 		_velocity = _velocity.Normalized() * speed * (float)delta; // Scale velocity by delta time
 	
 		Translate(_velocity); // Move the snowball
+		
+		
+		//if(position.x < -10 && position.x > 110 && position.x < -10 && position.x > 70)
+		//{
+			//queue_free();
+		//}
 	}
 	
 	public void SetVelocity(Vector3 velocity)

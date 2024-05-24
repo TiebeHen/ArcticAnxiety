@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://yoc4lspn54ox"]
+[gd_scene load_steps=4 format=3 uid="uid://yoc4lspn54ox"]
 
 [ext_resource type="ArrayMesh" uid="uid://d16cwwpdnv3kh" path="res://Assets/Models/Snowball/snowball.obj" id="1_kryfc"]
 [ext_resource type="Script" path="res://Scripts/Snowball.cs" id="1_po8xa"]
+[ext_resource type="AudioStream" uid="uid://di8f61fg5cct8" path="res://Audio/swish.mp3" id="3_qxin1"]
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_po8xa")
@@ -9,3 +10,7 @@ script = ExtResource("1_po8xa")
 [node name="Snowball" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = ExtResource("1_kryfc")
+
+[node name="Swish" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_qxin1")
+pitch_scale = 2.0

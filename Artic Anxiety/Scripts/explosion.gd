@@ -1,13 +1,16 @@
 extends Node3D
 
+
+
 @onready var debris = $Debris
 @onready var smoke = $Smoke
 @onready var fire = $Fire
 @onready var explosion = $Explosion
 static var TargetPos
+var SoundPlayed = false
 
-func _ready():
-	pass
+
+
 
 func _process(delta):
 	_GetTargetPos()
@@ -17,6 +20,7 @@ func _process(delta):
 func explode():
 	
 	if(TargetPos != Vector3.ZERO):
+		
 		debris.position = TargetPos
 		smoke.position = TargetPos
 		fire.position = TargetPos
@@ -24,7 +28,9 @@ func explode():
 		debris.emitting = true
 		smoke.emitting = true
 		fire.emitting = true
-		explosion.play()
+		if(SoundPlayed == false):
+			explosion.play()
+			SoundPlayed = true
 	
 		
 	
