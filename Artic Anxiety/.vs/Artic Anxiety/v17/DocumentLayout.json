@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\vicem\\Documents\\GitHub\\ArcticAnxiety\\Artic Anxiety\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\vicem\\Documents\\GitHub\\ArcticAnxiety\\Artic Anxiety\\Scripts\\GameManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Scripts\\GameManager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F43FEC5A-818A-4DA9-93E3-F46D70292CF3}|Artic Anxiety.csproj|c:\\users\\vicem\\documents\\github\\arcticanxiety\\artic anxiety\\scripts\\level.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F43FEC5A-818A-4DA9-93E3-F46D70292CF3}|Artic Anxiety.csproj|solutionrelative:scripts\\level.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F43FEC5A-818A-4DA9-93E3-F46D70292CF3}|Artic Anxiety.csproj|c:\\users\\vicem\\documents\\github\\arcticanxiety\\artic anxiety\\scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F43FEC5A-818A-4DA9-93E3-F46D70292CF3}|Artic Anxiety.csproj|solutionrelative:scripts\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,7 +26,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "GameManager.cs",
               "DocumentMoniker": "C:\\Users\\vicem\\Documents\\GitHub\\ArcticAnxiety\\Artic Anxiety\\Scripts\\GameManager.cs",
               "RelativeDocumentMoniker": "Scripts\\GameManager.cs",
@@ -34,18 +34,17 @@
               "RelativeToolTip": "Scripts\\GameManager.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-22T06:56:07.571Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-22T06:56:07.571Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Level.cs",
               "DocumentMoniker": "C:\\Users\\vicem\\Documents\\GitHub\\ArcticAnxiety\\Artic Anxiety\\Scripts\\Level.cs",
               "RelativeDocumentMoniker": "Scripts\\Level.cs",
               "ToolTip": "C:\\Users\\vicem\\Documents\\GitHub\\ArcticAnxiety\\Artic Anxiety\\Scripts\\Level.cs",
               "RelativeToolTip": "Scripts\\Level.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAEAAAAAAAAAAAAAQwFUAAAAuAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-15T12:24:20.626Z",
               "EditorCaption": ""
