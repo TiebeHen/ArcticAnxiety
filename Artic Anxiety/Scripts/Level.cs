@@ -229,6 +229,9 @@ public void DeleteTileWRadius(Vector3 Position, int radius)
 		}
 	}
 	
+	private void RemoveRpcTile(){
+		
+	}
 	
 	//public List<ClassTile> GetInstances()
 	//{

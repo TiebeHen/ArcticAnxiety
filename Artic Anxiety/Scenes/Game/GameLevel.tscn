@@ -146,7 +146,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 42.561
 
 [node name="Backgroundmusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_k18sg")
-autoplay = true
 
 [node name="PlayerSpawnPoints" type="Node3D" parent="."]
 

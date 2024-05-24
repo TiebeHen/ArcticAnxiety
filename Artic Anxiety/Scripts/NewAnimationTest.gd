@@ -198,8 +198,8 @@ func _physics_process(delta):
 			timeLeft = 0
 			timeLeft = maxTime
 			if (victory == false):
-				LevelNode.DeleteTile(player_position)
-				
+				#LevelNode.DeleteTile(player_position)
+				pass
 		#player die dood gaat voor de cam
 		if player_position.y <= -1:
 			if (victory == false):
@@ -230,8 +230,8 @@ func cameraToPlayer(camera_position: Vector2) -> Vector2:
 
 @rpc("any_peer","call_local")
 func fire():
-	GameNode.ThrowSnowball(get_parent().get_node("Abilities"), position, Vector3(camerarecords.x - position.x, 0, camerarecords.y - position.z))
-	#pass
+	#GameNode.ThrowSnowball(get_parent().get_node("Abilities"), position, Vector3(camerarecords.x - position.x, 0, camerarecords.y - position.z))
+	pass
 
 #func on_player_wins():
 	#$VictoryPOV.current = true
