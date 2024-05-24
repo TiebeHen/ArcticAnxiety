@@ -19,26 +19,27 @@ var last_direction = Vector3.FORWARD
 #Called when the node enters the scene tree for the first time.
 func _ready():
 	player = get_node(player_path)
-	if player.position.y > 0:
-		set_random_target()
+	if(player != null):
+		if player.position.y > 0:
+			set_random_target()
 
 func _process(delta):
-	
-	if player.position.y < 0:
-		speed == 30
-		velocity = Vector3.ZERO
+	if(player != null):
+		if player.position.y < 0:
+			speed == 30
+			velocity = Vector3.ZERO
 
-	# Navigation
-		nav_agent.set_target_position(player.global_transform.origin)
+		# Navigation
+			nav_agent.set_target_position(player.global_transform.origin)
 	
-		var next_nav_point = nav_agent.get_next_path_position()
+			var next_nav_point = nav_agent.get_next_path_position()
 	
-		if (next_nav_point != null):
-			velocity = (next_nav_point - global_transform.origin).normalized() * speed
+			if (next_nav_point != null):
+				velocity = (next_nav_point - global_transform.origin).normalized() * speed
 	
-		look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z ),Vector3.UP)
+			look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z ),Vector3.UP)
 
-		move_and_slide()
+			move_and_slide()
 		
 	move_timer -= delta
 	if move_timer <= 0:

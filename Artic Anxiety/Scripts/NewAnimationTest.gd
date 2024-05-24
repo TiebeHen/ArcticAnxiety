@@ -37,7 +37,7 @@ var timeLeftJesus = 0
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") *4
 var SnowballScene = preload("res://Scenes/Game/Abilities/Snowball.tscn")
 
-
+var camerarecords
 
 var mouse_sensitivity := 0.001
 var twist_input := 0.0
@@ -47,156 +47,167 @@ var pitch_input := 0.0
 @onready var pitch_pivot := $Twistpivot/PitchPivot
 @onready var RPG = $rpgBaseglb
 
+var syncPos = Vector3(0,0,0)
+var syncRot = 0
+
 func _ready() -> void:
+	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 	RPG.visible = false
 
 func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y -= gravity * delta
-
-	# Handle jump.
-	if (Input.is_action_just_pressed("move_up") or Input.is_action_just_pressed("jump")) and is_on_floor():
-		if RPG.visible == false:
-			velocity.y = JUMP_VELOCITY
-
-	# Victory
-	if (Input.is_action_just_pressed("victory")):
-		on_player_wins()
-	#OLd Movemont
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
 	
-	#var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	#if direction:
-	#	velocity.x = lerp(velocity.x, direction.x * SPEED, LERP_VAL)
-	#	velocity.z = lerp(velocity.z, direction.z * SPEED, LERP_VAL)
-	#else:
-	#	velocity.x = lerp(velocity.x, 0.0, LERP_VAL)
-	#	velocity.z = lerp(velocity.z, 0.0, LERP_VAL)
-	var direction = Vector3.ZERO
-	var target_velocity = Vector3.ZERO
-	var speed = 14
-	if (victory == false):
-		if RPG.visible == false:
-			if Input.is_action_pressed("move_forward"):
-				direction.x -= 1
-			if Input.is_action_pressed("move_backward"):
-				direction.x += 1
-			if Input.is_action_pressed("move_right"):
-				direction.z += 1
-			if Input.is_action_pressed("move_left"):
-				direction.z -= 1
-			if Input.is_action_just_pressed("jump"):
-				jump.play()
+	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
+		# Add the gravity.
+		if not is_on_floor():
+			velocity.y -= gravity * delta
+
+		# Handle jump.
+		if (Input.is_action_just_pressed("move_up") or Input.is_action_just_pressed("jump")) and is_on_floor():
+			if RPG.visible == false:
+				velocity.y = JUMP_VELOCITY
+
+		# Victory
+		if (Input.is_action_just_pressed("victory")):
+			on_player_wins()
+		#OLd Movemont
+		# Get the input direction and handle the movement/deceleration.
+		# As good practice, you should replace UI actions with custom gameplay actions.
 		
-	if direction != Vector3.ZERO:
-		direction = direction.normalized()
-
-	# Ground Velocity
-	target_velocity.x = direction.x * speed
-	target_velocity.z = direction.z * speed
-	target_velocity.y = velocity.y
-	
-	velocity = target_velocity
-	
-	
-	var input_dir = Input.get_vector("move_forward", "move_backward", "move_left", "move_right")
-
-	anim_tree.set("parameters/conditions/idle", input_dir == Vector2.ZERO && is_on_floor())
-	anim_tree.set("parameters/conditions/BeginnenGlijden", input_dir != Vector2.ZERO && is_on_floor())
-	anim_tree.set("parameters/conditions/Stoppen_Glijden", input_dir != Vector2.ZERO && is_on_floor())
-	anim_tree.set("parameters/conditions/idle_jump", input_dir == Vector2.ZERO && !is_on_floor())
-	anim_tree.set("parameters/conditions/Glijden_Jump", input_dir != Vector2.ZERO && !is_on_floor())
-	anim_tree.set("parameters/conditions/Gooien", Input.is_action_just_pressed("click_throw"))
-	
-	move_and_slide()
-	
-	#twist_pivot.rotate_y(twist_input)
-	pitch_pivot.rotate_x(pitch_input)
-	pitch_pivot.rotation.x = clamp(pitch_pivot.rotation.x, -0.5, 0.5) 
-	twist_input = 0.0
-	pitch_input = 0.0
-
-	if Input.is_action_just_pressed("ui_cancel"):
-		if Input.get_mouse_mode() == Input.MOUSE_MODE_CONFINED:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		else:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
-			
-	var camerarecords = cameraToPlayer(get_viewport().get_mouse_position())
-	
-	
-	
-	if Input.is_action_just_pressed("Ability1"):
-		abilityNr = 1
-		RPG.visible = false #making rpg invisible
-	if Input.is_action_just_pressed("Ability2"):
-		abilityNr = 2
-		RPG.visible = false #making rpg invisible
-	if Input.is_action_just_pressed("Ability3"):
-		abilityNr = 3
-		RPG.visible = true #making rpg visible
-	
-	timeLeftJesus -= delta
-	timeLeftAbility -= delta
-	#timeLeftAbility  maxTimeAbility
-	if Input.is_action_just_pressed("click_throw"):
+		#var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		#if direction:
+		#	velocity.x = lerp(velocity.x, direction.x * SPEED, LERP_VAL)
+		#	velocity.z = lerp(velocity.z, direction.z * SPEED, LERP_VAL)
+		#else:
+		#	velocity.x = lerp(velocity.x, 0.0, LERP_VAL)
+		#	velocity.z = lerp(velocity.z, 0.0, LERP_VAL)
+		var direction = Vector3.ZERO
+		var target_velocity = Vector3.ZERO
+		var speed = 14
 		if (victory == false):
-			if timeLeftAbility <= 3:
-				if abilityNr == 1: #Sneeuwbal ability
-					GameNode.ThrowSnowball(get_parent().get_node("Abilities"), position, Vector3(camerarecords.x - position.x, 0, camerarecords.y - position.z))
-					timeLeftAbility = maxTimeAbility
-					
-				if timeLeftAbility <= 0:
-					if abilityNr == 2: #Jesus ability
-						position.y += 0.5
-						gravity = 0
+			if RPG.visible == false:
+				if Input.is_action_pressed("move_forward"):
+					direction.x -= 1
+				if Input.is_action_pressed("move_backward"):
+					direction.x += 1
+				if Input.is_action_pressed("move_right"):
+					direction.z += 1
+				if Input.is_action_pressed("move_left"):
+					direction.z -= 1
+				if Input.is_action_just_pressed("jump"):
+					jump.play()
+			
+		if direction != Vector3.ZERO:
+			direction = direction.normalized()
+
+		# Ground Velocity
+		target_velocity.x = direction.x * speed
+		target_velocity.z = direction.z * speed
+		target_velocity.y = velocity.y
+		
+		velocity = target_velocity
+		
+		
+		var input_dir = Input.get_vector("move_forward", "move_backward", "move_left", "move_right")
+
+		anim_tree.set("parameters/conditions/idle", input_dir == Vector2.ZERO && is_on_floor())
+		anim_tree.set("parameters/conditions/BeginnenGlijden", input_dir != Vector2.ZERO && is_on_floor())
+		anim_tree.set("parameters/conditions/Stoppen_Glijden", input_dir != Vector2.ZERO && is_on_floor())
+		anim_tree.set("parameters/conditions/idle_jump", input_dir == Vector2.ZERO && !is_on_floor())
+		anim_tree.set("parameters/conditions/Glijden_Jump", input_dir != Vector2.ZERO && !is_on_floor())
+		anim_tree.set("parameters/conditions/Gooien", Input.is_action_just_pressed("click_throw"))
+		
+		move_and_slide()
+		
+		#twist_pivot.rotate_y(twist_input)
+		pitch_pivot.rotate_x(pitch_input)
+		pitch_pivot.rotation.x = clamp(pitch_pivot.rotation.x, -0.5, 0.5) 
+		twist_input = 0.0
+		pitch_input = 0.0
+
+		if Input.is_action_just_pressed("ui_cancel"):
+			if Input.get_mouse_mode() == Input.MOUSE_MODE_CONFINED:
+				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+				get_tree().quit()
+			else:
+				Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+				
+		camerarecords = cameraToPlayer(get_viewport().get_mouse_position())
+		
+		
+		
+		if Input.is_action_just_pressed("Ability1"):
+			abilityNr = 1
+			RPG.visible = false #making rpg invisible
+		if Input.is_action_just_pressed("Ability2"):
+			abilityNr = 2
+			RPG.visible = false #making rpg invisible
+		if Input.is_action_just_pressed("Ability3"):
+			abilityNr = 3
+			RPG.visible = true #making rpg visible
+		
+		timeLeftJesus -= delta
+		timeLeftAbility -= delta
+		#timeLeftAbility  maxTimeAbility
+		if Input.is_action_just_pressed("click_throw"):
+			if (victory == false):
+				if timeLeftAbility <= 3:
+					if abilityNr == 1: #Sneeuwbal ability
+						fire.rpc()
 						timeLeftAbility = maxTimeAbility
-						timeLeftJesus = maxTimeJesus
 						
-				if abilityNr == 3: #Rocket ability
-					GameNode.RPG(get_parent().get_node("Abilities"), position, Vector3(camerarecords.x - position.x, 0, camerarecords.y - position.z),Vector3(camerarecords.x, 0, camerarecords.y))
-					RPG.visible = true
-					timeLeftAbility = maxTimeAbility
-				#LevelNode.DeleteTileWRadius(Vector3(camerarecords.x, 0, camerarecords.y),5)
-		
-	if timeLeftJesus < 0:
-		gravity = ProjectSettings.get_setting("physics/3d/default_gravity") * 4
-		
-		
-		
-	if (Input.is_action_just_pressed("victory")):
-		on_player_wins()
+					if timeLeftAbility <= 0:
+						if abilityNr == 2: #Jesus ability
+							position.y += 0.5
+							gravity = 0
+							timeLeftAbility = maxTimeAbility
+							timeLeftJesus = maxTimeJesus
+							
+					if abilityNr == 3: #Rocket ability
+						GameNode.RPG(get_parent().get_node("Abilities"), position, Vector3(camerarecords.x - position.x, 0, camerarecords.y - position.z),Vector3(camerarecords.x, 0, camerarecords.y))
+						RPG.visible = true
+						timeLeftAbility = maxTimeAbility
+					#LevelNode.DeleteTileWRadius(Vector3(camerarecords.x, 0, camerarecords.y),5)
+			
+		if timeLeftJesus < 0:
+			gravity = ProjectSettings.get_setting("physics/3d/default_gravity") * 4
 			
 			
-	
-	#print(get_viewport().size)
 			
-	#print("Viewport cords: ", camerarecords)
-	player_position = position
-	#print("Player position: ", player_position)
-	look_at(Vector3(camerarecords.x, 0, camerarecords.y), Vector3(0, 1, 0)) 
-	
-	#stilstaan = aan dood gaan
-	if direction != Vector3.ZERO:
-		timeLeft = maxTime	
-	
-	#timer 
-	if timeLeft > 0:
-		timeLeft -= delta
-		#print(timeLeft)
+		if (Input.is_action_just_pressed("victory")):
+			on_player_wins()
+				
+				
+		
+		#print(get_viewport().size)
+				
+		#print("Viewport cords: ", camerarecords)
+		player_position = position
+		#print("Player position: ", player_position)
+		look_at(Vector3(camerarecords.x, 0, camerarecords.y), Vector3(0, 1, 0)) 
+		
+		#stilstaan = aan dood gaan
+		if direction != Vector3.ZERO:
+			timeLeft = maxTime	
+		
+		#timer 
+		if timeLeft > 0:
+			timeLeft -= delta
+			#print(timeLeft)
+		else:
+			timeLeft = 0
+			timeLeft = maxTime
+			if (victory == false):
+				LevelNode.DeleteTile(player_position)
+				
+		#player die dood gaat voor de cam
+		if player_position.y <= -1:
+			if (victory == false):
+				DoodePenguinNode._KillPlayer()
 	else:
-		timeLeft = 0
-		timeLeft = maxTime
-		if (victory == false):
-			LevelNode.DeleteTile(player_position)
-			
-	#player die dood gaat voor de cam
-	if player_position.y <= -1:
-		if (victory == false):
-			DoodePenguinNode._KillPlayer()
+		#global_position = global_position.lerp(syncPos, 0.5)
+		#rotation_degrees = lerp(rotation_degrees, syncRot, 0.5)
+		pass
 	
 func cameraToPlayer(camera_position: Vector2) -> Vector2:
 		# Define the size of the camera viewport
@@ -216,6 +227,11 @@ func cameraToPlayer(camera_position: Vector2) -> Vector2:
 		player_position2.x = player_position2.y
 		player_position2.y = pX
 		return player_position2
+
+@rpc("any_peer","call_local")
+func fire():
+	#GameNode.ThrowSnowball(get_parent().get_node("Abilities"), position, Vector3(camerarecords.x - position.x, 0, camerarecords.y - position.z))
+	pass
 
 #func on_player_wins():
 	#$VictoryPOV.current = true
@@ -240,4 +256,5 @@ func on_player_wins():
 			
 func GetPlayerPos():
 	return player_position
+
 

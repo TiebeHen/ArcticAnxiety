@@ -22,6 +22,17 @@ public partial class NavigationController : Control
 		GetTree().Root.AddChild(newMenu);
 		QueueFree();
 	}
+	
+	// TEST BUTTON FOR QUICK JOINING
+	public void _on_button_test_join_pressed()
+	{
+		peer = new ENetMultiplayerPeer();
+		peer.CreateClient(address, port);
+
+		peer.Host.Compress(ENetConnection.CompressionMode.RangeCoder);
+		Multiplayer.MultiplayerPeer = peer;
+		GD.Print("Joining Game!");
+	}
 
 	public override void _Ready()
 	{
@@ -32,6 +43,8 @@ public partial class NavigationController : Control
 		if(OS.GetCmdlineArgs().Contains("--server")){
 			hostGame();
 		}
+		
+		//GetNode<ServerBrowser>("ServerBrowser").JoinGame += joinGame;
 	}
 	
 	private void ConnectionFailed()
@@ -82,6 +95,7 @@ public partial class NavigationController : Control
 
 		Multiplayer.MultiplayerPeer = peer;
 		GD.Print("Waiting For Players!");
+		//GetNode<ServerBrowser>("ServerBrowser").SetUpBroadcast(GetNode<LineEdit>("LineEdit").Text + "'s Server");
 	}
 	
 	[Rpc(MultiplayerApi.RpcMode.AnyPeer)]
@@ -105,9 +119,11 @@ public partial class NavigationController : Control
 		}
 	}
 	
+
 	[Rpc(MultiplayerApi.RpcMode.AnyPeer, CallLocal = true, TransferMode = MultiplayerPeer.TransferModeEnum.Reliable)]
 	private void startGame()
 	{
+		//GetNode<ServerBrowser>("ServerBrowser").CleanUp();
 		Node newMenu = ResourceLoader.Load<PackedScene>("res://Scenes/Game/GameLevel.tscn").Instantiate();
 		GetTree().Root.AddChild(newMenu);
 		QueueFree();
@@ -122,6 +138,7 @@ public partial class NavigationController : Control
 			
 			// Show this Button
 			GetNode<Node2D>("Back").Show();
+			GetNode<Node2D>("TestJoin").Show();
 			
 			// Show buttons to create lobby again if there is no lobby
 			if(_HasLobby == false)
@@ -155,6 +172,7 @@ public partial class NavigationController : Control
 			if(_HasLobby == false)
 			{
 				hostGame();
+				sendPlayerInformation(GetNode<LineEdit>("MultiplayerMenuOverlay/LobbyNameInput").Text, 1);
 				_HasLobby = true;
 			}
 		}
@@ -181,6 +199,7 @@ public partial class NavigationController : Control
 			
 			// Reset the play button
 			GetNode<Node2D>("MultiplayerMenuOverlay/StartGame").Hide();
+			GetNode<Node2D>("TestJoin").Hide();
 			
 			// Cancel lobby
 			_HasLobby = false;
