@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://civnever2yf4x"]
 
-[ext_resource type="Script" path="res://Scenes/Game/Abilities/explosion.gd" id="1_ie1ki"]
+[ext_resource type="Script" path="res://Scripts/explosion.gd" id="1_ie1ki"]
 [ext_resource type="AudioStream" uid="uid://ceqffg6vwieq4" path="res://Audio/hq-explosion-6288.mp3" id="2_inutx"]
 
 [sub_resource type="Curve" id="Curve_e2kyk"]
@@ -109,6 +109,7 @@ script = ExtResource("1_ie1ki")
 emitting = false
 amount = 24
 lifetime = 0.5
+one_shot = true
 explosiveness = 1.0
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_ptua2")
