@@ -188,7 +188,10 @@ public void DeleteTileWRadius(Vector3 Position, int radius)
 					{
 							i.GetInstance().RemoveChild(child);
 					}
-					parent.RemoveChild(i.GetInstance());
+					if(i.GetInstance() != null)
+					{
+						parent.RemoveChild(i.GetInstance());
+					}
 					i.SetID(ID_WATER_TILE);
 				}
 			}
