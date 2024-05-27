@@ -20,14 +20,7 @@ var BrokenIceTile = preload("res://Scenes/Game/Tiles/Level/BrokenIceTile.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	load_map()
-	#load_water()
-	load_sea_bottom()
-	   # For the Sea Bottom tiles
-	
-
-	
-	
+	load_map()	
 
 func add_child_deferred(node):
 	call_deferred("add_child", node)
@@ -53,30 +46,21 @@ func load_map():
 		z = 0
 		x += 2
 
-func load_water():
-	var x = -20
-	var y = -20
-	for i in range(70):
-		for z in range(90):
-			var instance = WaterTile.instantiate() as Node3D
-			instance.position = Vector3(x, -0.5, y)
-			add_child_deferred(instance)
-			y += 150
-		y = -20
-		x += 150
-		
-func load_sea_bottom():
-	var x = -20
-	var y = -20
-	for i in range(70):
-		for z in range(90):
-			var instance = SeaBottomTile.instantiate() as Node3D
-			instance.position = Vector3(x, -5, y)
-			add_child_deferred(instance)
-			y += 2
-		y = -20
-		x += 2
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if start_gameplay == true:
+		
+		pass
+	
+
+func startGame():
+	start_gameplay = true;
+	
+func rpcDamageTile():
+	pass
+	
+func rpcDeleteTile():
+	pass
+	
+func rpcCreateIce():
 	pass
