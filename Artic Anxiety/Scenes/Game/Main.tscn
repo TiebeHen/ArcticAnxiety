@@ -1,14 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8p1knk816wf8"]
+[gd_scene load_steps=8 format=3 uid="uid://c8p1knk816wf8"]
 
-[ext_resource type="Script" path="res://Scripts/Main.gd" id="1_0vex6"]
-[ext_resource type="Script" path="res://Scripts/Level1.gd" id="2_r4t8q"]
 [ext_resource type="PackedScene" uid="uid://mouheqrhmwph" path="res://Scenes/Game/Tiles/Water/WaterTile.tscn" id="3_cbp0g"]
 [ext_resource type="PackedScene" uid="uid://dc7ldj7an3my4" path="res://Scenes/Game/Glacier.tscn" id="4_03i5v"]
 [ext_resource type="PackedScene" uid="uid://dd2lu5vrattae" path="res://Scenes/Game/Tiles/Ground/SeaBottomTile.tscn" id="5_dohp3"]
 [ext_resource type="AudioStream" uid="uid://b6f4nk1ioyd57" path="res://Audio/Background music.mp3" id="6_60gas"]
+[ext_resource type="PackedScene" uid="uid://2l86vrjjpm35" path="res://Scenes/Game/Level1.tscn" id="6_nhq3s"]
+[ext_resource type="PackedScene" uid="uid://tbovghor3tp5" path="res://Scenes/Menus/StartMenu.tscn" id="7_aas4l"]
+[ext_resource type="Script" path="res://Scripts/MenuController.gd" id="8_ojdoy"]
 
 [node name="Main" type="Node3D"]
-script = ExtResource("1_0vex6")
+script = ExtResource("8_ojdoy")
 
 [node name="Startup" type="Node" parent="."]
 
@@ -71,13 +72,14 @@ autoplay = true
 
 [node name="Levels" type="Node3D" parent="."]
 
-[node name="Level1" type="Node3D" parent="Levels"]
-script = ExtResource("2_r4t8q")
+[node name="Level1" parent="Levels" instance=ExtResource("6_nhq3s")]
 
-[node name="PlayerSpawnPoints" type="Node3D" parent="."]
+[node name="MenuController" parent="." instance=ExtResource("7_aas4l")]
+script = ExtResource("8_ojdoy")
 
-[node name="0" type="Node3D" parent="PlayerSpawnPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.84142, 0, 5.60334)
-
-[node name="1" type="Node3D" parent="PlayerSpawnPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.4588, 7.62939e-06, 93.128)
+[node name="UserInterface" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

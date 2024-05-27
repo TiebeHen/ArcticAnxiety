@@ -1,5 +1,7 @@
 extends Node3D
 
+class_name Level1
+
 var tiles = []
 var ID_WATER_TILE: String = "105"
 var ID_FULL_ICE_TILE: String = "49"
@@ -14,8 +16,6 @@ var timeLeftTileBreaking = 4.0
 
 # Tiles
 var FullIceTile = preload("res://Scenes/Game/Tiles/Level/FullIceTile.tscn")
-var WaterTile = preload("res://Scenes/Game/Tiles/Water/WaterTile.tscn")
-var SeaBottomTile = preload("res://Scenes/Game/Tiles/Ground/SeaBottomTile.tscn")
 var BrokenIceTile = preload("res://Scenes/Game/Tiles/Level/BrokenIceTile.tscn")
 
 # Called when the node enters the scene tree for the first time.
@@ -63,4 +63,10 @@ func rpcDeleteTile():
 	pass
 	
 func rpcCreateIce():
+	pass
+	
+func delete_tile_with_radius(position: int, radius: int):
+	pass
+	
+func delete_tile_at_position(position: int):
 	pass

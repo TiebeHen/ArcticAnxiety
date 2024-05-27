@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://2l86vrjjpm35"]
+
+[ext_resource type="Script" path="res://Scripts/Level1.gd" id="1_2u1yo"]
+
+[node name="Level1" type="Node3D"]
+script = ExtResource("1_2u1yo")
+
+[node name="PlayerSpawnPoints" type="Node3D" parent="."]
+
+[node name="0" type="Node3D" parent="PlayerSpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.84142, 0, 5.60334)
+
+[node name="1" type="Node3D" parent="PlayerSpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.4588, 7.62939e-06, 93.128)
