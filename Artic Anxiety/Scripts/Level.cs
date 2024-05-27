@@ -229,6 +229,7 @@ public void DeleteTileWRadius(Vector3 Position, int radius)
 		}
 	}
 	
+	[Rpc(MultiplayerApi.RpcMode.AnyPeer)]
 	private void RemoveRpcTile(){
 		
 	}

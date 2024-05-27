@@ -63,10 +63,24 @@ public partial class GameManager : Node3D
 	
 	public void ThrowSnowball(Node nodi, Vector3 position, Vector3 velocity)
 	{
+		GD.Print("Nodi is: ");
+		GD.Print(nodi);
+		GD.Print("velocity is: ");
+		GD.Print(velocity);
 		Snowball instance = (Snowball)snowBallScene.Instantiate();
-		instance.Position = position;
-		instance.SetVelocity(velocity);
-		nodi.AddChild(instance);
+		GD.Print(instance);
+		if(instance != null)
+		{
+			GD.Print("position is: ");
+			GD.Print(instance.Position);
+			instance.Position = position;
+			instance.SetVelocity(velocity);
+			nodi.AddChild(instance);
+		}
+		else
+		{
+			GD.Print("INSTANCE is NULL!");
+		}
 	}
 	
 	

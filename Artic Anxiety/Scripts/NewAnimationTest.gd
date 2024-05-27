@@ -230,8 +230,9 @@ func cameraToPlayer(camera_position: Vector2) -> Vector2:
 
 @rpc("any_peer","call_local")
 func fire():
-	#GameNode.ThrowSnowball(get_parent().get_node("Abilities"), position, Vector3(camerarecords.x - position.x, 0, camerarecords.y - position.z))
-	pass
+	print("Throwing snowball")
+	GameNode.ThrowSnowball(get_parent().get_node("Abilities"), position, Vector3(camerarecords.x - position.x, 0, camerarecords.y - position.z))
+	#pass
 
 #func on_player_wins():
 	#$VictoryPOV.current = true
