@@ -6,7 +6,7 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f4t5n"]
 transparency = 1
-albedo_color = Color(0, 0.886275, 1, 0.67451)
+albedo_color = Color(0.301961, 0.886275, 1, 0.709804)
 
 [sub_resource type="BoxMesh" id="BoxMesh_tm0bj"]
 material = SubResource("StandardMaterial3D_f4t5n")

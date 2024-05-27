@@ -15,6 +15,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.37387, 0)
 shape = SubResource("BoxShape3D_i7edx")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.657074, 20.7509, 0)
-light_energy = 5.0
-omni_range = 16.211
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.657074, 8.75552, 0)
+light_energy = 3.041
+omni_range = 26.976

@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://jrbq74tciilg"]
 
-[sub_resource type="GDScript" id="GDScript_e1aok"]
+[ext_resource type="Script" path="res://Scripts/DoodePenguin.gd" id="1_20lg2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pfbqn"]
 resource_name = "Material.011"
@@ -266,7 +266,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [node name="Penguin" type="CharacterBody3D"]
-script = SubResource("GDScript_e1aok")
+script = ExtResource("1_20lg2")
 
 [node name="Armature_001" type="Node3D" parent="."]
 transform = Transform3D(0.3, 0, 0, 0, 0.299961, 0.00482007, 0, -0.00482007, 0.299961, 0, 0.720952, 0)

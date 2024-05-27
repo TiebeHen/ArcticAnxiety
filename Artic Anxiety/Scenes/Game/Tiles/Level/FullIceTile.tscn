@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://d11e5s2i8frlq"]
 
-[ext_resource type="Texture2D" uid="uid://ihmavtikt5a6" path="res://Scenes/Game/Tiles/Texture/21337370_6466227.jpg" id="1_5yx6o"]
+[ext_resource type="Texture2D" uid="uid://bwje48htc2c3t" path="res://Scenes/Game/Tiles/Texture/icetileseamless.png" id="1_pdp54"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o2bkp"]
-albedo_texture = ExtResource("1_5yx6o")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uqv77"]
+albedo_texture = ExtResource("1_pdp54")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_pqi2e"]
 _surfaces = [{
@@ -26,7 +26,7 @@ size = Vector3(2, 1, 2)
 [node name="Node3D" type="Node3D"]
 
 [node name="FulIceTile2" type="MeshInstance3D" parent="."]
-material_override = SubResource("StandardMaterial3D_o2bkp")
+material_override = SubResource("StandardMaterial3D_uqv77")
 mesh = SubResource("ArrayMesh_pqi2e")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="FulIceTile2"]
