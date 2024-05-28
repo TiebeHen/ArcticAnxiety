@@ -1,7 +1,7 @@
 extends Control
 
 # Static list to hold player info
-var Players = []
+var Players = {}
 var GameJustStarted = true
 var GamePaused = true
 var fullscreen = false

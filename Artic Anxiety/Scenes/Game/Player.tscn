@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://i7334pqmd0da"]
+[gd_scene load_steps=69 format=3 uid="uid://i7334pqmd0da"]
 
 [ext_resource type="PackedScene" uid="uid://envw6v6diuqd" path="res://Assets/Models/RPG/rpgBaseglb.glb" id="2_h4006"]
 [ext_resource type="AudioStream" uid="uid://c2glpxvpew2nk" path="res://Audio/jump.mp3" id="2_ukqxk"]
@@ -1515,6 +1515,14 @@ _data = {
 "victory_camera_zoom_in": SubResource("Animation_wslai")
 }
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_08536"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("2_vw3vo")
 
@@ -1535,8 +1543,8 @@ bones/0/name = "buik"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.44751e-08, 0)
 bones/0/enabled = true
-bones/0/position = Vector3(0, -0.438519, 0)
-bones/0/rotation = Quaternion(0, 0, -0.0824548, 0.996595)
+bones/0/position = Vector3(0, -0.618903, 0)
+bones/0/rotation = Quaternion(0, 0, -0.0173358, 0.99985)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "RechterSchouder"
 bones/1/parent = 0
@@ -1550,7 +1558,7 @@ bones/2/parent = 1
 bones/2/rest = Transform3D(0.151258, 0.988127, -0.0269587, -0.842989, 0.143188, 0.518523, 0.516226, -0.0557049, 0.854639, -6.49597e-08, 1.16111, 3.72529e-09)
 bones/2/enabled = true
 bones/2/position = Vector3(-6.49597e-08, 1.16111, 3.72529e-09)
-bones/2/rotation = Quaternion(-0.151193, -0.127382, -0.568257, 0.798748)
+bones/2/rotation = Quaternion(-0.168292, -0.118234, -0.635418, 0.744274)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "RechterArm_2"
 bones/3/parent = 2
@@ -1592,7 +1600,7 @@ bones/8/parent = 7
 bones/8/rest = Transform3D(0.255068, -0.952512, 0.166315, 0.934712, 0.19887, -0.294557, 0.247494, 0.230589, 0.94105, -2.10712e-08, 1.06288, -1.30385e-08)
 bones/8/enabled = true
 bones/8/position = Vector3(-2.10712e-08, 1.06288, -1.30385e-08)
-bones/8/rotation = Quaternion(0.0830148, -0.0656731, 0.598407, 0.794169)
+bones/8/rotation = Quaternion(0.0975269, -0.0689438, 0.636904, 0.761635)
 bones/8/scale = Vector3(0.998526, 0.999899, 0.956609)
 bones/9/name = "LinkerArm_2"
 bones/9/parent = 8
@@ -1612,8 +1620,8 @@ bones/11/name = "RechterHeup"
 bones/11/parent = -1
 bones/11/rest = Transform3D(0.0115836, 0.996659, -0.0808465, 0.374843, 0.0706278, 0.924394, 0.927016, -0.0410126, -0.372773, 0, 5.44751e-08, 0)
 bones/11/enabled = true
-bones/11/position = Vector3(1.00433e-08, -0.438519, 1.28909e-09)
-bones/11/rotation = Quaternion(0.620471, 0.549001, 0.402594, -0.389271)
+bones/11/position = Vector3(8.63324e-09, -0.618903, 2.4463e-08)
+bones/11/rotation = Quaternion(0.583376, 0.588268, 0.376371, -0.414679)
 bones/11/scale = Vector3(1, 1, 1)
 bones/12/name = "RechterBeen"
 bones/12/parent = 11
@@ -1633,8 +1641,8 @@ bones/14/name = "LinkerHeup"
 bones/14/parent = -1
 bones/14/rest = Transform3D(0.00659573, -0.999924, 0.0104362, -0.178372, 0.00909263, 0.983921, -0.983941, -0.00835115, -0.178299, 0, 5.44751e-08, 0)
 bones/14/enabled = true
-bones/14/position = Vector3(1.29169e-10, -0.438519, -1.43602e-09)
-bones/14/rotation = Quaternion(-0.495526, 0.586177, 0.409636, 0.493)
+bones/14/position = Vector3(7.90773e-10, -0.618903, -6.9801e-09)
+bones/14/rotation = Quaternion(-0.532672, 0.552639, 0.440892, 0.465258)
 bones/14/scale = Vector3(1, 1, 1)
 bones/15/name = "LinkerBeen"
 bones/15/parent = 14
@@ -1648,7 +1656,7 @@ bones/16/parent = 15
 bones/16/rest = Transform3D(-0.480504, 0.852356, 0.206409, -0.852136, -0.509407, 0.119868, 0.207316, -0.118291, 0.971096, -7.45058e-09, 0.522611, -2.44472e-09)
 bones/16/enabled = true
 bones/16/position = Vector3(-7.45058e-09, 0.522611, -2.44472e-09)
-bones/16/rotation = Quaternion(0.167864, -0.0596631, 0.730595, -0.659161)
+bones/16/rotation = Quaternion(0.13071, -0.0121555, 0.836694, -0.531705)
 bones/16/scale = Vector3(1, 1, 1)
 
 [node name="Sphere_001" type="MeshInstance3D" parent="Twistpivot/Armature_001/Skeleton3D"]
@@ -1725,3 +1733,6 @@ libraries = {
 
 [node name="rpgBaseglb" parent="." instance=ExtResource("2_h4006")]
 transform = Transform3D(-0.6, 0, -5.24537e-08, 0, 0.6, 0, 5.24537e-08, 0, -0.6, 0.89823, 0.584143, -0.839438)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_08536")

@@ -28,11 +28,11 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3ala6"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fi1kc"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uiqln"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gl67r"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2ud5w"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_igogw"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y1mif"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c34tk"]
 bg_color = Color(0.233925, 0.233925, 0.233925, 1)
@@ -273,37 +273,86 @@ offset_right = 1009.0
 offset_bottom = 522.0
 color = Color(0, 0, 0, 0.670588)
 
+[node name="VBoxContainer" type="VBoxContainer" parent="MultiplayerMenuOverlay"]
+offset_left = 155.0
+offset_top = 242.0
+offset_right = 1007.0
+offset_bottom = 521.0
+
+[node name="OpenLobby" type="Control" parent="MultiplayerMenuOverlay/VBoxContainer"]
+layout_mode = 2
+
 [node name="LobbiesText" type="Node2D" parent="MultiplayerMenuOverlay"]
 
-[node name="LobbyNameText" type="LineEdit" parent="MultiplayerMenuOverlay/LobbiesText"]
-offset_left = 163.0
-offset_top = 208.0
-offset_right = 230.063
-offset_bottom = 239.0
-theme_override_styles/normal = SubResource("StyleBoxEmpty_fi1kc")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_gl67r")
-theme_override_styles/read_only = SubResource("StyleBoxEmpty_igogw")
+[node name="OpenLobbyTextUI" type="LineEdit" parent="MultiplayerMenuOverlay/LobbiesText"]
+offset_left = 161.0
+offset_top = 204.0
+offset_right = 223.0
+offset_bottom = 235.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_uiqln")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2ud5w")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_y1mif")
 text = "Name"
 
-[node name="IpAdressText" type="LineEdit" parent="MultiplayerMenuOverlay/LobbiesText"]
-offset_left = 477.0
-offset_top = 208.0
-offset_right = 544.063
-offset_bottom = 239.0
-theme_override_styles/normal = SubResource("StyleBoxEmpty_fi1kc")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_gl67r")
-theme_override_styles/read_only = SubResource("StyleBoxEmpty_igogw")
-text = "IP"
+[node name="OpenLobbyIPAdressUI" type="LineEdit" parent="MultiplayerMenuOverlay/LobbiesText"]
+offset_left = 468.0
+offset_top = 202.0
+offset_right = 552.0
+offset_bottom = 233.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_uiqln")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2ud5w")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_y1mif")
+text = "IP-adress"
 
-[node name="AmountPlayerText" type="LineEdit" parent="MultiplayerMenuOverlay/LobbiesText"]
-offset_left = 753.0
-offset_top = 207.0
-offset_right = 820.063
-offset_bottom = 238.0
-theme_override_styles/normal = SubResource("StyleBoxEmpty_fi1kc")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_gl67r")
-theme_override_styles/read_only = SubResource("StyleBoxEmpty_igogw")
+[node name="OpenLobbyCurrentPlayersUI" type="LineEdit" parent="MultiplayerMenuOverlay/LobbiesText"]
+offset_left = 754.0
+offset_top = 205.0
+offset_right = 816.0
+offset_bottom = 236.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_uiqln")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2ud5w")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_y1mif")
 text = "Players"
+
+[node name="OpenLobbyText" type="LineEdit" parent="MultiplayerMenuOverlay/LobbiesText"]
+visible = false
+offset_left = 163.0
+offset_top = 238.0
+offset_right = 468.0
+offset_bottom = 269.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_uiqln")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2ud5w")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_y1mif")
+
+[node name="OpenLobbyIPAdress" type="LineEdit" parent="MultiplayerMenuOverlay/LobbiesText"]
+visible = false
+offset_left = 472.0
+offset_top = 240.0
+offset_right = 727.0
+offset_bottom = 271.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_uiqln")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2ud5w")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_y1mif")
+
+[node name="OpenLobbyCurrentPlayers" type="LineEdit" parent="MultiplayerMenuOverlay/LobbiesText"]
+visible = false
+offset_left = 758.0
+offset_top = 249.0
+offset_right = 820.0
+offset_bottom = 280.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_uiqln")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2ud5w")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_y1mif")
+
+[node name="OpenLobbyMaxPlayers" type="LineEdit" parent="MultiplayerMenuOverlay/LobbiesText"]
+visible = false
+offset_left = 773.0
+offset_top = 249.0
+offset_right = 832.063
+offset_bottom = 280.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_uiqln")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2ud5w")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_y1mif")
 
 [node name="LobbyNameInput" type="LineEdit" parent="MultiplayerMenuOverlay"]
 offset_left = 586.0
@@ -496,7 +545,6 @@ offset_right = 848.0
 offset_bottom = 458.0
 
 [node name="Back" type="Node2D" parent="."]
-visible = false
 
 [node name="TextureBack" type="Sprite2D" parent="Back"]
 position = Vector2(135.156, 592)
@@ -580,34 +628,67 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_o068j")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_k2tvw")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_aw7bw")
 
+[node name="TestLeave" type="Node2D" parent="."]
+visible = false
+position = Vector2(1460, -648)
+
+[node name="TextureTestLeave" type="Sprite2D" parent="TestLeave"]
+position = Vector2(-522.992, 911.5)
+scale = Vector2(0.0602741, 0.0554621)
+texture = ExtResource("9_5yyb4")
+
+[node name="LineEditTestLeave" type="LineEdit" parent="TestLeave"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+offset_left = -570.0
+offset_top = 893.0
+offset_right = -476.0
+offset_bottom = 927.0
+theme_override_fonts/font = ExtResource("10_lfjdg")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_810rd")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4bx3d")
+text = "Leave"
+alignment = 1
+
+[node name="ButtonTestLeave" type="Button" parent="TestLeave"]
+offset_left = -568.0
+offset_top = 896.0
+offset_right = -477.0
+offset_bottom = 927.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cpfd1")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_o068j")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_k2tvw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_aw7bw")
+
 [node name="TestJoin" type="Node2D" parent="."]
 visible = false
 position = Vector2(730, -324)
 
 [node name="TextureTestJoin" type="Sprite2D" parent="TestJoin"]
-position = Vector2(135.156, 592)
-scale = Vector2(0.145483, 0.145483)
+position = Vector2(207.008, 587.5)
+scale = Vector2(0.0602741, 0.0554621)
 texture = ExtResource("9_5yyb4")
 
 [node name="LineEditTestJoin" type="LineEdit" parent="TestJoin"]
 modulate = Color(0, 0, 0, 1)
 self_modulate = Color(0, 0, 0, 1)
-offset_left = 30.1563
-offset_top = 558.0
-offset_right = 240.156
-offset_bottom = 624.0
+offset_left = 160.0
+offset_top = 569.0
+offset_right = 254.0
+offset_bottom = 603.0
 theme_override_fonts/font = ExtResource("10_lfjdg")
-theme_override_font_sizes/font_size = 40
+theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxEmpty_810rd")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_4bx3d")
-text = "TestJoin"
+text = "Join"
 alignment = 1
 
 [node name="ButtonTestJoin" type="Button" parent="TestJoin"]
-offset_left = 24.1563
-offset_top = 552.0
-offset_right = 246.156
-offset_bottom = 632.0
+offset_left = 162.0
+offset_top = 572.0
+offset_right = 253.0
+offset_bottom = 603.0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_cpfd1")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_o068j")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_k2tvw")
@@ -632,4 +713,5 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_aw7bw")
 [connection signal="mouse_exited" from="Back/ButtonBack" to="." method="_on_button_back_mouse_exited"]
 [connection signal="pressed" from="Back/ButtonBack" to="." method="_on_button_back_pressed"]
 [connection signal="pressed" from="TestPlay/ButtonTestPlay" to="." method="_on_button_test_play_pressed"]
+[connection signal="pressed" from="TestLeave/ButtonTestLeave" to="." method="_on_button_test_leave_pressed"]
 [connection signal="pressed" from="TestJoin/ButtonTestJoin" to="." method="_on_button_test_join_pressed"]

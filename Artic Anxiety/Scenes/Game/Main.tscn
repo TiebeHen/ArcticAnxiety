@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c8p1knk816wf8"]
+[gd_scene load_steps=9 format=3 uid="uid://c8p1knk816wf8"]
 
 [ext_resource type="Script" path="res://Scripts/SceneManager.gd" id="1_5yops"]
 [ext_resource type="PackedScene" uid="uid://mouheqrhmwph" path="res://Scenes/Game/Tiles/Water/WaterTile.tscn" id="3_cbp0g"]
@@ -7,7 +7,6 @@
 [ext_resource type="AudioStream" uid="uid://b6f4nk1ioyd57" path="res://Audio/Background music.mp3" id="6_60gas"]
 [ext_resource type="PackedScene" uid="uid://2l86vrjjpm35" path="res://Scenes/Game/Level1.tscn" id="6_nhq3s"]
 [ext_resource type="PackedScene" uid="uid://tbovghor3tp5" path="res://Scenes/Menus/MenuController.tscn" id="7_aas4l"]
-[ext_resource type="PackedScene" uid="uid://i7334pqmd0da" path="res://Scenes/Game/Player.tscn" id="8_35xyh"]
 [ext_resource type="PackedScene" uid="uid://poxah1udrh5i" path="res://Scenes/Game/orca.tscn" id="9_g2o18"]
 
 [node name="Main" type="Control"]
@@ -85,17 +84,13 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Penguin" parent="." instance=ExtResource("8_35xyh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.68063, 0.646441, 1.9009)
-visible = false
-
 [node name="SpawnLocations" type="Node3D" parent="."]
 
 [node name="0" type="Node3D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.91571, 0, 7.21457)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 1, 85)
 
 [node name="1" type="Node3D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.7092, 7.62939e-06, 91.5279)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1, 7)
 
 [node name="Abilities" type="Node" parent="."]
 

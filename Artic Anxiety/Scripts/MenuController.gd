@@ -5,7 +5,10 @@ extends Control
 @export var port = 8910
 var peer
 
-static var _has_lobby = false
+static var HasCreatedLobby := false
+var IsLobbyFull := false
+var maxPlayerCount := 2
+var currentPlayerCount := 0
 
 # TEMP BUTTON FOR QUICK DEBUGGING - NO MULTIPLAYER
 func _on_button_test_play_pressed():
@@ -19,6 +22,7 @@ func _ready():
 	multiplayer.connection_failed.connect(connection_failed)
 	if "--server" in OS.get_cmdline_args():
 		hostGame()
+		
 
 func _process(_delta):
 	pass
@@ -26,8 +30,15 @@ func _process(_delta):
 # this get called on the server and clients
 func peer_connected(id):
 	print("Player Connected " + str(id))
+	currentPlayerCount += 1
+	$MultiplayerMenuOverlay/LobbiesText/OpenLobbyCurrentPlayers.show()
+	$MultiplayerMenuOverlay/LobbiesText/OpenLobbyCurrentPlayers.text = str(currentPlayerCount)
 	if multiplayer.is_server():
-		$MultiplayerMenuOverlay/Start.show()
+		if currentPlayerCount == maxPlayerCount:
+			IsLobbyFull = true
+		if IsLobbyFull == true:
+			$MultiplayerMenuOverlay/Start.show()
+			
 	
 # this get called on the server and clients
 func peer_disconnected(id):
@@ -41,19 +52,18 @@ func peer_disconnected(id):
 # called only from clients
 func connected_to_server():
 	print("connected To Sever!")
-	SendPlayerInformation.rpc_id(1, "hi", multiplayer.get_unique_id())
+	SendPlayerInformation.rpc_id(1, "player " + str(currentPlayerCount), multiplayer.get_unique_id())
 
 # called only from clients
 func connection_failed():
 	print("Couldnt Connect")
 
 @rpc("any_peer")
-func SendPlayerInformation(_name, id):
-	if !GameManager.Players.has(id):
-		GameManager.Players[id] ={
+func SendPlayerInformation(_name, _id):
+	if !GameManager.Players.has(_id):
+		GameManager.Players[_id] ={
 			"name" : _name,
-			"id" : id,
-			"score": 0
+			"id" : _id
 		}
 	
 	if multiplayer.is_server():
@@ -62,12 +72,13 @@ func SendPlayerInformation(_name, id):
 
 @rpc("any_peer","call_local")
 func StartGame():
-	GameManager.GamePaused = false
-	hide()
+	if GameManager.Players.size() == maxPlayerCount:
+		GameManager.StartConnection = true
+		hide()
 	
 func hostGame():		
 	peer = ENetMultiplayerPeer.new()
-	var error = peer.create_server(port, 2)
+	var error = peer.create_server(port, maxPlayerCount)
 	if error != OK:
 		print("cannot host: " + error)
 		return
@@ -75,7 +86,19 @@ func hostGame():
 	
 	multiplayer.set_multiplayer_peer(peer)
 	print("Waiting For Players!")
-	_has_lobby = true
+	HasCreatedLobby = true
+	
+	$MultiplayerMenuOverlay/LobbyNameInput.hide()
+	$MultiplayerMenuOverlay/Create.hide()
+	$TestJoin.hide()
+	#$TestLeave.show()
+	
+	$MultiplayerMenuOverlay/LobbiesText/OpenLobbyText.text = $MultiplayerMenuOverlay/LobbyNameInput.text
+	$MultiplayerMenuOverlay/LobbiesText/OpenLobbyText.show()
+	$MultiplayerMenuOverlay/LobbiesText/OpenLobbyIPAdress.text = Address
+	$MultiplayerMenuOverlay/LobbiesText/OpenLobbyIPAdress.show()
+	$MultiplayerMenuOverlay/LobbiesText/OpenLobbyMaxPlayers.text = " / " + str(maxPlayerCount)
+	$MultiplayerMenuOverlay/LobbiesText/OpenLobbyMaxPlayers.show()
 	
 func _on_button_multiplayer_pressed():
 	$MultiplayerMenuOverlay.show()
@@ -84,7 +107,7 @@ func _on_button_multiplayer_pressed():
 	# Show this Button
 	$Back.show()
 	
-	if _has_lobby == false:
+	if HasCreatedLobby == false:
 		$MultiplayerMenuOverlay/LobbyNameInput.show()
 		$MultiplayerMenuOverlay/LobbyNameInput.text = ""
 		$MultiplayerMenuOverlay/Create.show()
@@ -107,9 +130,6 @@ func _on_button_exit_pressed():
 	# endregion
 
 func _on_button_create_lobby_pressed():
-	$MultiplayerMenuOverlay/LobbyNameInput.hide()
-	$MultiplayerMenuOverlay/Create.hide()
-	$TestJoin.hide()
 	hostGame()
 	
 func _on_button_test_join_pressed():
@@ -118,7 +138,7 @@ func _on_button_test_join_pressed():
 	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
 	multiplayer.set_multiplayer_peer(peer)	
 	
-	if _has_lobby == false:
+	if HasCreatedLobby == false:
 		$MultiplayerMenuOverlay/LobbyNameInput.hide()
 		$MultiplayerMenuOverlay/Create.hide()
 		$TestJoin.hide()
@@ -126,7 +146,10 @@ func _on_button_test_join_pressed():
 
 func _on_button_start_lobby_pressed():
 	StartGame.rpc()
-
+	
+func _on_button_test_leave_pressed():
+	pass # Replace with function body.
+	
 # Back Button always goes to StartMenuOverlay
 func _on_button_back_pressed():
 	$SettingsMenuOverlay.hide()
@@ -187,5 +210,7 @@ func _on_button_back_mouse_entered():
 func _on_button_back_mouse_exited():
 	$Back/TextureBackHover.hide()
 	$Back/LineEditBackHover.hide()
+
+
 
 
