@@ -14,17 +14,11 @@ func _process(_delta):
 		var index = 0
 		for i in GameManager.Players:
 			var currentPlayer = playerScene.instantiate()
-			print(str(GameManager.Players[i].id))
-			print(str(GameManager.Players[i].name))
 			currentPlayer.name = str(GameManager.Players[i].id)
 			add_child(currentPlayer)
 			for spawn in get_tree().get_nodes_in_group("PlayerSpawnPoint"):
-				print(spawn.name)
-				print(str(index))
 				if spawn.name == str(index):
-					print("created player")
 					currentPlayer.global_position = spawn.global_position
-					print(currentPlayer.global_position)
 			index += 1
 		GameManager.StartConnection = false
 		GameManager.Connecting = true

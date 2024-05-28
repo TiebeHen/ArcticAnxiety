@@ -1,6 +1,7 @@
 extends Control
 
 # Static list to hold player info
+var maxPlayersPerLobby = 2
 var Players = {}
 var GameJustStarted = true
 var GamePaused = true

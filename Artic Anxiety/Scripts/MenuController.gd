@@ -7,7 +7,7 @@ var peer
 
 static var HasCreatedLobby := false
 var IsLobbyFull := false
-var maxPlayerCount := 2
+var maxPlayerCount = GameManager.maxPlayersPerLobby
 var currentPlayerCount := 0
 
 # TEMP BUTTON FOR QUICK DEBUGGING - NO MULTIPLAYER
@@ -22,6 +22,8 @@ func _ready():
 	multiplayer.connection_failed.connect(connection_failed)
 	if "--server" in OS.get_cmdline_args():
 		hostGame()
+		
+	$ServerBrowser.joinGame.connect(JoinByIP)
 		
 
 func _process(_delta):
@@ -55,6 +57,8 @@ func connected_to_server():
 	print("connected To Sever!")
 	print("player " + str(currentPlayerCount) + " is connected to server")
 	SendPlayerInformation.rpc_id(1, "EnemyPlayer", multiplayer.get_unique_id())
+	$MultiplayerMenuOverlay/LobbyNameInput.hide()
+	$MultiplayerMenuOverlay/Create.hide()
 
 # called only from clients
 func connection_failed():
@@ -118,7 +122,7 @@ func _on_button_multiplayer_pressed():
 		$MultiplayerMenuOverlay/LobbyNameInput.show()
 		$MultiplayerMenuOverlay/LobbyNameInput.text = ""
 		$MultiplayerMenuOverlay/Create.show()
-		$TestJoin.show()
+		#$TestJoin.show()
 	else:
 		$MultiplayerMenuOverlay/Start.show()
 	
@@ -139,6 +143,7 @@ func _on_button_exit_pressed():
 func _on_button_create_lobby_pressed():
 	hostGame()
 	SendPlayerInformation("Player 0", multiplayer.get_unique_id())
+	$ServerBrowser.setUpBroadCast($MultiplayerMenuOverlay/LobbyNameInput.text + "'s server")
 	
 func _on_button_test_join_pressed():
 	peer = ENetMultiplayerPeer.new()
@@ -151,6 +156,11 @@ func _on_button_test_join_pressed():
 		$MultiplayerMenuOverlay/Create.hide()
 		$TestJoin.hide()
 		
+func JoinByIP(ip):
+	peer = ENetMultiplayerPeer.new()
+	peer.create_client(ip, port)
+	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
+	multiplayer.set_multiplayer_peer(peer)
 
 func _on_button_start_lobby_pressed():
 	StartGame.rpc()
@@ -218,6 +228,7 @@ func _on_button_back_mouse_entered():
 func _on_button_back_mouse_exited():
 	$Back/TextureBackHover.hide()
 	$Back/LineEditBackHover.hide()
+
 
 
 

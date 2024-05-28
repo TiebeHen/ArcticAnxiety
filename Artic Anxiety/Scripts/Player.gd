@@ -278,7 +278,6 @@ func GetPlayerPos():
 @rpc("any_peer","call_local")
 func fireSnowBall(_camerarecords: Vector2):
 	if(_camerarecords != null):
-		print("Throwing snowball from: " + str(position))
 		$"..".throw_snowball(get_parent().get_node("Abilities"), position, Vector3(_camerarecords.x - position.x, 0, _camerarecords.y - position.z))
 	else:
 		print("Can't find camerarecords")
@@ -287,7 +286,6 @@ func fireSnowBall(_camerarecords: Vector2):
 @rpc("any_peer","call_local")
 func shootRPG(_camerarecords: Vector2):
 	if(_camerarecords != null):
-		print("Shooting RPG from: " + str(position))
 		$"..".RPG(get_parent().get_node("Abilities"), position, Vector3(_camerarecords.x - position.x, 0, _camerarecords.y - position.z),Vector3(_camerarecords.x, 0, _camerarecords.y))
 	else:
 		print("Can't find camerarecords")
