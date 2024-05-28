@@ -6,20 +6,23 @@ var rocketScene = preload("res://Scenes/Game/Abilities/Rocket_Laucher_Rocket.tsc
 var playerScene = preload("res://Scenes/Game/Player.tscn")
 
 func _ready():
-	var index = 0
-	for i in GameManager.Players:
-		var currentPlayer = playerScene.instantiate()
-		currentPlayer.name = str(GameManager.Players[i].id)
-		add_child(currentPlayer)
-		for spawn in get_tree().get_nodes_in_group("PlayerSpawnPoint"):
-			if spawn.name == str(index):
-				currentPlayer.global_position = spawn.global_position
-		index += 1
+	pass
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	#OrcaMovementNode.call("SetPlayerPos", PlayerNode.call("GetPlayerPos"))
-	pass
+	if GameManager.StartConnection == true:
+		var index = 0
+		for i in GameManager.Players:
+			var currentPlayer = playerScene.instantiate()
+			currentPlayer.name = str(GameManager.Players[i].id)
+			add_child(currentPlayer)
+			for spawn in get_tree().get_nodes_in_group("PlayerSpawnPoint"):
+				if spawn.name == str(index):
+					currentPlayer.global_position = spawn.global_position
+			index += 1
+		GameManager.StartConnection == false
+		GameManager.Connecting == true
+			
 	
 
 

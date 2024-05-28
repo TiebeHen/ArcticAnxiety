@@ -33,9 +33,7 @@ var  maxTimeJesus = 3
 var timeLeftJesus = 0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") *4
-var SnowballScene = preload("res://Scenes/Game/Abilities/Snowball.tscn")
-
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") * 4
 
 var mouse_sensitivity := 0.001
 var twist_input := 0.0
@@ -51,6 +49,9 @@ func _ready() -> void:
 	RPG.visible = false
 
 func _physics_process(delta):
+	if GameManager.GamePaused == true:
+		return
+		
 	if isAlive == false:
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CONFINED:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -134,11 +135,6 @@ func _physics_process(delta):
 	twist_input = 0.0
 	pitch_input = 0.0
 
-	if Input.is_action_just_pressed("ui_cancel"):
-		if Input.get_mouse_mode() == Input.MOUSE_MODE_CONFINED:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		else:
-			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 			
 	var camerarecords
 	if get_viewport() != null:
@@ -159,7 +155,7 @@ func _physics_process(delta):
 	timeLeftJesus -= delta
 	timeLeftAbility -= delta
 	#timeLeftAbility  maxTimeAbility
-	if Input.is_action_just_pressed("click_throw") and isUnderwater == false:
+	if Input.is_action_pressed("click_throw") and isUnderwater == false:
 		if (victory == false):
 			if timeLeftAbility <= 3:
 				if abilityNr == 1: #Sneeuwbal ability

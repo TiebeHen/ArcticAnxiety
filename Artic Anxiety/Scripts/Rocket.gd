@@ -27,6 +27,9 @@ func set_target_position(_target_pos: Vector3):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if GameManager.GamePaused == true:
+		return
+		
 	var direction = (target_position - position).normalized()
 	position += direction * SPEED * delta
 	time_left_rocket -= delta

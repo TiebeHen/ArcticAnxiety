@@ -48,6 +48,9 @@ func load_map():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if GameManager.GamePaused == true:
+		return
+	
 	if start_gameplay == true:
 		var newInstances = [] # Create a new list to hold instances to be added
 		

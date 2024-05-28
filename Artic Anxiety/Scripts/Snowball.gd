@@ -12,6 +12,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if GameManager.GamePaused == true:
+		return
+		
 	_velocity = _velocity.normalized() * SPEED * delta # Scale velocity by delta time
 	translate(_velocity) # Move the snowball
 	

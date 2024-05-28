@@ -24,6 +24,9 @@ func _ready():
 		set_random_target()
 
 func _process(delta):
+	if GameManager.GamePaused == true:
+		return
+		
 	var next_nav_point = null  # Declare next_nav_point outside of the if block
 
 	if targetFoundToEat:
