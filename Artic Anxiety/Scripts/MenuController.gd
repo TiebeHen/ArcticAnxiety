@@ -65,7 +65,8 @@ func SendPlayerInformation(_name, _id):
 	if !GameManager.Players.has(_id):
 		GameManager.Players[_id] ={
 			"name" : _name,
-			"id" : _id
+			"id" : _id,
+			"is_alive" : true
 		}
 	
 	if multiplayer.is_server():

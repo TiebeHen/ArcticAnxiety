@@ -16,8 +16,8 @@ var abilityNr = 1
 var GameNode = load("res://Scripts/SceneManager.gd")
 static var victory = false
 
-var isUnderwater = false
-var isAlive = true
+var isUnderwater := false
+var isAlive := true
 var maxtimeLeftUntilDeathScreen = 3
 var timeLeftUntilDeathScreen = maxtimeLeftUntilDeathScreen
 
@@ -298,5 +298,7 @@ func EndGame():
 	GameManager.GameFinished = true
 	GameManager.GamePaused = true
 	
+func IsAlive() -> bool:
+	return isAlive
 
 

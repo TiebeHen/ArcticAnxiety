@@ -37,4 +37,15 @@ func _process(_delta):
 			
 	if GameFinished == true:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		
+		#check_players()
 	
+func check_players():
+	var howManyPlayers = Players.size()
+	var howManyAlive = howManyPlayers
+	#for p in Players:
+		#if p["is_alive"] == false:
+		#	howManyAlive -= 1
+	if howManyAlive == 1:
+		print("game can end, only 1 survivor")
+		pass
