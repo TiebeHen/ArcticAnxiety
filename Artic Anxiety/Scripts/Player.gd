@@ -12,15 +12,10 @@ static var player_position
 var abilityNr = 1
 
 
-var GameManagerScript = load("res://Scripts/GameManager.cs")
-var GameNode = GameManagerScript.new()
+var GameNode = load("res://Scripts/SceneManager.gd")
 static var victory = false
 
-var LevelScript = load("res://Scripts/Level.cs")
-var LevelNode = LevelScript.new()
-
-var DoodePenguinScript = load("res://Scripts/DoodePenguin.gd")
-var DoodePenguinNode = DoodePenguinScript.new()
+var DoodePenguinNode = load("res://Scripts/DoodePenguin.gd").new()
 
 #voor de timer om door de tile te vallen
 var maxTime = 5
@@ -49,6 +44,7 @@ var pitch_input := 0.0
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
+	GameNode.new()
 	RPG.visible = false
 
 func _physics_process(delta):
@@ -146,7 +142,7 @@ func _physics_process(delta):
 		if (victory == false):
 			if timeLeftAbility <= 3:
 				if abilityNr == 1: #Sneeuwbal ability
-					GameNode.ThrowSnowball(get_parent().get_node("Abilities"), position, Vector3(camerarecords.x - position.x, 0, camerarecords.y - position.z))
+					$"..".throw_snowball(get_parent().get_node("Abilities"), position, Vector3(camerarecords.x - position.x, 0, camerarecords.y - position.z))
 					timeLeftAbility = maxTimeAbility
 					
 				if timeLeftAbility <= 0:
@@ -157,7 +153,7 @@ func _physics_process(delta):
 						timeLeftJesus = maxTimeJesus
 						
 				if abilityNr == 3: #Rocket ability
-					GameNode.RPG(get_parent().get_node("Abilities"), position, Vector3(camerarecords.x - position.x, 0, camerarecords.y - position.z),Vector3(camerarecords.x, 0, camerarecords.y))
+					$"..".RPG(get_parent().get_node("Abilities"), position, Vector3(camerarecords.x - position.x, 0, camerarecords.y - position.z),Vector3(camerarecords.x, 0, camerarecords.y))
 					RPG.visible = true
 					timeLeftAbility = maxTimeAbility
 				#LevelNode.DeleteTileWRadius(Vector3(camerarecords.x, 0, camerarecords.y),5)
@@ -191,12 +187,12 @@ func _physics_process(delta):
 		timeLeft = 0
 		timeLeft = maxTime
 		if (victory == false):
-			LevelNode.DeleteTile(player_position)
+			$"../Level1".delete_tile_at_position(player_position)
 			
 	#player die dood gaat voor de cam
 	if player_position.y <= -1:
 		if (victory == false):
-			DoodePenguinNode._KillPlayer()
+			$"../DoodePenguin".kill_player()
 	
 func cameraToPlayer(camera_position: Vector2) -> Vector2:
 		# Define the size of the camera viewport

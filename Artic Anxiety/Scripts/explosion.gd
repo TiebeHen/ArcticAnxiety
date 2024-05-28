@@ -9,33 +9,26 @@ extends Node3D
 static var TargetPos
 var SoundPlayed = false
 
+var goKaboom = false
 
 
-
-func _process(delta):
-	_GetTargetPos()
-	explode()
-
+func _process(_delta):
+	goKaboom = $"../..".can_explode()
+	
+	if goKaboom:
+		TargetPos = $"../..".target_pos()
+		explode()
 
 func explode():
+	debris.position = TargetPos
+	smoke.position = TargetPos
+	fire.position = TargetPos
 	
-	if(TargetPos != Vector3.ZERO):
-		
-		debris.position = TargetPos
-		smoke.position = TargetPos
-		fire.position = TargetPos
-	
-		debris.emitting = true
-		smoke.emitting = true
-		fire.emitting = true
-		if(SoundPlayed == false):
-			explosion.play()
-			SoundPlayed = true
-	
-		
-	
-func _GetTargetPos():
-	var RocketScript = load("res://Scripts/Rocket.cs")
-	var RocketNode = RocketScript.new()
-	TargetPos = RocketNode.TargetPos()
-	
+	debris.emitting = true
+	smoke.emitting = true
+	fire.emitting = true
+	if(SoundPlayed == false):
+		explosion.play()
+		SoundPlayed = true
+		$"../..".hide()
+

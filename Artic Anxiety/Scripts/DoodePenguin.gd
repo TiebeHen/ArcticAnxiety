@@ -19,6 +19,6 @@ func _process(delta):
 		else:
 			timeLeftUntilDeathScreen -= delta
 	
-func _KillPlayer():
+func kill_player():
 	Dood = true
 

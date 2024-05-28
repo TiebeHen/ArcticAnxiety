@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://bhtvq5b7yvktt"]
+[gd_scene load_steps=11 format=3 uid="uid://bhtvq5b7yvktt"]
 
-[ext_resource type="Script" path="res://Scripts/Level.cs" id="1_w7c8l"]
-[ext_resource type="Script" path="res://Scripts/GameManager.cs" id="1_xitt1"]
+[ext_resource type="Script" path="res://Scripts/Level1.gd" id="1_v3ofq"]
 [ext_resource type="PackedScene" uid="uid://i7334pqmd0da" path="res://Scenes/Game/Player.tscn" id="3_pvd75"]
 [ext_resource type="PackedScene" uid="uid://dmhlnoq71xl4t" path="res://Scenes/Game/Tiles/Water/WaterTileDeath.tscn" id="5_0jqrj"]
 [ext_resource type="Script" path="res://Scripts/DoodePenguin.gd" id="5_n2uy8"]
@@ -18,7 +17,6 @@ material = SubResource("ORMMaterial3D_w3gmo")
 size = Vector3(3, 3, 1)
 
 [node name="GameManager" type="Node3D"]
-script = ExtResource("1_xitt1")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.000733093, 1, 0, -1, 0.000733093, 30, 50, 50)
@@ -29,7 +27,7 @@ transform = Transform3D(4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, 1, 4.
 current = true
 
 [node name="LevelScript" type="Node3D" parent="."]
-script = ExtResource("1_w7c8l")
+script = ExtResource("1_v3ofq")
 
 [node name="Abilities" type="Node" parent="."]
 

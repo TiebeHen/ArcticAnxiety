@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Artic Anxiety"
-run/main_scene="res://Scenes/Menus/StartMenu.tscn"
+run/main_scene="res://Scenes/Menus/MenuController.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://Assets/icon.svg"
+
+[autoload]
+
+GameManager="*res://Scripts/GameManager.gd"
 
 [dotnet]
 

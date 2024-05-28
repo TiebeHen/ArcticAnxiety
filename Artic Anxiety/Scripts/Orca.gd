@@ -18,27 +18,38 @@ var last_direction = Vector3.FORWARD
 
 #Called when the node enters the scene tree for the first time.
 func _ready():
-	player = get_node(player_path)
-	if player.position.y > 0:
-		set_random_target()
+	if player != null:
+		player = get_node(player_path)
+		if player.position.y > 0:
+			set_random_target()
 
 func _process(delta):
+	var next_nav_point = null  # Declare next_nav_point outside of the if block
 	
-	if player.position.y < 0:
-		speed == 30
-		velocity = Vector3.ZERO
+	if player != null:
+		if player.position.y < 0:
+			speed = 30
+			velocity = Vector3.ZERO
 
-	# Navigation
+		# Navigation
 		nav_agent.set_target_position(player.global_transform.origin)
-	
-		var next_nav_point = nav_agent.get_next_path_position()
-	
-		if (next_nav_point != null):
-			velocity = (next_nav_point - global_transform.origin).normalized() * speed
-	
-		look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z ),Vector3.UP)
+		
+		next_nav_point = nav_agent.get_next_path_position()  # Assign next_nav_point inside the if block
+		
+	if next_nav_point != null:  # Check next_nav_point outside of the if block
+		velocity = (next_nav_point - global_transform.origin).normalized() * speed
+		
+		# Check if the direction vector is aligned with the up vector
+		var new_direction = (next_nav_point - global_transform.origin).normalized()
+		if abs(new_direction.dot(Vector3.UP)) > 0.99:
+			# Use a different up vector to avoid alignment issues
+			var alternative_up = Vector3(0, 0, 1) if new_direction.y > 0 else Vector3(0, 0, -1)
+			look_at(next_nav_point, alternative_up)
+		else:
+			look_at(next_nav_point, Vector3.UP)
+		
+	move_and_slide()
 
-		move_and_slide()
 		
 	move_timer -= delta
 	if move_timer <= 0:
@@ -46,15 +57,23 @@ func _process(delta):
 		move_timer = MOVE_INTERVAL
 
 	nav_agent.set_target_position(random_target)
-	var next_nav_point = nav_agent.get_next_path_position()
+	next_nav_point = nav_agent.get_next_path_position()
 
 	if next_nav_point != null:
 		var new_direction = (next_nav_point - global_transform.origin).normalized()
-		#check_turn_angle(last_direction, new_direction)
 		velocity = new_direction * speed
-		look_at(next_nav_point, Vector3.UP)
+
+	# Check if the direction vector is aligned with the up vector
+		if abs(new_direction.dot(Vector3.UP)) > 0.99:
+		# Use a different up vector to avoid alignment issues
+			var alternative_up = Vector3(0, 0, 1) if new_direction.y > 0 else Vector3(0, 0, -1)
+			look_at(next_nav_point, alternative_up)
+		else:
+			look_at(next_nav_point, Vector3.UP)
+		
 		last_direction = new_direction
 		move_and_slide()
+
 		
 func set_random_target():
 	var confined_area_min = Vector3(0, 0, 0) # Minimum corner of the confined space

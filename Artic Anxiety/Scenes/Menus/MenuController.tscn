@@ -1,10 +1,12 @@
-[gd_scene load_steps=29 format=3 uid="uid://tbovghor3tp5"]
+[gd_scene load_steps=30 format=3 uid="uid://tbovghor3tp5"]
 
-[ext_resource type="Script" path="res://Scripts/NavigationController.cs" id="1_te3wm"]
+[ext_resource type="Script" path="res://Scripts/MenuController.gd" id="1_gyt7m"]
 [ext_resource type="Texture2D" uid="uid://cmrl4swcq61ia" path="res://Assets/Menus/Background_Empty.png" id="2_eed64"]
 [ext_resource type="FontFile" uid="uid://byktst7h4frap" path="res://Assets/Fonts/TherenRegular-2Oevd.otf" id="5_jsk6x"]
 [ext_resource type="Texture2D" uid="uid://oriidxdo1fa3" path="res://Assets/Buttons/Button.png" id="9_5yyb4"]
 [ext_resource type="FontFile" uid="uid://dhjj1ii1frsqf" path="res://Assets/Fonts/TherenRegular-vmrnE.ttf" id="10_lfjdg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yrv8b"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cfq0q"]
 
@@ -53,7 +55,7 @@ bg_color = Color(0.233925, 0.233925, 0.233925, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s5m8h"]
 
-[node name="NavigationController" type="Control"]
+[node name="MenuController" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -62,7 +64,7 @@ offset_top = -3.0
 offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_te3wm")
+script = ExtResource("1_gyt7m")
 
 [node name="MenuBackground" type="Sprite2D" parent="."]
 position = Vector2(576, 327)
@@ -75,10 +77,20 @@ offset_left = 7.0
 offset_top = 10.0
 offset_right = 1142.0
 offset_bottom = 115.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_colors/font_uneditable_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/clear_button_color = Color(0, 0, 0, 1)
+theme_override_colors/clear_button_color_pressed = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("10_lfjdg")
 theme_override_font_sizes/font_size = 80
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yrv8b")
 text = "Arctic     Anxiety"
 alignment = 1
+editable = false
 
 [node name="StartMenuOverlay" type="Node2D" parent="."]
 
