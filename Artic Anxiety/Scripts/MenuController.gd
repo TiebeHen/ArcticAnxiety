@@ -34,8 +34,6 @@ func peer_connected(id):
 	print("Player " + str(id) + " is connected")
 	if multiplayer.is_server():
 		currentPlayerCount += 1
-		$MultiplayerMenuOverlay/LobbiesText/OpenLobbyCurrentPlayers.show()
-		$MultiplayerMenuOverlay/LobbiesText/OpenLobbyCurrentPlayers.text = str(currentPlayerCount)
 		if currentPlayerCount == maxPlayerCount:
 			IsLobbyFull = true
 			print("lobby is full")
@@ -101,15 +99,6 @@ func hostGame():
 	#$TestLeave.show()
 	GameManager.IsThisAServer = true
 	currentPlayerCount += 1
-	$MultiplayerMenuOverlay/LobbiesText/OpenLobbyCurrentPlayers.show()
-	$MultiplayerMenuOverlay/LobbiesText/OpenLobbyCurrentPlayers.text = str(currentPlayerCount)
-	
-	$MultiplayerMenuOverlay/LobbiesText/OpenLobbyText.text = $MultiplayerMenuOverlay/LobbyNameInput.text
-	$MultiplayerMenuOverlay/LobbiesText/OpenLobbyText.show()
-	$MultiplayerMenuOverlay/LobbiesText/OpenLobbyIPAdress.text = Address
-	$MultiplayerMenuOverlay/LobbiesText/OpenLobbyIPAdress.show()
-	$MultiplayerMenuOverlay/LobbiesText/OpenLobbyMaxPlayers.text = " / " + str(maxPlayerCount)
-	$MultiplayerMenuOverlay/LobbiesText/OpenLobbyMaxPlayers.show()
 	
 func _on_button_multiplayer_pressed():
 	$MultiplayerMenuOverlay.show()
