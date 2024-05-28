@@ -39,6 +39,7 @@ var mouse_sensitivity := 0.001
 var twist_input := 0.0
 var pitch_input := 0.0
 
+
 @onready var twist_pivot := $Twistpivot
 @onready var pitch_pivot := $Twistpivot/PitchPivot
 @onready var RPG = $rpgBaseglb
@@ -68,6 +69,7 @@ func _physics_process(delta):
 			
 		if(timeLeftUntilDeathScreen < 0):
 			isAlive = false
+			EndGame.rpc()
 			
 		if (Input.is_action_just_pressed("victory")):
 			on_player_wins()
@@ -164,7 +166,8 @@ func _physics_process(delta):
 			if (victory == false):
 				if timeLeftAbility <= 3:
 					if abilityNr == 1: #Sneeuwbal ability
-						$"..".throw_snowball(get_parent().get_node("Abilities"), position, Vector3(camerarecords.x - position.x, 0, camerarecords.y - position.z))
+						fireSnowBall.rpc(camerarecords)
+
 						timeLeftAbility = maxTimeAbility
 						
 					if timeLeftAbility <= 0:
@@ -175,7 +178,7 @@ func _physics_process(delta):
 							timeLeftJesus = maxTimeJesus
 							
 					if abilityNr == 3: #Rocket ability
-						$"..".RPG(get_parent().get_node("Abilities"), position, Vector3(camerarecords.x - position.x, 0, camerarecords.y - position.z),Vector3(camerarecords.x, 0, camerarecords.y))
+						shootRPG.rpc(camerarecords)
 						RPG.visible = true
 						timeLeftAbility = maxTimeAbility
 					#LevelNode.DeleteTileWRadius(Vector3(camerarecords.x, 0, camerarecords.y),5)
@@ -207,7 +210,8 @@ func _physics_process(delta):
 			timeLeft = 0
 			timeLeft = maxTime
 			if (victory == false):
-				$"../Level1".delete_tile_at_position(player_position)
+				#$"../Level1".delete_tile_at_position(player_position)
+				pass
 				
 		#player die dood gaat voor de cam
 		if player_position.y <= -1:
@@ -270,4 +274,29 @@ func on_player_falling_in_water():
 	
 func GetPlayerPos():
 	return player_position
+	
+@rpc("any_peer","call_local")
+func fireSnowBall(_camerarecords: Vector2):
+	if(_camerarecords != null):
+		print("Throwing snowball from: " + str(position))
+		$"..".throw_snowball(get_parent().get_node("Abilities"), position, Vector3(_camerarecords.x - position.x, 0, _camerarecords.y - position.z))
+	else:
+		print("Can't find camerarecords")
+		print(get_viewport())
+		
+@rpc("any_peer","call_local")
+func shootRPG(_camerarecords: Vector2):
+	if(_camerarecords != null):
+		print("Shooting RPG from: " + str(position))
+		$"..".RPG(get_parent().get_node("Abilities"), position, Vector3(_camerarecords.x - position.x, 0, _camerarecords.y - position.z),Vector3(_camerarecords.x, 0, _camerarecords.y))
+	else:
+		print("Can't find camerarecords")
+		print(get_viewport())
+		
+@rpc("any_peer","call_local")
+func EndGame():
+	GameManager.GameFinished = true
+	GameManager.GamePaused = true
+	
+
 

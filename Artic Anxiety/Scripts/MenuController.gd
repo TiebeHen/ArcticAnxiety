@@ -29,13 +29,14 @@ func _process(_delta):
 
 # this get called on the server and clients
 func peer_connected(id):
-	print("Player Connected " + str(id))
-	currentPlayerCount += 1
-	$MultiplayerMenuOverlay/LobbiesText/OpenLobbyCurrentPlayers.show()
-	$MultiplayerMenuOverlay/LobbiesText/OpenLobbyCurrentPlayers.text = str(currentPlayerCount)
+	print("Player " + str(id) + " is connected")
 	if multiplayer.is_server():
+		currentPlayerCount += 1
+		$MultiplayerMenuOverlay/LobbiesText/OpenLobbyCurrentPlayers.show()
+		$MultiplayerMenuOverlay/LobbiesText/OpenLobbyCurrentPlayers.text = str(currentPlayerCount)
 		if currentPlayerCount == maxPlayerCount:
 			IsLobbyFull = true
+			print("lobby is full")
 		if IsLobbyFull == true:
 			$MultiplayerMenuOverlay/Start.show()
 			
@@ -52,7 +53,8 @@ func peer_disconnected(id):
 # called only from clients
 func connected_to_server():
 	print("connected To Sever!")
-	SendPlayerInformation.rpc_id(1, "player " + str(currentPlayerCount), multiplayer.get_unique_id())
+	print("player " + str(currentPlayerCount) + " is connected to server")
+	SendPlayerInformation.rpc_id(1, "EnemyPlayer", multiplayer.get_unique_id())
 
 # called only from clients
 func connection_failed():
@@ -92,6 +94,10 @@ func hostGame():
 	$MultiplayerMenuOverlay/Create.hide()
 	$TestJoin.hide()
 	#$TestLeave.show()
+	GameManager.IsThisAServer = true
+	currentPlayerCount += 1
+	$MultiplayerMenuOverlay/LobbiesText/OpenLobbyCurrentPlayers.show()
+	$MultiplayerMenuOverlay/LobbiesText/OpenLobbyCurrentPlayers.text = str(currentPlayerCount)
 	
 	$MultiplayerMenuOverlay/LobbiesText/OpenLobbyText.text = $MultiplayerMenuOverlay/LobbyNameInput.text
 	$MultiplayerMenuOverlay/LobbiesText/OpenLobbyText.show()
@@ -131,6 +137,7 @@ func _on_button_exit_pressed():
 
 func _on_button_create_lobby_pressed():
 	hostGame()
+	SendPlayerInformation("Player 0", multiplayer.get_unique_id())
 	
 func _on_button_test_join_pressed():
 	peer = ENetMultiplayerPeer.new()

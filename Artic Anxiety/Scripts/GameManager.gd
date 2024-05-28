@@ -13,6 +13,8 @@ var Connecting = false
 var Connected = false
 var ConnectionEnded = false
 
+var IsThisAServer = false
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
