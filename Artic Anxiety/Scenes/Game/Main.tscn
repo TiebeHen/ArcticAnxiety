@@ -92,6 +92,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 1, 85)
 [node name="1" type="Node3D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1, 7)
 
+[node name="2" type="Node3D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.3654, 2, 11.6821)
+
+[node name="3" type="Node3D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.42912, 4, 88.8443)
+
 [node name="Abilities" type="Node" parent="."]
 
 [node name="orca" parent="." instance=ExtResource("9_g2o18")]
