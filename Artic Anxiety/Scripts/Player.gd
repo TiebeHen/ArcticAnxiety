@@ -1,8 +1,9 @@
 extends CharacterBody3D
 
-@onready var anim_tree = $AnimationTree
 @export var victory_camera : Camera3D
+@onready var anim_tree = $AnimationTree
 @onready var jump = $jump_sfx
+@onready var victoryPOV: Node = $VictoryPOV
 
 const SPEED = 8.0
 const JUMP_VELOCITY = 12.0
@@ -15,7 +16,10 @@ var abilityNr = 1
 var GameNode = load("res://Scripts/SceneManager.gd")
 static var victory = false
 
-var DoodePenguinNode = load("res://Scripts/DoodePenguin.gd").new()
+var isUnderwater = false
+var isAlive = true
+var maxtimeLeftUntilDeathScreen = 3
+var timeLeftUntilDeathScreen = maxtimeLeftUntilDeathScreen
 
 #voor de timer om door de tile te vallen
 var maxTime = 5
@@ -33,7 +37,6 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") *4
 var SnowballScene = preload("res://Scenes/Game/Abilities/Snowball.tscn")
 
 
-
 var mouse_sensitivity := 0.001
 var twist_input := 0.0
 var pitch_input := 0.0
@@ -48,6 +51,21 @@ func _ready() -> void:
 	RPG.visible = false
 
 func _physics_process(delta):
+	if isAlive == false:
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_CONFINED:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		get_tree().change_scene_to_file("res://Scenes/Game/DeadScene.tscn")
+		return
+		
+	if isUnderwater == true:
+		timeLeftUntilDeathScreen -= delta
+		
+	if(timeLeftUntilDeathScreen < 0):
+		isAlive = false
+		
+	if (Input.is_action_just_pressed("victory")):
+		on_player_wins()
+		
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -74,7 +92,7 @@ func _physics_process(delta):
 	var direction = Vector3.ZERO
 	var target_velocity = Vector3.ZERO
 	var speed = 14
-	if (victory == false):
+	if (victory == false and isUnderwater == false):
 		if RPG.visible == false:
 			if Input.is_action_pressed("move_forward"):
 				direction.x -= 1
@@ -100,16 +118,17 @@ func _physics_process(delta):
 	
 	var input_dir = Input.get_vector("move_forward", "move_backward", "move_left", "move_right")
 
-	anim_tree.set("parameters/conditions/idle", input_dir == Vector2.ZERO && is_on_floor())
-	anim_tree.set("parameters/conditions/BeginnenGlijden", input_dir != Vector2.ZERO && is_on_floor())
-	anim_tree.set("parameters/conditions/Stoppen_Glijden", input_dir != Vector2.ZERO && is_on_floor())
-	anim_tree.set("parameters/conditions/idle_jump", input_dir == Vector2.ZERO && !is_on_floor())
-	anim_tree.set("parameters/conditions/Glijden_Jump", input_dir != Vector2.ZERO && !is_on_floor())
-	anim_tree.set("parameters/conditions/Gooien", Input.is_action_just_pressed("click_throw"))
+	if isUnderwater == false:
+		anim_tree.set("parameters/conditions/idle", input_dir == Vector2.ZERO && is_on_floor())
+		anim_tree.set("parameters/conditions/BeginnenGlijden", input_dir != Vector2.ZERO && is_on_floor())
+		anim_tree.set("parameters/conditions/Stoppen_Glijden", input_dir != Vector2.ZERO && is_on_floor())
+		anim_tree.set("parameters/conditions/idle_jump", input_dir == Vector2.ZERO && !is_on_floor())
+		anim_tree.set("parameters/conditions/Glijden_Jump", input_dir != Vector2.ZERO && !is_on_floor())
+		anim_tree.set("parameters/conditions/Gooien", Input.is_action_just_pressed("click_throw"))
 	
 	move_and_slide()
 	
-	#twist_pivot.rotate_y(twist_input)
+		#twist_pivot.rotate_y(twist_input)
 	pitch_pivot.rotate_x(pitch_input)
 	pitch_pivot.rotation.x = clamp(pitch_pivot.rotation.x, -0.5, 0.5) 
 	twist_input = 0.0
@@ -121,7 +140,9 @@ func _physics_process(delta):
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 			
-	var camerarecords = cameraToPlayer(get_viewport().get_mouse_position())
+	var camerarecords
+	if get_viewport() != null:
+		camerarecords = cameraToPlayer(get_viewport().get_mouse_position())
 	
 	
 	
@@ -138,7 +159,7 @@ func _physics_process(delta):
 	timeLeftJesus -= delta
 	timeLeftAbility -= delta
 	#timeLeftAbility  maxTimeAbility
-	if Input.is_action_just_pressed("click_throw"):
+	if Input.is_action_just_pressed("click_throw") and isUnderwater == false:
 		if (victory == false):
 			if timeLeftAbility <= 3:
 				if abilityNr == 1: #Sneeuwbal ability
@@ -163,8 +184,6 @@ func _physics_process(delta):
 		
 		
 		
-	if (Input.is_action_just_pressed("victory")):
-		on_player_wins()
 			
 			
 	
@@ -192,7 +211,7 @@ func _physics_process(delta):
 	#player die dood gaat voor de cam
 	if player_position.y <= -1:
 		if (victory == false):
-			$"../DoodePenguin".kill_player()
+			on_player_falling_in_water()
 	
 func cameraToPlayer(camera_position: Vector2) -> Vector2:
 		# Define the size of the camera viewport
@@ -225,15 +244,25 @@ func add_child_deferred(node):
 
 func remove_child_deferred(node):
 	call_deferred("remove_child", node)
-	
-func on_player_wins():
-		victory = true
-		$VictoryPOV.current = true
+		
+func on_player_wins() -> void:
+	if get_tree() == null:
+		push_error("Scene tree is null, cannot change scene.")
+		return
+		
+	victory = true
+	if victoryPOV:
+		victoryPOV.current = true
+	if anim_tree:
 		anim_tree.set("parameters/conditions/Victory", true)
-		if (true):
-			get_tree().create_timer(3)
-			get_tree().change_scene_to_file("res://Scenes/Menus/VictoryMenu.tscn")
 			
+func _on_victory_timeout() -> void:
+	get_tree().change_scene_to_file("res://Scenes/Menus/VictoryMenu.tscn")
+
+func on_player_falling_in_water():
+	isUnderwater = true
+	$"../orca".SetTargetPos(position)
+	
 func GetPlayerPos():
 	return player_position
 
