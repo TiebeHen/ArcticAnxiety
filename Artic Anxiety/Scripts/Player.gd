@@ -14,6 +14,7 @@ var abilityNr = 1
 
 
 var GameNode = load("res://Scripts/SceneManager.gd")
+var victoryScene = preload("res://Scenes/Menus/VictoryMenu.tscn")
 static var victory = false
 
 var isUnderwater := false
@@ -54,9 +55,13 @@ func _ready() -> void:
 	RPG.visible = false
 
 func _physics_process(delta):
+	if GameManager.GameFinished:
+		return
+			
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 		if GameManager.GamePaused == true:
 			return
+			
 			
 		if isAlive == false:
 			if Input.get_mouse_mode() == Input.MOUSE_MODE_CONFINED:
@@ -262,8 +267,13 @@ func on_player_wins() -> void:
 	victory = true
 	if victoryPOV:
 		victoryPOV.current = true
+		#$Menu/VictoryMenu.show()
+		$menu.add_child(victoryScene.instantiate())
 	if anim_tree:
 		anim_tree.set("parameters/conditions/Victory", true)
+		#get_tree().change_scene_to_file("res://Scenes/Menus/VictoryMenu.tscn")
+	GameManager.GameFinished = true
+	GameManager.GamePaused = true
 			
 func _on_victory_timeout() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Menus/VictoryMenu.tscn")
