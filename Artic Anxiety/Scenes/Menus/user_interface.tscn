@@ -49,10 +49,17 @@ scale = Vector2(13.3095, 0.361111)
 color = Color(0.466181, 0.466181, 0.466181, 1)
 
 [node name="JezusAbilityBorder" type="ReferenceRect" parent="AbilityAid/Ability 2/JesusAbilityBar"]
-offset_left = 140.0
-offset_top = 624.235
-offset_right = 1010.0
-offset_bottom = 639.235
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -433.0
+offset_top = -23.0
+offset_right = 432.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
 border_color = Color(0.346392, 0.490941, 0.978073, 1)
 border_width = 5.0
 editor_only = false
