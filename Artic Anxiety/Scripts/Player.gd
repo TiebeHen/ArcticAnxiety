@@ -14,7 +14,7 @@ const JUMP_VELOCITY = 12.0
 const LERP_VAL = .15
 static var player_position
 
-var abilityNr = 1
+static var abilityNr = 1
 
 
 var GameNode = load("res://Scripts/SceneManager.gd")
@@ -311,5 +311,8 @@ func EndGame():
 	
 func IsAlive() -> bool:
 	return isAlive
-
+	
+	
+static func GetSelectedAbility():
+	return abilityNr
 

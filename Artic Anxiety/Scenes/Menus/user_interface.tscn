@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cud1l4d65xt7x"]
+[gd_scene load_steps=5 format=3 uid="uid://cud1l4d65xt7x"]
 
 [ext_resource type="Texture2D" uid="uid://cd0clo45jb6ym" path="res://Assets/Icons/jesus.png" id="1_hmfde"]
+[ext_resource type="Script" path="res://Scenes/Menus/user_interface.gd" id="1_yn68k"]
 [ext_resource type="Texture2D" uid="uid://b104xug2g2nwl" path="res://Assets/Icons/snowball.png" id="2_2ll8b"]
 [ext_resource type="Texture2D" uid="uid://ct1fibiq8ttb5" path="res://Assets/Icons/rocket-launcher.png" id="3_k1iox"]
 
@@ -11,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_yn68k")
 
 [node name="AbilityAid" type="Node" parent="."]
 
@@ -23,7 +25,6 @@ offset_right = 1143.0
 offset_bottom = 263.0
 text = "Numlock 2
 "
-metadata/_edit_use_anchors_ = true
 
 [node name="JesusAbility" type="Sprite2D" parent="AbilityAid/Ability 2"]
 position = Vector2(1100, 198.66)
@@ -39,7 +40,6 @@ offset_right = 1143.0
 offset_bottom = 143.0
 text = "Numlock 1
 "
-metadata/_edit_use_anchors_ = true
 
 [node name="SnowballAbility" type="Sprite2D" parent="AbilityAid/Ability 1"]
 position = Vector2(1100, 80)
@@ -55,7 +55,6 @@ offset_right = 1143.0
 offset_bottom = 383.0
 text = "Numlock 3
 "
-metadata/_edit_use_anchors_ = true
 
 [node name="RocketAbility" type="Sprite2D" parent="AbilityAid/Ability 3"]
 position = Vector2(1100, 320)
@@ -66,7 +65,45 @@ texture = ExtResource("3_k1iox")
 offset_left = 1060.0
 offset_top = 5.0
 offset_right = 1225.0
-offset_bottom = 28.0
+offset_bottom = 42.0
 theme_override_font_sizes/font_size = 12
 text = "how to change
 ability"
+
+[node name="SelectedAbility" type="Node" parent="AbilityAid"]
+
+[node name="RectAbility1" type="ReferenceRect" parent="AbilityAid/SelectedAbility"]
+anchors_preset = -1
+anchor_right = 1.018
+anchor_bottom = 0.264
+offset_left = 1050.0
+offset_top = 43.0
+offset_right = -25.736
+offset_bottom = -26.072
+border_color = Color(0.412538, 0.478696, 0.957091, 1)
+border_width = 5.0
+editor_only = false
+
+[node name="RectAbility2" type="ReferenceRect" parent="AbilityAid/SelectedAbility"]
+anchors_preset = -1
+anchor_right = 1.018
+anchor_bottom = 0.264
+offset_left = 1050.0
+offset_top = 155.0
+offset_right = -25.736
+offset_bottom = 93.928
+border_color = Color(0.412538, 0.478696, 0.957091, 1)
+border_width = 5.0
+editor_only = false
+
+[node name="RectAbility3" type="ReferenceRect" parent="AbilityAid/SelectedAbility"]
+anchors_preset = -1
+anchor_right = 1.018
+anchor_bottom = 0.264
+offset_left = 1050.0
+offset_top = 275.0
+offset_right = -25.736
+offset_bottom = 214.928
+border_color = Color(0.412538, 0.478696, 0.957091, 1)
+border_width = 5.0
+editor_only = false
