@@ -19,40 +19,40 @@ script = ExtResource("1_5yops")
 [node name="Map Edges" type="Node" parent="Startup"]
 
 [node name="Glacier L" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.8784, -11.9819, -5.55179)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 14.6554, -11.5872, -4.19671)
 
 [node name="Glacier L 2" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 42.6918, -11.9819, -5.55179)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 44.4688, -11.5872, -4.19671)
 
 [node name="Glacier T" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -5.93401, -11.9819, 34.3188)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -4.15704, -11.5872, 35.6739)
 
 [node name="Glacier T 2" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -5.9197, -11.9819, 4.52593)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -4.14273, -11.5872, 5.88101)
 
 [node name="Glacier T 4" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -6.23426, -11.9819, 91.6358)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -4.45729, -11.5872, 92.9909)
 
 [node name="Glacier T 3" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -6.1938, -11.9819, 61.843)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -4.41683, -11.5872, 63.1981)
 
 [node name="Glacier B" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 61.7799, -11.9819, 34.3188)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 63.5569, -11.5872, 35.6739)
 
 [node name="Glacier B 2" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 61.7942, -11.9819, 4.52593)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 63.5712, -11.5872, 5.88101)
 
 [node name="Glacier  B 3" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 61.4796, -11.9819, 91.6358)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 63.2566, -11.5872, 92.9909)
 
 [node name="Glacier B 4" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 61.5201, -11.9819, 61.843)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 63.2971, -11.5872, 63.1981)
 
 [node name="Glacier R" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.748, -11.9819, 103.717)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 14.525, -11.5872, 103.202)
 
 [node name="Glacier R 2" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 42.5615, -11.9819, 103.717)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 44.3385, -11.5872, 103.202)
 
 [node name="Camera3D" type="Camera3D" parent="Startup"]
 transform = Transform3D(4.37114e-08, -1, 4.37114e-08, 0, 4.37114e-08, 1, 1, 4.37114e-08, -1.91069e-15, 30, 45, 50)
