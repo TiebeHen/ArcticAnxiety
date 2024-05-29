@@ -3,7 +3,7 @@ extends Control
 # Packed scenes
 var snowBallScene = preload("res://Scenes/Game/Abilities/Snowball.tscn")
 var rocketScene = preload("res://Scenes/Game/Abilities/Rocket_Laucher_Rocket.tscn")
-var playerScene = preload("res://Scenes/Game/Player.tscn")
+var playerScene = preload("res://Scenes/Game/penguin_modle_finale.tscn")
 
 func _ready():
 	pass
