@@ -55,14 +55,18 @@ func ChangeVisibilityJesusBar():
 	var jezus_ability_grayed_out = $"AbilityAid/Ability 2/JesusAbilityBar/JezusAbilityGrayed out"
 	var jezus_ability_border = $"AbilityAid/Ability 2/JesusAbilityBar/JezusAbilityBorder"
 	var jezus_ability = $"AbilityAid/Ability 2/JesusAbilityBar/JezusAbility"
+	var time_remaining_txt = $"AbilityAid/Ability 2/JesusAbilityBar/Time Remaining_"
+
 	if(rect_ability_2.visible):
 		jezus_ability_grayed_out.visible = true
 		jezus_ability_border.visible = true
 		jezus_ability.visible = true
+		time_remaining_txt.visible = true
 	else:
 		jezus_ability_grayed_out.visible = false
 		jezus_ability_border.visible = false
 		jezus_ability.visible = false
+		time_remaining_txt.visible = false
 	
 
 

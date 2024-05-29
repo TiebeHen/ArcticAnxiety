@@ -19,15 +19,19 @@ script = ExtResource("1_yn68k")
 [node name="Ability 2" type="Node" parent="AbilityAid"]
 
 [node name="Numlock 2" type="Label" parent="AbilityAid/Ability 2"]
-offset_left = 1060.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -92.0
 offset_top = 240.0
-offset_right = 1143.0
+offset_right = -9.0
 offset_bottom = 263.0
+grow_horizontal = 0
 text = "Numlock 2
 "
 
-[node name="JesusAbility" type="Sprite2D" parent="AbilityAid/Ability 2"]
-position = Vector2(1100, 198.66)
+[node name="JesusAbility" type="Sprite2D" parent="AbilityAid/Ability 2/Numlock 2"]
+position = Vector2(40, -40)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_hmfde")
 
@@ -79,41 +83,67 @@ grow_vertical = 0
 scale = Vector2(13.3095, 0.361111)
 color = Color(0.333333, 1, 1, 1)
 
+[node name="Time Remaining_" type="Label" parent="AbilityAid/Ability 2/JesusAbilityBar"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -436.0
+offset_top = -43.0
+offset_right = -271.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 12
+text = "Time Remaining:"
+
 [node name="Ability 1" type="Node" parent="AbilityAid"]
 
 [node name="Numlock 1" type="Label" parent="AbilityAid/Ability 1"]
-offset_left = 1060.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -92.0
 offset_top = 120.0
-offset_right = 1143.0
+offset_right = -9.0
 offset_bottom = 143.0
+grow_horizontal = 0
 text = "Numlock 1
 "
 
-[node name="SnowballAbility" type="Sprite2D" parent="AbilityAid/Ability 1"]
-position = Vector2(1100, 80)
+[node name="SnowballAbility" type="Sprite2D" parent="AbilityAid/Ability 1/Numlock 1"]
+position = Vector2(40, -40)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_2ll8b")
 
 [node name="Ability 3" type="Node" parent="AbilityAid"]
 
 [node name="Numlock 3" type="Label" parent="AbilityAid/Ability 3"]
-offset_left = 1060.0
-offset_top = 360.0
-offset_right = 1143.0
-offset_bottom = 383.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -92.0
+offset_top = 355.0
+offset_right = -9.0
+offset_bottom = 378.0
+grow_horizontal = 0
 text = "Numlock 3
 "
 
-[node name="RocketAbility" type="Sprite2D" parent="AbilityAid/Ability 3"]
-position = Vector2(1100, 320)
+[node name="RocketAbility" type="Sprite2D" parent="AbilityAid/Ability 3/Numlock 3"]
+position = Vector2(40, -40)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("3_k1iox")
 
 [node name="Label" type="Label" parent="AbilityAid"]
-offset_left = 1060.0
-offset_top = 5.0
-offset_right = 1225.0
-offset_bottom = 42.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -92.0
+offset_right = 73.0
+offset_bottom = 37.0
+grow_horizontal = 0
 theme_override_font_sizes/font_size = 12
 text = "how to change
 ability"
@@ -121,37 +151,40 @@ ability"
 [node name="SelectedAbility" type="Node" parent="AbilityAid"]
 
 [node name="RectAbility1" type="ReferenceRect" parent="AbilityAid/SelectedAbility"]
-anchors_preset = -1
-anchor_right = 1.018
-anchor_bottom = 0.264
-offset_left = 1050.0
-offset_top = 43.0
-offset_right = -25.736
-offset_bottom = -26.072
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -102.0
+offset_top = 40.0
+offset_right = -2.0
+offset_bottom = 150.0
+grow_horizontal = 0
 border_color = Color(0.412538, 0.478696, 0.957091, 1)
 border_width = 5.0
 editor_only = false
 
 [node name="RectAbility2" type="ReferenceRect" parent="AbilityAid/SelectedAbility"]
-anchors_preset = -1
-anchor_right = 1.018
-anchor_bottom = 0.264
-offset_left = 1050.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -102.0
 offset_top = 155.0
-offset_right = -25.736
-offset_bottom = 93.928
+offset_right = -2.0
+offset_bottom = 265.0
+grow_horizontal = 0
 border_color = Color(0.412538, 0.478696, 0.957091, 1)
 border_width = 5.0
 editor_only = false
 
 [node name="RectAbility3" type="ReferenceRect" parent="AbilityAid/SelectedAbility"]
-anchors_preset = -1
-anchor_right = 1.018
-anchor_bottom = 0.264
-offset_left = 1050.0
-offset_top = 275.0
-offset_right = -25.736
-offset_bottom = 214.928
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -102.0
+offset_top = 270.0
+offset_right = -2.0
+offset_bottom = 380.0
+grow_horizontal = 0
 border_color = Color(0.412538, 0.478696, 0.957091, 1)
 border_width = 5.0
 editor_only = false
