@@ -12,13 +12,12 @@ var currentPlayerCount := 0
 
 # TEMP BUTTON FOR QUICK DEBUGGING - NO MULTIPLAYER
 func _on_button_test_play_pressed():
-	GameManager.GamePaused = false
 	GameManager.Players[1] ={
 			"name" : "test",
 			"id" : 1,
 			"is_alive" : true
 		}
-	GameManager.StartConnection = true
+	GameManager.CreatePlayers = true
 	hide()
 
 func _ready():
@@ -107,7 +106,7 @@ func GoToDeadScreen():
 @rpc("any_peer","call_local")
 func StartGame():
 	if GameManager.Players.size() == maxPlayerCount:
-		GameManager.StartConnection = true
+		GameManager.CreatePlayers = true
 		hide()
 	
 func hostGame():		

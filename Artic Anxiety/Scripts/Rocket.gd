@@ -27,26 +27,25 @@ func set_target_position(_target_pos: Vector3):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if GameManager.GamePaused == true:
-		return
+	if GameManager.GameIsRunning == true:
+			
+		var direction = (target_position - position).normalized()
+		position += direction * SPEED * delta
+		time_left_rocket -= delta
 		
-	var direction = (target_position - position).normalized()
-	position += direction * SPEED * delta
-	time_left_rocket -= delta
-	
-	look_at(target_position, Vector3.UP)
-	
-	if explode == false:
-	# Check if the rocket is close enough to the target position to be considered as "hit"
-		if position.distance_to(target_position) < SPEED * delta:
-			target_position.y = 0
-			level.delete_tile_with_radius(target_position, 5)
-			hit_target = true
-			explode = true
-			_velocity = Vector3.ZERO
+		look_at(target_position, Vector3.UP)
 		
-			if time_left_rocket < 0:
-				queue_free()
+		if explode == false:
+		# Check if the rocket is close enough to the target position to be considered as "hit"
+			if position.distance_to(target_position) < SPEED * delta:
+				target_position.y = 0
+				level.delete_tile_with_radius(target_position, 5)
+				hit_target = true
+				explode = true
+				_velocity = Vector3.ZERO
+			
+				if time_left_rocket < 0:
+					queue_free()
 
 # Return the target position if the target is hit, otherwise return Vector3.ZERO
 func target_pos() -> Vector3:

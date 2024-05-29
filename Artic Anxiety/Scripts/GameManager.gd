@@ -3,76 +3,48 @@ extends Control
 # Static list to hold player info
 var maxPlayersPerLobby = 2
 var Players = {}
-var GameJustStarted = true
-var GamePaused = true
-var fullscreen = false
 
-var GameFinished = false
-var CloseServer = false
-
-var StartConnection = false
-var Connecting = false
-var Connected = false
-var ConnectionEnded = false
-
+var Fullscreen = false
 var IsThisAServer = false
 
-var ThisPlayerID = -1
+var Connected = false
+var CreatePlayers = false
+var GameIsRunning = false
+var GameIsEnding = false
+var GameIsFinished = false
 
-var AmountOfActivePlayers = 99
-
-var DiedPlayerID = -1
+var PlayerID = -1
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	CloseServer = false
-	if fullscreen == true:
+	if Fullscreen == true:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	pass
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	if GameJustStarted == true:
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	
+func _process(_delta):	
 	if Input.is_action_just_pressed("ui_cancel"):
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CONFINED:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 			
-	if GameFinished == true:
+	if GameIsFinished == true:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		
+	 #if GameIsEnding:
+	#	check_players()
 	
 func check_players():
 	var howManyPlayers = Players.size()
 	var howManyAlive = howManyPlayers
-	for p in Players.keys():
-		var player = Players[p]
-		if !player["is_alive"]:
-			howManyAlive -= 1
-	if howManyAlive == 0:
+	#for p in Players:
+		#if p["is_alive"] == false:
+		#	howManyAlive -= 1
+	if howManyAlive == 1:
 		print("game can end, only 1 survivor")
 		pass
-
-func PlayerHasDied():
-	AmountOfActivePlayers -= 1
-	
-func CanGameEnd():
-	if AmountOfActivePlayers == 1:
-		return true
-	return false
-	
-func KillPlayer(id: int):
-	AmountOfActivePlayers -= 1
-	var player = Players[id]
-	if player["is_alive"]:
-		player["is_alive"] = false
-		print("killed")
-		print(id)
-		print(player["is_alive"])
-		print(CanGameEnd())
-		DiedPlayerID = id
