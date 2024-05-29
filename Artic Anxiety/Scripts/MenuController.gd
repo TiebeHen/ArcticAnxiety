@@ -39,6 +39,7 @@ func _process(_delta):
 
 # this get called on the server and clients
 func peer_connected(id):
+	GameManager.ThisPlayerID = id
 	print("Player " + str(id) + " is connected")
 	if multiplayer.is_server():
 		currentPlayerCount += 1
@@ -82,6 +83,26 @@ func SendPlayerInformation(_name, _id):
 	if multiplayer.is_server():
 		for i in GameManager.Players:
 			SendPlayerInformation.rpc(GameManager.Players[i].name, i)
+			
+		#Check if someone died
+		var didSomeoneDie = false
+		for i in GameManager.Players:
+			var player = GameManager.Players[i]
+			if !player["is_alive"]:
+				didSomeoneDie = true
+				print("someone died")
+				GameManager.GamePaused = true
+				GameManager.GameFinished = true
+			
+
+
+@rpc("any_peer")
+func GoToVictoryScreen():
+	pass
+	
+@rpc("any_peer")
+func GoToDeadScreen():
+	pass
 
 @rpc("any_peer","call_local")
 func StartGame():

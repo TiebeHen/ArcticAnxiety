@@ -64,7 +64,6 @@ func _physics_process(delta):
 		if GameManager.GamePaused == true:
 			return
 			
-			
 		if isAlive == false:
 			if Input.get_mouse_mode() == Input.MOUSE_MODE_CONFINED:
 				Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
@@ -76,10 +75,18 @@ func _physics_process(delta):
 			
 		if(timeLeftUntilDeathScreen < 0):
 			isAlive = false
-			player_died()
-			if GameManager.IsThisAServer:
-				rpc_player_died.rpc()
-			return
+			GameManager.KillPlayer(GameManager.ThisPlayerID)
+			timeLeftUntilDeathScreen = 99999
+			
+		if(GameManager.CanGameEnd()):
+			if GameManager.ThisPlayerID == GameManager.DiedPlayerID:
+				CheckVictoryOrDeath.rpc(GameManager.DiedPlayerID)
+				return
+				pass
+			else:
+				CheckVictoryOrDeath.rpc(GameManager.DiedPlayerID)
+				return
+				pass
 			
 		if (Input.is_action_just_pressed("victory")):
 			on_player_wins()
@@ -330,5 +337,15 @@ func EndGame():
 	
 func IsAlive() -> bool:
 	return isAlive
+	
+@rpc("any_peer","call_local")
+func CheckVictoryOrDeath(id: int):
+	if GameManager.ThisPlayerID == id:
+		get_tree().change_scene_to_file("res://Scenes/Game/DeadScene.tscn")
+		queue_free()
+		pass
+	else:
+		on_player_wins()
+		pass
 
 

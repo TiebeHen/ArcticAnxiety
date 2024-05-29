@@ -17,6 +17,12 @@ var ConnectionEnded = false
 
 var IsThisAServer = false
 
+var ThisPlayerID = -1
+
+var AmountOfActivePlayers = 99
+
+var DiedPlayerID = -1
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -40,15 +46,33 @@ func _process(_delta):
 			
 	if GameFinished == true:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		
-		#check_players()
 	
 func check_players():
 	var howManyPlayers = Players.size()
 	var howManyAlive = howManyPlayers
-	#for p in Players:
-		#if p["is_alive"] == false:
-		#	howManyAlive -= 1
-	if howManyAlive == 1:
+	for p in Players.keys():
+		var player = Players[p]
+		if !player["is_alive"]:
+			howManyAlive -= 1
+	if howManyAlive == 0:
 		print("game can end, only 1 survivor")
 		pass
+
+func PlayerHasDied():
+	AmountOfActivePlayers -= 1
+	
+func CanGameEnd():
+	if AmountOfActivePlayers == 1:
+		return true
+	return false
+	
+func KillPlayer(id: int):
+	AmountOfActivePlayers -= 1
+	var player = Players[id]
+	if player["is_alive"]:
+		player["is_alive"] = false
+		print("killed")
+		print(id)
+		print(player["is_alive"])
+		print(CanGameEnd())
+		DiedPlayerID = id

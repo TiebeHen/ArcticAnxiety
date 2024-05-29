@@ -23,6 +23,7 @@ func _process(_delta):
 		GameManager.StartConnection = false
 		GameManager.Connecting = true
 		GameManager.GamePaused = false
+		GameManager.AmountOfActivePlayers = GameManager.Players.size()
 
 
 func RPG(nodi, positionS, velocity, targetPosition):
