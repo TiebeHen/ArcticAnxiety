@@ -57,6 +57,9 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 	GameNode.new()
 	RPG.visible = false
+	$VictoryPOV.current = false
+	
+
 
 func _physics_process(delta):
 	SetSelectedAbility()
