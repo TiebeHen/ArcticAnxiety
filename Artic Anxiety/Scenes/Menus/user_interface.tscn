@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cud1l4d65xt7x"]
 
 [ext_resource type="Texture2D" uid="uid://cd0clo45jb6ym" path="res://Assets/Icons/jesus.png" id="1_hmfde"]
-[ext_resource type="Script" path="res://Scenes/Menus/user_interface.gd" id="1_yn68k"]
+[ext_resource type="Script" path="res://Scripts/user_interface.gd" id="1_yn68k"]
 [ext_resource type="Texture2D" uid="uid://b104xug2g2nwl" path="res://Assets/Icons/snowball.png" id="2_2ll8b"]
 [ext_resource type="Texture2D" uid="uid://ct1fibiq8ttb5" path="res://Assets/Icons/rocket-launcher.png" id="3_k1iox"]
 

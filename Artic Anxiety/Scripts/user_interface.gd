@@ -1,5 +1,5 @@
 extends Control
-@onready var PlayerNode = load("res://Scripts/Player.gd")
+#@onready var PlayerNode = load("res://Scripts/Player.gd")
 static var SelectedAbility = 1
 @onready var rect_ability_1 = $AbilityAid/SelectedAbility/RectAbility1
 @onready var rect_ability_2 = $AbilityAid/SelectedAbility/RectAbility2
@@ -15,7 +15,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	SelectedAbility = PlayerNode.GetSelectedAbility()
+	#SelectedAbility = PlayerNode.GetSelectedAbility()
 	if SelectedAbility != null:
 		if SelectedAbility == 1:
 			rect_ability_1.visible = true
@@ -29,3 +29,5 @@ func _process(delta):
 			rect_ability_1.visible = false
 			rect_ability_2.visible = false
 			rect_ability_3.visible = true
+static func SetAbility(nr: int):
+	SelectedAbility = nr

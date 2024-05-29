@@ -18,6 +18,7 @@ static var abilityNr = 1
 
 
 var GameNode = load("res://Scripts/SceneManager.gd")
+var UserInterfaceNode = load("res://Scripts/user_interface.gd")
 static var victory = false
 
 var isUnderwater := false
@@ -58,6 +59,7 @@ func _ready() -> void:
 	RPG.visible = false
 
 func _physics_process(delta):
+	SetSelectedAbility()
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 		if GameManager.GamePaused == true:
 			return
@@ -313,6 +315,6 @@ func IsAlive() -> bool:
 	return isAlive
 	
 	
-static func GetSelectedAbility():
-	return abilityNr
+func SetSelectedAbility():
+	UserInterfaceNode.SetAbility(abilityNr)
 
