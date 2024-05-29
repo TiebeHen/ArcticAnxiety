@@ -4,6 +4,7 @@ extends Control
 var snowBallScene = preload("res://Scenes/Game/Abilities/Snowball.tscn")
 var rocketScene = preload("res://Scenes/Game/Abilities/Rocket_Laucher_Rocket.tscn")
 var playerScene = preload("res://Scenes/Game/Player.tscn")
+var deadScene = preload("res://Scenes/Menus/DeadMenu.tscn")
 
 func _ready():
 	pass
@@ -46,6 +47,7 @@ func throw_snowball(nodi, _position, velocity):
 	
 func SetDeadScene():
 	$EndScene/CameraDeath.current = true
+	$EndScene.add_child(deadScene.instantiate())
 	GameManager.GameIsFinished = true
 	GameManager.GameIsEnding = false
 	GameManager.GameIsRunning = false
