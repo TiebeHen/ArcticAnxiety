@@ -1,10 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://dc7ldj7an3my4"]
+[gd_scene load_steps=3 format=3 uid="uid://dc7ldj7an3my4"]
+
+[ext_resource type="PackedScene" uid="uid://c1ghd74yi0ese" path="res://Assets/Models/Rocks/glacier.glb" id="1_eikes"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_i7edx"]
 size = Vector3(8, 20, 30)
 
 [node name="Node3D" type="CharacterBody3D"]
 transform = Transform3D(1.2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="glacier" parent="." instance=ExtResource("1_eikes")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.12454)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.37387, 0)
