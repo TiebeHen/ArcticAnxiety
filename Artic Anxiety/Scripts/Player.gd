@@ -4,6 +4,10 @@ extends CharacterBody3D
 @onready var anim_tree = $AnimationTree
 @onready var jump = $jump_sfx
 @onready var victoryPOV: Node = $VictoryPOV
+@onready var swoosh = $swoosh_sfx
+@onready var swish = $swish_sfx
+@onready var jesus = $jesus_sfx
+
 
 const SPEED = 8.0
 const JUMP_VELOCITY = 12.0
@@ -82,6 +86,7 @@ func _physics_process(delta):
 		if (Input.is_action_just_pressed("move_up") or Input.is_action_just_pressed("jump")) and is_on_floor():
 			if RPG.visible == false:
 				velocity.y = JUMP_VELOCITY
+				jump.play()
 
 		# Victory
 		if (Input.is_action_just_pressed("victory")):
@@ -104,15 +109,21 @@ func _physics_process(delta):
 			if RPG.visible == false:
 				if Input.is_action_pressed("move_forward"):
 					direction.x -= 1
+				#if Input.is_action_just_pressed("move_forward"):
+					#swoosh.play()
 				if Input.is_action_pressed("move_backward"):
 					direction.x += 1
+				#if Input.is_action_just_pressed("move_backward"):
+					#swoosh.play()
 				if Input.is_action_pressed("move_right"):
 					direction.z += 1
+				#if Input.is_action_just_pressed("move_right"):
+					#swoosh.play()
 				if Input.is_action_pressed("move_left"):
 					direction.z -= 1
-				if Input.is_action_just_pressed("jump"):
-					jump.play()
-			
+				#if Input.is_action_just_pressed("move_left"):
+					#swoosh.play()
+				
 		if direction != Vector3.ZERO:
 			direction = direction.normalized()
 
@@ -133,6 +144,9 @@ func _physics_process(delta):
 			anim_tree.set("parameters/conditions/idle_jump", input_dir == Vector2.ZERO && !is_on_floor())
 			anim_tree.set("parameters/conditions/Glijden_Jump", input_dir != Vector2.ZERO && !is_on_floor())
 			anim_tree.set("parameters/conditions/Gooien", Input.is_action_just_pressed("click_throw"))
+		
+		#if(input_dir != Vector2.ZERO && is_on_floor() && (target_velocity < Vector3(0.1,0,0) || target_velocity < Vector3(0,0,0.1))):
+			#swoosh.play()
 		
 		move_and_slide()
 		
@@ -167,16 +181,15 @@ func _physics_process(delta):
 				if timeLeftAbility <= 3:
 					if abilityNr == 1: #Sneeuwbal ability
 						fireSnowBall.rpc(camerarecords)
-
 						timeLeftAbility = maxTimeAbility
-						
+						swish.play()
 					if timeLeftAbility <= 0:
 						if abilityNr == 2: #Jesus ability
 							position.y += 0.5
 							gravity = 0
 							timeLeftAbility = maxTimeAbility
 							timeLeftJesus = maxTimeJesus
-							
+							jesus.play()
 					if abilityNr == 3: #Rocket ability
 						shootRPG.rpc(camerarecords)
 						RPG.visible = true
