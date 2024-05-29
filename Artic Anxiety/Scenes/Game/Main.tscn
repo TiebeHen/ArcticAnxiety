@@ -98,10 +98,10 @@ transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -1.5, 0)
 [node name="UserInterface" type="Control" parent="PlayerUi"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 914.0
+offset_bottom = 385.0
+scale = Vector2(1.25892, 1.67563)
 
 [node name="Menu" type="Node" parent="."]
 
 [node name="MenuController" parent="Menu" instance=ExtResource("7_aas4l")]
-visible = false
