@@ -166,3 +166,11 @@ func delete_tile_with_radius(_position: Vector3, radius: int):
 				# Make sure the instance is part of the tree before calling rpc
 				if instance.is_inside_tree():
 					rpc("rpc_delete_ice", i.get_position())
+
+func delete_tile_at_position(_position: Vector3):
+	delete_tile_with_radius(_position, 2)
+	rpc_delete_tile_at_position.rpc(_position)
+	
+@rpc("any_peer")
+func rpc_delete_tile_at_position(_position: Vector3):
+	delete_tile_with_radius(_position, 2)

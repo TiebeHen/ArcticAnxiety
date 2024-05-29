@@ -104,4 +104,3 @@ offset_bottom = 40.0
 [node name="Menu" type="Node" parent="."]
 
 [node name="MenuController" parent="Menu" instance=ExtResource("7_aas4l")]
-visible = false

@@ -210,7 +210,7 @@ func _physics_process(delta):
 			timeLeft = 0
 			timeLeft = maxTime
 			if (victory == false):
-				#$"../Level1".delete_tile_at_position(player_position)
+				$"../Level1".delete_tile_at_position(player_position)
 				pass
 				
 		#player die dood gaat voor de cam
