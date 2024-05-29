@@ -2,8 +2,9 @@ extends CharacterBody3D
 
 @export var victory_camera : Camera3D
 @onready var anim_tree = $AnimationTree
+@onready var anim_tree_vic = $VictoryPOV/AnimationTree
 @onready var jump = $jump_sfx
-#@onready var victoryPOV: Node = $VictoryPOV
+@onready var victoryPOV = $VictoryPOV
 
 const SPEED = 8.0
 const JUMP_VELOCITY = 12.0
@@ -71,8 +72,8 @@ func _physics_process(delta):
 			isAlive = false
 			EndGame.rpc()
 			
-		#if (Input.is_action_just_pressed("victory")):
-			#on_player_wins()
+		if (Input.is_action_just_pressed("victory")):
+			on_player_wins()
 			
 		# Add the gravity.
 		if not is_on_floor():
@@ -83,20 +84,6 @@ func _physics_process(delta):
 			#if RPG.visible == false:
 				velocity.y = JUMP_VELOCITY
 
-		# Victory
-		#if (Input.is_action_just_pressed("victory")):
-			#on_player_wins()
-		#OLd Movemont
-		# Get the input direction and handle the movement/deceleration.
-		# As good practice, you should replace UI actions with custom gameplay actions.
-		
-		#var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-		#if direction:
-		#	velocity.x = lerp(velocity.x, direction.x * SPEED, LERP_VAL)
-		#	velocity.z = lerp(velocity.z, direction.z * SPEED, LERP_VAL)
-		#else:
-		#	velocity.x = lerp(velocity.x, 0.0, LERP_VAL)
-		#	velocity.z = lerp(velocity.z, 0.0, LERP_VAL)
 		var direction = Vector3.ZERO
 		var target_velocity = Vector3.ZERO
 		var speed = 14
@@ -128,11 +115,12 @@ func _physics_process(delta):
 
 		if isUnderwater == false:
 			anim_tree.set("parameters/conditions/idle", input_dir == Vector2.ZERO && is_on_floor())
-			anim_tree.set("parameters/conditions/BeginnenGlijden", input_dir != Vector2.ZERO && is_on_floor())
-			anim_tree.set("parameters/conditions/Stoppen_Glijden", input_dir != Vector2.ZERO && is_on_floor())
-			anim_tree.set("parameters/conditions/idle_jump", input_dir == Vector2.ZERO && !is_on_floor())
-			anim_tree.set("parameters/conditions/Glijden_Jump", input_dir != Vector2.ZERO && !is_on_floor())
-			anim_tree.set("parameters/conditions/Gooien", Input.is_action_just_pressed("click_throw"))
+			anim_tree.set("parameters/conditions/beginGliding", input_dir != Vector2.ZERO && is_on_floor())
+			anim_tree.set("parameters/conditions/stopGliding", input_dir != Vector2.ZERO && is_on_floor())
+			anim_tree.set("parameters/conditions/idleJump", input_dir == Vector2.ZERO && !is_on_floor())
+			anim_tree.set("parameters/conditions/glideJump", input_dir != Vector2.ZERO && !is_on_floor())
+			anim_tree.set("parameters/conditions/throwSnow", Input.is_action_just_pressed("click_throw"))
+			anim_tree.set("parameters/conditions/rpgHold", Input.is_action_just_pressed("Ability1"))
 		
 		move_and_slide()
 		
@@ -245,6 +233,7 @@ func cameraToPlayer(camera_position: Vector2) -> Vector2:
 	#$VictoryPOV.current = true
 	#victory = true
 	#anim_tree.set("parameters/conditions/Victory", is_on_floor)
+	#anim_tree_vic.set("parameters/conditions/zoom", true)
 	#get_tree().change_scene_to_file("res://Scenes/Menus/VictoryMenu.tscn")
 	#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
@@ -254,16 +243,17 @@ func add_child_deferred(node):
 func remove_child_deferred(node):
 	call_deferred("remove_child", node)
 		
-#func on_player_wins() -> void:
-	#if get_tree() == null:
-		#push_error("Scene tree is null, cannot change scene.")
-		#return
-		#
-	#victory = true
-	#if victoryPOV:
-		#victoryPOV.current = true
-	#if anim_tree:
-		#anim_tree.set("parameters/conditions/Victory", true)
+func on_player_wins() -> void:
+	if get_tree() == null:
+		push_error("Scene tree is null, cannot change scene.")
+		return
+		
+	victory = true
+	if victoryPOV:
+		victoryPOV.current = true
+		anim_tree_vic.set("parameters/conditions/zoom", true)
+	if anim_tree:
+		anim_tree.set("parameters/conditions/Victory", true)
 			
 func _on_victory_timeout() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Menus/VictoryMenu.tscn")

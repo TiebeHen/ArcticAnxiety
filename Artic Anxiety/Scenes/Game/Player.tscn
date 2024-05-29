@@ -1,9 +1,8 @@
-[gd_scene load_steps=70 format=3 uid="uid://i7334pqmd0da"]
+[gd_scene load_steps=69 format=3 uid="uid://i7334pqmd0da"]
 
 [ext_resource type="PackedScene" uid="uid://envw6v6diuqd" path="res://Assets/Models/RPG/rpgBaseglb.glb" id="2_h4006"]
 [ext_resource type="AudioStream" uid="uid://c2glpxvpew2nk" path="res://Audio/jump.mp3" id="2_ukqxk"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="2_vw3vo"]
-[ext_resource type="PackedScene" uid="uid://d0y5so0mho4qq" path="res://Scenes/Game/penguinModleFinale.glb" id="4_31p0y"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pfbqn"]
 resource_name = "Material.011"
@@ -303,7 +302,7 @@ tracks/0/enabled = true
 tracks/0/path = NodePath("Armature_001/Skeleton3D:buik")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, 0, -0.666944, 0, 0.0333333, 1, 0, -0.638991, 0, 0.0666667, 1, 0, -0.569158, 0, 0.1, 1, 0, -0.467903, 0, 0.133333, 1, 0, -0.345026, 0, 0.166667, 1, 0, -0.215131, 0, 0.2, 1, 0, -0.0886786, 0, 0.233333, 1, 0, 0.0223911, 0, 0.266667, 1, 0, 0.116565, 0, 0.3, 1, 0, 0.192771, 0, 0.333333, 1, 0, 0.247355, 0, 0.366667, 1, 0, 0.281468, 0, 0.4, 1, 0, 0.294037, 2.98819e-10, 0.433333, 1, 0, 0.271412, 2.98819e-10, 0.466667, 1, 0, 0.214507, 2.98819e-10, 0.5, 1, 0, 0.131279, 2.98819e-10, 0.533333, 1, 0, 0.0288776, 2.98819e-10, 0.6, 1, 0, -0.191249, 1.62248e-08, 0.633333, 1, 0, -0.291894, 1.62248e-08, 0.666667, 1, 0, -0.380414, 1.62248e-08, 0.7, 1, 0, -0.454539, 1.62248e-08, 0.733333, 1, 0, -0.509492, 1.62248e-08, 0.766667, 1, 0, -0.544756, 1.62248e-08, 0.8, 1, 0, -0.558061, 3.97823e-09)
+tracks/0/keys = PackedFloat32Array(-0.1, 1, 0, 0.247355, 0, 0, 1, 0, -0.666944, 0, 0.0333333, 1, 0, -0.638991, 0, 0.0666667, 1, 0, -0.569158, 0, 0.1, 1, 0, -0.467903, 0, 0.133333, 1, 0, -0.345026, 0, 0.166667, 1, 0, -0.215131, 0, 0.2, 1, 0, -0.0886786, 0, 0.233333, 1, 0, 0.0223911, 0, 0.266667, 1, 0, 0.116565, 0, 0.3, 1, 0, 0.192771, 0, 0.366667, 1, 0, 0.281468, 0, 0.4, 1, 0, 0.294037, 2.98819e-10, 0.433333, 1, 0, 0.271412, 2.98819e-10, 0.466667, 1, 0, 0.214507, 2.98819e-10, 0.5, 1, 0, 0.131279, 2.98819e-10, 0.533333, 1, 0, 0.0288776, 2.98819e-10, 0.6, 1, 0, -0.191249, 1.62248e-08, 0.633333, 1, 0, -0.291894, 1.62248e-08, 0.666667, 1, 0, -0.380414, 1.62248e-08, 0.7, 1, 0, -0.454539, 1.62248e-08, 0.733333, 1, 0, -0.509492, 1.62248e-08, 0.766667, 1, 0, -0.544756, 1.62248e-08, 0.8, 1, 0, -0.558061, 3.97823e-09)
 tracks/1/type = "rotation_3d"
 tracks/1/imported = true
 tracks/1/enabled = true
@@ -1343,23 +1342,23 @@ _data = {
 "VictoryDance": SubResource("Animation_qag48")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4d64u"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dqj6u"]
 animation = &"BeginGlijden"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qdbpv"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o0huk"]
 animation = &"Glijden"
 
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_qxms0"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_4d64u")
+blend_point_0/node = SubResource("AnimationNodeAnimation_dqj6u")
 blend_point_0/pos = 0.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_qdbpv")
+blend_point_1/node = SubResource("AnimationNodeAnimation_o0huk")
 blend_point_1/pos = 1.0
 min_space = 0.0
 blend_mode = 1
 sync = true
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_xu6ny"]
-graph_offset = Vector2(-321, 42)
+graph_offset = Vector2(-193, 8)
 nodes/BlendSpace1D/node = SubResource("AnimationNodeBlendSpace1D_qxms0")
 nodes/BlendSpace1D/position = Vector2(60, 120)
 node_connections = [&"output", 0, &"BlendSpace1D"]
@@ -1376,16 +1375,16 @@ animation = &"IdleJump"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5a8ia"]
 animation = &"SneeuwbalGooien"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_itim0"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ql6x7"]
 animation = &"Glijden"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vacqg"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ft84f"]
 animation = &"StoppenGlijden"
 
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_3u4yx"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_itim0")
+blend_point_0/node = SubResource("AnimationNodeAnimation_ql6x7")
 blend_point_0/pos = 0.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_vacqg")
+blend_point_1/node = SubResource("AnimationNodeAnimation_ft84f")
 blend_point_1/pos = 1.0
 min_space = 0.0
 
@@ -1496,7 +1495,7 @@ states/StoppenGlijden/position = Vector2(387, -68)
 states/VictoryDance/node = SubResource("AnimationNodeAnimation_bejiu")
 states/VictoryDance/position = Vector2(815, -78)
 transitions = ["Start", "IdleAnimation", SubResource("AnimationNodeStateMachineTransition_apbig"), "StoppenGlijden", "IdleAnimation", SubResource("AnimationNodeStateMachineTransition_5lxhy"), "IdleAnimation", "IdleJump", SubResource("AnimationNodeStateMachineTransition_4qvi3"), "IdleJump", "IdleAnimation", SubResource("AnimationNodeStateMachineTransition_80ho8"), "IdleAnimation", "GlijdenJump", SubResource("AnimationNodeStateMachineTransition_60ujf"), "GlijdenJump", "IdleAnimation", SubResource("AnimationNodeStateMachineTransition_smwhl"), "GlijdenJump", "IdleJump", SubResource("AnimationNodeStateMachineTransition_3258c"), "IdleJump", "GlijdenJump", SubResource("AnimationNodeStateMachineTransition_5r0ta"), "IdleAnimation", "BeginGlijden", SubResource("AnimationNodeStateMachineTransition_ept8q"), "BeginGlijden", "IdleAnimation", SubResource("AnimationNodeStateMachineTransition_73in2"), "BeginGlijden", "StoppenGlijden", SubResource("AnimationNodeStateMachineTransition_w5xsy"), "BeginGlijden", "GlijdenJump", SubResource("AnimationNodeStateMachineTransition_raij6"), "StoppenGlijden", "GlijdenJump", SubResource("AnimationNodeStateMachineTransition_7tw5k"), "GlijdenJump", "BeginGlijden", SubResource("AnimationNodeStateMachineTransition_lmxbu"), "IdleAnimation", "VictoryDance", SubResource("AnimationNodeStateMachineTransition_3l5yf"), "IdleJump", "BeginGlijden", SubResource("AnimationNodeStateMachineTransition_isf2a"), "IdleAnimation", "SneeuwbalGooien", SubResource("AnimationNodeStateMachineTransition_e0cr8"), "SneeuwbalGooien", "IdleAnimation", SubResource("AnimationNodeStateMachineTransition_0stp6"), "StoppenGlijden", "SneeuwbalGooien", SubResource("AnimationNodeStateMachineTransition_h4r2h"), "SneeuwbalGooien", "BeginGlijden", SubResource("AnimationNodeStateMachineTransition_445xe")]
-graph_offset = Vector2(-278, -228)
+graph_offset = Vector2(-265, -120)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_80f1n"]
 size = Vector3(1, 1, 0.805542)
@@ -1545,8 +1544,8 @@ bones/0/name = "buik"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.44751e-08, 0)
 bones/0/enabled = true
-bones/0/position = Vector3(4.55858e-10, -0.492005, 0)
-bones/0/rotation = Quaternion(0, 0, 0.146956, 0.989143)
+bones/0/position = Vector3(6.49457e-09, -0.531321, 0)
+bones/0/rotation = Quaternion(0, 0, -0.087951, 0.996125)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "RechterSchouder"
 bones/1/parent = 0
@@ -1560,7 +1559,7 @@ bones/2/parent = 1
 bones/2/rest = Transform3D(0.151258, 0.988127, -0.0269587, -0.842989, 0.143188, 0.518523, 0.516226, -0.0557049, 0.854639, -6.49597e-08, 1.16111, 3.72529e-09)
 bones/2/enabled = true
 bones/2/position = Vector3(-6.49597e-08, 1.16111, 3.72529e-09)
-bones/2/rotation = Quaternion(-0.126423, -0.138069, -0.47128, 0.861887)
+bones/2/rotation = Quaternion(-0.159149, -0.123328, -0.599482, 0.77465)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "RechterArm_2"
 bones/3/parent = 2
@@ -1602,7 +1601,7 @@ bones/8/parent = 7
 bones/8/rest = Transform3D(0.255068, -0.952512, 0.166315, 0.934712, 0.19887, -0.294557, 0.247494, 0.230589, 0.94105, -2.10712e-08, 1.06288, -1.30385e-08)
 bones/8/enabled = true
 bones/8/position = Vector3(-2.10712e-08, 1.06288, -1.30385e-08)
-bones/8/rotation = Quaternion(0.0403241, -0.0553353, 0.47939, 0.874927)
+bones/8/rotation = Quaternion(0.0916698, -0.0676394, 0.621493, 0.775093)
 bones/8/scale = Vector3(0.998526, 0.999899, 0.956609)
 bones/9/name = "LinkerArm_2"
 bones/9/parent = 8
@@ -1622,8 +1621,8 @@ bones/11/name = "RechterHeup"
 bones/11/parent = -1
 bones/11/rest = Transform3D(0.0115836, 0.996659, -0.0808465, 0.374843, 0.0706278, 0.924394, 0.927016, -0.0410126, -0.372773, 0, 5.44751e-08, 0)
 bones/11/enabled = true
-bones/11/position = Vector3(-1.76716e-08, -0.492005, -3.32345e-08)
-bones/11/rotation = Quaternion(0.478945, 0.676016, 0.303229, -0.470814)
+bones/11/position = Vector3(2.69022e-09, -0.531321, -3.46374e-09)
+bones/11/rotation = Quaternion(0.623489, 0.545571, 0.404735, -0.387044)
 bones/11/scale = Vector3(1, 1, 1)
 bones/12/name = "RechterBeen"
 bones/12/parent = 11
@@ -1637,14 +1636,14 @@ bones/13/parent = 12
 bones/13/rest = Transform3D(-0.482487, -0.777683, -0.403008, 0.873464, -0.461507, -0.155155, -0.0653294, -0.426873, 0.901949, -1.49012e-08, 0.544136, 1.49012e-08)
 bones/13/enabled = true
 bones/13/position = Vector3(-1.49012e-08, 0.544136, 1.49012e-08)
-bones/13/rotation = Quaternion(-0.125229, -0.27609, 0.629631, 0.715302)
+bones/13/rotation = Quaternion(-0.138808, -0.172505, 0.843496, 0.489376)
 bones/13/scale = Vector3(1, 1, 1)
 bones/14/name = "LinkerHeup"
 bones/14/parent = -1
 bones/14/rest = Transform3D(0.00659573, -0.999924, 0.0104362, -0.178372, 0.00909263, 0.983921, -0.983941, -0.00835115, -0.178299, 0, 5.44751e-08, 0)
 bones/14/enabled = true
-bones/14/position = Vector3(-8.16139e-09, -0.492005, 3.45665e-09)
-bones/14/rotation = Quaternion(-0.61613, 0.457748, 0.511257, 0.38661)
+bones/14/position = Vector3(-1.04865e-09, -0.531321, 1.48338e-08)
+bones/14/rotation = Quaternion(-0.492285, 0.588901, 0.40691, 0.495252)
 bones/14/scale = Vector3(1, 1, 1)
 bones/15/name = "LinkerBeen"
 bones/15/parent = 14
@@ -1658,7 +1657,7 @@ bones/16/parent = 15
 bones/16/rest = Transform3D(-0.480504, 0.852356, 0.206409, -0.852136, -0.509407, 0.119868, 0.207316, -0.118291, 0.971096, -7.45058e-09, 0.522611, -2.44472e-09)
 bones/16/enabled = true
 bones/16/position = Vector3(-7.45058e-09, 0.522611, -2.44472e-09)
-bones/16/rotation = Quaternion(0.123528, -0.00348946, 0.853166, -0.50679)
+bones/16/rotation = Quaternion(0.158055, -0.0466345, 0.7624, -0.625772)
 bones/16/scale = Vector3(1, 1, 1)
 
 [node name="Sphere_001" type="MeshInstance3D" parent="Twistpivot/Armature_001/Skeleton3D"]
@@ -1738,6 +1737,3 @@ transform = Transform3D(-0.6, 0, -5.24537e-08, 0, 0.6, 0, 5.24537e-08, 0, -0.6, 
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_08536")
-
-[node name="penguinModleFinale" parent="." instance=ExtResource("4_31p0y")]
-transform = Transform3D(0.55, 0, 0, 0, 0.55, 0, 0, 0, 0.55, -1.51187, -0.322281, 0)

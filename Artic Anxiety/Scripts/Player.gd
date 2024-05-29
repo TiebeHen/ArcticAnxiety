@@ -36,12 +36,7 @@ var timeLeftJesus = 0
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity") * 4
 
 var mouse_sensitivity := 0.001
-var twist_input := 0.0
-var pitch_input := 0.0
 
-
-@onready var twist_pivot := $Twistpivot
-@onready var pitch_pivot := $Twistpivot/PitchPivot
 @onready var RPG = $rpgBaseglb
 
 var syncPos = Vector3(0,0,0)
@@ -86,17 +81,7 @@ func _physics_process(delta):
 		# Victory
 		if (Input.is_action_just_pressed("victory")):
 			on_player_wins()
-		#OLd Movemont
-		# Get the input direction and handle the movement/deceleration.
-		# As good practice, you should replace UI actions with custom gameplay actions.
-		
-		#var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-		#if direction:
-		#	velocity.x = lerp(velocity.x, direction.x * SPEED, LERP_VAL)
-		#	velocity.z = lerp(velocity.z, direction.z * SPEED, LERP_VAL)
-		#else:
-		#	velocity.x = lerp(velocity.x, 0.0, LERP_VAL)
-		#	velocity.z = lerp(velocity.z, 0.0, LERP_VAL)
+	
 		var direction = Vector3.ZERO
 		var target_velocity = Vector3.ZERO
 		var speed = 14
@@ -128,19 +113,14 @@ func _physics_process(delta):
 
 		if isUnderwater == false:
 			anim_tree.set("parameters/conditions/idle", input_dir == Vector2.ZERO && is_on_floor())
-			anim_tree.set("parameters/conditions/BeginnenGlijden", input_dir != Vector2.ZERO && is_on_floor())
-			anim_tree.set("parameters/conditions/Stoppen_Glijden", input_dir != Vector2.ZERO && is_on_floor())
-			anim_tree.set("parameters/conditions/idle_jump", input_dir == Vector2.ZERO && !is_on_floor())
-			anim_tree.set("parameters/conditions/Glijden_Jump", input_dir != Vector2.ZERO && !is_on_floor())
-			anim_tree.set("parameters/conditions/Gooien", Input.is_action_just_pressed("click_throw"))
+			anim_tree.set("parameters/conditions/beginGliding", input_dir != Vector2.ZERO && is_on_floor())
+			anim_tree.set("parameters/conditions/stopGliding", input_dir != Vector2.ZERO && is_on_floor())
+			anim_tree.set("parameters/conditions/idleJump", input_dir == Vector2.ZERO && !is_on_floor())
+			anim_tree.set("parameters/conditions/glideJump", input_dir != Vector2.ZERO && !is_on_floor())
+			anim_tree.set("parameters/conditions/throwSnow", Input.is_action_just_pressed("click_throw"))
+			anim_tree.set("parameters/conditions/rpgHold", false)
 		
 		move_and_slide()
-		
-			#twist_pivot.rotate_y(twist_input)
-		pitch_pivot.rotate_x(pitch_input)
-		pitch_pivot.rotation.x = clamp(pitch_pivot.rotation.x, -0.5, 0.5) 
-		twist_input = 0.0
-		pitch_input = 0.0
 
 				
 		var camerarecords
@@ -241,12 +221,6 @@ func cameraToPlayer(camera_position: Vector2) -> Vector2:
 		player_position2.y = pX
 		return player_position2
 
-#func on_player_wins():
-	#$VictoryPOV.current = true
-	#victory = true
-	#anim_tree.set("parameters/conditions/Victory", is_on_floor)
-	#get_tree().change_scene_to_file("res://Scenes/Menus/VictoryMenu.tscn")
-	#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func add_child_deferred(node):
 	call_deferred("add_child", node)
