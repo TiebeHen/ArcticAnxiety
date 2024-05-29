@@ -8,6 +8,7 @@ var GamePaused = true
 var fullscreen = false
 
 var GameFinished = false
+var CloseServer = false
 
 var StartConnection = false
 var Connecting = false
@@ -19,6 +20,7 @@ var IsThisAServer = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	CloseServer = false
 	if fullscreen == true:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:

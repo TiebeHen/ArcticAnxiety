@@ -33,6 +33,8 @@ func _ready():
 		
 
 func _process(_delta):
+	if GameManager.CloseServer:
+		close_connection_with_server()
 	pass
 
 # this get called on the server and clients
@@ -224,6 +226,8 @@ func _on_button_back_mouse_exited():
 	$Back/TextureBackHover.hide()
 	$Back/LineEditBackHover.hide()
 
+func close_connection_with_server():
+	multiplayer.free()
 
 
 

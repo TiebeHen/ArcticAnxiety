@@ -15,6 +15,7 @@ var abilityNr = 1
 
 var GameNode = load("res://Scripts/SceneManager.gd")
 var victoryScene = preload("res://Scenes/Menus/VictoryMenu.tscn")
+var deadScene = preload("res://Scenes/Game/DeadScene.tscn")
 static var victory = false
 
 var isUnderwater := false
@@ -54,6 +55,7 @@ func _ready() -> void:
 	GameNode.new()
 	RPG.visible = false
 
+
 func _physics_process(delta):
 	if GameManager.GameFinished:
 		return
@@ -74,7 +76,10 @@ func _physics_process(delta):
 			
 		if(timeLeftUntilDeathScreen < 0):
 			isAlive = false
-			EndGame.rpc()
+			player_died()
+			if GameManager.IsThisAServer:
+				rpc_player_died.rpc()
+			return
 			
 		if (Input.is_action_just_pressed("victory")):
 			on_player_wins()
@@ -226,6 +231,23 @@ func _physics_process(delta):
 		pass
 		#global_position = global_position.lerp(syncPos, .5)
 		#rotation_degrees = lerp(rotation_degrees, syncRot, .5)
+	
+func player_died():
+	print("Player has died")
+	get_tree().change_scene_to_file("res://Scenes/Game/DeadScene.tscn")
+	queue_free()
+	pass
+	
+@rpc("any_peer")
+func rpc_player_died():
+	print("Player has died in rpc")
+	get_tree().change_scene_to_file("res://Scenes/Game/DeadScene.tscn")
+	queue_free()
+	
+	if GameManager.IsThisAServer == false:
+		on_player_wins()
+	pass
+
 	
 func cameraToPlayer(camera_position: Vector2) -> Vector2:
 		# Define the size of the camera viewport
