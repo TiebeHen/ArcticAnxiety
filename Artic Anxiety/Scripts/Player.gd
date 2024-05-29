@@ -192,6 +192,7 @@ func _physics_process(delta):
 							timeLeftAbility = maxTimeAbility
 							timeLeftJesus = maxTimeJesus
 							jesus.play()
+							UserInterfaceNode.SetActivatedJezusTrue()
 					if abilityNr == 3: #Rocket ability
 						shootRPG.rpc(camerarecords)
 						RPG.visible = true
@@ -317,4 +318,5 @@ func IsAlive() -> bool:
 	
 func SetSelectedAbility():
 	UserInterfaceNode.SetAbility(abilityNr)
+	
 

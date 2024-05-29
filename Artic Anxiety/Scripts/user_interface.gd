@@ -4,7 +4,13 @@ static var SelectedAbility = 1
 @onready var rect_ability_1 = $AbilityAid/SelectedAbility/RectAbility1
 @onready var rect_ability_2 = $AbilityAid/SelectedAbility/RectAbility2
 @onready var rect_ability_3 = $AbilityAid/SelectedAbility/RectAbility3
-
+#timer to track jezusability
+var MaxtimeJezusAbility = 3.0
+var timerJezusAbility = MaxtimeJezusAbility
+# Timer to track the elapsed time
+var JezusAbility_elapsed_time = 0.0
+static var ActivatedJezus = false
+@onready var jezus_ability_bar = $"AbilityAid/Ability 2/JesusAbilityBar/JezusAbility"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,7 +21,17 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	#SelectedAbility = PlayerNode.GetSelectedAbility()
+	if ActivatedJezus:
+		timerJezusAbility -= delta
+		JezusAbility_elapsed_time += delta
+		jezus_ability_bar.size.x = 65 * (1 - JezusAbility_elapsed_time / MaxtimeJezusAbility)
+		print(timerJezusAbility)
+		
+	if timerJezusAbility < 0:
+		ActivatedJezus = false
+		jezus_ability_bar.size.x = 65
+		JezusAbility_elapsed_time = 0
+		timerJezusAbility = MaxtimeJezusAbility
 	if SelectedAbility != null:
 		if SelectedAbility == 1:
 			rect_ability_1.visible = true
@@ -31,3 +47,5 @@ func _process(delta):
 			rect_ability_3.visible = true
 static func SetAbility(nr: int):
 	SelectedAbility = nr
+static func SetActivatedJezusTrue():
+	ActivatedJezus = true
