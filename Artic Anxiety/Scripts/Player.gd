@@ -17,6 +17,7 @@ static var player_position
 static var abilityNr = 1
 
 var UserInterfaceNode = load("res://Scripts/user_interface.gd")
+var victoryScene = preload("res://Scenes/Menus/VictoryMenu.tscn")
 static var victory = false
 
 var isUnderwater := false
@@ -269,6 +270,7 @@ func on_player_wins() -> void:
 	victory = true
 	if victoryPOV:
 		victoryPOV.current = true
+		$menu.add_child(victoryScene.instantiate())
 	if anim_tree:
 		anim_tree.set("parameters/conditions/Victory", true)
 		
