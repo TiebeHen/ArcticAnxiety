@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ctyf70fxrm816"
+path="res://.godot/imported/swoosh 1.mp3-ef17ad3726c598634b2e06f33047dd4d.mp3str"
+
+[deps]
+
+source_file="res://Audio/swoosh 1.mp3"
+dest_files=["res://.godot/imported/swoosh 1.mp3-ef17ad3726c598634b2e06f33047dd4d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
