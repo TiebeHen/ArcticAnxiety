@@ -45,6 +45,7 @@ func _process(delta):
 			rect_ability_1.visible = false
 			rect_ability_2.visible = false
 			rect_ability_3.visible = true
+	ChangeVisibilityJesusBar()
 static func SetAbility(nr: int):
 	SelectedAbility = nr
 static func SetActivatedJezusTrue():
@@ -58,7 +59,7 @@ func ChangeVisibilityJesusBar():
 		jezus_ability_grayed_out.visible = true
 		jezus_ability_border.visible = true
 		jezus_ability.visible = true
-	else :
+	else:
 		jezus_ability_grayed_out.visible = false
 		jezus_ability_border.visible = false
 		jezus_ability.visible = false
