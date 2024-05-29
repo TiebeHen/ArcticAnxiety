@@ -151,7 +151,7 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.748
 [node name="Glacier R 2" parent="Map Edges" instance=ExtResource("8_ivxd6")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 42.5615, -9.6561, 103.717)
 
-[node name="Penguin" parent="." instance=ExtResource("3_pvd75")]
+[node name="Penguin" parent="." groups=["penguin"] instance=ExtResource("3_pvd75")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.68063, 0.646441, 1.9009)
 
 [node name="Backgroundmusic" type="AudioStreamPlayer2D" parent="."]

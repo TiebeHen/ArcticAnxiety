@@ -6,7 +6,6 @@ extends CharacterBody3D
 var speed = 10
 var motion = Vector3.ZERO
 var player = null
-var orcaLoc
 var target_velocity = Vector3.ZERO
 
 #for random movement
@@ -34,7 +33,7 @@ func _process(delta):
 	
 		if (next_nav_point != null):
 			velocity = (next_nav_point - global_transform.origin).normalized() * speed
-			look_at(Vector3(player.global_position.x, global_position.y, player.global_position.z ),Vector3.UP)
+			look_at(player.global_transform.origin, Vector3.UP)
 			move_and_slide()
 
 	move_timer -= delta
@@ -47,18 +46,18 @@ func _process(delta):
 
 	if next_nav_point != null:
 		var new_direction = (next_nav_point - global_transform.origin).normalized()
-		#check_turn_angle(last_direction, new_direction)
+		#check_turn_angle(last_direction, new_direction) -> for turn animations
 		velocity = new_direction * speed
 		look_at(next_nav_point, Vector3.UP)
 		last_direction = new_direction
 		move_and_slide()
 		
 func set_random_target():
-	var confined_area_min = Vector3(0, 0, 0) # Minimum corner of the confined space
-	var confined_area_max = Vector3(150, 0, 150)   # Maximum corner of the confined space
+	var confined_area_min = Vector3(0, 0, 0) # minimum corner
+	var confined_area_max = Vector3(150, 0, 150)   # maximum corner
 	random_target = Vector3(
 		confined_area_min.x + randi() % int(confined_area_max.x - confined_area_min.x),
-		0, # Assuming movement is confined to the XZ plane
+		0, 
 		confined_area_min.z + randi() % int(confined_area_max.z - confined_area_min.z))
 		
 #func check_turn_angle(old_direction: Vector3, new_direction: Vector3):
