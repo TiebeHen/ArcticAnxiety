@@ -3,7 +3,7 @@ extends Control
 var victory = load("res://Scenes/Menus/VictoryMenu.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	GameManager.GameFinished = true
+	#GameManager.GameFinished = true
 	pass
 
 

@@ -1,13 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://df0f8rsi54q35"]
+[gd_scene load_steps=5 format=3 uid="uid://c6uovvurrey3l"]
 
 [ext_resource type="PackedScene" uid="uid://jrbq74tciilg" path="res://Scenes/Game/deadPlayer.tscn" id="1_ii7ns"]
 [ext_resource type="PackedScene" uid="uid://dmhlnoq71xl4t" path="res://Scenes/Game/Tiles/Water/WaterTileDeath.tscn" id="2_gcvnn"]
 
-[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_nv65o"]
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_lyv0y"]
 albedo_color = Color(1, 0.270588, 0.294118, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ahrpi"]
-material = SubResource("ORMMaterial3D_nv65o")
+material = SubResource("ORMMaterial3D_lyv0y")
 size = Vector3(3, 3, 1)
 
 [node name="DeadScene" type="Node3D"]

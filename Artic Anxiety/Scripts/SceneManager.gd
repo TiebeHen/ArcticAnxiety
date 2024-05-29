@@ -10,19 +10,24 @@ func _ready():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if GameManager.StartConnection == true:
+	if GameManager.CreatePlayers == true:
 		var index = 0
 		for i in GameManager.Players:
 			var currentPlayer = playerScene.instantiate()
 			currentPlayer.name = str(GameManager.Players[i].id)
+			currentPlayer.SetID(GameManager.Players[i].id)
 			add_child(currentPlayer)
 			for spawn in get_tree().get_nodes_in_group("PlayerSpawnPoint"):
 				if spawn.name == str(index):
 					currentPlayer.global_position = spawn.global_position
 			index += 1
-		GameManager.StartConnection = false
-		GameManager.Connecting = true
-		GameManager.GamePaused = false
+		GameManager.CreatePlayers = false
+		GameManager.GameIsRunning = true
+		GameManager.GameIsEnding = false
+		GameManager.GameIsFinished = false
+		
+	if GameManager.GameIsEnding:
+		SetDeadScene()
 
 
 func RPG(nodi, positionS, velocity, targetPosition):
@@ -38,3 +43,9 @@ func throw_snowball(nodi, _position, velocity):
 	instance.position = _position
 	instance.set_velocity(velocity)
 	nodi.add_child(instance)
+	
+func SetDeadScene():
+	$EndScene/CameraDeath.current = true
+	GameManager.GameIsFinished = true
+	GameManager.GameIsEnding = false
+	GameManager.GameIsRunning = false
