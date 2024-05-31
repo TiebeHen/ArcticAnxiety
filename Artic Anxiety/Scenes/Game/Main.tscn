@@ -189,3 +189,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.8637, -16.3469, 27.9938)
 light_energy = 0.5
 
 [node name="VictoryScene" parent="." instance=ExtResource("12_h2qva")]
+visible = false

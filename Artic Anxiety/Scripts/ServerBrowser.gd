@@ -25,12 +25,12 @@ func setUp():
 	listner = PacketPeerUDP.new()
 	var ok = listner.bind(listenPort)
 	
-	if ok == OK:
-		print("Bound to listen Port "  + str(listenPort) +  " Successful!")
-		$Label.text="Bound To Listen Port: true"
-	else:
-		print("Failed to bind to listen port!")
-		$Label.text="Bound To Listen Port: false"
+	#if ok == OK:
+		#print("Bound to listen Port "  + str(listenPort) +  " Successful!")
+		#$Label.text="Bound To Listen Port: true"
+	#else:
+		#print("Failed to bind to listen port!")
+		#$Label.text="Bound To Listen Port: false"
 		
 
 func setUpBroadCast(_name):
@@ -44,11 +44,11 @@ func setUpBroadCast(_name):
 	
 	var ok = broadcaster.bind(broadcastPort)
 	
-	if ok == OK:
-		print("Bound to Broadcast Port "  + str(broadcastPort) +  " Successful!")
-	else:
-		print("Failed to bind to broadcast port!")
-		
+	#if ok == OK:
+		#print("Bound to Broadcast Port "  + str(broadcastPort) +  " Successful!")
+	#else:
+		#print("Failed to bind to broadcast port!")
+		#
 	$BroadcastTimer.start()
 	
 
@@ -62,7 +62,7 @@ func _process(_delta):
 		var data = bytes.get_string_from_ascii()
 		var roomInfo = JSON.parse_string(data)
 		
-		print("server Ip: " + serverip +" serverPort: "+ str(serverport) + " room info: " + str(roomInfo))
+		#print("server Ip: " + serverip +" serverPort: "+ str(serverport) + " room info: " + str(roomInfo))
 		
 		for i in $"../MultiplayerMenuOverlay/BackgroundLobbies/VBoxContainer".get_children():
 			if i.name == roomInfo.name:
@@ -82,7 +82,7 @@ func _process(_delta):
 
 
 func _on_broadcast_timer_timeout():
-	print("Broadcasting Game!")
+	#print("Broadcasting Game!")
 	RoomInfo.playerCount = GameManager.Players.size()
 	var data = JSON.stringify(RoomInfo)
 	var packet = data.to_ascii_buffer()
