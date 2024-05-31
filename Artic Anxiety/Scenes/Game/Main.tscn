@@ -189,6 +189,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.8637, -16.3469, 27.9938)
 light_energy = 0.5
 
 [node name="VictoryScene" type="Node3D" parent="."]
+visible = false
 
 [node name="orca" parent="VictoryScene" instance=ExtResource("9_g2o18")]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 28.0455, 8.47588, 44.8326)
