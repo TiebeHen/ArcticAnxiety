@@ -1,17 +1,19 @@
-[gd_scene load_steps=15 format=3 uid="uid://lh0p5vgbpttx"]
+[gd_scene load_steps=17 format=3 uid="uid://lh0p5vgbpttx"]
 
 [ext_resource type="Script" path="res://Scripts/SceneManager.gd" id="1_5yops"]
 [ext_resource type="PackedScene" uid="uid://mouheqrhmwph" path="res://Scenes/Game/Tiles/Water/WaterTile.tscn" id="3_cbp0g"]
 [ext_resource type="PackedScene" uid="uid://dc7ldj7an3my4" path="res://Scenes/Game/Glacier.tscn" id="4_03i5v"]
+[ext_resource type="AudioStream" uid="uid://dnr5v68pakqim" path="res://Audio/gewonnen.mp3" id="5_4wwnu"]
 [ext_resource type="PackedScene" uid="uid://dd2lu5vrattae" path="res://Scenes/Game/Tiles/Ground/SeaBottomTile.tscn" id="5_dohp3"]
 [ext_resource type="AudioStream" uid="uid://b6f4nk1ioyd57" path="res://Audio/Background music.mp3" id="6_60gas"]
 [ext_resource type="PackedScene" uid="uid://2l86vrjjpm35" path="res://Scenes/Game/Level1.tscn" id="6_nhq3s"]
 [ext_resource type="PackedScene" uid="uid://jrbq74tciilg" path="res://Scenes/Game/deadPlayer.tscn" id="6_tmnd5"]
+[ext_resource type="AudioStream" uid="uid://c8umssqdot7ie" path="res://Audio/verloren.mp3" id="6_yb082"]
 [ext_resource type="PackedScene" uid="uid://bg51hyf3wrdvv" path="res://Scenes/Menus/MenuController.tscn" id="7_aas4l"]
-[ext_resource type="PackedScene" uid="uid://dmhlnoq71xl4t" path="res://Scenes/Game/Tiles/Water/WaterTileDeath.tscn" id="7_kqhbf"]
-[ext_resource type="PackedScene" uid="uid://cud1l4d65xt7x" path="res://Scenes/Menus/user_interface.tscn" id="8_qexga"]
+[ext_resource type="PackedScene" path="res://Scenes/Game/Tiles/Water/WaterTileDeath.tscn" id="7_kqhbf"]
+[ext_resource type="PackedScene" path="res://Scenes/Menus/user_interface.tscn" id="8_qexga"]
 [ext_resource type="PackedScene" uid="uid://poxah1udrh5i" path="res://Scenes/Game/orca.tscn" id="9_g2o18"]
-[ext_resource type="PackedScene" uid="uid://ddneia7gcads6" path="res://Scenes/Menus/victory_scene.tscn" id="12_h2qva"]
+[ext_resource type="PackedScene" uid="uid://b822wp3ys22gu" path="res://Scenes/Menus/victory_scene.tscn" id="12_h2qva"]
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_l656b"]
 albedo_color = Color(1, 0.270588, 0.294118, 1)
@@ -79,6 +81,12 @@ transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 28.996, -5, 46.966)
 
 [node name="Water" parent="Startup" instance=ExtResource("3_cbp0g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, -0.1, 40)
+
+[node name="win" type="AudioStreamPlayer2D" parent="Startup"]
+stream = ExtResource("5_4wwnu")
+
+[node name="Lose" type="AudioStreamPlayer2D" parent="Startup"]
+stream = ExtResource("6_yb082")
 
 [node name="Backgroundmusic" type="AudioStreamPlayer2D" parent="Startup"]
 stream = ExtResource("6_60gas")

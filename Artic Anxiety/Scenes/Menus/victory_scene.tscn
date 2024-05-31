@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ddneia7gcads6"]
+[gd_scene load_steps=7 format=3 uid="uid://b822wp3ys22gu"]
 
 [ext_resource type="PackedScene" uid="uid://poxah1udrh5i" path="res://Scenes/Game/orca.tscn" id="1_7h2ab"]
 [ext_resource type="PackedScene" uid="uid://bjj2n774b8htj" path="res://Assets/Models/Penguin/penguin.glb" id="2_230uw"]
@@ -49,5 +49,7 @@ bones/16/rotation = Quaternion(0.120216, 0.00045797, 0.860379, -0.495274)
 [node name="AnimationTree" type="AnimationTree" parent="penguin"]
 tree_root = SubResource("AnimationNodeStateMachine_23vnp")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
 [editable path="penguin"]

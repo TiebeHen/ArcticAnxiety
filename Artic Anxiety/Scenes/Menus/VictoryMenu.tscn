@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://c8r3rnpk3hrak"]
 
 [ext_resource type="Script" path="res://Scripts/VictoryMenuNavigation.gd" id="1_5dwys"]
-[ext_resource type="Texture2D" uid="uid://oriidxdo1fa3" path="res://Assets/Buttons/Button.png" id="1_870k7"]
+[ext_resource type="Texture2D" uid="uid://7mlfwfjm7lyu" path="res://Assets/Buttons/Button.png" id="1_870k7"]
 [ext_resource type="FontFile" uid="uid://dhjj1ii1frsqf" path="res://Assets/Fonts/TherenRegular-vmrnE.ttf" id="2_3lodc"]
 [ext_resource type="Texture2D" uid="uid://n8ykrii5n7mb" path="res://Assets/Menus/new-fortnite-victory-royale-ow1.png" id="4_84ag8"]
 

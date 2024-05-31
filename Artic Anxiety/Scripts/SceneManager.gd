@@ -9,6 +9,8 @@ var victoryScene = preload("res://Scenes/Menus/VictoryMenu.tscn")
 
 @onready var victory_scene = $VictoryScene
 @onready var victory_pov = $VictoryScene/VictoryPOV
+@onready var lose = $Startup/Lose
+@onready var win = $Startup/win
 
 func _ready():
 	pass
@@ -58,6 +60,8 @@ func throw_snowball(nodi, _position, velocity):
 	nodi.add_child(instance)
 	
 func SetDeadScene():
+	$Startup/Backgroundmusic.stop()
+	lose.play()
 	$EndScene/CameraDeath.current = true
 	$EndScene.add_child(deadScene.instantiate())
 	GameManager.GameIsFinished = true
@@ -68,6 +72,8 @@ func DeleteUi():
 	$PlayerUi.remove_child($PlayerUi/UserInterface)
 	
 func SetVictoryScene():
+	$Startup/Backgroundmusic.stop()
+	win.play()
 	victory_scene.show()
 	victory_pov.current = true
 	$VictoryScene.add_child(victoryScene.instantiate())

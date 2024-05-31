@@ -1,11 +1,13 @@
-[gd_scene load_steps=72 format=3 uid="uid://i7334pqmd0da"]
+[gd_scene load_steps=74 format=3 uid="uid://i7334pqmd0da"]
 
-[ext_resource type="PackedScene" uid="uid://envw6v6diuqd" path="res://Assets/Models/RPG/rpgBaseglb.glb" id="2_h4006"]
+[ext_resource type="PackedScene" uid="uid://eiq04c4vriou" path="res://Assets/Models/RPG/rpgBaseglb.glb" id="2_h4006"]
 [ext_resource type="AudioStream" uid="uid://ctyf70fxrm816" path="res://Audio/swoosh 1.mp3" id="2_rmf4n"]
 [ext_resource type="AudioStream" uid="uid://c2glpxvpew2nk" path="res://Audio/jump.mp3" id="2_ukqxk"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="2_vw3vo"]
 [ext_resource type="AudioStream" uid="uid://b8ncq7g1t0egq" path="res://Audio/jesus.mp3" id="4_20p1u"]
 [ext_resource type="AudioStream" uid="uid://di8f61fg5cct8" path="res://Audio/swish.mp3" id="4_ls6f8"]
+[ext_resource type="AudioStream" uid="uid://b1n3o8hrjb6ej" path="res://Audio/missile.mp3" id="6_inx2m"]
+[ext_resource type="AudioStream" uid="uid://dg1lv8qw84wjy" path="res://Audio/rocket launcher reload.mp3" id="6_ttwgh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pfbqn"]
 resource_name = "Material.011"
@@ -1548,6 +1550,13 @@ stream = ExtResource("4_ls6f8")
 volume_db = 11.886
 bus = &"SFX"
 
+[node name="missile_sfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_inx2m")
+
+[node name="rckt_reload_sfx" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_ttwgh")
+volume_db = 7.924
+
 [node name="Twistpivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
@@ -1562,8 +1571,8 @@ bones/0/name = "buik"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.44751e-08, 0)
 bones/0/enabled = true
-bones/0/position = Vector3(6.49457e-09, -0.634912, 0)
-bones/0/rotation = Quaternion(0, 0, -0.0675139, 0.997718)
+bones/0/position = Vector3(4.31673e-10, -0.582891, 0)
+bones/0/rotation = Quaternion(0, 0, 0.0667018, 0.997773)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "RechterSchouder"
 bones/1/parent = 0
@@ -1577,7 +1586,7 @@ bones/2/parent = 1
 bones/2/rest = Transform3D(0.151258, 0.988127, -0.0269587, -0.842989, 0.143188, 0.518523, 0.516226, -0.0557049, 0.854639, -6.49597e-08, 1.16111, 3.72529e-09)
 bones/2/enabled = true
 bones/2/position = Vector3(-6.49597e-08, 1.16111, 3.72529e-09)
-bones/2/rotation = Quaternion(-0.168216, -0.118278, -0.635117, 0.74454)
+bones/2/rotation = Quaternion(-0.151997, -0.126988, -0.571408, 0.796407)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "RechterArm_2"
 bones/3/parent = 2
@@ -1619,7 +1628,7 @@ bones/8/parent = 7
 bones/8/rest = Transform3D(0.255068, -0.952512, 0.166315, 0.934712, 0.19887, -0.294557, 0.247494, 0.230589, 0.94105, -2.10712e-08, 1.06288, -1.30385e-08)
 bones/8/enabled = true
 bones/8/position = Vector3(-2.10712e-08, 1.06288, -1.30385e-08)
-bones/8/rotation = Quaternion(0.10066, -0.0696326, 0.645076, 0.754252)
+bones/8/rotation = Quaternion(0.073138, -0.0633742, 0.57162, 0.814792)
 bones/8/scale = Vector3(0.998526, 0.999899, 0.956609)
 bones/9/name = "LinkerArm_2"
 bones/9/parent = 8
@@ -1639,8 +1648,8 @@ bones/11/name = "RechterHeup"
 bones/11/parent = -1
 bones/11/rest = Transform3D(0.0115836, 0.996659, -0.0808465, 0.374843, 0.0706278, 0.924394, 0.927016, -0.0410126, -0.372773, 0, 5.44751e-08, 0)
 bones/11/enabled = true
-bones/11/position = Vector3(1.49043e-09, -0.634912, 1.5969e-08)
-bones/11/rotation = Quaternion(0.612175, 0.558236, 0.396716, -0.395259)
+bones/11/position = Vector3(-6.80279e-10, -0.582891, -9.08719e-09)
+bones/11/rotation = Quaternion(0.531906, 0.635187, 0.340213, -0.444825)
 bones/11/scale = Vector3(1, 1, 1)
 bones/12/name = "RechterBeen"
 bones/12/parent = 11
@@ -1654,14 +1663,14 @@ bones/13/parent = 12
 bones/13/rest = Transform3D(-0.482487, -0.777683, -0.403008, 0.873464, -0.461507, -0.155155, -0.0653294, -0.426873, 0.901949, -1.49012e-08, 0.544136, 1.49012e-08)
 bones/13/enabled = true
 bones/13/position = Vector3(-1.49012e-08, 0.544136, 1.49012e-08)
-bones/13/rotation = Quaternion(-0.138808, -0.172505, 0.843496, 0.489376)
+bones/13/rotation = Quaternion(-0.134322, -0.22355, 0.754501, 0.602255)
 bones/13/scale = Vector3(1, 1, 1)
 bones/14/name = "LinkerHeup"
 bones/14/parent = -1
 bones/14/rest = Transform3D(0.00659573, -0.999924, 0.0104362, -0.178372, 0.00909263, 0.983921, -0.983941, -0.00835115, -0.178299, 0, 5.44751e-08, 0)
 bones/14/enabled = true
-bones/14/position = Vector3(-1.36605e-09, -0.634912, -1.25581e-09)
-bones/14/rotation = Quaternion(-0.504253, 0.578687, 0.416976, 0.486807)
+bones/14/position = Vector3(-3.78757e-09, -0.582891, -8.06866e-09)
+bones/14/rotation = Quaternion(-0.577205, 0.505948, 0.478411, 0.426584)
 bones/14/scale = Vector3(1, 1, 1)
 bones/15/name = "LinkerBeen"
 bones/15/parent = 14
@@ -1675,7 +1684,7 @@ bones/16/parent = 15
 bones/16/rest = Transform3D(-0.480504, 0.852356, 0.206409, -0.852136, -0.509407, 0.119868, 0.207316, -0.118291, 0.971096, -7.45058e-09, 0.522611, -2.44472e-09)
 bones/16/enabled = true
 bones/16/position = Vector3(-7.45058e-09, 0.522611, -2.44472e-09)
-bones/16/rotation = Quaternion(0.142144, -0.0262707, 0.807983, -0.571199)
+bones/16/rotation = Quaternion(0.121729, -0.00134187, 0.857113, -0.500538)
 bones/16/scale = Vector3(1, 1, 1)
 
 [node name="Sphere_001" type="MeshInstance3D" parent="Twistpivot/Armature_001/Skeleton3D"]

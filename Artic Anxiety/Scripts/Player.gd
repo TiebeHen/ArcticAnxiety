@@ -7,6 +7,8 @@ extends CharacterBody3D
 @onready var swoosh = $swoosh_sfx
 @onready var swish = $swish_sfx
 @onready var jesus = $jesus_sfx
+@onready var reload = $rckt_reload_sfx
+@onready var missile = $missile_sfx
 
 
 const SPEED = 8.0
@@ -173,6 +175,7 @@ func _physics_process(delta):
 			if Input.is_action_just_pressed("Ability3"):
 				abilityNr = 3
 				RPG.visible = true #making rpg visible
+				reload.play()
 			
 			timeLeftJesus -= delta
 			timeLeftAbility -= delta
@@ -195,6 +198,7 @@ func _physics_process(delta):
 								UserInterfaceNode.SetActivatedJezusTrue()
 								UserInterfaceNode.AnAbilityGotActivated()
 						if abilityNr == 3: #Rocket ability
+							missile.play()
 							shootRPG.rpc(camerarecords)
 							RPG.visible = true
 							timeLeftAbility = maxTimeAbility
