@@ -28,6 +28,8 @@ func _process(_delta):
 		GameManager.GameIsFinished = false
 		
 	if GameManager.GameIsEnding:
+		#$PlayerUi.
+		DeleteUi()
 		SetDeadScene()
 
 
@@ -51,3 +53,5 @@ func SetDeadScene():
 	GameManager.GameIsFinished = true
 	GameManager.GameIsEnding = false
 	GameManager.GameIsRunning = false
+func DeleteUi():
+	$PlayerUi.remove_child($PlayerUi/UserInterface)

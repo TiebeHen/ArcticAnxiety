@@ -104,6 +104,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.42912, 4, 88.8443)
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -1.5, 0)
 
 [node name="PlayerUi" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 
 [node name="UserInterface" parent="PlayerUi" instance=ExtResource("8_qexga")]

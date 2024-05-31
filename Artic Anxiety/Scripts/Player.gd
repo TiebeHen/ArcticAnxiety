@@ -273,7 +273,7 @@ func on_player_wins() -> void:
 	victory = true
 	if victoryPOV:
 		victoryPOV.current = true
-		$endscene.add_child(victoryScene.instantiate())
+		
 	if anim_tree:
 		anim_tree.set("parameters/conditions/Victory", true)
 		
