@@ -5,6 +5,7 @@ var snowBallScene = preload("res://Scenes/Game/Abilities/Snowball.tscn")
 var rocketScene = preload("res://Scenes/Game/Abilities/Rocket_Laucher_Rocket.tscn")
 var playerScene = preload("res://Scenes/Game/Player.tscn")
 var deadScene = preload("res://Scenes/Menus/DeadMenu.tscn")
+var victoryScene = preload("res://Scenes/Menus/VictoryMenu.tscn")
 
 @onready var victory_scene = $VictoryScene
 @onready var victory_pov = $VictoryScene/VictoryPOV
@@ -30,15 +31,16 @@ func _process(_delta):
 		GameManager.GameIsEnding = false
 		GameManager.GameIsFinished = false
 		
+	if GameManager.GameIsFinished:
+		DeleteUi()
+		GameManager.GameIsFinished = false
+		
 	if GameManager.GameIsEnding:
 		if GameManager.GameWon:
 			SetVictoryScene()
 		if GameManager.GameLost:
 			SetDeadScene()
 		
-	if GameManager.GameIsFinished:
-		DeleteUi()
-		GameManager.GameIsFinished = false
 		
 
 func RPG(nodi, positionS, velocity, targetPosition):
@@ -68,6 +70,7 @@ func DeleteUi():
 func SetVictoryScene():
 	victory_scene.show()
 	victory_pov.current = true
+	$VictoryScene.add_child(victoryScene.instantiate())
 	GameManager.GameIsFinished = true
 	GameManager.GameIsEnding = false
 	GameManager.GameIsRunning = false
