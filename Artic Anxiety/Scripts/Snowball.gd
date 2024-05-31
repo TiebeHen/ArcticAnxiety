@@ -18,7 +18,7 @@ func _ready():
 func _process(delta):
 	if GameManager.GameIsRunning == true:
 			
-		_velocity = _velocity.normalized() * SPEED * delta * 2# Scale velocity by delta time
+		_velocity = _velocity.normalized() * SPEED * delta # Scale velocity by delta time
 		translate(_velocity) # Move the snowball
 		
 		time_left_snowball -= delta
