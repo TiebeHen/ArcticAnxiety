@@ -10,8 +10,8 @@ var broadcaster : PacketPeerUDP
 var listner : PacketPeerUDP
 @export var listenPort : int = 8911
 @export var broadcastPort : int = 8912
-#@export var broadcastAddress : String = '192.168.0.255'
-@export var broadcastAddress : String = '25.11.10.180' #HAMACHI van client(milan)
+@export var broadcastAddress : String = '192.168.0.255'
+#@export var broadcastAddress : String = '25.11.10.180' #HAMACHI van client(milan)
 # @export var broadcastAddress : String = '25.53.201.211' # HAMACHI van server (jonathan)
 
 @export var serverInfo : PackedScene
@@ -54,7 +54,7 @@ func setUpBroadCast(_name):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	
+			
 	if listner.get_available_packet_count() > 0:
 		var serverip = listner.get_packet_ip()
 		var serverport = listner.get_packet_port()

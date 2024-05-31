@@ -25,11 +25,10 @@ func _on_button_home_pressed():
 	rpc_on_button_home_pressed.rpc()
 	queue_free()
 
-@rpc("any_peer","call_local")
+@rpc("any_peer")
 func rpc_on_button_home_pressed():
 	get_tree().change_scene_to_file("res://Scenes/Game/Main.tscn")
 	queue_free()
-	
 
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c16x85tge48q3"]
+[gd_scene load_steps=14 format=3 uid="uid://lh0p5vgbpttx"]
 
 [ext_resource type="Script" path="res://Scripts/SceneManager.gd" id="1_5yops"]
 [ext_resource type="PackedScene" uid="uid://mouheqrhmwph" path="res://Scenes/Game/Tiles/Water/WaterTile.tscn" id="3_cbp0g"]
@@ -6,8 +6,18 @@
 [ext_resource type="PackedScene" uid="uid://dd2lu5vrattae" path="res://Scenes/Game/Tiles/Ground/SeaBottomTile.tscn" id="5_dohp3"]
 [ext_resource type="AudioStream" uid="uid://b6f4nk1ioyd57" path="res://Audio/Background music.mp3" id="6_60gas"]
 [ext_resource type="PackedScene" uid="uid://2l86vrjjpm35" path="res://Scenes/Game/Level1.tscn" id="6_nhq3s"]
+[ext_resource type="PackedScene" uid="uid://jrbq74tciilg" path="res://Scenes/Game/deadPlayer.tscn" id="6_tmnd5"]
 [ext_resource type="PackedScene" uid="uid://bg51hyf3wrdvv" path="res://Scenes/Menus/MenuController.tscn" id="7_aas4l"]
+[ext_resource type="PackedScene" uid="uid://dmhlnoq71xl4t" path="res://Scenes/Game/Tiles/Water/WaterTileDeath.tscn" id="7_kqhbf"]
+[ext_resource type="PackedScene" path="res://Scenes/Menus/user_interface.tscn" id="8_qexga"]
 [ext_resource type="PackedScene" uid="uid://poxah1udrh5i" path="res://Scenes/Game/orca.tscn" id="9_g2o18"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_l656b"]
+albedo_color = Color(1, 0.270588, 0.294118, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bo4n8"]
+material = SubResource("ORMMaterial3D_l656b")
+size = Vector3(3, 3, 1)
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -19,40 +29,40 @@ script = ExtResource("1_5yops")
 [node name="Map Edges" type="Node" parent="Startup"]
 
 [node name="Glacier L" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.8784, -11.9819, -5.55179)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 14.6554, -11.5872, -4.19671)
 
 [node name="Glacier L 2" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 42.6918, -11.9819, -5.55179)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 44.4688, -11.5872, -4.19671)
 
 [node name="Glacier T" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -5.93401, -11.9819, 34.3188)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -4.15704, -11.5872, 35.6739)
 
 [node name="Glacier T 2" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -5.9197, -11.9819, 4.52593)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -4.14273, -11.5872, 5.88101)
 
 [node name="Glacier T 4" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -6.23426, -11.9819, 91.6358)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -4.45729, -11.5872, 92.9909)
 
 [node name="Glacier T 3" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -6.1938, -11.9819, 61.843)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -4.41683, -11.5872, 63.1981)
 
 [node name="Glacier B" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 61.7799, -11.9819, 34.3188)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 63.5569, -11.5872, 35.6739)
 
 [node name="Glacier B 2" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 61.7942, -11.9819, 4.52593)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 63.5712, -11.5872, 5.88101)
 
 [node name="Glacier  B 3" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 61.4796, -11.9819, 91.6358)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 63.2566, -11.5872, 92.9909)
 
 [node name="Glacier B 4" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
-transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 61.5201, -11.9819, 61.843)
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 63.2971, -11.5872, 63.1981)
 
 [node name="Glacier R" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.748, -11.9819, 103.717)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 14.525, -11.5872, 103.202)
 
 [node name="Glacier R 2" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 42.5615, -11.9819, 103.717)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 44.3385, -11.5872, 103.202)
 
 [node name="Camera3D" type="Camera3D" parent="Startup"]
 transform = Transform3D(4.37114e-08, -1, 4.37114e-08, 0, 4.37114e-08, 1, 1, 4.37114e-08, -1.91069e-15, 30, 45, 50)
@@ -74,16 +84,6 @@ stream = ExtResource("6_60gas")
 
 [node name="Level1" parent="." instance=ExtResource("6_nhq3s")]
 
-[node name="MenuController" parent="." instance=ExtResource("7_aas4l")]
-layout_mode = 1
-
-[node name="UserInterface" type="Control" parent="."]
-visible = false
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
 [node name="SpawnLocations" type="Node3D" parent="."]
 
 [node name="0" type="Node3D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
@@ -102,3 +102,85 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.42912, 4, 88.8443)
 
 [node name="orca" parent="." instance=ExtResource("9_g2o18")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -1.5, 0)
+
+[node name="PlayerUi" type="Node" parent="."]
+
+[node name="UserInterface" parent="PlayerUi" instance=ExtResource("8_qexga")]
+offset_left = -0.0625305
+offset_top = -0.710999
+offset_right = -0.0625
+offset_bottom = -0.710999
+
+[node name="Menu" type="Node" parent="."]
+
+[node name="MenuController" parent="Menu" instance=ExtResource("7_aas4l")]
+
+[node name="EndScene" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="EndScene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.8981, -16.4353, 23.087)
+mesh = SubResource("BoxMesh_bo4n8")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="EndScene"]
+transform = Transform3D(0.728789, 0, -0.684738, 0, 1, 0, 0.684738, 0, 0.728789, 24.4391, -16.4353, 24.2172)
+mesh = SubResource("BoxMesh_bo4n8")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="EndScene"]
+transform = Transform3D(0.479933, 0, 0.877305, 0, 1, 0, -0.877305, 0, 0.479933, 20.6897, -16.4353, 24.2172)
+mesh = SubResource("BoxMesh_bo4n8")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="EndScene"]
+transform = Transform3D(0.545473, 0.838115, 0.0047822, -0.0656959, 0.0484441, -0.996663, -0.83555, 0.543338, 0.0814858, 21.6723, -18.4449, 24.7953)
+mesh = SubResource("BoxMesh_bo4n8")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="EndScene"]
+transform = Transform3D(0.545473, 0.838115, 0.0047822, -0.0656959, 0.0484441, -0.996663, -0.83555, 0.543338, 0.0814858, 24.1576, -18.4252, 24.7953)
+mesh = SubResource("BoxMesh_bo4n8")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="EndScene"]
+transform = Transform3D(0.545473, 0.838115, 0.0047822, -0.0656959, 0.0484441, -0.996663, -0.83555, 0.543338, 0.0814858, 22.7805, -18.5213, 24.0963)
+mesh = SubResource("BoxMesh_bo4n8")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="EndScene"]
+transform = Transform3D(0.545473, 0.838115, 0.0047822, -0.0656959, 0.0484441, -0.996663, -0.83555, 0.543338, 0.0814858, 21.6723, -14.7286, 24.7953)
+mesh = SubResource("BoxMesh_bo4n8")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="EndScene"]
+transform = Transform3D(0.545473, 0.838115, 0.0047822, -0.0656959, 0.0484441, -0.996663, -0.83555, 0.543338, 0.0814858, 24.1576, -14.709, 24.7953)
+mesh = SubResource("BoxMesh_bo4n8")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="EndScene"]
+transform = Transform3D(0.545473, 0.838115, 0.0047822, -0.0656959, 0.0484441, -0.996663, -0.83555, 0.543338, 0.0814858, 22.7805, -14.8051, 24.0963)
+mesh = SubResource("BoxMesh_bo4n8")
+skeleton = NodePath("../..")
+
+[node name="CameraDeath" type="Camera3D" parent="EndScene"]
+transform = Transform3D(1, 0, 0, 0, 0.967339, 0.253488, 0, -0.253488, 0.967339, 22.7297, -15.8592, 27.6221)
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="EndScene"]
+transform = Transform3D(0.0894854, 0, 0.995988, 0, 1, 0, -0.995988, 0, 0.0894854, 19.8615, -16.4353, 25.7929)
+mesh = SubResource("BoxMesh_bo4n8")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="EndScene"]
+transform = Transform3D(0.0894854, 0, 0.995988, 0, 1, 0, -0.995988, 0, 0.0894854, 25.5117, -16.4353, 25.7929)
+mesh = SubResource("BoxMesh_bo4n8")
+skeleton = NodePath("../..")
+
+[node name="Dead Pinguin" parent="EndScene" instance=ExtResource("6_tmnd5")]
+transform = Transform3D(1, 0, 0, 0, 0.000366525, -1, 0, 1, 0.000366525, 22.9044, -17.3191, 24.4807)
+
+[node name="WaterTileDeath" parent="EndScene" instance=ExtResource("7_kqhbf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.7402, -17.8269, 26.1314)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="EndScene"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.8637, -16.3469, 27.9938)
+light_energy = 0.5

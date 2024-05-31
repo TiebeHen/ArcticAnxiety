@@ -6,12 +6,17 @@
 size = Vector3(8, 20, 30)
 
 [node name="Node3D" type="CharacterBody3D"]
+transform = Transform3D(1.2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="glacier" parent="." instance=ExtResource("1_eikes")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.12454)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.37387, 0)
+shape = SubResource("BoxShape3D_i7edx")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.497461, -0.0301971, -4.39985e-09, 0, -1.31134e-08, 1, -0.0503285, -0.298476, -4.34894e-08, 4.60358, 6.92688, -13.668)
 shape = SubResource("BoxShape3D_i7edx")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
