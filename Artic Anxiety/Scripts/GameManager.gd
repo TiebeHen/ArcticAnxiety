@@ -3,43 +3,41 @@ extends Control
 # Static list to hold player info
 var maxPlayersPerLobby = 2
 var Players = {}
-var GameJustStarted = true
-var GamePaused = true
-var fullscreen = false
 
-var GameFinished = false
-
-var StartConnection = false
-var Connecting = false
-var Connected = false
-var ConnectionEnded = false
-
+var Fullscreen = false
 var IsThisAServer = false
+
+var Connected = false
+var CreatePlayers = false
+var GameIsRunning = false
+var GameIsEnding = false
+var GameIsFinished = false
+
+var PlayerID = -1
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if fullscreen == true:
+	if Fullscreen == true:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	pass
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	if GameJustStarted == true:
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	
+func _process(_delta):	
 	if Input.is_action_just_pressed("ui_cancel"):
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CONFINED:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CONFINED)
 			
-	if GameFinished == true:
+	if GameIsFinished == true:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		
-		#check_players()
+	 #if GameIsEnding:
+	#	check_players()
 	
 func check_players():
 	var howManyPlayers = Players.size()
