@@ -6,6 +6,9 @@ var rocketScene = preload("res://Scenes/Game/Abilities/Rocket_Laucher_Rocket.tsc
 var playerScene = preload("res://Scenes/Game/Player.tscn")
 var deadScene = preload("res://Scenes/Menus/DeadMenu.tscn")
 
+@onready var victory_scene = $"../VictoryScene"
+@onready var victory_pov = $"../VictoryScene/VictoryPOV"
+
 func _ready():
 	pass
 	

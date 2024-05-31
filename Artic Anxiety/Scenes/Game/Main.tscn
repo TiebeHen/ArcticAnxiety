@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://lh0p5vgbpttx"]
+[gd_scene load_steps=15 format=3 uid="uid://lh0p5vgbpttx"]
 
 [ext_resource type="Script" path="res://Scripts/SceneManager.gd" id="1_5yops"]
 [ext_resource type="PackedScene" uid="uid://mouheqrhmwph" path="res://Scenes/Game/Tiles/Water/WaterTile.tscn" id="3_cbp0g"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dmhlnoq71xl4t" path="res://Scenes/Game/Tiles/Water/WaterTileDeath.tscn" id="7_kqhbf"]
 [ext_resource type="PackedScene" uid="uid://cud1l4d65xt7x" path="res://Scenes/Menus/user_interface.tscn" id="8_qexga"]
 [ext_resource type="PackedScene" uid="uid://poxah1udrh5i" path="res://Scenes/Game/orca.tscn" id="9_g2o18"]
+[ext_resource type="PackedScene" uid="uid://i7334pqmd0da" path="res://Scenes/Game/Player.tscn" id="12_tecco"]
 
 [sub_resource type="ORMMaterial3D" id="ORMMaterial3D_l656b"]
 albedo_color = Color(1, 0.270588, 0.294118, 1)
@@ -186,3 +187,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.7402, -17.8269, 26.1314)
 [node name="OmniLight3D" type="OmniLight3D" parent="EndScene"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.8637, -16.3469, 27.9938)
 light_energy = 0.5
+
+[node name="VictoryScene" type="Node3D" parent="."]
+visible = false
+
+[node name="orca" parent="VictoryScene" instance=ExtResource("9_g2o18")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 28.0455, 10.4534, 44.8326)
+script = null
+
+[node name="Player" parent="VictoryScene" instance=ExtResource("12_tecco")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.8763, 4.76355, 43.1093)
+script = null
+
+[node name="VictoryPOV" type="Camera3D" parent="VictoryScene"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 27.4395, 5, 20)

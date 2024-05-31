@@ -7,6 +7,7 @@ var motion = Vector3.ZERO
 var orcaLoc
 var target_velocity = Vector3.ZERO
 
+
 var targetFoundToEat = false
 var target_position = Vector3.ZERO  # Variable to store the target position
 var stopping_distance = 7.0  # Distance within which the orca should stop moving
