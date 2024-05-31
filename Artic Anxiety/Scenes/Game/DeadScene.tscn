@@ -1,0 +1,81 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6uovvurrey3l"]
+
+[ext_resource type="PackedScene" uid="uid://jrbq74tciilg" path="res://Scenes/Game/deadPlayer.tscn" id="1_ii7ns"]
+[ext_resource type="PackedScene" uid="uid://dmhlnoq71xl4t" path="res://Scenes/Game/Tiles/Water/WaterTileDeath.tscn" id="2_gcvnn"]
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_lyv0y"]
+albedo_color = Color(1, 0.270588, 0.294118, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ahrpi"]
+material = SubResource("ORMMaterial3D_lyv0y")
+size = Vector3(3, 3, 1)
+
+[node name="DeadScene" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.8981, -16.4353, 23.087)
+mesh = SubResource("BoxMesh_ahrpi")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.728789, 0, -0.684738, 0, 1, 0, 0.684738, 0, 0.728789, 24.4391, -16.4353, 24.2172)
+mesh = SubResource("BoxMesh_ahrpi")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.479933, 0, 0.877305, 0, 1, 0, -0.877305, 0, 0.479933, 20.6897, -16.4353, 24.2172)
+mesh = SubResource("BoxMesh_ahrpi")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.545473, 0.838115, 0.0047822, -0.0656959, 0.0484441, -0.996663, -0.83555, 0.543338, 0.0814858, 21.6723, -18.4449, 24.7953)
+mesh = SubResource("BoxMesh_ahrpi")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.545473, 0.838115, 0.0047822, -0.0656959, 0.0484441, -0.996663, -0.83555, 0.543338, 0.0814858, 24.1576, -18.4252, 24.7953)
+mesh = SubResource("BoxMesh_ahrpi")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.545473, 0.838115, 0.0047822, -0.0656959, 0.0484441, -0.996663, -0.83555, 0.543338, 0.0814858, 22.7805, -18.5213, 24.0963)
+mesh = SubResource("BoxMesh_ahrpi")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D7" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.545473, 0.838115, 0.0047822, -0.0656959, 0.0484441, -0.996663, -0.83555, 0.543338, 0.0814858, 21.6723, -14.7286, 24.7953)
+mesh = SubResource("BoxMesh_ahrpi")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D8" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.545473, 0.838115, 0.0047822, -0.0656959, 0.0484441, -0.996663, -0.83555, 0.543338, 0.0814858, 24.1576, -14.709, 24.7953)
+mesh = SubResource("BoxMesh_ahrpi")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D9" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.545473, 0.838115, 0.0047822, -0.0656959, 0.0484441, -0.996663, -0.83555, 0.543338, 0.0814858, 22.7805, -14.8051, 24.0963)
+mesh = SubResource("BoxMesh_ahrpi")
+skeleton = NodePath("../..")
+
+[node name="CameraDeath" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.967339, 0.253488, 0, -0.253488, 0.967339, 22.7297, -15.8592, 27.6221)
+
+[node name="MeshInstance3D10" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0894854, 0, 0.995988, 0, 1, 0, -0.995988, 0, 0.0894854, 19.8615, -16.4353, 25.7929)
+mesh = SubResource("BoxMesh_ahrpi")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D11" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0894854, 0, 0.995988, 0, 1, 0, -0.995988, 0, 0.0894854, 25.5117, -16.4353, 25.7929)
+mesh = SubResource("BoxMesh_ahrpi")
+skeleton = NodePath("../..")
+
+[node name="Dead Pinguin" parent="." instance=ExtResource("1_ii7ns")]
+transform = Transform3D(1, 0, 0, 0, 0.000366525, -1, 0, 1, 0.000366525, 22.9044, -17.3191, 24.4807)
+
+[node name="WaterTileDeath" parent="." instance=ExtResource("2_gcvnn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.7402, -17.8269, 26.1314)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.8637, -16.3469, 27.9938)
+light_energy = 0.5

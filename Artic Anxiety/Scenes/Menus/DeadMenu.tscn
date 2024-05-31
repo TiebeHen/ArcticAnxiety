@@ -1,0 +1,136 @@
+[gd_scene load_steps=10 format=3 uid="uid://qjlfchfjx77l"]
+
+[ext_resource type="Script" path="res://Scripts/DeadMenuNavigation.gd" id="1_gnhdg"]
+[ext_resource type="Texture2D" uid="uid://oriidxdo1fa3" path="res://Assets/Buttons/Button.png" id="2_3nufn"]
+[ext_resource type="FontFile" uid="uid://dhjj1ii1frsqf" path="res://Assets/Fonts/TherenRegular-vmrnE.ttf" id="3_3o8ny"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d25yo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xjr3x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ijuvr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_blhvn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lsv57"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ljh6h"]
+
+[node name="DeadMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_gnhdg")
+
+[node name="Home" type="Node" parent="."]
+
+[node name="TextureHome" type="Sprite2D" parent="Home"]
+visible = false
+position = Vector2(303.273, 520.563)
+scale = Vector2(0.243908, 0.243908)
+texture = ExtResource("2_3nufn")
+
+[node name="LineEditHome" type="LineEdit" parent="Home"]
+visible = false
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 113.273
+offset_top = 460.563
+offset_right = 476.273
+offset_bottom = 574.563
+theme_override_fonts/font = ExtResource("3_3o8ny")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d25yo")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xjr3x")
+text = "Home"
+alignment = 1
+
+[node name="TextureHomeHover" type="Sprite2D" parent="Home"]
+visible = false
+position = Vector2(310.659, 523.562)
+scale = Vector2(0.260714, 0.260714)
+texture = ExtResource("2_3nufn")
+
+[node name="LineEditHomeHover" type="LineEdit" parent="Home"]
+visible = false
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 193.488
+offset_top = 487.125
+offset_right = 417.488
+offset_bottom = 554.125
+theme_override_fonts/font = ExtResource("3_3o8ny")
+theme_override_font_sizes/font_size = 55
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d25yo")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xjr3x")
+text = "Home"
+alignment = 1
+
+[node name="ButtonHome" type="Button" parent="Home"]
+visible = false
+offset_left = 113.273
+offset_top = 454.563
+offset_right = 485.273
+offset_bottom = 584.563
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ijuvr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_blhvn")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_lsv57")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ljh6h")
+
+[node name="Exit" type="Node" parent="."]
+
+[node name="TextureExit" type="Sprite2D" parent="Exit"]
+position = Vector2(599.5, 76.5004)
+scale = Vector2(0.181419, 0.183192)
+texture = ExtResource("2_3nufn")
+
+[node name="LineEditExit" type="LineEdit" parent="Exit"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 467.0
+offset_top = 36.0
+offset_right = 737.0
+offset_bottom = 122.0
+theme_override_fonts/font = ExtResource("3_3o8ny")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d25yo")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xjr3x")
+text = "Exit"
+alignment = 1
+
+[node name="TextureExitHover" type="Sprite2D" parent="Exit"]
+visible = false
+position = Vector2(599.5, 80)
+scale = Vector2(0.191463, 0.211765)
+texture = ExtResource("2_3nufn")
+
+[node name="LineEditExitHover" type="LineEdit" parent="Exit"]
+visible = false
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 472.0
+offset_top = 36.0
+offset_right = 730.0
+offset_bottom = 127.0
+theme_override_fonts/font = ExtResource("3_3o8ny")
+theme_override_font_sizes/font_size = 55
+theme_override_styles/normal = SubResource("StyleBoxEmpty_d25yo")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xjr3x")
+text = "Exit"
+alignment = 1
+
+[node name="ButtonExit" type="Button" parent="Exit"]
+offset_left = 454.0
+offset_top = 22.0
+offset_right = 748.0
+offset_bottom = 145.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ijuvr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_blhvn")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_lsv57")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ljh6h")
+
+[connection signal="mouse_entered" from="Home/ButtonHome" to="." method="_on_button_home_mouse_entered"]
+[connection signal="mouse_exited" from="Home/ButtonHome" to="." method="_on_button_home_mouse_exited"]
+[connection signal="pressed" from="Home/ButtonHome" to="." method="_on_button_home_pressed"]
+[connection signal="mouse_entered" from="Exit/ButtonExit" to="." method="_on_button_exit_mouse_entered"]
+[connection signal="mouse_exited" from="Exit/ButtonExit" to="." method="_on_button_exit_mouse_exited"]
+[connection signal="pressed" from="Exit/ButtonExit" to="." method="_on_button_exit_pressed"]

@@ -1,0 +1,98 @@
+[gd_scene load_steps=9 format=3 uid="uid://c8p1knk816wf8"]
+
+[ext_resource type="Script" path="res://Scripts/SceneManager.gd" id="1_5yops"]
+[ext_resource type="PackedScene" uid="uid://mouheqrhmwph" path="res://Scenes/Game/Tiles/Water/WaterTile.tscn" id="3_cbp0g"]
+[ext_resource type="PackedScene" uid="uid://dc7ldj7an3my4" path="res://Scenes/Game/Glacier.tscn" id="4_03i5v"]
+[ext_resource type="PackedScene" uid="uid://dd2lu5vrattae" path="res://Scenes/Game/Tiles/Ground/SeaBottomTile.tscn" id="5_dohp3"]
+[ext_resource type="AudioStream" uid="uid://b6f4nk1ioyd57" path="res://Audio/Background music.mp3" id="6_60gas"]
+[ext_resource type="PackedScene" uid="uid://2l86vrjjpm35" path="res://Scenes/Game/Level1.tscn" id="6_nhq3s"]
+[ext_resource type="PackedScene" uid="uid://tbovghor3tp5" path="res://Scenes/Menus/MenuController.tscn" id="7_aas4l"]
+[ext_resource type="PackedScene" uid="uid://i7334pqmd0da" path="res://Scenes/Game/Player.tscn" id="8_35xyh"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_5yops")
+
+[node name="Startup" type="Node" parent="."]
+
+[node name="Map Edges" type="Node" parent="Startup"]
+
+[node name="Glacier L" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.8784, -11.9819, -5.55179)
+
+[node name="Glacier L 2" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 42.6918, -11.9819, -5.55179)
+
+[node name="Glacier T" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -5.93401, -11.9819, 34.3188)
+
+[node name="Glacier T 2" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -5.9197, -11.9819, 4.52593)
+
+[node name="Glacier T 4" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -6.23426, -11.9819, 91.6358)
+
+[node name="Glacier T 3" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, -6.1938, -11.9819, 61.843)
+
+[node name="Glacier B" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 61.7799, -11.9819, 34.3188)
+
+[node name="Glacier B 2" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 61.7942, -11.9819, 4.52593)
+
+[node name="Glacier  B 3" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 61.4796, -11.9819, 91.6358)
+
+[node name="Glacier B 4" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
+transform = Transform3D(-1, 0, -1.50996e-07, 0, 1, 0, 1.50996e-07, 0, -1, 61.5201, -11.9819, 61.843)
+
+[node name="Glacier R" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.748, -11.9819, 103.717)
+
+[node name="Glacier R 2" parent="Startup/Map Edges" instance=ExtResource("4_03i5v")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 42.5615, -11.9819, 103.717)
+
+[node name="Camera3D" type="Camera3D" parent="Startup"]
+transform = Transform3D(4.37114e-08, -1, 4.37114e-08, 0, 4.37114e-08, 1, 1, 4.37114e-08, -1.91069e-15, 30, 45, 50)
+current = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Startup"]
+transform = Transform3D(1, 0, 0, 0, 0.000733093, 1, 0, -1, 0.000733093, 30, 199.446, 50)
+light_color = Color(0.905882, 1, 1, 1)
+light_energy = 0.5
+
+[node name="SeaBottom" parent="Startup" instance=ExtResource("5_dohp3")]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 28.996, -6.69397, 46.9659)
+
+[node name="Water" parent="Startup" instance=ExtResource("3_cbp0g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.7118, -7.62939e-06, 45.776)
+
+[node name="Backgroundmusic" type="AudioStreamPlayer2D" parent="Startup"]
+stream = ExtResource("6_60gas")
+
+[node name="Levels" type="Node3D" parent="."]
+
+[node name="Level1" parent="Levels" instance=ExtResource("6_nhq3s")]
+
+[node name="MenuController" parent="." instance=ExtResource("7_aas4l")]
+layout_mode = 1
+
+[node name="UserInterface" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Penguin" parent="." instance=ExtResource("8_35xyh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.68063, 0.646441, 1.9009)
+
+[node name="SpawnLocations" type="Node3D" parent="."]
+
+[node name="0" type="Node3D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.84142, 0, 5.60334)
+
+[node name="1" type="Node3D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.4588, 7.62939e-06, 93.128)

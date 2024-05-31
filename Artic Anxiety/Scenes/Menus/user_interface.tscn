@@ -1,0 +1,243 @@
+[gd_scene load_steps=5 format=3 uid="uid://cud1l4d65xt7x"]
+
+[ext_resource type="Texture2D" uid="uid://cd0clo45jb6ym" path="res://Assets/Icons/jesus.png" id="1_hmfde"]
+[ext_resource type="Script" path="res://Scripts/user_interface.gd" id="1_yn68k"]
+[ext_resource type="Texture2D" uid="uid://b104xug2g2nwl" path="res://Assets/Icons/snowball.png" id="2_2ll8b"]
+[ext_resource type="Texture2D" uid="uid://ct1fibiq8ttb5" path="res://Assets/Icons/rocket-launcher.png" id="3_k1iox"]
+
+[node name="UserInterface" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yn68k")
+
+[node name="AbilityAid" type="Node" parent="."]
+
+[node name="Ability 2" type="Node" parent="AbilityAid"]
+
+[node name="Numlock 2" type="Label" parent="AbilityAid/Ability 2"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -92.0
+offset_top = 240.0
+offset_right = -9.0
+offset_bottom = 263.0
+grow_horizontal = 0
+text = "Numlock 2
+"
+
+[node name="JesusAbility" type="Sprite2D" parent="AbilityAid/Ability 2/Numlock 2"]
+position = Vector2(40, -40)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_hmfde")
+
+[node name="JesusAbilityBar" type="Node" parent="AbilityAid/Ability 2"]
+
+[node name="JezusAbilityGrayed out" type="ColorRect" parent="AbilityAid/Ability 2/JesusAbilityBar"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -433.0
+offset_top = -23.0
+offset_right = -368.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(13.3095, 0.361111)
+color = Color(0.466181, 0.466181, 0.466181, 1)
+
+[node name="JezusAbilityBorder" type="ReferenceRect" parent="AbilityAid/Ability 2/JesusAbilityBar"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -433.0
+offset_top = -23.0
+offset_right = 432.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+border_color = Color(0.346392, 0.490941, 0.978073, 1)
+border_width = 5.0
+editor_only = false
+
+[node name="JezusAbility" type="ColorRect" parent="AbilityAid/Ability 2/JesusAbilityBar"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -433.0
+offset_top = -23.0
+offset_right = -368.0
+offset_bottom = 17.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(13.3095, 0.361111)
+color = Color(0.333333, 1, 1, 1)
+
+[node name="Time Remaining_" type="Label" parent="AbilityAid/Ability 2/JesusAbilityBar"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -436.0
+offset_top = -43.0
+offset_right = -271.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 12
+text = "Time Remaining:"
+
+[node name="Ability 1" type="Node" parent="AbilityAid"]
+
+[node name="Numlock 1" type="Label" parent="AbilityAid/Ability 1"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -92.0
+offset_top = 120.0
+offset_right = -9.0
+offset_bottom = 143.0
+grow_horizontal = 0
+text = "Numlock 1
+"
+
+[node name="SnowballAbility" type="Sprite2D" parent="AbilityAid/Ability 1/Numlock 1"]
+position = Vector2(40, -40)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_2ll8b")
+
+[node name="Ability 3" type="Node" parent="AbilityAid"]
+
+[node name="Numlock 3" type="Label" parent="AbilityAid/Ability 3"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -92.0
+offset_top = 355.0
+offset_right = -9.0
+offset_bottom = 378.0
+grow_horizontal = 0
+text = "Numlock 3
+"
+
+[node name="RocketAbility" type="Sprite2D" parent="AbilityAid/Ability 3/Numlock 3"]
+position = Vector2(40, -40)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_k1iox")
+
+[node name="Label" type="Label" parent="AbilityAid"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -92.0
+offset_right = 73.0
+offset_bottom = 37.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 12
+text = "how to change
+ability"
+
+[node name="SelectedAbility" type="Node" parent="AbilityAid"]
+
+[node name="RectAbility1" type="ReferenceRect" parent="AbilityAid/SelectedAbility"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -102.0
+offset_top = 40.0
+offset_right = -2.0
+offset_bottom = 150.0
+grow_horizontal = 0
+border_color = Color(0.412538, 0.478696, 0.957091, 1)
+border_width = 5.0
+editor_only = false
+
+[node name="RectAbility2" type="ReferenceRect" parent="AbilityAid/SelectedAbility"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -102.0
+offset_top = 155.0
+offset_right = -2.0
+offset_bottom = 265.0
+grow_horizontal = 0
+border_color = Color(0.412538, 0.478696, 0.957091, 1)
+border_width = 5.0
+editor_only = false
+
+[node name="RectAbility3" type="ReferenceRect" parent="AbilityAid/SelectedAbility"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -102.0
+offset_top = 270.0
+offset_right = -2.0
+offset_bottom = 380.0
+grow_horizontal = 0
+border_color = Color(0.412538, 0.478696, 0.957091, 1)
+border_width = 5.0
+editor_only = false
+
+[node name="Ability Cooldown" type="Node" parent="."]
+
+[node name="CooldownBorder" type="ReferenceRect" parent="Ability Cooldown"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -199.0
+offset_right = 25.0
+offset_bottom = 216.0
+grow_vertical = 2
+border_color = Color(0.0833955, 0.584683, 0.762063, 1)
+border_width = 5.0
+editor_only = false
+
+[node name="CooldownBarGrayd" type="ColorRect" parent="Ability Cooldown"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -199.0
+offset_right = 11.1
+offset_bottom = 951.0
+grow_vertical = 2
+scale = Vector2(13.3095, 0.361111)
+color = Color(0.466181, 0.466181, 0.466181, 1)
+
+[node name="Cooldown" type="Label" parent="Ability Cooldown"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = -239.0
+offset_right = 170.0
+offset_bottom = -202.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 12
+text = "Cooldown
+Remaining:"
+
+[node name="CooldownBar" type="ColorRect" parent="Ability Cooldown"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 25.0
+offset_top = 217.0
+offset_right = 26.1
+offset_bottom = 1367.0
+grow_vertical = 2
+rotation = 3.14159
+scale = Vector2(13.3095, 0.361111)
+color = Color(0, 0.799267, 0.800905, 1)

@@ -1,0 +1,772 @@
+[gd_scene load_steps=32 format=3 uid="uid://bg51hyf3wrdvv"]
+
+[ext_resource type="Script" path="res://Scripts/MenuController.gd" id="1_gyt7m"]
+[ext_resource type="Texture2D" uid="uid://cmrl4swcq61ia" path="res://Assets/Menus/Background_Empty.png" id="2_eed64"]
+[ext_resource type="FontFile" uid="uid://byktst7h4frap" path="res://Assets/Fonts/TherenRegular-2Oevd.otf" id="5_jsk6x"]
+[ext_resource type="Script" path="res://Scripts/ServerBrowser.gd" id="6_chwxs"]
+[ext_resource type="PackedScene" uid="uid://16fv188sewjm" path="res://Scenes/Game/server_info.tscn" id="7_c51m1"]
+[ext_resource type="Texture2D" uid="uid://oriidxdo1fa3" path="res://Assets/Buttons/Button.png" id="9_5yyb4"]
+[ext_resource type="FontFile" uid="uid://dhjj1ii1frsqf" path="res://Assets/Fonts/TherenRegular-vmrnE.ttf" id="10_lfjdg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yrv8b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cfq0q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tw0tk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c6ppo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mof8x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s0jf1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ntcwx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_omlnq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vu83r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7r8o5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3ala6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uiqln"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2ud5w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y1mif"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c34tk"]
+bg_color = Color(0.233925, 0.233925, 0.233925, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_810rd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4bx3d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cpfd1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o068j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k2tvw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aw7bw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0itg3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m7ca1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s5m8h"]
+
+[node name="MenuController" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gyt7m")
+
+[node name="MenuBackground" type="Sprite2D" parent="."]
+position = Vector2(576, 327)
+scale = Vector2(0.642857, 0.632812)
+texture = ExtResource("2_eed64")
+
+[node name="ArcticAnxietyText" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 10.0
+offset_right = 1142.0
+offset_bottom = 115.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_colors/font_uneditable_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/clear_button_color = Color(0, 0, 0, 1)
+theme_override_colors/clear_button_color_pressed = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("10_lfjdg")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yrv8b")
+text = "Arctic     Anxiety"
+alignment = 1
+editable = false
+
+[node name="StartMenuOverlay" type="Node2D" parent="."]
+
+[node name="Multiplayer" type="Node2D" parent="StartMenuOverlay"]
+position = Vector2(0, -4)
+
+[node name="TextureMultiplayer" type="Sprite2D" parent="StartMenuOverlay/Multiplayer"]
+position = Vector2(574.171, 225)
+scale = Vector2(0.243908, 0.243908)
+texture = ExtResource("9_5yyb4")
+
+[node name="LineEditMultiplayer" type="LineEdit" parent="StartMenuOverlay/Multiplayer"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 392.0
+offset_top = 168.0
+offset_right = 755.0
+offset_bottom = 282.0
+theme_override_fonts/font = ExtResource("10_lfjdg")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cfq0q")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tw0tk")
+text = "Multiplayer"
+alignment = 1
+
+[node name="TextureMultiplayerHover" type="Sprite2D" parent="StartMenuOverlay/Multiplayer"]
+visible = false
+position = Vector2(574.171, 225)
+scale = Vector2(0.261, 0.261)
+texture = ExtResource("9_5yyb4")
+
+[node name="LineEditMultiplayerHover" type="LineEdit" parent="StartMenuOverlay/Multiplayer"]
+visible = false
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 382.0
+offset_top = 168.0
+offset_right = 769.0
+offset_bottom = 282.0
+theme_override_fonts/font = ExtResource("10_lfjdg")
+theme_override_font_sizes/font_size = 55
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cfq0q")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tw0tk")
+text = "Multiplayer"
+alignment = 1
+
+[node name="ButtonMultiplayer" type="Button" parent="StartMenuOverlay/Multiplayer"]
+offset_left = 388.0
+offset_top = 160.0
+offset_right = 760.0
+offset_bottom = 290.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_c6ppo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_mof8x")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_s0jf1")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ntcwx")
+
+[node name="Settings" type="Node2D" parent="StartMenuOverlay"]
+position = Vector2(0, -8)
+
+[node name="TextureSettings" type="Sprite2D" parent="StartMenuOverlay/Settings"]
+position = Vector2(574.171, 398)
+scale = Vector2(0.243908, 0.243908)
+texture = ExtResource("9_5yyb4")
+
+[node name="LineEditSettings" type="LineEdit" parent="StartMenuOverlay/Settings"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 392.0
+offset_top = 339.0
+offset_right = 755.0
+offset_bottom = 453.0
+theme_override_fonts/font = ExtResource("10_lfjdg")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cfq0q")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tw0tk")
+text = "Settings"
+alignment = 1
+
+[node name="TextureSettingsHover" type="Sprite2D" parent="StartMenuOverlay/Settings"]
+visible = false
+position = Vector2(574.171, 398)
+scale = Vector2(0.261, 0.261)
+texture = ExtResource("9_5yyb4")
+
+[node name="LineEditSettingsHover" type="LineEdit" parent="StartMenuOverlay/Settings"]
+visible = false
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 392.0
+offset_top = 339.0
+offset_right = 755.0
+offset_bottom = 453.0
+theme_override_fonts/font = ExtResource("10_lfjdg")
+theme_override_font_sizes/font_size = 55
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cfq0q")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tw0tk")
+text = "Settings"
+alignment = 1
+
+[node name="ButtonSettings" type="Button" parent="StartMenuOverlay/Settings"]
+offset_left = 388.0
+offset_top = 333.0
+offset_right = 760.0
+offset_bottom = 463.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_c6ppo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_mof8x")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_omlnq")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vu83r")
+
+[node name="Exit" type="Node2D" parent="StartMenuOverlay"]
+position = Vector2(0, -4)
+
+[node name="TextureExit" type="Sprite2D" parent="StartMenuOverlay/Exit"]
+position = Vector2(574.171, 566)
+scale = Vector2(0.243908, 0.243908)
+texture = ExtResource("9_5yyb4")
+
+[node name="LineEditExit" type="LineEdit" parent="StartMenuOverlay/Exit"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 392.0
+offset_top = 506.0
+offset_right = 755.0
+offset_bottom = 620.0
+theme_override_fonts/font = ExtResource("10_lfjdg")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cfq0q")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tw0tk")
+text = "Exit"
+alignment = 1
+
+[node name="TextureExitHover" type="Sprite2D" parent="StartMenuOverlay/Exit"]
+visible = false
+position = Vector2(574.171, 566)
+scale = Vector2(0.261, 0.261)
+texture = ExtResource("9_5yyb4")
+
+[node name="LineEditExitHover" type="LineEdit" parent="StartMenuOverlay/Exit"]
+visible = false
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 392.0
+offset_top = 506.0
+offset_right = 755.0
+offset_bottom = 620.0
+theme_override_fonts/font = ExtResource("10_lfjdg")
+theme_override_font_sizes/font_size = 55
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cfq0q")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tw0tk")
+text = "Exit"
+alignment = 1
+
+[node name="ButtonExit" type="Button" parent="StartMenuOverlay/Exit"]
+offset_left = 388.0
+offset_top = 500.0
+offset_right = 760.0
+offset_bottom = 630.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_c6ppo")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_mof8x")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_7r8o5")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3ala6")
+
+[node name="MultiplayerMenuOverlay" type="Node2D" parent="."]
+visible = false
+
+[node name="MultiplayerText" type="LineEdit" parent="MultiplayerMenuOverlay"]
+offset_left = 371.0
+offset_top = 117.0
+offset_right = 789.0
+offset_bottom = 187.0
+theme_override_fonts/font = ExtResource("10_lfjdg")
+theme_override_font_sizes/font_size = 50
+text = "Multiplayer"
+alignment = 1
+
+[node name="BackgroundLobbies" type="ColorRect" parent="MultiplayerMenuOverlay"]
+offset_left = 149.0
+offset_top = 196.0
+offset_right = 1009.0
+offset_bottom = 522.0
+color = Color(0, 0, 0, 0.670588)
+
+[node name="ServerInfo2" type="HBoxContainer" parent="MultiplayerMenuOverlay/BackgroundLobbies"]
+layout_mode = 2
+offset_top = -18.0
+offset_right = 858.0
+offset_bottom = 60.0
+
+[node name="Name" type="Label" parent="MultiplayerMenuOverlay/BackgroundLobbies/ServerInfo2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "    Name"
+
+[node name="Ip" type="Label" parent="MultiplayerMenuOverlay/BackgroundLobbies/ServerInfo2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "     IP"
+
+[node name="PlayerCount" type="Label" parent="MultiplayerMenuOverlay/BackgroundLobbies/ServerInfo2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Players"
+
+[node name="Join" type="Label" parent="MultiplayerMenuOverlay/BackgroundLobbies/ServerInfo2"]
+layout_mode = 2
+text = "         "
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MultiplayerMenuOverlay/BackgroundLobbies"]
+layout_mode = 0
+offset_top = 37.0
+offset_right = 858.0
+offset_bottom = 324.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MultiplayerMenuOverlay"]
+visible = false
+offset_left = 151.0
+offset_top = 242.0
+offset_right = 1007.0
+offset_bottom = 521.0
+
+[node name="OpenLobby" type="Control" parent="MultiplayerMenuOverlay/VBoxContainer"]
+layout_mode = 2
+
+[node name="LobbiesText" type="Node2D" parent="MultiplayerMenuOverlay"]
+
+[node name="OpenLobbyTextUI" type="LineEdit" parent="MultiplayerMenuOverlay/LobbiesText"]
+visible = false
+offset_left = 161.0
+offset_top = 204.0
+offset_right = 223.0
+offset_bottom = 235.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_uiqln")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2ud5w")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_y1mif")
+text = "Name"
+
+[node name="OpenLobbyIPAdressUI" type="LineEdit" parent="MultiplayerMenuOverlay/LobbiesText"]
+visible = false
+offset_left = 468.0
+offset_top = 202.0
+offset_right = 552.0
+offset_bottom = 233.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_uiqln")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2ud5w")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_y1mif")
+text = "IP-adress"
+
+[node name="OpenLobbyCurrentPlayersUI" type="LineEdit" parent="MultiplayerMenuOverlay/LobbiesText"]
+visible = false
+offset_left = 754.0
+offset_top = 205.0
+offset_right = 816.0
+offset_bottom = 236.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_uiqln")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2ud5w")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_y1mif")
+text = "Players"
+
+[node name="OpenLobbyText" type="LineEdit" parent="MultiplayerMenuOverlay/LobbiesText"]
+visible = false
+offset_left = 163.0
+offset_top = 238.0
+offset_right = 468.0
+offset_bottom = 269.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_uiqln")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2ud5w")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_y1mif")
+
+[node name="OpenLobbyIPAdress" type="LineEdit" parent="MultiplayerMenuOverlay/LobbiesText"]
+visible = false
+offset_left = 472.0
+offset_top = 240.0
+offset_right = 727.0
+offset_bottom = 271.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_uiqln")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2ud5w")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_y1mif")
+
+[node name="OpenLobbyCurrentPlayers" type="LineEdit" parent="MultiplayerMenuOverlay/LobbiesText"]
+visible = false
+offset_left = 758.0
+offset_top = 249.0
+offset_right = 820.0
+offset_bottom = 280.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_uiqln")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2ud5w")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_y1mif")
+
+[node name="OpenLobbyMaxPlayers" type="LineEdit" parent="MultiplayerMenuOverlay/LobbiesText"]
+visible = false
+offset_left = 773.0
+offset_top = 249.0
+offset_right = 832.063
+offset_bottom = 280.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_uiqln")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2ud5w")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_y1mif")
+
+[node name="LobbyNameInput" type="LineEdit" parent="MultiplayerMenuOverlay"]
+offset_left = 586.0
+offset_top = 559.0
+offset_right = 873.0
+offset_bottom = 610.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_c34tk")
+placeholder_text = " Lobby name"
+alignment = 1
+
+[node name="Create" type="Node2D" parent="MultiplayerMenuOverlay"]
+position = Vector2(865, -6)
+
+[node name="TextureCreateLobby" type="Sprite2D" parent="MultiplayerMenuOverlay/Create"]
+position = Vector2(135.156, 592)
+scale = Vector2(0.145483, 0.145483)
+texture = ExtResource("9_5yyb4")
+
+[node name="LineEditCreateLobby" type="LineEdit" parent="MultiplayerMenuOverlay/Create"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 30.1563
+offset_top = 558.0
+offset_right = 240.156
+offset_bottom = 624.0
+theme_override_fonts/font = ExtResource("10_lfjdg")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxEmpty_810rd")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4bx3d")
+text = "Create lobby"
+alignment = 1
+
+[node name="TextureCreateLobbyHover" type="Sprite2D" parent="MultiplayerMenuOverlay/Create"]
+visible = false
+position = Vector2(135.156, 592)
+scale = Vector2(0.154622, 0.154622)
+texture = ExtResource("9_5yyb4")
+
+[node name="LineEditCreateLobbyHover" type="LineEdit" parent="MultiplayerMenuOverlay/Create"]
+visible = false
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 30.1563
+offset_top = 558.0
+offset_right = 240.156
+offset_bottom = 624.0
+theme_override_fonts/font = ExtResource("10_lfjdg")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxEmpty_810rd")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4bx3d")
+text = "Create lobby"
+alignment = 1
+
+[node name="ButtonCreateLobby" type="Button" parent="MultiplayerMenuOverlay/Create"]
+offset_left = 24.1563
+offset_top = 552.0
+offset_right = 246.156
+offset_bottom = 632.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cpfd1")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_o068j")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_k2tvw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_aw7bw")
+
+[node name="Start" type="Node2D" parent="MultiplayerMenuOverlay"]
+visible = false
+position = Vector2(870, -8)
+
+[node name="TextureStartLobby" type="Sprite2D" parent="MultiplayerMenuOverlay/Start"]
+position = Vector2(135.156, 592)
+scale = Vector2(0.145483, 0.145483)
+texture = ExtResource("9_5yyb4")
+
+[node name="LineEditStartLobby" type="LineEdit" parent="MultiplayerMenuOverlay/Start"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 30.1563
+offset_top = 558.0
+offset_right = 240.156
+offset_bottom = 624.0
+theme_override_fonts/font = ExtResource("10_lfjdg")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxEmpty_810rd")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4bx3d")
+text = "Start"
+alignment = 1
+
+[node name="TextureStartLobbyHover" type="Sprite2D" parent="MultiplayerMenuOverlay/Start"]
+position = Vector2(135.156, 592)
+scale = Vector2(0.154622, 0.154622)
+texture = ExtResource("9_5yyb4")
+
+[node name="LineEditStartLobbyHover" type="LineEdit" parent="MultiplayerMenuOverlay/Start"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 30.1563
+offset_top = 558.0
+offset_right = 240.156
+offset_bottom = 624.0
+theme_override_fonts/font = ExtResource("10_lfjdg")
+theme_override_font_sizes/font_size = 27
+theme_override_styles/normal = SubResource("StyleBoxEmpty_810rd")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4bx3d")
+text = "Start"
+alignment = 1
+
+[node name="ButtonStartLobby" type="Button" parent="MultiplayerMenuOverlay/Start"]
+offset_left = 24.1563
+offset_top = 552.0
+offset_right = 246.156
+offset_bottom = 632.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cpfd1")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_o068j")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_k2tvw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_aw7bw")
+
+[node name="SettingsMenuOverlay" type="Node2D" parent="."]
+visible = false
+
+[node name="SettingsText" type="LineEdit" parent="SettingsMenuOverlay"]
+offset_left = 371.0
+offset_top = 117.0
+offset_right = 789.0
+offset_bottom = 187.0
+theme_override_fonts/font = ExtResource("10_lfjdg")
+theme_override_font_sizes/font_size = 50
+text = "Settings"
+alignment = 1
+
+[node name="BackgroundLobbies" type="ColorRect" parent="SettingsMenuOverlay"]
+offset_left = 146.0
+offset_top = 197.0
+offset_right = 1006.0
+offset_bottom = 523.0
+color = Color(0, 0, 0, 0.670588)
+
+[node name="Sliders" type="Node2D" parent="SettingsMenuOverlay"]
+
+[node name="MasterText" type="LineEdit" parent="SettingsMenuOverlay/Sliders"]
+offset_left = 299.0
+offset_top = 240.0
+offset_right = 429.0
+offset_bottom = 291.0
+theme_override_fonts/font = ExtResource("5_jsk6x")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0itg3")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m7ca1")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_s5m8h")
+text = "Master"
+
+[node name="MasterSlider" type="HSlider" parent="SettingsMenuOverlay/Sliders"]
+offset_left = 284.0
+offset_top = 274.0
+offset_right = 845.0
+offset_bottom = 305.0
+
+[node name="MusicText" type="LineEdit" parent="SettingsMenuOverlay/Sliders"]
+offset_left = 296.0
+offset_top = 316.0
+offset_right = 426.0
+offset_bottom = 367.0
+theme_override_fonts/font = ExtResource("5_jsk6x")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0itg3")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m7ca1")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_s5m8h")
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="SettingsMenuOverlay/Sliders"]
+offset_left = 285.0
+offset_top = 353.0
+offset_right = 846.0
+offset_bottom = 384.0
+
+[node name="SoundFxText" type="LineEdit" parent="SettingsMenuOverlay/Sliders"]
+offset_left = 296.0
+offset_top = 393.0
+offset_right = 451.0
+offset_bottom = 444.0
+theme_override_fonts/font = ExtResource("5_jsk6x")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0itg3")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_m7ca1")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_s5m8h")
+text = "Sound fx"
+
+[node name="SoundFxSlider" type="HSlider" parent="SettingsMenuOverlay/Sliders"]
+offset_left = 287.0
+offset_top = 427.0
+offset_right = 848.0
+offset_bottom = 458.0
+
+[node name="Back" type="Node2D" parent="."]
+
+[node name="TextureBack" type="Sprite2D" parent="Back"]
+position = Vector2(135.156, 592)
+scale = Vector2(0.145483, 0.145483)
+texture = ExtResource("9_5yyb4")
+
+[node name="LineEditBack" type="LineEdit" parent="Back"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 30.1563
+offset_top = 558.0
+offset_right = 240.156
+offset_bottom = 624.0
+theme_override_fonts/font = ExtResource("10_lfjdg")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_810rd")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4bx3d")
+text = "Back"
+alignment = 1
+
+[node name="TextureBackHover" type="Sprite2D" parent="Back"]
+visible = false
+position = Vector2(135.156, 592)
+scale = Vector2(0.154622, 0.154622)
+texture = ExtResource("9_5yyb4")
+
+[node name="LineEditBackHover" type="LineEdit" parent="Back"]
+visible = false
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 30.1563
+offset_top = 558.0
+offset_right = 240.156
+offset_bottom = 624.0
+theme_override_fonts/font = ExtResource("10_lfjdg")
+theme_override_font_sizes/font_size = 45
+theme_override_styles/normal = SubResource("StyleBoxEmpty_810rd")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4bx3d")
+text = "Back"
+alignment = 1
+
+[node name="ButtonBack" type="Button" parent="Back"]
+offset_left = 24.1563
+offset_top = 552.0
+offset_right = 246.156
+offset_bottom = 632.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cpfd1")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_o068j")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_k2tvw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_aw7bw")
+
+[node name="TestPlay" type="Node2D" parent="."]
+position = Vector2(899, -532)
+
+[node name="TextureTestPlay" type="Sprite2D" parent="TestPlay"]
+position = Vector2(135.156, 592)
+scale = Vector2(0.145483, 0.145483)
+texture = ExtResource("9_5yyb4")
+
+[node name="LineEditTestPlay" type="LineEdit" parent="TestPlay"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 30.1563
+offset_top = 558.0
+offset_right = 240.156
+offset_bottom = 624.0
+theme_override_fonts/font = ExtResource("10_lfjdg")
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxEmpty_810rd")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4bx3d")
+text = "TestPlay"
+alignment = 1
+
+[node name="ButtonTestPlay" type="Button" parent="TestPlay"]
+offset_left = 24.1563
+offset_top = 552.0
+offset_right = 246.156
+offset_bottom = 632.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cpfd1")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_o068j")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_k2tvw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_aw7bw")
+
+[node name="TestLeave" type="Node2D" parent="."]
+visible = false
+position = Vector2(1460, -648)
+
+[node name="TextureTestLeave" type="Sprite2D" parent="TestLeave"]
+position = Vector2(-522.992, 911.5)
+scale = Vector2(0.0602741, 0.0554621)
+texture = ExtResource("9_5yyb4")
+
+[node name="LineEditTestLeave" type="LineEdit" parent="TestLeave"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+offset_left = -570.0
+offset_top = 893.0
+offset_right = -476.0
+offset_bottom = 927.0
+theme_override_fonts/font = ExtResource("10_lfjdg")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_810rd")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4bx3d")
+text = "Leave"
+alignment = 1
+
+[node name="ButtonTestLeave" type="Button" parent="TestLeave"]
+offset_left = -568.0
+offset_top = 896.0
+offset_right = -477.0
+offset_bottom = 927.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cpfd1")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_o068j")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_k2tvw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_aw7bw")
+
+[node name="TestJoin" type="Node2D" parent="."]
+visible = false
+position = Vector2(730, -324)
+
+[node name="TextureTestJoin" type="Sprite2D" parent="TestJoin"]
+position = Vector2(207.008, 587.5)
+scale = Vector2(0.0602741, 0.0554621)
+texture = ExtResource("9_5yyb4")
+
+[node name="LineEditTestJoin" type="LineEdit" parent="TestJoin"]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+offset_left = 160.0
+offset_top = 569.0
+offset_right = 254.0
+offset_bottom = 603.0
+theme_override_fonts/font = ExtResource("10_lfjdg")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxEmpty_810rd")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4bx3d")
+text = "Join"
+alignment = 1
+
+[node name="ButtonTestJoin" type="Button" parent="TestJoin"]
+offset_left = 162.0
+offset_top = 572.0
+offset_right = 253.0
+offset_bottom = 603.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_cpfd1")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_o068j")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_k2tvw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_aw7bw")
+
+[node name="ServerBrowser" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_chwxs")
+serverInfo = ExtResource("7_c51m1")
+
+[node name="BroadcastTimer" type="Timer" parent="ServerBrowser"]
+
+[node name="Label" type="Label" parent="ServerBrowser"]
+layout_mode = 0
+offset_left = 498.0
+offset_top = 8.0
+offset_right = 627.0
+offset_bottom = 51.0
+
+[connection signal="mouse_entered" from="StartMenuOverlay/Multiplayer/ButtonMultiplayer" to="." method="_on_button_multiplayer_mouse_entered"]
+[connection signal="mouse_exited" from="StartMenuOverlay/Multiplayer/ButtonMultiplayer" to="." method="_on_button_multiplayer_mouse_exited"]
+[connection signal="pressed" from="StartMenuOverlay/Multiplayer/ButtonMultiplayer" to="." method="_on_button_multiplayer_pressed"]
+[connection signal="mouse_entered" from="StartMenuOverlay/Settings/ButtonSettings" to="." method="_on_button_settings_mouse_entered"]
+[connection signal="mouse_exited" from="StartMenuOverlay/Settings/ButtonSettings" to="." method="_on_button_settings_mouse_exited"]
+[connection signal="pressed" from="StartMenuOverlay/Settings/ButtonSettings" to="." method="_on_button_settings_pressed"]
+[connection signal="mouse_entered" from="StartMenuOverlay/Exit/ButtonExit" to="." method="_on_button_exit_mouse_entered"]
+[connection signal="mouse_exited" from="StartMenuOverlay/Exit/ButtonExit" to="." method="_on_button_exit_mouse_exited"]
+[connection signal="pressed" from="StartMenuOverlay/Exit/ButtonExit" to="." method="_on_button_exit_pressed"]
+[connection signal="mouse_entered" from="MultiplayerMenuOverlay/Create/ButtonCreateLobby" to="." method="_on_button_create_lobby_mouse_entered"]
+[connection signal="mouse_exited" from="MultiplayerMenuOverlay/Create/ButtonCreateLobby" to="." method="_on_button_create_lobby_mouse_exited"]
+[connection signal="pressed" from="MultiplayerMenuOverlay/Create/ButtonCreateLobby" to="." method="_on_button_create_lobby_pressed"]
+[connection signal="mouse_entered" from="MultiplayerMenuOverlay/Start/ButtonStartLobby" to="." method="_on_button_start_lobby_mouse_entered"]
+[connection signal="mouse_exited" from="MultiplayerMenuOverlay/Start/ButtonStartLobby" to="." method="_on_button_start_lobby_mouse_exited"]
+[connection signal="pressed" from="MultiplayerMenuOverlay/Start/ButtonStartLobby" to="." method="_on_button_start_lobby_pressed"]
+[connection signal="mouse_entered" from="Back/ButtonBack" to="." method="_on_button_back_mouse_entered"]
+[connection signal="mouse_exited" from="Back/ButtonBack" to="." method="_on_button_back_mouse_exited"]
+[connection signal="pressed" from="Back/ButtonBack" to="." method="_on_button_back_pressed"]
+[connection signal="pressed" from="TestPlay/ButtonTestPlay" to="." method="_on_button_test_play_pressed"]
+[connection signal="pressed" from="TestLeave/ButtonTestLeave" to="." method="_on_button_test_leave_pressed"]
+[connection signal="pressed" from="TestJoin/ButtonTestJoin" to="." method="_on_button_test_join_pressed"]
+[connection signal="timeout" from="ServerBrowser/BroadcastTimer" to="ServerBrowser" method="_on_broadcast_timer_timeout"]
