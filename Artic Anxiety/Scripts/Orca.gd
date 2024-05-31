@@ -7,6 +7,7 @@ var motion = Vector3.ZERO
 var orcaLoc
 var target_velocity = Vector3.ZERO
 
+
 var targetFoundToEat = false
 var target_position = Vector3.ZERO  # Variable to store the target position
 var stopping_distance = 7.0  # Distance within which the orca should stop moving
@@ -24,67 +25,66 @@ func _ready():
 		set_random_target()
 
 func _process(delta):
-	if GameManager.GamePaused == true:
-		return
+	if GameManager.GameIsRunning == true:
 		
-	var next_nav_point = null  # Declare next_nav_point outside of the if block
+		var next_nav_point = null  # Declare next_nav_point outside of the if block
 
-	if targetFoundToEat:
-		# Calculate distance to target
-		var distance_to_target = global_transform.origin.distance_to(target_position)
-		
-		# Check if the orca is close enough to the target position
-		if distance_to_target <= stopping_distance:
-			velocity = Vector3.ZERO  # Stop the orca
+		if targetFoundToEat:
+			# Calculate distance to target
+			var distance_to_target = global_transform.origin.distance_to(target_position)
+			
+			# Check if the orca is close enough to the target position
+			if distance_to_target <= stopping_distance:
+				velocity = Vector3.ZERO  # Stop the orca
+			else:
+				# Adjust speed to ensure it reaches the target in 3 seconds
+				# We use a function to have a higher speed initially and slow down as it approaches the target
+				var t = min(1, delta / time_to_reach_target)  # Ensure t is a fraction of the total time (3 seconds)
+				speed = max(10, distance_to_target / (time_to_reach_target - t))  # Ensure speed is at least 10 units per second
+				
+				# Navigation
+				nav_agent.set_target_position(target_position)
+				next_nav_point = nav_agent.get_next_path_position()  # Assign next_nav_point inside the if block
+
+			# Call look_at only when actively navigating
+			if next_nav_point != null:
+				var new_direction = (next_nav_point - global_transform.origin).normalized()
+				if abs(new_direction.dot(Vector3.UP)) > 0.99:
+					# Use a different up vector to avoid alignment issues
+					var alternative_up = Vector3(0, 0, 1) if new_direction.y > 0 else Vector3(0, 0, -1)
+					look_at(next_nav_point, alternative_up)
+				else:
+					look_at(next_nav_point, Vector3.UP)
+
+			# Move and slide logic
+			if next_nav_point != null:
+				velocity = (next_nav_point - global_transform.origin).normalized() * speed
+				move_and_slide()
+
 		else:
-			# Adjust speed to ensure it reaches the target in 3 seconds
-			# We use a function to have a higher speed initially and slow down as it approaches the target
-			var t = min(1, delta / time_to_reach_target)  # Ensure t is a fraction of the total time (3 seconds)
-			speed = max(10, distance_to_target / (time_to_reach_target - t))  # Ensure speed is at least 10 units per second
-			
-			# Navigation
-			nav_agent.set_target_position(target_position)
-			next_nav_point = nav_agent.get_next_path_position()  # Assign next_nav_point inside the if block
+			# Random movement logic if target is not found
+			move_timer -= delta
+			if move_timer <= 0:
+				set_random_target()
+				move_timer = MOVE_INTERVAL
 
-		# Call look_at only when actively navigating
-		if next_nav_point != null:
-			var new_direction = (next_nav_point - global_transform.origin).normalized()
-			if abs(new_direction.dot(Vector3.UP)) > 0.99:
-				# Use a different up vector to avoid alignment issues
-				var alternative_up = Vector3(0, 0, 1) if new_direction.y > 0 else Vector3(0, 0, -1)
-				look_at(next_nav_point, alternative_up)
-			else:
-				look_at(next_nav_point, Vector3.UP)
+			nav_agent.set_target_position(random_target)
+			next_nav_point = nav_agent.get_next_path_position()
 
-		# Move and slide logic
-		if next_nav_point != null:
-			velocity = (next_nav_point - global_transform.origin).normalized() * speed
-			move_and_slide()
+			if next_nav_point != null:
+				var new_direction = (next_nav_point - global_transform.origin).normalized()
+				velocity = new_direction * speed
 
-	else:
-		# Random movement logic if target is not found
-		move_timer -= delta
-		if move_timer <= 0:
-			set_random_target()
-			move_timer = MOVE_INTERVAL
-
-		nav_agent.set_target_position(random_target)
-		next_nav_point = nav_agent.get_next_path_position()
-
-		if next_nav_point != null:
-			var new_direction = (next_nav_point - global_transform.origin).normalized()
-			velocity = new_direction * speed
-
-			# Check if the direction vector is aligned with the up vector
-			if abs(new_direction.dot(Vector3.UP)) > 0.99:
-				# Use a different up vector to avoid alignment issues
-				var alternative_up = Vector3(0, 0, 1) if new_direction.y > 0 else Vector3(0, 0, -1)
-				look_at(next_nav_point, alternative_up)
-			else:
-				look_at(next_nav_point, Vector3.UP)
-			
-			last_direction = new_direction
-			move_and_slide()
+				# Check if the direction vector is aligned with the up vector
+				if abs(new_direction.dot(Vector3.UP)) > 0.99:
+					# Use a different up vector to avoid alignment issues
+					var alternative_up = Vector3(0, 0, 1) if new_direction.y > 0 else Vector3(0, 0, -1)
+					look_at(next_nav_point, alternative_up)
+				else:
+					look_at(next_nav_point, Vector3.UP)
+				
+				last_direction = new_direction
+				move_and_slide()
 
 
 func set_random_target():

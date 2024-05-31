@@ -7,9 +7,6 @@ var ID_WATER_TILE: String = "105"
 var ID_FULL_ICE_TILE: String = "49"
 var ID_BROKEN_ICE_TILE: String = "48"
 
-# This is to toggle gameplay when the player starts the game
-var start_gameplay: bool = true
-
 # For the timer of breaking tiles
 var maxTimeTileBreaking = 4.0
 var timeLeftTileBreaking = 4.0
@@ -48,24 +45,21 @@ func load_map():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	#Only server can edit the map, server will send the update to all clients
 	if GameManager.IsThisAServer == true:
-		if GameManager.GamePaused == true:
-			return
-	
-		for tile in tiles:
-			if tile.get_id() == ID_WATER_TILE:
-				if randf() < 0.00005: # Adjust probability for adding ice
-					check_to_create_ice(tile)
-					
-			if tile.get_id() == ID_FULL_ICE_TILE:
-				if randf() < 0.00002: # Adjust probability for breaking ice
-					check_to_break_ice(tile)
-					
-			if tile.get_id() == ID_BROKEN_ICE_TILE:
-				if randf() < 0.0005: # Adjust probability for deleting ice
-					check_to_delete_ice(tile)
-	else:
-		pass
+		if GameManager.GameIsRunning == true:
+			for tile in tiles:
+				if tile.get_id() == ID_WATER_TILE:
+					if randf() < 0.00005: # Adjust probability for adding ice
+						check_to_create_ice(tile)
+						
+				if tile.get_id() == ID_FULL_ICE_TILE:
+					if randf() < 0.00002: # Adjust probability for breaking ice
+						check_to_break_ice(tile)
+						
+				if tile.get_id() == ID_BROKEN_ICE_TILE:
+					if randf() < 0.0005: # Adjust probability for deleting ice
+						check_to_delete_ice(tile)
 		
 func check_to_create_ice(tile: ClassTile):
 	var instance = FullIceTile.instantiate() as Node3D
@@ -139,13 +133,7 @@ func rpc_delete_ice(_position: Vector3):
 			tile.get_instance().remove_child(tile.get_instance().get_children()[0])
 			tile.set_id(ID_WATER_TILE)
 
-func startGame():
-	start_gameplay = true
-
 func delete_tile_with_radius(_position: Vector3, radius: int):
-	if radius == 5:
-		print("ok")
-
 	var playerX = _position.x
 	var playerZ = _position.z
 
@@ -166,3 +154,11 @@ func delete_tile_with_radius(_position: Vector3, radius: int):
 				# Make sure the instance is part of the tree before calling rpc
 				if instance.is_inside_tree():
 					rpc("rpc_delete_ice", i.get_position())
+
+func delete_tile_at_position(_position: Vector3):
+	delete_tile_with_radius(_position, 2)
+	rpc_delete_tile_at_position.rpc(_position)
+
+@rpc("any_peer")
+func rpc_delete_tile_at_position(_position: Vector3):
+	delete_tile_with_radius(_position, 2)

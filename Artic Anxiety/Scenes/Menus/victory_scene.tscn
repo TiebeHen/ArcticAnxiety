@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://ddneia7gcads6"]
+
+[ext_resource type="PackedScene" uid="uid://poxah1udrh5i" path="res://Scenes/Game/orca.tscn" id="1_7h2ab"]
+[ext_resource type="PackedScene" uid="uid://bjj2n774b8htj" path="res://Assets/Models/Penguin/penguin.glb" id="2_230uw"]
+[ext_resource type="Script" path="res://Assets/Models/Penguin/victory.gd" id="3_v5xi6"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4tm7e"]
+animation = &"VictoryDance"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ueqrw"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_23vnp"]
+states/Start/position = Vector2(347, 88)
+states/VictoryDance/node = SubResource("AnimationNodeAnimation_4tm7e")
+states/VictoryDance/position = Vector2(562, 79)
+transitions = ["Start", "VictoryDance", SubResource("AnimationNodeStateMachineTransition_ueqrw")]
+
+[node name="VictoryScene" type="Node3D"]
+
+[node name="orca" parent="." instance=ExtResource("1_7h2ab")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 28.0455, 8.47588, 44.8326)
+script = null
+
+[node name="VictoryPOV" type="Camera3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 27.4395, 5, 27.1587)
+
+[node name="penguin" parent="." instance=ExtResource("2_230uw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.1758, 2.70911, 41.2416)
+script = ExtResource("3_v5xi6")
+
+[node name="Skeleton3D" parent="penguin/Armature_001" index="0"]
+bones/0/position = Vector3(0, -0.666944, 0)
+bones/1/rotation = Quaternion(-0.0293924, -0.035414, -0.644525, 0.763197)
+bones/2/rotation = Quaternion(-0.172615, -0.115646, -0.652428, 0.728812)
+bones/3/rotation = Quaternion(-0.0680808, -0.0142432, 0.0330377, 0.997031)
+bones/4/rotation = Quaternion(-0.0745115, -0.0215748, -0.0191931, 0.996802)
+bones/8/rotation = Quaternion(0.101344, -0.0697822, 0.646853, 0.752623)
+bones/8/scale = Vector3(0.998526, 0.999899, 0.956609)
+bones/9/rotation = Quaternion(-0.0455463, 9.80038e-05, 0.0513444, 0.997642)
+bones/10/rotation = Quaternion(-0.00921632, 0.082141, -0.115457, 0.989867)
+bones/11/position = Vector3(4.65661e-09, -0.666944, 2.79397e-08)
+bones/11/rotation = Quaternion(0.57309, 0.598293, 0.369126, -0.421141)
+bones/13/rotation = Quaternion(-0.138808, -0.172504, 0.843496, 0.489376)
+bones/14/position = Vector3(2.91038e-10, -0.666944, -1.34569e-08)
+bones/14/rotation = Quaternion(-0.542172, 0.543322, 0.448891, 0.457545)
+bones/16/rotation = Quaternion(0.120216, 0.00045797, 0.860379, -0.495274)
+
+[node name="AnimationTree" type="AnimationTree" parent="penguin"]
+tree_root = SubResource("AnimationNodeStateMachine_23vnp")
+anim_player = NodePath("../AnimationPlayer")
+
+[editable path="penguin"]
