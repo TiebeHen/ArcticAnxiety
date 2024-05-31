@@ -13,6 +13,10 @@ var GameIsRunning = false
 var GameIsEnding = false
 var GameIsFinished = false
 
+
+var GameLost = false
+var GameWon = false
+
 var PlayerID = -1
 
 
