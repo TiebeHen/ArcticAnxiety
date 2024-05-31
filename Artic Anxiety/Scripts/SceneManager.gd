@@ -28,10 +28,11 @@ func _process(_delta):
 		GameManager.GameIsFinished = false
 		
 	if GameManager.GameIsEnding:
-		#$PlayerUi.
-		DeleteUi()
 		SetDeadScene()
-
+		
+	if GameManager.GameIsFinished:
+		DeleteUi()
+		
 
 func RPG(nodi, positionS, velocity, targetPosition):
 	# Instantiate the rocket
@@ -53,5 +54,6 @@ func SetDeadScene():
 	GameManager.GameIsFinished = true
 	GameManager.GameIsEnding = false
 	GameManager.GameIsRunning = false
+	
 func DeleteUi():
 	$PlayerUi.remove_child($PlayerUi/UserInterface)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c16x85tge48q3"]
+[gd_scene load_steps=14 format=3 uid="uid://lh0p5vgbpttx"]
 
 [ext_resource type="Script" path="res://Scripts/SceneManager.gd" id="1_5yops"]
 [ext_resource type="PackedScene" uid="uid://mouheqrhmwph" path="res://Scenes/Game/Tiles/Water/WaterTile.tscn" id="3_cbp0g"]
