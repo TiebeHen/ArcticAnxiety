@@ -272,13 +272,15 @@ func on_player_wins() -> void:
 		
 	victory = true
 	if victoryPOV:
-		victoryPOV.current = true
-		
+		#victoryPOV.current = true
+		pass
 	if anim_tree:
 		anim_tree.set("parameters/conditions/Victory", true)
 		
+	HidePlayer()
 	GameManager.GameIsFinished = true
-	GameManager.GameIsEnding = false
+	GameManager.GameIsEnding = true
+	GameManager.GameWon = true
 	GameManager.GameIsRunning = false
 			
 func _on_victory_timeout() -> void:
@@ -327,22 +329,35 @@ func GoToDeadScene():
 	rpc_GoToVictoryScene.rpc()
 	#get_tree().change_scene_to_file("res://Scenes/Game/DeadScene.tscn")
 	#queue_free()
+	HidePlayer()
 	GameManager.GameIsEnding = true
+	GameManager.GameLost = true
 	pass
 	
 @rpc("any_peer")
 func rpc_GoToDeadScene():
 	GameManager.GameIsEnding = true
+	GameManager.GameLost = true
+	HidePlayer()
 	#get_tree().change_scene_to_file("res://Scenes/Game/DeadScene.tscn")
 	#queue_free()
 	pass
 	
 func GoToVictoryScene():
-	on_player_wins()
+	GameManager.GameIsEnding = true
+	GameManager.GameWon = true
+	#on_player_wins()
+	HidePlayer()
 	rpc_GoToDeadScene.rpc()
 	pass
 	
 @rpc("any_peer")
 func rpc_GoToVictoryScene():
-	on_player_wins()
+	GameManager.GameIsEnding = true
+	GameManager.GameWon = true
+	HidePlayer()
+	#on_player_wins()
 	pass
+
+func HidePlayer():
+	hide()

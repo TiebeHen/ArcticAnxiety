@@ -189,15 +189,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.8637, -16.3469, 27.9938)
 light_energy = 0.5
 
 [node name="VictoryScene" type="Node3D" parent="."]
-visible = false
 
 [node name="orca" parent="VictoryScene" instance=ExtResource("9_g2o18")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 28.0455, 10.4534, 44.8326)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 28.0455, 8.47588, 44.8326)
 script = null
 
 [node name="Player" parent="VictoryScene" instance=ExtResource("12_tecco")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.8763, 4.76355, 43.1093)
-script = null
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.8763, 3.02744, 43.1093)
 
 [node name="VictoryPOV" type="Camera3D" parent="VictoryScene"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 27.4395, 5, 20)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 27.4395, 5, 27.1587)
