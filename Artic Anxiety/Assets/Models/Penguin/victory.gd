@@ -3,7 +3,7 @@ extends Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$AnimationTree.set("parameters/conditions/Victory", true)
+	$AnimationTree.set("parameters/conditions/victorydance", true)
 	pass # Replace with function body.
 
 
