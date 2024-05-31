@@ -6,7 +6,7 @@ var max_time_snowball = 1.0
 var time_left_snowball = 0.0
 var _velocity = Vector3(SPEED, SPEED, SPEED) # Set velocity towards bottom right
 @onready var collision_snowball = $StaticBody3D/CollisionShape3D
-var activateCollisionTimer = 0.3
+var activateCollisionTimer = 0.1
 
 
 # Called when the node enters the scene tree for the first time.
