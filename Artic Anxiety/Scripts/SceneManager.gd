@@ -6,6 +6,9 @@ var rocketScene = preload("res://Scenes/Game/Abilities/Rocket_Laucher_Rocket.tsc
 var playerScene = preload("res://Scenes/Game/Player.tscn")
 var deadScene = preload("res://Scenes/Menus/DeadMenu.tscn")
 
+@onready var victory_scene = $VictoryScene
+@onready var victory_pov = $VictoryScene/VictoryPOV
+
 func _ready():
 	pass
 	
@@ -28,8 +31,15 @@ func _process(_delta):
 		GameManager.GameIsFinished = false
 		
 	if GameManager.GameIsEnding:
-		SetDeadScene()
-
+		if GameManager.GameWon:
+			SetVictoryScene()
+		if GameManager.GameLost:
+			SetDeadScene()
+		
+	if GameManager.GameIsFinished:
+		DeleteUi()
+		GameManager.GameIsFinished = false
+		
 
 func RPG(nodi, positionS, velocity, targetPosition):
 	# Instantiate the rocket
@@ -48,6 +58,16 @@ func throw_snowball(nodi, _position, velocity):
 func SetDeadScene():
 	$EndScene/CameraDeath.current = true
 	$EndScene.add_child(deadScene.instantiate())
+	GameManager.GameIsFinished = true
+	GameManager.GameIsEnding = false
+	GameManager.GameIsRunning = false
+	
+func DeleteUi():
+	$PlayerUi.remove_child($PlayerUi/UserInterface)
+	
+func SetVictoryScene():
+	victory_scene.show()
+	victory_pov.current = true
 	GameManager.GameIsFinished = true
 	GameManager.GameIsEnding = false
 	GameManager.GameIsRunning = false

@@ -107,6 +107,5 @@ func ChangeVisibilityJesusBar():
 		jezus_ability_border.visible = false
 		jezus_ability.visible = false
 		time_remaining_txt.visible = false
-	
 
 
