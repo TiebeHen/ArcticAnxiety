@@ -29,7 +29,7 @@ func _ready():
 	rect_ability_1.visible = false
 	rect_ability_2.visible = false
 	rect_ability_3.visible = false
-	AnAbilityGotActivated()
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -63,14 +63,19 @@ func _process(delta):
 	if ActivatedAbility:
 		timerAbilityCooldown -= delta
 		timerAbility_elapsed_time += delta
-		if ActivatedJezus:
+		if SelectedAbility == 2:
 			cooldown_bar.size.y = 1150 * (1 - timerAbility_elapsed_time / MaxAbilityCooldown)
 		else:
 			cooldown_bar.size.y = 1150 * (1 - timerAbility_elapsed_time / MaxNormalAbilityCooldown)
-	if timerJezusAbility < 0:
-		ActivatedAbility = false
-		timerAbility_elapsed_time = 0
-		cooldown_bar.size.x = 1150
+	if cooldown_bar.size.y < 0.1:
+		if SelectedAbility != 2:
+			ActivatedAbility = false
+			timerAbility_elapsed_time = 0
+			cooldown_bar.size.y = 1150
+		elif timerAbility_elapsed_time > 6:
+			ActivatedAbility = false
+			timerAbility_elapsed_time = 0
+			cooldown_bar.size.y = 1150
 		
 		
 		

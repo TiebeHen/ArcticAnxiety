@@ -174,6 +174,7 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("Ability3"):
 			abilityNr = 3
 			RPG.visible = true #making rpg visible
+			
 		
 		timeLeftJesus -= delta
 		timeLeftAbility -= delta
@@ -185,6 +186,7 @@ func _physics_process(delta):
 						fireSnowBall.rpc(camerarecords)
 						timeLeftAbility = maxTimeAbility
 						swish.play()
+						UserInterfaceNode.AnAbilityGotActivated()
 					if timeLeftAbility <= 0:
 						if abilityNr == 2: #Jesus ability
 							position.y += 0.5
@@ -193,10 +195,12 @@ func _physics_process(delta):
 							timeLeftJesus = maxTimeJesus
 							jesus.play()
 							UserInterfaceNode.SetActivatedJezusTrue()
+							UserInterfaceNode.AnAbilityGotActivated()
 					if abilityNr == 3: #Rocket ability
 						shootRPG.rpc(camerarecords)
 						RPG.visible = true
 						timeLeftAbility = maxTimeAbility
+						UserInterfaceNode.AnAbilityGotActivated()
 					#LevelNode.DeleteTileWRadius(Vector3(camerarecords.x, 0, camerarecords.y),5)
 			
 		if timeLeftJesus < 0:
